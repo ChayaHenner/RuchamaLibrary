@@ -2,26 +2,23 @@ import { BookInstance } from '../entities/BookInstance'
 import { Book } from '../entities/Book'
 import { libraryData } from '../app';
 
+export const getBookInstancesDB = async () => {
+  const readers = await BookInstance.find();
+  return readers;
+};
 
-export async function getBookInstancesDB() {
+export const getInstancByName = async (bookCode: number) => {
+  const bookInstance = await BookInstance.findOne({ where: { book_code: bookCode } });
 
-    const readers = await BookInstance.find();
-    return readers;
+  if (!bookInstance) {
+    throw new Error(`Book instance with book_code ${bookCode} not found`);
+  }
 
-}
-export async function getInstancByName(bookCode: number) {
+  return bookInstance;
+};
 
-    const bookInstance = await BookInstance.findOne({  where: { book_code: bookCode }});
 
-    if (!bookInstance) {
-      throw new Error(`Book instance with book_code ${bookCode} not found`);
-    }
-
-    return bookInstance;
-
-}
-
-export async function getBookInstancesLibraryDB() {
+export const getBookInstancesLibraryDB=async() =>{
  
     const bookInstancesWithCounts = await libraryData.getRepository(Book)
     .createQueryBuilder('book')
@@ -39,31 +36,26 @@ export async function getBookInstancesLibraryDB() {
     .groupBy('book.book_code ,bookinstance.book_name  ,bookinstance.author  ,bookinstance.publisher_id  ,bookinstance.category') // Adjust the grouping based on your needs
   .getRawMany();
 
-
     return bookInstancesWithCounts;
 
 }
 
-export async function postBookInstanceDB(bookinstance: any) {
-  
-    const newBookInstance = BookInstance.create({
-      book_name: bookinstance.book_name,
-      author: bookinstance.author,
-      publisher_id: bookinstance.publisher_id,
-      price: bookinstance.price,
-      category: bookinstance.category,
+export const postBookInstanceDB = async (bookinstance: any) => {
+  const newBookInstance = BookInstance.create({
+    book_name: bookinstance.book_name,
+    author: bookinstance.author,
+    publisher_id: bookinstance.publisher_id,
+    price: bookinstance.price,
+    category: bookinstance.category,
+  });
 
-    });
+  await newBookInstance.save();
+  return newBookInstance;
+};
 
-    await newBookInstance.save();
-    return newBookInstance;
 
-
-}
-
-export async function findBookInstanceByNamePublisherAndAuthor(bookName: string, author: string ,publisher_id :string): Promise<any | null> {
-
-    const bookInstance = await BookInstance.findOne({ where: { book_name: bookName, author  } }); //,publisher_id??
-    return bookInstance || null;
-
-}
+export const findBookInstanceByNamePublisherAndAuthor = async (  bookName: string, author: string, publisher_id: string
+): Promise<any | null> => {
+  const bookInstance = await BookInstance.findOne({ where: { book_name: bookName, author } }); //,publisher_id??
+  return bookInstance || null;
+};

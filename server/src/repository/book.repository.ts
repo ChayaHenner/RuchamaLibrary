@@ -3,43 +3,35 @@ import { libraryData } from '../app';
 import { FindManyOptions } from 'typeorm';
 
  
-export async function  getBooksDB(){
-   
-        const readers = await Book.find();
-        return readers;
+export const getBooksDB = async () => {
+  const readers = await Book.find();
+  return readers;
+};
 
-}
+export const getBooksInLibraryDB = async () => {
+  const options: FindManyOptions<Book> = {
+    where: { book_taken: false },
+  };
 
-export async function getBooksInLibraryDB() {
- 
-    const options: FindManyOptions<Book> = {
-      where: { book_taken: false },
-    };
+  const books = await Book.find(options);
+  return books;
+};
 
-    const books = await Book.find(options);
-    return books;
- 
-}
+export const postBookDB = async (book_code: any) => {
+  const newBook = Book.create({
+    book_code,
+  });
 
+  await newBook.save();
+  return newBook;
+};
 
-export async function  postBookDB(book_code:any){
-   
-        const newBook = Book.create({
-            book_code,
-          });
-    
-          await newBook.save();   
-        return newBook;
+export const softDeleteDB = async (id: number) => {
+  const book = await Book.findOneOrFail({
+    where: { book_id: id },
+  });
 
-}
-export async function  softDeleteDB(id:number){
-   
-        const book = await Book.findOneOrFail({
-            where: { book_id: id },
-          });
-      
-          await book.softRemove();
-          
-        return book;
-     
-}
+  await book.softRemove();
+
+  return book;
+};
