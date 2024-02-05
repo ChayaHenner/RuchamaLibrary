@@ -7,9 +7,8 @@ import { PublisherForm } from '../utils/types';
 import { postPublisher } from '../api/publisher';
 import { addpublisherstyle } from '../styles/addpublisher.style';
 
-
-
 const AddPublisher: FC = () => {
+   
     const { register, handleSubmit, formState } = useForm<PublisherForm>({
         resolver: yupResolver(publisherSchema),
     });

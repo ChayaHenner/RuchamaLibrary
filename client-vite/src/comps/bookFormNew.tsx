@@ -31,7 +31,6 @@ const BookFormNew: FC = () => {
     };    
      fetchData();
     setPublisherValue(publishers[0])
-    // setPublisherValue({publisher_name:"New York",publisher_id:"1"})
 
   }, []);
 

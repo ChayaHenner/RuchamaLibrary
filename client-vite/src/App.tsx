@@ -1,15 +1,12 @@
 import { BrowserRouter , Routes, Route } from 'react-router-dom';
 import Header from './header';
 import Home from './home';
-import Readers from './comps/readers';
 import Book from './books';
 import BookFormNew from './comps/bookFormNew';
-import AddReader from './comps/addReader';
 import UserProfile from './userProfile';
 import { ThemeProvider } from '@emotion/react';
 import ExistingBook from './comps/existingBook';
 import { theme } from './styles/styles';
-import AddPublisher from './comps/addPublisher';
 import BooksPage from './pages/booksPage';
 import BorrowPage from './pages/borrowPage';
 import OverduePage from './pages/overduePage';
