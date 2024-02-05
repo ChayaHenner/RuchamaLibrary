@@ -9,6 +9,7 @@ import { CategoryLevels } from '../utils/config';
 import { bookFormSchema } from '../utils/schemas';
 import { postBook } from '../api/book';
 import { getPublishers } from '../api/publisher';
+import { addbookstyle } from '../styles/addbook.styles';
 
 const BookFormNew: FC = () => {
   const [publishers, setPublishers] = useState<Publisher[]>([]);
@@ -47,22 +48,16 @@ const BookFormNew: FC = () => {
 
   return (
     <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}>
+      sx={addbookstyle.box}>
       {confirm ? <NewBookConfirm data={books} /> :
         (<FormProvider {...methods}>
           <Typography variant="h6" gutterBottom marginTop={20}>Add New Books</Typography>
           <Button component={Link} to="/addexistingbook" variant="contained" color="primary" sx={{ margin: '1rem 0' }}>
             Add Existing Book
           </Button>
-          <Button onClick={()=>{console.log(publisherValue)}}> c</Button>
           <form onSubmit={(e) => methods.handleSubmit((data) => submitBook(data, e))(e)}>
             <Grid>
-              <TextField sx={{ margin: 1 }}
+              <TextField sx={addbookstyle.textfield}
                 label="Book Name"
                 error={!!methods.formState.errors.book_name}
                 helperText={methods.formState.errors.book_name?.message}
@@ -70,7 +65,7 @@ const BookFormNew: FC = () => {
               />
             </Grid>
             <Grid>
-              <TextField sx={{ margin: 1 }}
+              <TextField sx={addbookstyle.textfield}
                 label="Author"
                 error={!!methods.formState.errors.author}
                 helperText={methods.formState.errors.author?.message}
@@ -79,7 +74,7 @@ const BookFormNew: FC = () => {
             </Grid>
             <Grid>
             
-              <Autocomplete sx={{ margin: 1, width: 220 }}
+              <Autocomplete sx={addbookstyle.textfield}
                 options={publishers}
                 getOptionLabel={(option) => `${option.publisher_name} (${option.publisher_id})`}
                 renderInput={(params) => (
@@ -97,7 +92,7 @@ const BookFormNew: FC = () => {
               />
             </Grid>
             <Grid >
-              <TextField sx={{ margin: 1 }}
+              <TextField sx={addbookstyle.textfield}
                 label="Amount"
                 defaultValue={1}
                 type="number"
@@ -108,7 +103,7 @@ const BookFormNew: FC = () => {
             </Grid>
 
             <Grid>
-              <FormControl sx={{ margin: 1, width: 220 }}>
+              <FormControl sx={addbookstyle.textfield}>
                 <InputLabel htmlFor="category-select">Category</InputLabel>
                 <Select
                 defaultValue={"Adults"}
@@ -125,7 +120,7 @@ const BookFormNew: FC = () => {
               </FormControl>
             </Grid>
             <Grid>
-              <TextField sx={{ margin: 1, width: 220 }}
+              <TextField sx={addbookstyle.textfield}
                 label="Price"
                 type="number"
                 error={!!methods.formState.errors.price}

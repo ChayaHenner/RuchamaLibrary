@@ -12,6 +12,7 @@ import React from 'react';
 import { Typography } from '@mui/material';
 import {  RowProps} from '../utils/types';
 import  { FC } from 'react';
+import { overduestyle } from '../styles/overdue.style';
 
 
 export const Row :FC<RowProps>=({row}) =>{
@@ -19,7 +20,7 @@ export const Row :FC<RowProps>=({row}) =>{
   
     return (
       <React.Fragment>
-        <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
+        <TableRow sx={overduestyle.tablerow}>
           <TableCell>
             <IconButton
               aria-label="expand row"
@@ -36,7 +37,7 @@ export const Row :FC<RowProps>=({row}) =>{
         <TableRow>
           <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
             <Collapse in={open} timeout="auto" unmountOnExit>
-              <Box sx={{ margin: 1 }}>
+              <Box sx={overduestyle.box}>
                 <Typography variant="h6" gutterBottom component="div">
                   books
                 </Typography>

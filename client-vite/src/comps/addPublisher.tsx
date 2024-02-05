@@ -5,6 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { publisherSchema } from '../utils/schemas';
 import { PublisherForm } from '../utils/types';
 import { postPublisher } from '../api/publisher';
+import { addpublisherstyle } from '../styles/addpublisher.style';
 
 
 
@@ -20,16 +21,7 @@ const AddPublisher: FC = () => {
 
     return (
         <Box
-            sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '100vh',
-            }}>
-            {/* <Button onClick={() => {
-                console.log(register);
-            }}>log</Button> */}
+            sx={addpublisherstyle.box}>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Grid>
                     <TextField
