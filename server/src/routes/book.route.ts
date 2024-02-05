@@ -1,8 +1,7 @@
 import express, { Request, Response, NextFunction } from 'express';
 import errorHandler from '../utils/middleware'
-import {postNewBooks, getBooks, postBooks ,softDelete ,getBooksInLibrary } from '../service/book.service';
-import * as Validation from '../validation/book.validate';
-
+import { postNewBooks, getBooks, postBooks, softDelete, getBooksInLibrary } from '../service/book.service';
+import { validateBook, validateNewBook } from '../validation/book.validate';
 const booksRouter = express.Router();
 
 booksRouter.get('/', async (req: Request, res: Response, next: NextFunction) => {
@@ -22,11 +21,12 @@ booksRouter.get('/inlibrary', async (req: Request, res: Response, next: NextFunc
   }
 });
 
-booksRouter.post('/', async (req: Request, res: Response, next: NextFunction) => {
+
+
+
+booksRouter.post('/', validateBook, async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const validatedData = await Validation.bookSchema.validate(req.body, { abortEarly: false, });
     const books = await postBooks(req.body)
-  
     res.status(201).json(books);
   }
   catch (err) {
@@ -34,11 +34,9 @@ booksRouter.post('/', async (req: Request, res: Response, next: NextFunction) =>
   }
 
 });
-booksRouter.post('/newbook', async (req: Request, res: Response, next: NextFunction) => {
+booksRouter.post('/newbook',validateNewBook, async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const validatedData = await Validation.newBookSchema.validate(req.body, { abortEarly: false, });
     const books = await postNewBooks(req.body)
-  
     res.status(201).json(books);
   }
   catch (err) {
