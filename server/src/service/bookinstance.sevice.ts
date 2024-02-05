@@ -1,18 +1,9 @@
 import express, { Request, Response, NextFunction } from 'express';
 import { getBookInstancesLibraryDB,getBookInstancesDB, postBookInstanceDB } from '../repository/bookinstance.repository';
 
-export const getBookInstances = async () => {
-        const publishers = await getBookInstancesDB();
-        return publishers;
-      };
+export const getBookInstances = async () => { return await getBookInstancesDB(); };
       
-      export const getBookInstancesLibrary = async () => {
-        const publishers = await getBookInstancesLibraryDB();
-        return publishers;
-      };
+export const getBookInstancesLibrary = async () => {  return await getBookInstancesLibraryDB();  };
       
-      export const postBooksInstance = async (books: any) => {
-        const bookinstance = await postBookInstanceDB(books);
-        return bookinstance;
-      };
+export const postBooksInstance = async (books: any) => { return await postBookInstanceDB(books); };
       

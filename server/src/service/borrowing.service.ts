@@ -1,14 +1,8 @@
 import { getBorrowingByReaderDB, getTwoWeeksPassedDB, getTopTenBooks, findBorrowDB, getBorrowingDB, createBorrowingDB, findBookDB, findReaderDB, checkBookTaken, updateBookTaken, returnBorrowingDB, updateBookNotTaken } from '../repository/borrowing.repository';
 
-export const getBorrowing = async () => {
-    const bookinstances = await getBorrowingDB();
-    return bookinstances;
-};
+export const getBorrowing = async () => {return await getBorrowingDB();};
 
-export const getBorrowingByReader = async (reader_id: number) => {
-    const borrowing = await getBorrowingByReaderDB(reader_id);
-    return borrowing;
-};
+export const getBorrowingByReader = async (reader_id: number) => {return await getBorrowingByReaderDB(reader_id);};
 
 export const postBorrowBook = async (borrow: any): Promise<any> => {
     const book = await findBookDB(borrow.book_id);
@@ -68,8 +62,7 @@ export const postBorrowMany = async (borrows: any) => {
 export const postReturnBook = async (borrow: any) => {
     const returnbook = returnBorrowingDB(borrow.id);
     updateBookNotTaken((await returnbook).book_id.book_id);
-    const book = findBorrowDB(borrow.id);
-    return book;
+    return findBorrowDB(borrow.id);
   };
   
 
@@ -90,13 +83,7 @@ export const postReturnBook = async (borrow: any) => {
     return returnedarray;
   };
 
-  export const toptenbooks = async () => {
-    const topten = await getTopTenBooks();
-    return topten;
-  };
+  export const toptenbooks = async () => {return await getTopTenBooks();};
   
-  export const twoweekspassed = async () => {
-    const topten = await getTwoWeeksPassedDB();
-    return topten;
-  };
+  export const twoweekspassed = async () => { return await getTwoWeeksPassedDB();  };
   

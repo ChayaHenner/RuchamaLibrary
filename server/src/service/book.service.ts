@@ -2,15 +2,10 @@ import express, { Request, Response, NextFunction } from 'express';
 import { getBooksDB, postBookDB, softDeleteDB, getBooksInLibraryDB } from '../repository/book.repository';
 import { findBookInstanceByNamePublisherAndAuthor, getInstancByName, postBookInstanceDB } from '../repository/bookinstance.repository';
 
-export const getBooks = async () => {
-        const publishers = await getBooksDB();
-        return publishers;
-};
+export const getBooks = async () => {return await getBooksDB()};
 
-export const getBooksInLibrary = async () => {
-        const publishers = await getBooksInLibraryDB();
-        return publishers;
-};
+export const getBooksInLibrary = async () => { return await getBooksInLibraryDB();};
+
 export const postBooks = async (books: any) => {
         const book_info = await getInstancByName(books.book_code);
         let newBooks: object[] = [];
@@ -25,6 +20,7 @@ export const postBooks = async (books: any) => {
         };
         return newBookReport;
 };
+
 export const postNewBooks = async (books: any) => {
         const existingBookInstance = await findBookInstanceByNamePublisherAndAuthor(books.book_name, books.author, books.publisher_id);
         const bookInstance = existingBookInstance || await postBookInstanceDB(books);
@@ -42,8 +38,5 @@ export const postNewBooks = async (books: any) => {
         return newBookReport;
       };
       
-      export const softDelete = async (id: number) => {
-        const publisher = await softDeleteDB(id);
-        return publisher;
-      };
+      export const softDelete = async (id: number) => {  return await softDeleteDB(id);};
       
