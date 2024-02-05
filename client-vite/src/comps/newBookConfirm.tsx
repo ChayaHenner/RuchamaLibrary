@@ -1,5 +1,5 @@
 import React from 'react';
-import {  BookResponse } from './types';
+import {  BookResponse } from '../utils/types';
 import { Card, CardContent, Typography, Grid } from '@mui/material';
 
 export type NewBookConfirmProp =  {

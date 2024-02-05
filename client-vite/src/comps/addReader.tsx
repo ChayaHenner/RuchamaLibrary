@@ -6,9 +6,9 @@ import { Box, Grid } from '@mui/material';
 // import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 // import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { AddReaderProps, ReaderForm } from '../types';
+import { AddReaderProps, ReaderForm } from '../utils/types';
 import { SubmitHandler, useForm, FormProvider } from 'react-hook-form';
-import { formSchema } from '../schemas';
+import { formSchema } from '../utils/schemas';
 import { addReader } from '../api/reader';
 import Swal from 'sweetalert2'
 

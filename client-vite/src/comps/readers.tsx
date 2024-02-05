@@ -1,6 +1,6 @@
 import  { useEffect, useState,FC } from 'react';
 import { Grid, Card, CardContent, Typography, Container, Input } from '@mui/material';
-import { Reader } from '../types';
+import { Reader } from '../utils/types';
 import { getReaders } from '../api/reader';
 import ReaderCard from './readerCard';
 const Readers: FC = () => {

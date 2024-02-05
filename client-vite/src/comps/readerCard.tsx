@@ -2,7 +2,7 @@ import { Grid, Card, CardContent, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 import  {FC } from 'react';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import { ReaderCardProp } from '../types';
+import { ReaderCardProp } from '../utils/types';
 
 const ReaderCard :FC<ReaderCardProp>= ({reader}) => {
     const calculateAge = (dob: string) => {

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BookInstance, BookLibrary, ExistingBookFormValues } from '../types';
+import { BookInstance, BookLibrary, ExistingBookFormValues } from '../utils/types';
 
 
 export const getBookInstances = async (): Promise<BookInstance[]> => {

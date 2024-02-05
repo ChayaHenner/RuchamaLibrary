@@ -1,4 +1,4 @@
-import { BorrowBooks, ReaderWithUnreturnedBooks } from "../types";
+import { BorrowBooks, ReaderWithUnreturnedBooks } from "../utils/types";
 import axios from 'axios';
 import Swal from 'sweetalert2'
 

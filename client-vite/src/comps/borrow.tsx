@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Button, FormControl, Typography, Autocomplete, TextField, Container, TableContainer, Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material';
-import NewBorrowConfirm from '../borrowConfirm';
+import NewBorrowConfirm from './borrowConfirm';
 import { getBooksInLibrary } from '../api/book';
 import { getReaders } from '../api/reader';
 import { postBorrow } from '../api/borrowing';
-import { BookType, BorrowedBook, Reader } from '../types';
+import { BookType, BorrowedBook, Reader } from '../utils/types';
 
 const Borrow: React.FC = () => {
   const [confirm, setConfirm] = useState(false);

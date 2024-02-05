@@ -1,7 +1,7 @@
 import { useEffect, useState, FC } from 'react';
 import { Grid, Card, CardContent, Typography } from '@mui/material';
 import { getBookInstances } from './api/bookinstances';
-import { BookInstance } from './types';
+import { BookInstance } from './utils/types';
 
 const Book: FC = () => {
   const [books, setBooks] = useState<BookInstance[]>([]);

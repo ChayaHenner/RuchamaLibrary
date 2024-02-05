@@ -1,7 +1,7 @@
 import { Grid, CardContent, Typography, Divider } from '@mui/material';
 import  {FC } from 'react';
-import { CustomCard } from '../styles';
-import { BookCardProp } from '../types';
+import { CustomCard } from '../styles/styles';
+import { BookCardProp } from '../utils/types';
 
 
 const BookCard :FC<BookCardProp> = ({ book }) => {

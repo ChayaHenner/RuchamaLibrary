@@ -1,4 +1,4 @@
-import { Reader, ReaderForm, ReaderInfo } from "../types";
+import { Reader, ReaderForm, ReaderInfo } from "../utils/types";
 import axios from 'axios';
 
 

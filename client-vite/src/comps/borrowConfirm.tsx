@@ -1,7 +1,7 @@
 import React from 'react';
 import { Typography, List, ListItem, ListItemText, Button, Box } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { NewBookConfirmProps } from './types';
+import { NewBookConfirmProps } from '../utils/types';
 
 
 const NewBorrowConfirm: React.FC<NewBookConfirmProps> = ({ data }) => {

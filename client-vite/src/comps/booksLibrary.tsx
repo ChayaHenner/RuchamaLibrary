@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Grid, CardContent, Typography, Container, Divider, Input } from '@mui/material';
-import { BookLibrary } from '../types';
-import { CustomCard } from '../styles';
+import { BookLibrary } from '../utils/types';
+import { CustomCard } from '../styles/styles';
 import { getBooksLibrary } from '../api/bookinstances';
 import BookCard from './bookCard';
 

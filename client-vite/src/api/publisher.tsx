@@ -1,4 +1,4 @@
-import { Publisher, PublisherForm } from "../types";
+import { Publisher, PublisherForm } from "../utils/types";
 import axios from 'axios';
 
 
