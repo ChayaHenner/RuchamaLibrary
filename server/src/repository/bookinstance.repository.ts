@@ -5,16 +5,12 @@ import { libraryData } from '../app';
 
 export async function getBookInstancesDB() {
 
-  try {
     const readers = await BookInstance.find();
     return readers;
 
-  } catch (error) {
-    throw error;
-  }
 }
 export async function getInstancByName(bookCode: number) {
-  try {
+
     const bookInstance = await BookInstance.findOne({  where: { book_code: bookCode }});
 
     if (!bookInstance) {
@@ -22,29 +18,11 @@ export async function getInstancByName(bookCode: number) {
     }
 
     return bookInstance;
-  } catch (error) {
-    throw error;
-  }
+
 }
 
 export async function getBookInstancesLibraryDB() {
-  try {
-    // const bookInstancesWithCounts = await libraryData.getRepository(Book)
-    //   .createQueryBuilder('book')
-    //   .leftJoinAndSelect('book.book_code ',' bookinstance')
-    //   .addSelect('COUNT(book.book_id) as total_books')
-    //   .addSelect('SUM(CASE WHEN book.book_taken = true THEN 1 ELSE 0 END) as taken_books')
-    //   .addSelect('SUM(CASE WHEN book.book_taken = false THEN 1 ELSE 0 END) as available_books')
-    //   .groupBy('book_instance.book_code, book_instance.book_name, book_instance.author, book_instance.publisher_id, book_instance.price, book_instance.category')
-    //   .getRawMany();
-    // const bookInstancesWithCounts = await libraryData.getRepository(BookInstance)
-    // .createQueryBuilder('bookinstance')
-    // .leftJoinAndSelect(Book, 'book', 'bookinstance.book_code = book.book_code')
-    // // .addSelect('COUNT(book.book_id) as total_books')
-    // // .addSelect('SUM(CASE WHEN book.taken = true THEN 1 ELSE 0 END) as taken_books')
-    // // .addSelect('SUM(CASE WHEN book.taken = false THEN 1 ELSE 0 END) as available_books')
-    // // .groupBy('bookinstance.book_code')
-    // .getRawMany();
+ 
     const bookInstancesWithCounts = await libraryData.getRepository(Book)
     .createQueryBuilder('book')
     .select([
@@ -63,13 +41,11 @@ export async function getBookInstancesLibraryDB() {
 
 
     return bookInstancesWithCounts;
-  } catch (error) {
-    throw error;
-  }
+
 }
 
 export async function postBookInstanceDB(bookinstance: any) {
-  try {
+  
     const newBookInstance = BookInstance.create({
       book_name: bookinstance.book_name,
       author: bookinstance.author,
@@ -82,18 +58,12 @@ export async function postBookInstanceDB(bookinstance: any) {
     await newBookInstance.save();
     return newBookInstance;
 
-  } catch (error) {
-    throw error;
-  }
+
 }
 
 export async function findBookInstanceByNamePublisherAndAuthor(bookName: string, author: string ,publisher_id :string): Promise<any | null> {
 
-  try {
     const bookInstance = await BookInstance.findOne({ where: { book_name: bookName, author  } }); //,publisher_id??
     return bookInstance || null;
-  }
-  catch (error) {
-    throw error;
-  }
+
 }

@@ -6,7 +6,7 @@ import { createQueryBuilder, getConnection } from 'typeorm';
 import { libraryData } from '../app';
 
 export async function getTopTenBooks() {
-    try {
+ 
         const topTenBooks = await libraryData.getRepository(Borrowing)
             .createQueryBuilder('borrowing')
             .leftJoinAndSelect('borrowing.book_id', 'book')
@@ -20,13 +20,11 @@ export async function getTopTenBooks() {
         console.log(topTenBooks);
 
         return topTenBooks;
-    } catch (error) {
-        throw error;
-    }
+  
 }
 
 export async function getBorrowingByReaderDB(reader_id: number) {
-    try {
+    
         const result = await libraryData
             .getRepository(Borrowing)
             .createQueryBuilder('borrowing')
@@ -60,53 +58,35 @@ export async function getBorrowingByReaderDB(reader_id: number) {
             return readerInfo;
         }
         return result;
-    } catch (error) {
-        throw error;
-    }
+  
 }
 
 export async function getBorrowingDB() {
-
-    try {
         const borrowing = await Borrowing.find();
         return borrowing;
-
-    } catch (error) {
-        throw error;
-    }
 }
 export async function findBookDB(book_id: number) {
 
-    try {
         const book = await Book.findOne({ where: { book_id } });
         return book;
 
-    } catch (error) {
-        throw error;
-    }
 }
 export async function findReaderDB(reader_id: number) {
 
-    try {
+ 
         const reader = await Reader.findOne({ where: { reader_id } });
         return reader;
 
-    } catch (error) {
-        throw error;
-    }
 }
 export async function findBorrowDB(id: number) {
 
-    try {
+   
         const borrow = await Borrowing.findOne({ where: { id } });
         return borrow;
 
-    } catch (error) {
-        throw error;
-    }
 }
 export async function createBorrowingDB(borrowing: any) {
-    try {
+  
         const newBorrowing = Borrowing.create({
             reader_id: borrowing.reader_id,
             book_id: borrowing.book_id,
@@ -115,14 +95,12 @@ export async function createBorrowingDB(borrowing: any) {
         await newBorrowing.save();
         return newBorrowing;
 
-    } catch (error) {
-        throw error;
-    }
+  
 }
 
 
 export async function returnBorrowingDB(id: number) {
-    try {
+    
         let borrowing = await Borrowing.findOne({ where: { id } });
         if (borrowing && borrowing.date_returned == null) {
             borrowing.date_returned = new Date()
@@ -131,14 +109,11 @@ export async function returnBorrowingDB(id: number) {
 
         }
         else throw "borrowing id incorrect or returned already"
-    }
-    catch (error) {
-        throw error;
-    }
+   
 }
 
 export async function updateBookTaken(book_id: any) {
-    try {
+    
         let book = await Book.findOne({ where: { book_id } });
         console.log(book);
 
@@ -150,12 +125,10 @@ export async function updateBookTaken(book_id: any) {
             return book
         }
 
-    } catch (error) {
-        throw error;
-    }
+    
 }
 export async function updateBookNotTaken(book_id: any) {
-    try {
+   
         let book = await Book.findOne({ where: { book_id } });
         console.log(book);
 
@@ -167,13 +140,11 @@ export async function updateBookNotTaken(book_id: any) {
             return book
         }
 
-    } catch (error) {
-        throw error;
-    }
+   
 }
 
 export async function checkBookTaken(book_id: any) {
-    try {
+   
         let book = await Book.findOne({ where: { book_id } });
         console.log(book);
 
@@ -184,13 +155,10 @@ export async function checkBookTaken(book_id: any) {
         }
         else return false
 
-    } catch (error) {
-        throw error;
-    }
 }
 
 export async function getTwoWeeksPassedDB() {
-    try {
+    
         const TwoWeeksPassed = await libraryData.getRepository(Borrowing)
         .createQueryBuilder('borrowing')
         .leftJoinAndSelect('borrowing.book_id', 'book')
@@ -210,12 +178,6 @@ export async function getTwoWeeksPassedDB() {
       console.log(TwoWeeksPassed);
   
       return TwoWeeksPassed;
-    } catch (error) {
-        throw error;
-    }
+  
 }
-// export async function postBookDB(bookDetails: any): Promise<any> {
-//     const newBook = await Book.create(bookDetails).save();
-//     return newBook;
-// }
 
