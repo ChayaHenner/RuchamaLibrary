@@ -1,7 +1,7 @@
 import express, { Request, Response, NextFunction } from 'express';
 import errorHandler from '../utils/middleware'
 import {postNewBooks, getBooks, postBooks ,softDelete ,getBooksInLibrary } from '../service/book.service';
-import * as Validation from '../validation/validateModels';
+import * as Validation from '../validation/book.validate';
 
 const booksRouter = express.Router();
 

@@ -2,7 +2,7 @@ import express, { Request, Response, NextFunction } from 'express';
 import { Publisher } from '../entities/Publisher'
 import { z, ZodError } from 'zod';
 import errorHandler from '../utils/middleware'
-import * as Validation from '../validation/validateModels';
+import * as Validation from '../validation/publisher.validate';
 import { softDelete,getPublishers ,postPublisher} from '../service/publisher.service';
 
 const publisherRouter = express.Router();

@@ -2,7 +2,7 @@ import express, { Request, Response, NextFunction } from 'express';
 import { Reader } from '../entities/Reader'
 import { z, ZodError } from 'zod';
 import errorHandler from '../utils/middleware'
-import * as Validation from '../validation/validateModels';
+import * as Validation from '../validation/reader.validate';
 import { getReaders, postReader, softDelete } from '../service/reader.service';
 const readerRouter = express.Router();
 readerRouter.use(express.json());

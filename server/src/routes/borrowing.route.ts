@@ -4,7 +4,7 @@ import { Book } from '../entities/Book'
 import { Reader } from '../entities/Reader'
 import errorHandler from '../utils/middleware'
 import {getBorrowingByReader,postReturnManyBooks,postBorrowMany,toptenbooks, getBorrowing ,postBorrowBook ,postReturnBook ,twoweekspassed} from '../service/borrowing.service';
-import * as Validation from '../validation/validateModels';
+import * as Validation from '../validation/borrowing.validate.ts';
 import { createQueryBuilder, getConnection } from 'typeorm';
 
 const borrowingRouter = express.Router();

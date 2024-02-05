@@ -1,7 +1,7 @@
 import express, { Request, Response, NextFunction } from 'express';
 import { BookInstance } from '../entities/BookInstance'
 import errorHandler from '../utils/middleware'
-import * as Validation from '../validation/validateModels';
+import * as Validation from '../validation/bookInstance.validate';
 import { getBookInstancesLibrary,getBookInstances ,postBooksInstance } from '../service/bookinstance.sevice';
 
 
