@@ -8,9 +8,6 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { HistoryTableProps } from '../utils/types';
 
-
-
-
 export  const HistoryTable:React.FC<HistoryTableProps>=({ history })=> {
   console.log(history);
     

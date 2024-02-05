@@ -4,6 +4,7 @@ import { BookLibrary } from '../utils/types';
 import { CustomCard } from '../styles/styles';
 import { getBooksLibrary } from '../api/bookinstances';
 import BookCard from './bookCard';
+import { booksstyle } from '../styles/books.styles';
 
 const BooksLibrary: React.FC = () => {
   const [books, setBooks] = useState<BookLibrary[]>([]);
@@ -35,7 +36,7 @@ const BooksLibrary: React.FC = () => {
   return (
     <Container maxWidth="lg">
       <Grid container spacing={5}>
-        <Grid container spacing={3} alignItems="center" sx={{ margin: 5 }}>
+        <Grid container spacing={3} alignItems="center" sx={booksstyle.headermargins}>
           <Grid item xs={12} sm={6}>
             <Typography variant="h4">Books</Typography>
           </Grid>

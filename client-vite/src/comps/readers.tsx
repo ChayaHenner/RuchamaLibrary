@@ -1,11 +1,11 @@
-import  { useEffect, useState,FC } from 'react';
-import { Grid, Card, CardContent, Typography, Container, Input } from '@mui/material';
+import { useEffect, useState, FC } from 'react';
+import { Grid,  Typography, Container, Input } from '@mui/material';
 import { Reader } from '../utils/types';
 import { getReaders } from '../api/reader';
 import ReaderCard from './readerCard';
 const Readers: FC = () => {
-  const [readers, setReaders]= useState< Reader[] >([]);
-  const [searchTerm, setSearchTerm]= useState<string>();
+  const [readers, setReaders] = useState<Reader[]>([]);
+  const [searchTerm, setSearchTerm] = useState<string>();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,29 +20,30 @@ const Readers: FC = () => {
     fetchData();
   }, [searchTerm]);
 
-  
 
-  return (<Container>
-    <Grid container spacing={3}>
-      <Grid item xs={12}>
-        <Typography variant="h4" gutterBottom>
-          Readers
-        </Typography>
-      </Grid>
-      <Grid item xs={12}>
-        <Input
-          type="text"
-          placeholder="Search readers"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-      </Grid>
 
-      {readers.map((reader: Reader) => (
-       <ReaderCard reader={reader} />
-      ))}
-    </Grid>
-  </Container>
+  return (
+    <Container>
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <Typography variant="h4" gutterBottom>
+            Readers
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <Input
+            type="text"
+            placeholder="Search readers"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </Grid>
+
+        {readers.map((reader: Reader) => (
+          <ReaderCard reader={reader} />
+        ))}
+      </Grid>
+    </Container>
   );
 
 };

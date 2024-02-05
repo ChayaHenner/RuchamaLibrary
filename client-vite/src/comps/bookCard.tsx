@@ -2,6 +2,7 @@ import { Grid, CardContent, Typography, Divider } from '@mui/material';
 import  {FC } from 'react';
 import { CustomCard } from '../styles/styles';
 import { BookCardProp } from '../utils/types';
+import { booksstyle } from '../styles/books.styles';
 
 
 const BookCard :FC<BookCardProp> = ({ book }) => {
@@ -22,9 +23,7 @@ const BookCard :FC<BookCardProp> = ({ book }) => {
                 <Typography variant="h5" component="div">
                   {book.bookinstance_author}
                 </Typography>
-                <Divider sx={{
-                  margin: 3
-                }} />
+                <Divider sx={booksstyle.dividermargins} />
                 <Typography variant="h5" component="div">
                   Amount  {book.total_book_ids}
                 </Typography>

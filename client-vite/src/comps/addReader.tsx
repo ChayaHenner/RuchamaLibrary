@@ -2,15 +2,16 @@ import { FC } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { Box, Grid } from '@mui/material';
-// import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { AddReaderProps, ReaderForm } from '../utils/types';
 import { SubmitHandler, useForm, FormProvider } from 'react-hook-form';
 import { formSchema } from '../utils/schemas';
 import { addReader } from '../api/reader';
 import Swal from 'sweetalert2'
+import { readerstyle } from '../styles/readers.style';
 
 
 const AddReader: FC<AddReaderProps> = ({ onClose }) => {
@@ -46,27 +47,14 @@ const AddReader: FC<AddReaderProps> = ({ onClose }) => {
 
     return (
         <Box
-            sx={{
-                position: "fixed",
-                top: "0px",
-                right: "0px",
-                zIndex: 1000,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '100%',
-                width: '100%',
-                backdropFilter: "blur(10px)",
-                background: "rgba(128, 128, 128, 0.4)",
-            }}
+            sx={readerstyle.boxblur}
         >      <Button onClick={onClose}>x</Button>
 
             <FormProvider  {...methods}>
                 <form onSubmit={methods.handleSubmit((data) => handleSubmit(data))}>
                     <Grid>
                         <TextField
-                            sx={{ margin: 1 }}
+                            sx={readerstyle.textfield}
                             id="name"
                             label="Name"
                             {...methods.register('name')}
@@ -78,7 +66,7 @@ const AddReader: FC<AddReaderProps> = ({ onClose }) => {
                     <Grid>
 
                         <TextField
-                            sx={{ margin: 1 }}
+                            sx={readerstyle.textfield}
                             id="email"
                             label="Email"
                             error={!!methods.formState.errors.email}
@@ -91,7 +79,7 @@ const AddReader: FC<AddReaderProps> = ({ onClose }) => {
 
                         {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
                             <DatePicker
-                                sx={{ margin: 1, width: 218 }}
+                                sx={readerstyle.textfield}
                                 label="Date of Birth"
                                 // {...methods.register('dob')}
                                 value={methods.watch('dob') ?? null}
@@ -100,7 +88,7 @@ const AddReader: FC<AddReaderProps> = ({ onClose }) => {
                         </LocalizationProvider> */}
                     </Grid>
 
-                    <Button sx={{ margin: 1 }} variant="contained" color="primary" type="submit">
+                    <Button sx={readerstyle.textfield} variant="contained" color="primary" type="submit">
                         Add Reader
                     </Button>
                 </form>
