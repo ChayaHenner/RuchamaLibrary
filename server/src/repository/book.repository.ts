@@ -3,27 +3,21 @@ import { libraryData } from '../app';
 import { FindManyOptions } from 'typeorm';
 
  
-export const getBooksDB = async () => {
-  const readers = await Book.find();
-  return readers;
-};
+export const getBooksDB = async () => {return await Book.find()};
 
 export const getBooksInLibraryDB = async () => {
   const options: FindManyOptions<Book> = {
     where: { book_taken: false },
   };
 
-  const books = await Book.find(options);
-  return books;
+  return await Book.find(options);
 };
 
 export const postBookDB = async (book_code: any) => {
-  const newBook = Book.create({
-    book_code,
+  return Book.save({
+    book_code
   });
 
-  await newBook.save();
-  return newBook;
 };
 
 export const softDeleteDB = async (id: number) => {
@@ -31,7 +25,5 @@ export const softDeleteDB = async (id: number) => {
     where: { book_id: id },
   });
 
-  await book.softRemove();
-
-  return book;
+  return book.softRemove();
 };

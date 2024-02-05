@@ -2,23 +2,19 @@ import { libraryData } from '../app';
 import { Publisher } from '../entities/Publisher';
 
 export const getPublishersDB = async () => {
-  const publishers = await libraryData
+  return await libraryData
     .getRepository(Publisher)
     .createQueryBuilder('publisher')
     .select(['publisher.publisher_id', 'publisher.publisher_name'])
     .getMany();
 
-  return publishers;
 };
 
 export const postPublisherDB = async (publisher: any) => {
-  const newPublisher = Publisher.create({
+  return Publisher.save({
     publisher_name: publisher.publisher_name,
     country: publisher.country,
   });
-
-  await newPublisher.save();
-  return newPublisher;
 };
 
 export const softDeleteDB = async (id: number) => {
@@ -26,6 +22,6 @@ export const softDeleteDB = async (id: number) => {
     where: { publisher_id: id },
   });
 
-  await publisher.softRemove();
-  return publisher;
+  return await publisher.softRemove();
+
 };

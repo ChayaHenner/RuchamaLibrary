@@ -2,18 +2,13 @@ import { BookInstance } from '../entities/BookInstance'
 import { Book } from '../entities/Book'
 import { libraryData } from '../app';
 
-export const getBookInstancesDB = async () => {
-  const readers = await BookInstance.find();
-  return readers;
-};
+export const getBookInstancesDB = async () => { return await BookInstance.find();};
 
 export const getInstancByName = async (bookCode: number) => {
   const bookInstance = await BookInstance.findOne({ where: { book_code: bookCode } });
-
   if (!bookInstance) {
     throw new Error(`Book instance with book_code ${bookCode} not found`);
   }
-
   return bookInstance;
 };
 
@@ -41,7 +36,7 @@ export const getBookInstancesLibraryDB=async() =>{
 }
 
 export const postBookInstanceDB = async (bookinstance: any) => {
-  const newBookInstance = BookInstance.create({
+  return BookInstance.save({
     book_name: bookinstance.book_name,
     author: bookinstance.author,
     publisher_id: bookinstance.publisher_id,
@@ -49,8 +44,6 @@ export const postBookInstanceDB = async (bookinstance: any) => {
     category: bookinstance.category,
   });
 
-  await newBookInstance.save();
-  return newBookInstance;
 };
 
 

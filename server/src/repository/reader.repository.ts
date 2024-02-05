@@ -1,16 +1,16 @@
 import { Reader } from '../entities/Reader';
-import { FindManyOptions, ILike } from 'typeorm';
+import { FindManyOptions, ILike ,Equal} from 'typeorm';
 
 export const getReadersDB = async (searchTerm: string) => {
   const options: FindManyOptions<Reader> = {};
   if (searchTerm) {
-    options.where = {
-      name: ILike(`%${searchTerm}%`),
-    };
-  }
+    options.where = [
+      { name: ILike(`%${searchTerm}%`) },
+      { email: ILike(`%${searchTerm}%`) },
+      { reader_id: Equal(Number(searchTerm)) },
+    ] };
 
-  const readers = await Reader.find(options);
-  return readers;
+ return await Reader.find(options);
 };
 
 export const postReaderDB = async (reader: any) => {
@@ -28,7 +28,5 @@ export const softDeleteDB = async (id: number) => {
   const reader = await Reader.findOneOrFail({
     where: { reader_id: id },
   });
-
-  await reader.softRemove();
-  return reader;
+  return await reader.softRemove();
 };

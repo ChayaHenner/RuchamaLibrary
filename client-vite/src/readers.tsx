@@ -57,9 +57,10 @@ const Readers: FC = () => {
         <Grid key={reader.reader_id} item xs={12} sm={6} md={4} lg={3}>
           <Card>
             <CardContent>
-              <Typography variant="h6" component="div">
+              <Typography variant="h6" component="div" style={{ display: 'inline' }}>
                 {reader.name}
               </Typography>
+              <Typography color="textSecondary" style={{ display: 'inline' }}>( {reader.reader_id} )</Typography>
               <Typography color="textSecondary">{reader.email}</Typography>
               <Typography color="textSecondary">age: {calculateAge(reader.dob)}</Typography>
               <Link to={`/profile/${reader.reader_id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
