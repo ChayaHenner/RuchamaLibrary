@@ -3,25 +3,21 @@ import { getBooksDB, postBookDB, softDeleteDB, getBooksInLibraryDB } from '../re
 import { findBookInstanceByNamePublisherAndAuthor, getInstancByName, postBookInstanceDB } from '../repository/bookinstance.repository';
 
 export async function getBooks() {
-    try {
+ 
         const publishers = await getBooksDB();
 
         return publishers;
-    } catch (error) {
-        throw error;
-    }
+   
 }
 export async function getBooksInLibrary() {
-    try {
+ 
         const publishers = await getBooksInLibraryDB();
 
         return publishers;
-    } catch (error) {
-        throw error;
-    }
+ 
 }
 export async function postBooks(books: any) {
-    try {
+    
         //add json with book instance info 
 
         //get bookinstance by book_code attribute
@@ -38,12 +34,10 @@ export async function postBooks(books: any) {
             book_info: book_info
         }
         return newBookReport;
-    } catch (error) {
-        throw error;
-    }
+   
 }
 export async function postNewBooks(books: any) {
-    try {
+    
         console.log(books);
 
         const existingBookInstance = await findBookInstanceByNamePublisherAndAuthor(books.book_name, books.author, books.publisher_id)
@@ -62,15 +56,11 @@ export async function postNewBooks(books: any) {
         }
 
         return newBookReport;
-    } catch (error) {
-        throw error;
-    }
+    
 }
 export async function softDelete(id: number) {
-    try {
+ 
         const publisher = await softDeleteDB(id);
         return publisher;
-    } catch (error) {
-        throw error;
-    }
+    
 }
