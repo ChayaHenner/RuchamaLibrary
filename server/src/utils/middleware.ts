@@ -1,4 +1,7 @@
 import express, { Request, Response, NextFunction } from 'express';
+import { bookSchema, newBookSchema } from '../validation/book.validate';
+import { bookInstanceSchema } from '../validation/bookInstance.validate';
+import { borrowingManySchema, borrowingSchema, returnManySchema, returnSchema } from '../validation/borrowing.validate.ts';
 
 const errorHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
     console.error('Error caught by middleware:', err);
@@ -18,3 +21,34 @@ const errorHandler = (err: Error, req: Request, res: Response, next: NextFunctio
   };
   
   export default errorHandler;
+
+  export const validate = (schemaName: string) => async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const schema = getSchema(schemaName);
+        req.body = await schema.validate(req.body);
+        next();
+    } catch (error) {
+        next(error);
+    }
+};
+
+const getSchema = (schemaName: string) => {
+    switch (schemaName) {
+        case 'bookSchema':
+            return bookSchema;
+        case 'newBookSchema':
+            return newBookSchema;
+        case 'bookInstance':
+            return bookInstanceSchema;
+        case 'borrowingSchema':
+            return borrowingSchema;
+        case 'borrowingManySchema':
+            return borrowingManySchema;
+        case 'returnSchema':
+            return returnSchema;
+        case 'returnManySchema':
+            return returnManySchema;
+        default:
+            throw new Error(`Schema '${schemaName}' not found`);
+    }
+};

@@ -1,11 +1,6 @@
 import express, { Request, Response, NextFunction } from 'express';
-import { Borrowing } from '../entities/Borrowing'
-import { Book } from '../entities/Book'
-import { Reader } from '../entities/Reader'
-import errorHandler from '../utils/middleware'
+import errorHandler, { validate } from '../utils/middleware'
 import {getBorrowingByReader,postReturnManyBooks,postBorrowMany,toptenbooks, getBorrowing ,postBorrowBook ,postReturnBook ,twoweekspassed} from '../service/borrowing.service';
-import * as Validation from '../validation/borrowing.validate.ts';
-import { createQueryBuilder, getConnection } from 'typeorm';
 
 const borrowingRouter = express.Router();
 
@@ -30,9 +25,8 @@ borrowingRouter.get('/reader/:reader_id',async (req: Request, res: Response, nex
   }
 });
 
-borrowingRouter.post('/borrow', async (req: Request, res: Response, next: NextFunction) => {
+borrowingRouter.post('/borrow',validate('borrowingSchema'), async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const validatedData = await Validation.borrowingSchema.validate(req.body, { abortEarly: false, });
     const borrow_book = await postBorrowBook(req.body)
     res.status(201).json(borrow_book);
   }
@@ -42,9 +36,8 @@ borrowingRouter.post('/borrow', async (req: Request, res: Response, next: NextFu
 
 });
 
-borrowingRouter.post('/borrowmany', async (req: Request, res: Response, next: NextFunction) => {
+borrowingRouter.post('/borrowmany',validate('borrowingManySchema'), async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const validatedData = await Validation.borrowingManySchema.validate(req.body, { abortEarly: false, });
     const borrow_book = await postBorrowMany(req.body)
     res.status(201).json(borrow_book);
   }
@@ -56,9 +49,8 @@ borrowingRouter.post('/borrowmany', async (req: Request, res: Response, next: Ne
 
 
 
-borrowingRouter.post('/returnbyid', async (req: Request, res: Response, next: NextFunction) => {
-  try {//check validation
-    const validatedData = await Validation.returnSchema.validate(req.body, { abortEarly: false, });
+borrowingRouter.post('/returnbyid',validate('returnSchema'), async (req: Request, res: Response, next: NextFunction) => {
+  try {
       const return_book = await postReturnBook(req.body)
        res.status(201).json(return_book);
   }
@@ -67,9 +59,8 @@ borrowingRouter.post('/returnbyid', async (req: Request, res: Response, next: Ne
   }
 
 });
-borrowingRouter.post('/returnmany', async (req: Request, res: Response, next: NextFunction) => {
+borrowingRouter.post('/returnmany',validate('returnManySchema'),async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const validatedData = await Validation.returnManySchema.validate(req.body, { abortEarly: false, });
       const return_book = await postReturnManyBooks(req.body)
        res.status(201).json(return_book);
   }
