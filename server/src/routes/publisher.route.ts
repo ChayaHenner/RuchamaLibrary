@@ -1,5 +1,5 @@
 import express, { Request, Response, NextFunction } from 'express';
-import { Publisher } from '../models/Publisher'
+import { Publisher } from '../entities/Publisher'
 import { z, ZodError } from 'zod';
 import errorHandler from '../utils/middleware'
 import * as Validation from '../validation/validateModels';

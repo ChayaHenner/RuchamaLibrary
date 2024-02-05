@@ -1,4 +1,4 @@
-import { Book } from '../models/Book'
+import { Book } from '../entities/Book'
 import { libraryData } from '../app';
 import { FindManyOptions } from 'typeorm';
 

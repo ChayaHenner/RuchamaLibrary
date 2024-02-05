@@ -1,7 +1,7 @@
-import { Borrowing } from '../models/Borrowing'
-import { Book } from '../models/Book'
-import { BookInstance } from '../models/BookInstance'
-import { Reader } from '../models/Reader'
+import { Borrowing } from '../entities/Borrowing'
+import { Book } from '../entities/Book'
+import { BookInstance } from '../entities/BookInstance'
+import { Reader } from '../entities/Reader'
 import { createQueryBuilder, getConnection } from 'typeorm';
 import { libraryData } from '../app';
 

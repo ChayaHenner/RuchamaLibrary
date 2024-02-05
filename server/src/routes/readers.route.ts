@@ -1,5 +1,5 @@
 import express, { Request, Response, NextFunction } from 'express';
-import { Reader } from '../models/Reader'
+import { Reader } from '../entities/Reader'
 import { z, ZodError } from 'zod';
 import errorHandler from '../utils/middleware'
 import * as Validation from '../validation/validateModels';

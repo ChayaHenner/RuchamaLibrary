@@ -1,9 +1,9 @@
 import express, { Request, Response } from 'express';
-import booksRouter from './booksRoute'
-import readersRouter from './readersRoute'
-import borrowingRouter from './borrowingRoute'
-import publisherRouter from './publisherRoute'
-import booksInstanceRoute from './bookInstanceRoute'
+import booksRouter from './book.route'
+import readersRouter from './readers.route'
+import borrowingRouter from './borrowing.route'
+import publisherRouter from './publisher.route'
+import booksInstanceRoute from './bookInstance.route'
 const router = express.Router();
 
 router.get('/', (req: Request, res: Response) => {

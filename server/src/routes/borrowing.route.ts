@@ -1,7 +1,7 @@
 import express, { Request, Response, NextFunction } from 'express';
-import { Borrowing } from '../models/Borrowing'
-import { Book } from '../models/Book'
-import { Reader } from '../models/Reader'
+import { Borrowing } from '../entities/Borrowing'
+import { Book } from '../entities/Book'
+import { Reader } from '../entities/Reader'
 import errorHandler from '../utils/middleware'
 import {getBorrowingByReader,postReturnManyBooks,postBorrowMany,toptenbooks, getBorrowing ,postBorrowBook ,postReturnBook ,twoweekspassed} from '../service/borrowing.service';
 import * as Validation from '../validation/validateModels';

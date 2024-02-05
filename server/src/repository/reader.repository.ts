@@ -1,4 +1,4 @@
-import { Reader } from '../models/Reader'
+import { Reader } from '../entities/Reader'
 import { FindManyOptions ,ILike } from 'typeorm';
 
  

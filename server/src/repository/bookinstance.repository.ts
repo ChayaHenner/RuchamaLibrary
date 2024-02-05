@@ -1,5 +1,5 @@
-import { BookInstance } from '../models/BookInstance'
-import { Book } from '../models/Book'
+import { BookInstance } from '../entities/BookInstance'
+import { Book } from '../entities/Book'
 import { libraryData } from '../app';
 
 

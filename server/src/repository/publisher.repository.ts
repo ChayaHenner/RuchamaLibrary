@@ -1,5 +1,5 @@
 import { libraryData } from '../app';
-import { Publisher } from '../models/Publisher'
+import { Publisher } from '../entities/Publisher'
 
 
 export async function getPublishersDB() {

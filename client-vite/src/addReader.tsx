@@ -1,10 +1,10 @@
-import { FC } from 'react';
+import{ FC } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { Box, Grid } from '@mui/material';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+// import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ReaderForm } from './types';
 import { SubmitHandler, useForm, FormProvider } from 'react-hook-form';
@@ -82,15 +82,15 @@ const AddReader: FC = () => {
 
                     <Grid>
 
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
                             <DatePicker
                                 sx={{ margin: 1, width: 218 }}
                                 label="Date of Birth"
-                                {...methods.register('dob')}
+                                // {...methods.register('dob')}
                                 value={methods.watch('dob') ?? null}
                                 onChange={(date) => methods.setValue('dob', date)}
                             />
-                        </LocalizationProvider>
+                        </LocalizationProvider> */}
                     </Grid>
 
                     <Button sx={{ margin: 1 }} variant="contained" color="primary" type="submit">

@@ -2,12 +2,12 @@ import express from 'express';
 import router from './routes/index'
 import "reflect-metadata";
 import 'dotenv/config'
-import { Reader } from './models/Reader'
+import { Reader } from './entities/Reader'
 import { DataSource } from 'typeorm';
-import { Publisher } from './models/Publisher';
-import { Book } from './models/Book';
-import { BookInstance } from './models/BookInstance';
-import { Borrowing } from './models/Borrowing';
+import { Publisher } from './entities/Publisher';
+import { Book } from './entities/Book';
+import { BookInstance } from './entities/BookInstance';
+import { Borrowing } from './entities/Borrowing';
 const cors = require('cors');
 
 const app = express()

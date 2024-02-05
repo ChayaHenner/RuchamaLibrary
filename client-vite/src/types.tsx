@@ -15,7 +15,7 @@ export type Publisher = {
   export type ReaderForm = {
     name: string;
     email: string;
-    dob: Date ;
+    dob: Date ;//| null ; 
   }
 
   export  interface Book {

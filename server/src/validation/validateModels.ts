@@ -1,6 +1,6 @@
 
 import * as yup from 'yup';
-import { LevelCategory } from '../models/BookInstance';
+import { LevelCategory } from '../entities/BookInstance';
 export const readerSchema = yup.object({
   name: yup.string().required(),
   email: yup.string().email().required(),
