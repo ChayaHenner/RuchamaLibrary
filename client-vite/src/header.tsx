@@ -19,7 +19,7 @@ function ResponsiveAppBar() {
     // { label: 'Add Book', path: '/addbook' },
     { label: 'Readers', path: '/readers' },
     // { label: 'Existing Book', path: '/addexistingbook' },
-    { label: 'Add Reader', path: '/addreader' },
+    // { label: 'Add Reader', path: '/addreader' },
     { label: 'Add book', path: '/booksformnew' },
     { label: 'Add Publisher', path: '/addpublisher' },
     { label: 'borrow', path: '/borrow' },

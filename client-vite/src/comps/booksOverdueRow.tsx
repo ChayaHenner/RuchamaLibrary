@@ -10,7 +10,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import React from 'react';
 import { Typography } from '@mui/material';
-import {  RowProps} from './types';
+import {  RowProps} from '../types';
 import  { FC } from 'react';
 
 

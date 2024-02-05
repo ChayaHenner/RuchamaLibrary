@@ -1,4 +1,4 @@
-import CollapsibleTable from "../booksOverdue"
+import CollapsibleTable from "../comps/booksOverdue"
 
 const OverduePage = () => {
 
