@@ -1,4 +1,4 @@
-import{ FC } from 'react';
+import { FC } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { Box, Grid } from '@mui/material';
@@ -6,20 +6,20 @@ import { Box, Grid } from '@mui/material';
 // import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 // import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { ReaderForm } from './types';
+import { AddReaderProps, ReaderForm } from '../types';
 import { SubmitHandler, useForm, FormProvider } from 'react-hook-form';
-import { formSchema } from './schemas';
-import { addReader } from './api/reader';
+import { formSchema } from '../schemas';
+import { addReader } from '../api/reader';
 import Swal from 'sweetalert2'
 
 
-const AddReader: FC = () => {
+const AddReader: FC<AddReaderProps> = ({ onClose }) => {
 
     const methods = useForm<ReaderForm>({
         resolver: yupResolver(formSchema),
     });
 
-    const handleSubmit: SubmitHandler<ReaderForm> = async (data:ReaderForm) => {
+    const handleSubmit: SubmitHandler<ReaderForm> = async (data: ReaderForm) => {
         const dobAsDate = data.dob.toISOString().split('T')[0];
         data.dob = new Date(dobAsDate)
         const isValid = await methods.trigger();
@@ -30,12 +30,13 @@ const AddReader: FC = () => {
                 text: "Enjoy your read",
                 icon: "success",
                 confirmButtonText: "confirm",
-              }).then((result)=>{
-                if(result.isConfirmed){
-                    window. location. reload()
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.reload()
                     //send to profile?
-                }   })          
-                  console.log('data submitted', data);
+                }
+            })
+            console.log('data submitted', data);
         } else {
             console.log('form validation failed');
         }
@@ -46,15 +47,21 @@ const AddReader: FC = () => {
     return (
         <Box
             sx={{
+                position: "fixed",
+                top: "0px",
+                right: "0px",
+                zIndex: 1000,
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
-                height: '100vh',
+                height: '100%',
+                width: '100%',
+                backdropFilter: "blur(10px)",
+                background: "rgba(128, 128, 128, 0.4)",
             }}
-        >
-            {/* <Button onClick={()=>{console.log(methods);
-            }}>log</Button> */}
+        >      <Button onClick={onClose}>x</Button>
+
             <FormProvider  {...methods}>
                 <form onSubmit={methods.handleSubmit((data) => handleSubmit(data))}>
                     <Grid>

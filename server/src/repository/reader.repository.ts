@@ -7,7 +7,7 @@ export const getReadersDB = async (searchTerm: string) => {
     options.where = [
       { name: ILike(`%${searchTerm}%`) },
       { email: ILike(`%${searchTerm}%`) },
-      { reader_id: Equal(Number(searchTerm)) },
+      // { reader_id: Equal(Number(searchTerm)) },
     ] };
 
  return await Reader.find(options);

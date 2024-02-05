@@ -194,3 +194,12 @@ export type PublisherForm =  {
   publisher_name: string;
   country: string;
 }
+export type BookCardProp =  {
+  book: BookLibrary ;
+}
+export type ReaderCardProp =  {
+  reader: Reader ;
+}
+export type AddReaderProps =  {
+  onClose: () => void;
+}
