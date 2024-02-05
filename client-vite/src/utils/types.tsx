@@ -6,7 +6,7 @@ export type Publisher = {
   export  type BookFormProps =  {
     book_name: string;
     author: string;
-    publisher_id: number | undefined; ///
+    publisher_id?: number | undefined; ///
     amount: number;
     category: string;
     price: number;
@@ -132,7 +132,7 @@ export type Publisher = {
     }
 
     export type BorrowBooks = {
-      reader_id:number | null | undefined,
+      reader_id?:number | null | undefined,
       book_ids:number[]
     }
     
@@ -140,7 +140,7 @@ export type NewBookConfirmProps = {
   data: BorrowedBook[];
 }
 export type ExistingBookFormValues = {
-    book_code: number | undefined;
+    book_code?: number | undefined;
     amount: number;
 };
 

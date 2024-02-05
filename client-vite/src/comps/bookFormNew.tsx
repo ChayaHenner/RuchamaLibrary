@@ -85,8 +85,8 @@ const BookFormNew: FC = () => {
                   />
                 )}
                 // value={publisherValue}
-                onChange={(_:any,publisher:Publisher)=>{console.log(publisher);
                 //  setPublisherValue(publisher)
+                onChange={(_,publisher:Publisher)=>{console.log(publisher);
                   methods.setValue('publisher_id', publisher?.publisher_id )}}
               />
             </Grid>
