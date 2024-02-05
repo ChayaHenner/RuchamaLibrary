@@ -51,11 +51,10 @@ const BookFormNew: FC = () => {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        height: '100vh',
       }}>
       {confirm ? <NewBookConfirm data={books} /> :
         (<FormProvider {...methods}>
-          <Typography variant="h6" gutterBottom>Add New Books</Typography>
+          <Typography variant="h6" gutterBottom marginTop={20}>Add New Books</Typography>
           <Button component={Link} to="/addexistingbook" variant="contained" color="primary" sx={{ margin: '1rem 0' }}>
             Add Existing Book
           </Button>

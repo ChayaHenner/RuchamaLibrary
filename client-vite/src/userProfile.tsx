@@ -1,6 +1,6 @@
 import  { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Button, Container, Grid, Typography } from '@mui/material';
+import { Button, Container, Divider, Grid, Typography } from '@mui/material';
 import {ToReturnTable} from './toReturnTable';
 import {HistoryTable} from './historyTable';
 import { Link } from 'react-router-dom'; 
@@ -10,7 +10,6 @@ import { ReaderInfo } from './types';
 const UserProfile = () => {
   const { id } = useParams();
   const [userData, setUserData] = useState<ReaderInfo>();
-  // const [refresh, setRefresh] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,6 +38,7 @@ const UserProfile = () => {
             <Typography variant='h3' sx={{ m: 2 }}>Books to return</Typography>
             {userData.toreturn ? <ToReturnTable toReturn={userData.toreturn} /> :
               (<Typography>-none-</Typography>)}
+              <Divider sx={{marginTop:10}}/>
             <Typography variant='h3' sx={{ m: 2 }}>Books History</Typography>
             {userData.history ? <HistoryTable history={userData.history} /> :
               (<Typography>-none-</Typography>)}

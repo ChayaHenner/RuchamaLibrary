@@ -39,7 +39,7 @@ const BooksLibrary: React.FC = () => {
             <Typography variant="h4">Books</Typography>
           </Grid>
           <Grid item xs={12} sm={6}>
-             <Input
+             <Input 
           type="text"
           placeholder="Search books"
           value={searchTerm}
