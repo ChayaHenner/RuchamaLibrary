@@ -14,6 +14,8 @@ const BookFormNew: FC = () => {
   const [publishers, setPublishers] = useState<Publisher[]>([]);
   const [confirm, setConfirm] = useState(false);
   const [books, setBooks] = useState<BookResponse>();
+  const [publisherValue, setPublisherValue] = useState<Publisher|null>(publishers[0]);
+  
   const methods = useForm<BookFormProps>({
     resolver: yupResolver(bookFormSchema),
   });
@@ -25,8 +27,11 @@ const BookFormNew: FC = () => {
       } catch (err) {
         console.error(err);
       }
-    };
-    fetchData();
+    };    
+     fetchData();
+    setPublisherValue(publishers[0])
+    // setPublisherValue({publisher_name:"New York",publisher_id:"1"})
+
   }, []);
 
   const submitBook: SubmitHandler<BookFormProps> = async (d: BookFormProps) => {
@@ -54,6 +59,7 @@ const BookFormNew: FC = () => {
           <Button component={Link} to="/addexistingbook" variant="contained" color="primary" sx={{ margin: '1rem 0' }}>
             Add Existing Book
           </Button>
+          <Button onClick={()=>{console.log(publisherValue)}}> c</Button>
           <form onSubmit={(e) => methods.handleSubmit((data) => submitBook(data, e))(e)}>
             <Grid>
               <TextField sx={{ margin: 1 }}
@@ -72,6 +78,7 @@ const BookFormNew: FC = () => {
               />
             </Grid>
             <Grid>
+            
               <Autocomplete sx={{ margin: 1, width: 220 }}
                 options={publishers}
                 getOptionLabel={(option) => `${option.publisher_name} (${option.publisher_id})`}
@@ -83,7 +90,10 @@ const BookFormNew: FC = () => {
                     helperText={methods.formState.errors.publisher_id?.message}
                   />
                 )}
-                onChange={(_, value) => methods.setValue('publisher_id', value?.publisher_id)}
+                // value={publisherValue}
+                onChange={(_:any,publisher:Publisher)=>{console.log(publisher);
+                //  setPublisherValue(publisher)
+                  methods.setValue('publisher_id', publisher?.publisher_id )}}
               />
             </Grid>
             <Grid >
@@ -101,6 +111,7 @@ const BookFormNew: FC = () => {
               <FormControl sx={{ margin: 1, width: 220 }}>
                 <InputLabel htmlFor="category-select">Category</InputLabel>
                 <Select
+                defaultValue={"Adults"}
                   label="Category"
                   error={!!methods.formState.errors?.category}
                   {...methods.register('category')}

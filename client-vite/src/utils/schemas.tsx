@@ -12,7 +12,7 @@ export const bookFormSchema: ObjectSchema<BookFormProps> = object({
 
     book_name: string().required('Book name is required'),
     author: string().required('Author is required'),
-    publisher_id: string().required('Publisher ID is required'),
+    publisher_id: number().required('Publisher is required'),
     amount: number().required('Amount is required').min(1, 'Amount must be at least 1'),
     category: string().required('Category is required'),
     price: yup
@@ -21,6 +21,7 @@ export const bookFormSchema: ObjectSchema<BookFormProps> = object({
     .typeError('Price must be a number')
     .min(0, 'Price must be a positive number')
   });
+
   export const existingBookSchema = yup.object().shape({
     amount: yup.number().required('Amount is required').positive('Amount must be positive'),
     book_code: yup.number().required('Book is required').positive('Amount must be positive'),

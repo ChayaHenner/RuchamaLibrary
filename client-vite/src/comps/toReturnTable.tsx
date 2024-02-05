@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import { BookReturn, ReturnTableProps } from './utils/types';
+import { BookReturn, ReturnTableProps } from '../utils/types';
 import { Button, Grid } from '@mui/material';
 import axios from 'axios'
 import Swal from 'sweetalert2'

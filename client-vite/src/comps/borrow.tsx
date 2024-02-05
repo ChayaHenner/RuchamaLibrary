@@ -19,7 +19,7 @@ const Borrow: React.FC = () => {
     const fetchData = async () => {
       try {
         setBooks(await getBooksInLibrary());
-        setReaders(await getReaders());
+        setReaders(await getReaders(undefined));
 
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -151,7 +151,6 @@ const Borrow: React.FC = () => {
             </>
           )}
         </Box> 
-{/* )} */}
       </Box>
 )}
 

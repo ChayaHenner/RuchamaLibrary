@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import Readers from "../comps/readers";
 import AddReader from "../comps/addReader";
 import { Button } from "@mui/material";
+import { readerstyle } from "../styles/readers.style";
 
 const ReadersPage = () => {
   const [isAddReaderOpen, setAddReaderOpen] = useState(false);
@@ -10,14 +11,8 @@ const ReadersPage = () => {
     <>
       <Readers />
       <Button
-        style={{
-          position: "fixed",
-          top: "100px",
-          right: "100px",
-          zIndex: 1000,
-        }}
-        onClick={() => {setAddReaderOpen(true)}}
-      >
+        sx={readerstyle.button}
+        onClick={() => {setAddReaderOpen(true)}}>
         Add Reader
       </Button>
       {isAddReaderOpen && <AddReader onClose={() => setAddReaderOpen(false)} />}

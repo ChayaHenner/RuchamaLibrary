@@ -1,12 +1,12 @@
 export type Publisher = {
-    publisher_id: string ;
+    publisher_id: number | undefined ;
     publisher_name: string;
   }
   
   export  type BookFormProps =  {
     book_name: string;
     author: string;
-    publisher_id: string;
+    publisher_id: number;// | undefined; ///
     amount: number;
     category: string;
     price: number;
