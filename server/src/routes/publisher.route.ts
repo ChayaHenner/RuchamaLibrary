@@ -1,8 +1,5 @@
 import express, { Request, Response, NextFunction } from 'express';
-import { Publisher } from '../entities/Publisher'
-import { z, ZodError } from 'zod';
-import errorHandler from '../utils/middleware'
-import * as Validation from '../validation/publisher.validate';
+import errorHandler, { validate } from '../utils/middleware'
 import { softDelete,getPublishers ,postPublisher} from '../service/publisher.service';
 
 const publisherRouter = express.Router();
@@ -20,11 +17,9 @@ publisherRouter.get('/all', async (req: Request, res: Response, next: NextFuncti
   }});
 
 
-publisherRouter.post('/', async (req: Request, res: Response, next: NextFunction) => {
+publisherRouter.post('/',validate('publisherSchema'), async (req: Request, res: Response, next: NextFunction) => {
   try {
-
-    const validatedData = await Validation.publisherSchema.validate(req.body, { abortEarly: false, });
-    const newReader = await postPublisher(validatedData)
+    const newReader = await postPublisher(req.body)
     res.status(201).json(newReader)
 
   } catch (error) {

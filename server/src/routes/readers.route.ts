@@ -1,8 +1,5 @@
 import express, { Request, Response, NextFunction } from 'express';
-import { Reader } from '../entities/Reader'
-import { z, ZodError } from 'zod';
-import errorHandler from '../utils/middleware'
-import * as Validation from '../validation/reader.validate';
+import errorHandler, { validate } from '../utils/middleware'
 import { getReaders, postReader, softDelete } from '../service/reader.service';
 const readerRouter = express.Router();
 readerRouter.use(express.json());
@@ -23,11 +20,9 @@ readerRouter.get('/all', async (req: Request, res: Response, next: NextFunction)
 });
 
 
-readerRouter.post('/', async (req: Request, res: Response, next: NextFunction) => {
+readerRouter.post('/', validate('readerSchema'), async (req: Request, res: Response, next: NextFunction) => {
   try {
-
-    const validatedData = await Validation.readerSchema.validate(req.body, { abortEarly: false, });
-    const newReader = await postReader(validatedData)
+    const newReader = await postReader(req.body)
     res.status(201).json(newReader)
 
   } catch (error) {
