@@ -5,8 +5,8 @@ const BorrowPage = () => {
 
     return (
         <>
-                    <Header title="Borrow" />
-        <Borrow />
+            <Header title="Borrow" />
+            <Borrow />
         </>
     )
 }

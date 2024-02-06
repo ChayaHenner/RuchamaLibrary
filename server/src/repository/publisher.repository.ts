@@ -12,12 +12,11 @@ export const getPublishersDB = async () => {
 
 export const postPublisherDB = async (publisher: any) => {
   return Publisher.save({
-    publisher_name: publisher.publisher_name,
-    country: publisher.country,
-  });
+...publisher  });
 };
 
 export const softDeleteDB = async (id: number) => {
+  
   const publisher = await Publisher.findOneOrFail({
     where: { publisher_id: id },
   });

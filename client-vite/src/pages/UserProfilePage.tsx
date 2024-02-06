@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Button, Container, Divider, Grid, Typography } from '@mui/material';
-import { ToReturnTable } from './toReturnTable';
-import { HistoryTable } from './historyTable';
+import { ToReturnTable } from '../comps/toReturnTable';
+import { HistoryTable } from '../comps/historyTable';
 import { Link } from 'react-router-dom';
 import { getReaderProfile } from '../api/reader';
 import { ReaderInfo } from '../utils/types';

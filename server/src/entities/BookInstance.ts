@@ -28,7 +28,7 @@ export class BookInstance extends BaseEntity {
     @JoinColumn({
         name:'publisher_id'
     })
-    publisher_id!: Publisher //change to num?
+    publisher_id!: Publisher 
 
 
     @Column()

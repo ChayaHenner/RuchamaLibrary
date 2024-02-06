@@ -27,7 +27,6 @@ const AddPublisher: FC = () => {
                         margin='dense'
                         {...register('publisher_name')}
                         label="Publisher Name"
-                        // name="publisher_name"
                         error={!!formState.errors?.publisher_name}
                         helperText={formState.errors?.publisher_name?.message}
                     /></Grid>

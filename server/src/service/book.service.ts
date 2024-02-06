@@ -2,7 +2,7 @@ import express, { Request, Response, NextFunction } from 'express';
 import { getBooksDB, postBookDB, softDeleteDB, getBooksInLibraryDB } from '../repository/book.repository';
 import { findBookInstanceByNamePublisherAndAuthor, getInstancByName, postBookInstanceDB } from '../repository/bookinstance.repository';
 
-export const getBooks = async () => {return await getBooksDB()};
+export const getBooks = async () =>  await getBooksDB()
 
 export const getBooksInLibrary = async () => { return await getBooksInLibraryDB();};
 
@@ -26,7 +26,7 @@ export const postNewBooks = async (books: any) => {
         const bookInstance = existingBookInstance || await postBookInstanceDB(books);
       
         let newBooks: object[] = [];
-        while (books.amount) {
+        while (books.amount) {  //5
           books.amount -= 1;
           const book = await postBookDB(bookInstance.book_code);
           newBooks.push(book);

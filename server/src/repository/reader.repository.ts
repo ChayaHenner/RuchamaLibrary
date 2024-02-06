@@ -14,14 +14,11 @@ export const getReadersDB = async (searchTerm: string) => {
 };
 
 export const postReaderDB = async (reader: any) => {
-  const newReader = Reader.create({
+  return Reader.save({
     name: reader.name,
     email: reader.email,
     dob: new Date(reader.dob),
   });
-
-  await newReader.save();
-  return newReader;
 };
 
 export const softDeleteDB = async (id: number) => {

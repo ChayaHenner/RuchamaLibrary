@@ -36,7 +36,6 @@ export const getBorrowingByReaderDB = async (reader_id: number) => {
                 .groupBy('reader.reader_id,reader.name,reader.email ')
                 .getRawOne();
 
-        console.log(result);
         if (!result) {
                 const readerInfo = await libraryData
                         .getRepository(Reader)

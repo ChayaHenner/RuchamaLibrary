@@ -1,9 +1,9 @@
 import { BrowserRouter , Routes, Route } from 'react-router-dom';
 import Header from './comps/appBar';
-import Home from './home';
+import Home from './pages/homePage';
 import Book from './books';
-import BookFormNew from './comps/bookFormNew';
-import UserProfile from './comps/userProfile';
+// import BookFormNew from './comps/bookFormNew';
+import UserProfile from './pages/UserProfilePage';
 import { ThemeProvider } from '@emotion/react';
 import ExistingBook from './comps/existingBook';
 import { theme } from './styles/styles';

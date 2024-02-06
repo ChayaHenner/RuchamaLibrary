@@ -14,7 +14,7 @@ export const getInstancByName = async (bookCode: number) => {
 
 
 export const getBookInstancesLibraryDB=async() =>{
- 
+ //7
     const bookInstancesWithCounts = await libraryData.getRepository(Book)
     .createQueryBuilder('book')
     .select([
@@ -37,18 +37,14 @@ export const getBookInstancesLibraryDB=async() =>{
 
 export const postBookInstanceDB = async (bookinstance: any) => {
   return BookInstance.save({
-    book_name: bookinstance.book_name,
-    author: bookinstance.author,
-    publisher_id: bookinstance.publisher_id,
-    price: bookinstance.price,
-    category: bookinstance.category,
+     ...bookinstance,
+
   });
 
 };
 
-
-export const findBookInstanceByNamePublisherAndAuthor = async (  bookName: string, author: string, publisher_id: string
-): Promise<any | null> => {
+//8
+export const findBookInstanceByNamePublisherAndAuthor = async (  bookName: string, author: string, publisher_id: string): Promise<any | null> => {
   const bookInstance = await BookInstance.findOne({ where: { book_name: bookName, author } }); //,publisher_id??
   return bookInstance || null;
 };

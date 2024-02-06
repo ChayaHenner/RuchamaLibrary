@@ -28,7 +28,7 @@ export const postBorrowMany = async (borrows: any) => {
   const reader = await findReaderDB(borrows.reader_id);
 
   for (const book_id of borrows.book_ids) {
-    try {
+ 
       const book = await findBookDB(book_id);
 
       if (book && reader) {
@@ -49,9 +49,7 @@ export const postBorrowMany = async (borrows: any) => {
       } else {
         throw new Error("book or reader not exist");
       }
-    } catch (err) {
-      throw err + "";
-    }
+  
   }
 
   return borrowedarray;
@@ -76,7 +74,7 @@ export const postReturnBook = async (borrow: any) => {
         const book = await findBorrowDB(borrow_id);
         returnedarray.push(book);
       } catch (err) {
-        throw err + "";
+        throw err ;
       }
     }
   

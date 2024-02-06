@@ -1,5 +1,5 @@
 import express from 'express';
-import router from './routes/index'
+import router from './routes/route.const'
 import "reflect-metadata";
 import 'dotenv/config'
 import { Reader } from './entities/Reader'
@@ -25,6 +25,7 @@ export const libraryData = new DataSource({
     database: process.env.DB_DATABASE,
     logging: true,
     entities: [Reader, Publisher, BookInstance, Book, Borrowing],
+    synchronize:true
 })
 
 libraryData.initialize().then(()=>{

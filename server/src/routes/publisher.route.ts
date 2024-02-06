@@ -20,7 +20,7 @@ publisherRouter.get('/all', async (req: Request, res: Response, next: NextFuncti
 publisherRouter.post('/',validate('publisherSchema'), async (req: Request, res: Response, next: NextFunction) => {
   try {
     const newReader = await postPublisher(req.body)
-    res.status(201).json(newReader)
+    res.json(newReader)
 
   } catch (error) {
 
@@ -32,7 +32,7 @@ publisherRouter.post('/',validate('publisherSchema'), async (req: Request, res: 
 publisherRouter.patch('/:id/soft-delete', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const publisherDelete = await softDelete(parseInt(req.params.id))
-    res.status(200).json({ message: 'Soft delete successful', reader: publisherDelete });
+    res.json({ message: 'Soft delete successful', reader: publisherDelete });
 
   } catch (err) {
     next(err)

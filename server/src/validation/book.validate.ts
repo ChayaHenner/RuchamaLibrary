@@ -16,26 +16,4 @@ export const newBookSchema = yup.object({
 });
 
 
-// export const validateBook = async (req: Request, res: Response, next: NextFunction) => {
-//     try {
-//       req.body = await bookSchema.validate(req.body);
-//   console.log(req.body);
-  
-//       next();
-//     } catch (error) {
-//       next(error);
-//     }
-//   };
-// export const validateNewBook = async (req: Request, res: Response, next: NextFunction) => {
-//     try {
-//       req.body = await newBookSchema.validate(req.body);
-//   console.log(req.body);
-  
-//       next();
-//     } catch (error) {
-//       next(error);
-//     }
-//   };
 
-
-  
