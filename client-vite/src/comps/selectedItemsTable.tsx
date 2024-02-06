@@ -5,7 +5,7 @@ import { selectedItemsProp } from "../utils/types";
 const SelectedItemsTable: FC<selectedItemsProp> = ({ selectedItems, setSelectedItems }) => {
 
     const removeFromSelectedItems = (bookId: number) => {
-        setSelectedItems((prevItems) => prevItems.filter((item) => item.book_id !== bookId));
+        setSelectedItems((prevItems) => prevItems.filter((item) => item.id !== bookId));
     };
 
     return (
@@ -23,13 +23,13 @@ const SelectedItemsTable: FC<selectedItemsProp> = ({ selectedItems, setSelectedI
                     </TableHead>
                     <TableBody>
                         {selectedItems.map((item) => (
-                            <TableRow key={item.book_id}>
+                            <TableRow key={item.id}>
                                 <TableCell>{item.book_code.book_name}</TableCell>
                                 <TableCell>{item.book_code.author}</TableCell>
-                                <TableCell>{item.book_id}</TableCell>
+                                <TableCell>{item.id}</TableCell>
                                 <TableCell>
                                     <Button
-                                        onClick={() => removeFromSelectedItems(item.book_id)}
+                                        onClick={() => removeFromSelectedItems(item.id)}
                                     > x
                                     </Button>
                                 </TableCell>

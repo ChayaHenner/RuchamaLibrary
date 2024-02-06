@@ -25,7 +25,7 @@ const BookCard :FC<BookCardProp> = ({ book }) => {
                 </Typography>
                 <Divider sx={booksstyle.dividermargins} />
                 <Typography variant="h5" component="div">
-                  Amount  {book.total_book_ids}
+                  Amount  {book.total_ids}
                 </Typography>
                 {book.not_taken_count > 0 && (
                   <Typography variant="h5" component="div">

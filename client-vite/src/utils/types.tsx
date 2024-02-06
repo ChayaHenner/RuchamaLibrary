@@ -19,13 +19,13 @@ export type Publisher = {
   }
 
   export  interface Book {
-    book_id: string;
+    id: string;
     book_code: string;
     book_taken: string;
   }
 
   export type BookReturn = {
-    book_id: number;
+    id: number;
     borrowing_id: number;
     book_instance: {
       price: number;
@@ -56,7 +56,7 @@ export type Publisher = {
   };
   
   export type BookType = {
-    book_id: number;
+    id: number;
     book_taken: boolean;
     book_code: BookCode;
   };
@@ -71,7 +71,7 @@ export type Publisher = {
   
   export type BorrowedBook = {
     reader_id: Reader;
-    book_id: BookType;
+    book: BookType;
     date_returned: string | null;
     id: number;
     date_borrowed: string;
@@ -84,10 +84,10 @@ export type Publisher = {
     bookinstance_category: string;
     bookinstance_publisher_id: number;
     books: Array<{
-      book_id: number;
+      id: number;
       book_taken: boolean;
     }>;
-    total_book_ids: number;
+    total_ids: number;
     not_taken_count: number;
   };
   
@@ -106,7 +106,7 @@ export type Publisher = {
     }
 
    export type BorrowBookInstance = {
-      book_id: number;
+      id: number;
       borrowing_id: number;
       book_instance: {
         price: number;
@@ -133,7 +133,7 @@ export type Publisher = {
 
     export type BorrowBooks = {
       reader_id?:number | null | undefined,
-      book_ids:number[]
+      ids:number[]
     }
     
 export type NewBookConfirmProps = {
@@ -155,7 +155,7 @@ type BookInfo = {
 
 type BookItem = {
   book_code: number;
-  book_id: number;
+  id: number;
   book_taken: boolean;
 };
 
@@ -190,7 +190,7 @@ export type selectedItemsProp =  {
   setSelectedItems: React.Dispatch<React.SetStateAction<BookType[]>>;
 }
 // type BorrowedBook = {
-//   book_id: number;
+//   id: number;
 //   borrowing_id: number;
 //   book_instance: BookInstance;
 //   date_borrowed: string;

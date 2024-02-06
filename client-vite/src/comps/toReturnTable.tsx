@@ -43,7 +43,7 @@ export const ToReturnTable: React.FC<ReturnTableProps> = ({ toReturn }) => {
                 }}
                 apiRef={apiRef}
                 pageSizeOptions={[5, 10]}
-                getRowId={(row: BookReturn) => row.book_id}
+                getRowId={(row: BookReturn) => row.id}
                 checkboxSelection
                 onRowSelectionModelChange={() => { setSelectedBooks() }}
             />

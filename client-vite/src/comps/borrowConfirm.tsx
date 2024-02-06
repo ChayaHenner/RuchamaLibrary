@@ -5,6 +5,8 @@ import { NewBookConfirmProps } from '../utils/types';
 
 
 const NewBorrowConfirm: React.FC<NewBookConfirmProps> = ({ data }) => {
+  console.log(data);
+  
   return (
     <Box>
       <Box display={'flex'} justifyContent={'space-between'}>
@@ -21,7 +23,7 @@ const NewBorrowConfirm: React.FC<NewBookConfirmProps> = ({ data }) => {
         {data.map((item) => (
           <ListItem key={item.id}>
             <ListItemText
-              primary={`${item.book_id.book_code.book_name} - ${item.book_id.book_code.author} - ${item.book_id.book_id}`}
+              primary={`${item.book.book_code.book_name} - ${item.book.book_code.author} - ${item.book.id}`}
             />
           </ListItem>
         ))}

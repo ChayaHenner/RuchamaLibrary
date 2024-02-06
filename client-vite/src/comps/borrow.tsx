@@ -34,11 +34,11 @@ const Borrow: React.FC = () => {
   const handleBorrow = async () => {
     if (selectedItems.length > 0) {
       try {
-        const bookIds = selectedItems.map(item => item.book_id);
+        const bookIds = selectedItems.map(item => item.id);
         const readerId = selectedReader;
         const request = {
           reader_id: readerId,
-          book_ids: bookIds,
+          ids: bookIds,
         }
         const data = await postBorrow(request)
         console.log(data);
@@ -56,9 +56,9 @@ const Borrow: React.FC = () => {
 
   const addToSelectedItems = () => {
     if (selectedBook !== null) {
-      const isBookAlreadySelected = selectedItems.some(item => item.book_id === selectedBook);
+      const isBookAlreadySelected = selectedItems.some(item => item.id === selectedBook);
       if (!isBookAlreadySelected) {
-        const selectedBookInfo = books.find(book => book.book_id === selectedBook);
+        const selectedBookInfo = books.find(book => book.id === selectedBook);
         if (selectedBookInfo) {
           setSelectedItems(prevItems => [...prevItems, selectedBookInfo]);
         }
@@ -69,7 +69,7 @@ const Borrow: React.FC = () => {
   };
   const chooseReader = () => { setReaderName(selectedReaderName) };
 
-  const filteredBooks = books.filter(book => !selectedItems.some(item => item.book_id === book.book_id));
+  const filteredBooks = books.filter(book => !selectedItems.some(item => item.id === book.id));
 
   return (
     <Container>{confirm ? (<NewBorrowConfirm data={data} />) : (
@@ -107,14 +107,14 @@ const Borrow: React.FC = () => {
             <FormControl sx={borrowstyle.widthform}>
               <Autocomplete sx={borrowstyle.button}
                 options={filteredBooks}
-                getOptionLabel={(option) => `(${option.book_id})   ${option.book_code.book_name} - ${option.book_code.author} `}
+                getOptionLabel={(option) => `(${option.id})   ${option.book_code.book_name} - ${option.book_code.author} `}
                 renderInput={(params) => (
                   <TextField
                     {...params}
                     label="book" />
                 )}
                 value={null}
-                onChange={(_, value) => setSelectedBook(value?.book_id || null)}
+                onChange={(_, value) => setSelectedBook(value?.id || null)}
               />
             </FormControl>
 

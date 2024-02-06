@@ -63,7 +63,7 @@ export const findBorrowDB = async (id: number) => {  return await Borrowing.find
 export const createBorrowingDB = async (borrowing: any) => {
         return Borrowing.save({
                 reader_id: borrowing.reader_id,
-                id: borrowing.id,
+                book: borrowing.book,
         });
 };
 

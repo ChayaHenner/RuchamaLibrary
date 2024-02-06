@@ -36,7 +36,7 @@ export const postBorrowMany = async (borrows: any) => {
 
         if (!book_taken) {
           const borrow = {
-            id: book,
+            book: book,
             reader_id: reader,
           };
 

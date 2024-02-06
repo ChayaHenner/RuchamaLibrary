@@ -16,7 +16,7 @@ const NewBookConfirm: React.FC<NewBookConfirmProp> = ({ data }) => {
                 </Typography>
                 <Grid container spacing={2}>
                     {data?.books.map((book) => (
-                        <Grid item xs={12} key={book.book_id}>
+                        <Grid item xs={12} key={book.id}>
                             <Card sx={{ backgroundColor: '#f0f0f0', padding: 2 }}>
                                 <Typography variant="h3" mb={2}>{data.book_info.book_name}</Typography>
                                 <Typography variant="body2" mb={2}>{data.book_info.author}</Typography>
@@ -24,7 +24,7 @@ const NewBookConfirm: React.FC<NewBookConfirmProp> = ({ data }) => {
                                     Book Code: {book.book_code}
                                 </Typography>
                                 <Typography variant="body2">
-                                    Book ID: {book.book_id}
+                                    Book ID: {book.id}
                                 </Typography>
 
                             </Card>
