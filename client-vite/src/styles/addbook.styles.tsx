@@ -16,5 +16,13 @@ export const addbookstyle = {
   middlebutton: {
     margin: 1,
     justifyContent: 'center',
-  }
+  },
+  container: {
+    position: 'relative',
+},
+addButton: {
+    position: 'absolute',
+    top: 0,
+    right: 10,
+},
 }

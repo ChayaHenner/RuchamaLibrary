@@ -68,9 +68,8 @@ export const CustomCard = styled(Card)<CustomCardProps>(({ inLib, categoryColor 
               fontWeight: 700,
             },
             h2: { 
-              fontSize: '1.8rem',  
+              fontSize: '2.3rem',  
               fontWeight: 700,
-              textShadow:'2px 2px 4px rgba(0, 0, 0, 0.1)'
             },
             
           }
