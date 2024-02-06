@@ -7,7 +7,7 @@ export const getTopTenBooks = async () => {
         return await libraryData
                 .getRepository(Borrowing)
                 .createQueryBuilder('borrowing')
-                .leftJoinAndSelect('borrowing.book_id', 'book')
+                .leftJoinAndSelect('borrowing.book', 'book')
                 .leftJoinAndSelect('book.book_code', 'bookinstance')
                 .select(['book.book_code', 'bookinstance.book_name AS name', 'CAST(COUNT(borrowing.id) AS INT) AS borrowCount'])
                 .groupBy('book.book_code ,bookinstance.book_name')
@@ -22,7 +22,7 @@ export const getBorrowingByReaderDB = async (reader_id: number) => {
         const result = await libraryData
                 .getRepository(Borrowing)
                 .createQueryBuilder('borrowing')
-                .leftJoinAndSelect('borrowing.book_id', 'book')
+                .leftJoinAndSelect('borrowing.book', 'book')
                 .leftJoinAndSelect('borrowing.reader_id', 'reader')
                 .leftJoinAndSelect('book.book_code', 'bookinstance')
                 .andWhere('reader.reader_id = :readerId', { readerId: reader_id })
@@ -30,8 +30,8 @@ export const getBorrowingByReaderDB = async (reader_id: number) => {
                         'reader.reader_id',
                         'reader.name',
                         'reader.email',
-                        `JSON_AGG(CASE WHEN borrowing.date_returned IS NULL THEN jsonb_build_object('book_id', book.book_id, 'book_instance', to_jsonb(bookinstance), 'date_borrowed', borrowing.date_borrowed, 'borrowing_id', borrowing.id) END) FILTER(WHERE borrowing.date_returned IS NULL) AS toreturn`,
-                        `JSON_AGG(CASE WHEN borrowing.date_returned IS NOT NULL THEN jsonb_build_object('book_id', book.book_id, 'book_instance', to_jsonb(bookinstance), 'date_borrowed', borrowing.date_borrowed, 'borrowing_id', borrowing.id, 'date_returned', borrowing.date_returned) END) FILTER(WHERE borrowing IS NOT NULL) AS history`,
+                        `JSON_AGG(CASE WHEN borrowing.date_returned IS NULL THEN jsonb_build_object('id', book.id, 'book_instance', to_jsonb(bookinstance), 'date_borrowed', borrowing.date_borrowed, 'borrowing_id', borrowing.id) END) FILTER(WHERE borrowing.date_returned IS NULL) AS toreturn`,
+                        `JSON_AGG(CASE WHEN borrowing.date_returned IS NOT NULL THEN jsonb_build_object('id', book.id, 'book_instance', to_jsonb(bookinstance), 'date_borrowed', borrowing.date_borrowed, 'borrowing_id', borrowing.id, 'date_returned', borrowing.date_returned) END) FILTER(WHERE borrowing IS NOT NULL) AS history`,
                 ])
                 .groupBy('reader.reader_id,reader.name,reader.email ')
                 .getRawOne();
@@ -54,7 +54,7 @@ export const getBorrowingByReaderDB = async (reader_id: number) => {
 
 export const getBorrowingDB = async () => { return await Borrowing.find(); }
 
-export const findBookDB = async (book_id: number) => { return await Book.findOne({ where: { book_id } })};
+export const findBookDB = async (id: number) => { return await Book.findOne({ where: { id } })};
 
 export const findReaderDB = async (reader_id: number) => {  return await Reader.findOne({ where: { reader_id } });};
 
@@ -63,7 +63,7 @@ export const findBorrowDB = async (id: number) => {  return await Borrowing.find
 export const createBorrowingDB = async (borrowing: any) => {
         return Borrowing.save({
                 reader_id: borrowing.reader_id,
-                book_id: borrowing.book_id,
+                id: borrowing.id,
         });
 };
 
@@ -77,8 +77,8 @@ export const returnBorrowingDB = async (id: number) => {
         } else throw "borrowing id incorrect or returned already";
 };
 
-export const updateBookTaken = async (book_id: number) => {
-        let book = await Book.findOne({ where: { book_id } });
+export const updateBookTaken = async (id: number) => {
+        let book = await Book.findOne({ where: { id } });
 
         if (book) {
                 book!.book_taken = true;
@@ -87,8 +87,8 @@ export const updateBookTaken = async (book_id: number) => {
         }
 };
 
-export const updateBookNotTaken = async (book_id: number) => {
-        let book = await Book.findOne({ where: { book_id } });
+export const updateBookNotTaken = async (id: number) => {
+        let book = await Book.findOne({ where: { id } });
         console.log(book);
 
         if (book) {
@@ -100,8 +100,8 @@ export const updateBookNotTaken = async (book_id: number) => {
         }
 };
 
-export const checkBookTaken = async (book_id: number) => {
-        let book = await Book.findOne({ where: { book_id } });
+export const checkBookTaken = async (id: number) => {
+        let book = await Book.findOne({ where: { id } });
         if (book) {
                 return book!.book_taken
         } else return false;
@@ -111,7 +111,7 @@ export const getTwoWeeksPassedDB = async () => {
         const TwoWeeksPassed = await libraryData
                 .getRepository(Borrowing)
                 .createQueryBuilder('borrowing')
-                .leftJoinAndSelect('borrowing.book_id', 'book')
+                .leftJoinAndSelect('borrowing.book', 'book')
                 .leftJoinAndSelect('borrowing.reader_id', 'reader')
                 .leftJoinAndSelect('book.book_code', 'bookinstance')
                 .where('borrowing.date_returned IS NULL')
@@ -122,7 +122,7 @@ export const getTwoWeeksPassedDB = async () => {
                         'reader.reader_id',
                         'reader.name',
                         'reader.email',
-                        'JSON_AGG(CASE WHEN borrowing.date_returned IS NULL THEN jsonb_build_object(\'book_id\', book.book_id, \'book_instance\', to_jsonb(bookinstance), \'date_borrowed\', borrowing.date_borrowed ,\'borrowing_id\', borrowing.id) END) AS unreturned_books',
+                        'JSON_AGG(CASE WHEN borrowing.date_returned IS NULL THEN jsonb_build_object(\'id\', book.id, \'book_instance\', to_jsonb(bookinstance), \'date_borrowed\', borrowing.date_borrowed ,\'borrowing_id\', borrowing.id) END) AS unreturned_books',
                 ])
                 .groupBy('reader.reader_id,reader.name,reader.email ')
                 .getRawMany();

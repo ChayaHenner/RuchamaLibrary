@@ -4,7 +4,7 @@ import { BookInstance } from './BookInstance'
 export class Book extends BaseEntity {
 
     @PrimaryGeneratedColumn()
-    book_id!: number
+    id!: number
 
     @ManyToOne(
         () => BookInstance,

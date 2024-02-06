@@ -16,7 +16,7 @@ export const postBookDB = async (book_code: any) => {
 
 export const softDeleteDB = async (id: number) => {
   const book = await Book.findOneOrFail({
-    where: { book_id: id },
+    where: { id: id },
   });
 
   return book.softRemove();

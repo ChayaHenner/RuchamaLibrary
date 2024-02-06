@@ -5,15 +5,15 @@ export const getBorrowing = async () => {return await getBorrowingDB();};
 export const getBorrowingByReader = async (reader_id: number) => {return await getBorrowingByReaderDB(reader_id);};
 
 export const postBorrowBook = async (borrow: any): Promise<any> => {
-    const book = await findBookDB(borrow.book_id);
+    const book = await findBookDB(borrow.id);
     const reader = await findReaderDB(borrow.reader_id);
   
     if (book && reader) {
-      const book_taken = await checkBookTaken(borrow.book_id);
+      const book_taken = await checkBookTaken(borrow.id);
   
       if (!book_taken) {
         const newBorrowing = createBorrowingDB(borrow);
-        updateBookTaken(borrow.book_id);
+        updateBookTaken(borrow.id);
         return newBorrowing;
       } else {
         throw "book not in library";
@@ -27,24 +27,24 @@ export const postBorrowMany = async (borrows: any) => {
   const borrowedarray: any[] = [];
   const reader = await findReaderDB(borrows.reader_id);
 
-  for (const book_id of borrows.book_ids) {
+  for (const id of borrows.ids) {
  
-      const book = await findBookDB(book_id);
+      const book = await findBookDB(id);
 
       if (book && reader) {
-        const book_taken = await checkBookTaken(book_id);
+        const book_taken = await checkBookTaken(id);
 
         if (!book_taken) {
           const borrow = {
-            book_id: book,
+            id: book,
             reader_id: reader,
           };
 
-          await updateBookTaken(book_id);
+          await updateBookTaken(id);
           const newBorrowing = await createBorrowingDB(borrow);
           borrowedarray.push(newBorrowing);
         } else {
-          throw new Error(`book ${book_id} not in library.only added books until this one`);
+          throw new Error(`book ${id} not in library.only added books until this one`);
         }
       } else {
         throw new Error("book or reader not exist");
@@ -59,7 +59,7 @@ export const postBorrowMany = async (borrows: any) => {
 
 export const postReturnBook = async (borrow: any) => {
     const returnbook = returnBorrowingDB(borrow.id);
-    updateBookNotTaken((await returnbook).book_id.book_id);
+    updateBookNotTaken((await returnbook).book.id);
     return findBorrowDB(borrow.id);
   };
   
@@ -70,7 +70,7 @@ export const postReturnBook = async (borrow: any) => {
     for (const borrow_id of return_books.borrow_ids) {
       try {
         const returnbook = await returnBorrowingDB(borrow_id);
-        await updateBookNotTaken((returnbook).book_id.book_id);
+        await updateBookNotTaken((returnbook).book.id);
         const book = await findBorrowDB(borrow_id);
         returnedarray.push(book);
       } catch (err) {
