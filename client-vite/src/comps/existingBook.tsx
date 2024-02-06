@@ -1,19 +1,20 @@
 import { FC, useEffect, useState } from 'react';
-import { useForm, SubmitHandler, Controller } from 'react-hook-form';
+import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
 import { Autocomplete, TextField, Button, Grid, Box, Typography } from '@mui/material';
 import { yupResolver } from '@hookform/resolvers/yup';
 import NewBookConfirm from './newBookConfirm';
 import { existingBookSchema } from '../utils/schemas';
-import {  BookInstance, BookResponse, ExistingBookFormValues } from '../utils/types';
+import { BookInstance, BookResponse, ExistingBookFormValues } from '../utils/types';
 import { getBookInstances } from '../api/bookinstances';
 import { postBookExisting } from '../api/book';
+import { addbookstyle } from '../styles/addbook.styles';
 
 const ExistingBook: FC = () => {
     const [books, setBooks] = useState<BookInstance[]>([]);
     const [newbooks, setNewBooks] = useState<BookResponse>();
     const [confirm, setConfirm] = useState<boolean>(false);
 
-    const { control, handleSubmit, setValue, formState: { errors }, } = useForm<ExistingBookFormValues>({
+    const methods = useForm<ExistingBookFormValues>({
         resolver: yupResolver(existingBookSchema),
     });
 
@@ -39,69 +40,61 @@ const ExistingBook: FC = () => {
 
     return (
         <Box
-            sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                marginTop:'100px'
-            }}
+            sx={addbookstyle.box}
         >
-            {confirm ? 
-            <NewBookConfirm data={newbooks} /> 
-            : (<>
-                <Typography variant="h6" gutterBottom>Add Existing Book</Typography>
+            {confirm ?
+                <NewBookConfirm data={newbooks} />
+                : (<>
+                    <Typography variant="h6" gutterBottom>Add Existing Book</Typography>
+                    <FormProvider {...methods}>
+                        <form onSubmit={methods.handleSubmit(onSubmit)}>
+                            <Grid container>
+                                <Grid item xs={12}>
+                                    <Grid container justifyContent="center">
+                                        <Autocomplete sx={addbookstyle.textfield}
+                                            options={books}
+                                            getOptionLabel={(option: BookInstance) => `${option.book_name} (${option.book_code})`}
+                                            renderInput={(params) => (
+                                                <TextField
+                                                    {...params}
+                                                    label="Book"
+                                                    error={!!methods.formState.errors.book_code}
+                                                    helperText={methods.formState.errors.book_code?.message}
+                                                />
+                                            )}
+                                            onChange={(_, value) => {
+                                                methods.setValue('book_code', value?.book_code)
+                                            }}
+                                        />
+                                    </Grid>
+                                </Grid>
 
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                            <Controller
-                                name="book_code"
-                                control={control}
-                                render={({ field }) => (
-                                    <Autocomplete
-                                        {...field}
-                                        options={books}
-                                        getOptionLabel={(option:BookInstance) => `${option.book_name} (${option.book_code})`}
-                                        onChange={(_, value) => 
-                                         setValue('book_code', value?.book_code)
-                                    }
-                                        renderInput={(params) => (
-                                            <TextField
-                                                {...params}
-                                                label="Book"
-                                                error={!!errors.book_code}
-                                                helperText={errors.book_code?.message}
-                                                sx={{ width: '100%' }} 
-                                            />
-                                        )}
-                                    />
-                                )}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <Controller
-                                name="amount"
-                                control={control}
-                                render={({ field }) => (
-                                    <TextField
-                                        {...field}
-                                        label="Amount"
-                                        type="number"
-                                        error={!!errors.amount}
-                                        helperText={errors.amount?.message}
-                                        sx={{ width: '100%' }} 
-                                    />
-                                )}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <Button type="submit" variant="contained" color="primary" fullWidth>
-                                Add
-                            </Button>
-                        </Grid>
-                    </Grid>
-                </form></>)}
+                                <Grid item xs={12}>
+                                    <Grid container justifyContent="center">
+                                        <TextField sx={addbookstyle.textfield}
+                                            label="amount"
+                                            defaultValue={1}
+                                            type="number"
+                                            error={!!methods.formState.errors.amount}
+                                            helperText={methods.formState.errors.amount?.message}
+                                            {...methods.register('amount')}
+                                        />
+                                    </Grid>
+                                </Grid>
+
+                                <Grid item xs={12}>
+                                    <Grid container justifyContent="center">
+                                        <Grid item xs={2}>
+                                            <Button type="submit" variant="contained" color="primary" fullWidth>
+                                                Add
+                                            </Button>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </form>
+                    </FormProvider>
+                </>)}
         </Box>
     );
 

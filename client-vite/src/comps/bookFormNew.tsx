@@ -13,9 +13,8 @@ import { addbookstyle } from '../styles/addbook.styles';
 
 const BookFormNew: FC = () => {
   const [publishers, setPublishers] = useState<Publisher[]>([]);
-  const [confirm, setConfirm] = useState(false);
+  const [confirm, setConfirm] = useState<boolean>(false);
   const [books, setBooks] = useState<BookResponse>();
-  const [publisherValue, setPublisherValue] = useState<Publisher|null>(publishers[0]);
   
   const methods = useForm<BookFormProps>({
     resolver: yupResolver(bookFormSchema),
@@ -30,19 +29,12 @@ const BookFormNew: FC = () => {
       }
     };    
      fetchData();
-    setPublisherValue(publishers[0])
 
   }, []);
 
   const submitBook: SubmitHandler<BookFormProps> = async (d: BookFormProps) => {
-    const isValid = await methods.trigger();
-    if (isValid) {
       setBooks(await postBook(d))
       setConfirm(true)
-      
-    } else {
-      console.log('form validation failed');
-    }
   };
 
   return (
@@ -54,7 +46,7 @@ const BookFormNew: FC = () => {
           <Button component={Link} to="/addexistingbook" variant="contained" color="primary" sx={{ margin: '1rem 0' }}>
             Add Existing Book
           </Button>
-          <form onSubmit={(e) => methods.handleSubmit((data) => submitBook(data, e))(e)}>
+          <form onSubmit={methods.handleSubmit(submitBook)}>
             <Grid>
               <TextField sx={addbookstyle.textfield}
                 label="Book Name"
@@ -84,9 +76,7 @@ const BookFormNew: FC = () => {
                     helperText={methods.formState.errors.publisher_id?.message}
                   />
                 )}
-                // value={publisherValue}
-                //  setPublisherValue(publisher)
-                onChange={(_,publisher:Publisher)=>{console.log(publisher);
+                onChange={(_,publisher:Publisher| null)=>{
                   methods.setValue('publisher_id', publisher?.publisher_id )}}
               />
             </Grid>
