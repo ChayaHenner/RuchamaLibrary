@@ -35,9 +35,6 @@ const Borrow: React.FC = () => {
   const handleBorrow = async () => {
     if (selectedItems.length > 0) {
       try {
-        console.log(selectedItems);
-        console.log(readers);
-
         const bookIds = selectedItems.map(item => item.book_id);
         const readerId = selectedReader;
         const request = {
@@ -71,10 +68,7 @@ const Borrow: React.FC = () => {
       }
     }
   };
-  const chooseReader = () => {
-    console.log(selectedReaderName);
-    setReaderName(selectedReaderName)
-  };
+  const chooseReader = () => {setReaderName(selectedReaderName)};
 
   const filteredBooks = books.filter(book => !selectedItems.some(item => item.book_id === book.book_id));
 
@@ -103,7 +97,7 @@ const Borrow: React.FC = () => {
                 choose
               </Button></>) : (<>
                 <Grid container alignItems="center">
-                  <Typography variant='h2' sx={borrowstyle.h3}>{readerName}</Typography>
+                  <Typography variant='h4' sx={borrowstyle.h3}>{readerName}</Typography>
                   <Button sx={borrowstyle.button} onClick={() => { setReaderName(null) }}>Change</Button>
                 </Grid>
               </>

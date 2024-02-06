@@ -32,12 +32,13 @@ export const postBorrow = async (borrow:BorrowBooks) => {
         console.log(response);
         Swal.fire({
             title: "Borrowed",
-            text: "Have a safe journey",
+            text: "Have a good read",
             icon: "success",
             confirmButtonText: "confirm",
             denyButtonText: `Don't save`
           
-          })     
+          })   
+          return response.data  
 
     } catch (err) {
         console.error(err);
