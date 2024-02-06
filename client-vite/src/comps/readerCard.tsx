@@ -25,7 +25,7 @@ const ReaderCard :FC<ReaderCardProp>= ({reader}) => {
               <Typography variant="h6" component="div" style={readerstyle.inlinetypo}>
                 {reader.name}
               </Typography>
-              <Typography color="textSecondary" style={readerstyle.inlinetypo}>( {reader.reader_id} )</Typography>
+              <Typography color="textSecondary" style={readerstyle.inlinetypo}></Typography>
               <Typography color="textSecondary">{reader.email}</Typography>
               <Typography color="textSecondary">age: {calculateAge(reader.dob)}</Typography>
               <Link to={`/profile/${reader.reader_id}`} style={{ textDecoration: 'none', color: 'inherit' }}>

@@ -117,7 +117,7 @@ export const getTwoWeeksPassedDB = async () => {
                 .leftJoinAndSelect('book.book_code', 'bookinstance')
                 .where('borrowing.date_returned IS NULL')
                 .andWhere('reader.reader_id IS NOT NULL') // readers that were deleted... problomatic
-                // .andWhere('borrowing.date_borrowed < NOW() - INTERVAL \'2 weeks\'')
+                .andWhere('borrowing.date_borrowed < NOW() - INTERVAL \'5 days\'')
 
                 .select([
                         'reader.reader_id',

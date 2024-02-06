@@ -62,7 +62,7 @@ const BookFormNew: FC = () => {
             
               <Autocomplete sx={addbookstyle.textfield}
                 options={publishers}
-                getOptionLabel={(option) => `${option.publisher_name} (${option.publisher_id})`}
+                getOptionLabel={(option) => `${option.publisher_name} `}
                 renderInput={(params) => (
                   <TextField
                     {...params}

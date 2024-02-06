@@ -18,7 +18,6 @@ const Borrow: React.FC = () => {
   const [selectedReaderName, setSelectedReaderName] = useState<string | null>(null);
   const [readerName, setReaderName] = useState<string | null>(null);
   const [selectedItems, setSelectedItems] = useState<BookType[]>([]);
-  // const { name } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {

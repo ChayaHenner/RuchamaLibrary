@@ -12,6 +12,7 @@ import { formSchema } from '../utils/schemas';
 import { addReader } from '../api/reader';
 import Swal from 'sweetalert2'
 import { readerstyle } from '../styles/readers.style';
+import { DatePicker } from '@mui/x-date-pickers';
 
 
 const AddReader: FC<AddReaderProps> = ({ onClose }) => {
@@ -78,15 +79,15 @@ const AddReader: FC<AddReaderProps> = ({ onClose }) => {
 
                     <Grid>
 
-                        {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DatePicker
+                        {/* <LocalizationProvider dateAdapter={AdapterDayjs}> */}
+                            {/* <DatePicker
                                 sx={readerstyle.textfield}
                                 label="Date of Birth"
                                 // {...methods.register('dob')}
                                 value={methods.watch('dob') ?? null}
                                 onChange={(date) => methods.setValue('dob', date)}
-                            />
-                        </LocalizationProvider> */}
+                            /> */}
+                        {/* </LocalizationProvider> */}
                     </Grid>
 
                     <Button sx={readerstyle.textfield} variant="contained" color="primary" type="submit">
