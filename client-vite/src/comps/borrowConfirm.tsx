@@ -23,7 +23,7 @@ const NewBorrowConfirm: React.FC<NewBookConfirmProps> = ({ data }) => {
         {data.map((item) => (
           <ListItem key={item.id}>
             <ListItemText
-              primary={`${item.book.book_code.name} - ${item.book.book_code.author} - ${item.book.id}`}
+              primary={`${item.book.bookCode.name} - ${item.book.bookCode.author} - ${item.book.id}`}
             />
           </ListItem>
         ))}

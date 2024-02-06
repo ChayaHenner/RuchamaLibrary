@@ -7,11 +7,11 @@ export const getBooks = async () =>  await getBooksDB()
 export const getBooksInLibrary = async () => { return await getBooksInLibraryDB();};
 
 export const postBooks = async (books: any) => {
-        const book_info = await getInstancByName(books.book_code);
+        const book_info = await getInstancByName(books.bookCode);
         let newBooks: object[] = [];
         while (books.amount) {
                 books.amount -= 1;
-                const book = await postBookDB(books.book_code);
+                const book = await postBookDB(books.bookCode);
                 newBooks.push(book);
         }
         const newBookReport = {
@@ -28,7 +28,7 @@ export const postNewBooks = async (books: any) => {
         let newBooks: object[] = [];
         while (books.amount) {  //5
           books.amount -= 1;
-          const book = await postBookDB(bookInstance.book_code);
+          const book = await postBookDB(bookInstance.bookCode);
           newBooks.push(book);
         }
         const newBookReport = {

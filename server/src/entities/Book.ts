@@ -9,12 +9,12 @@ export class Book extends BaseEntity {
 
     @ManyToOne(
         () => BookInstance,
-        bookinstance => bookinstance.book_code, { eager: true }
+        bookinstance => bookinstance.bookCode, { eager: true }
     )
     @JoinColumn({
-        name: 'book_code'
+        name: 'bookCode'
     })
-    book_code!: BookInstance 
+    bookCode!: BookInstance 
 
     @Column({
         default: false

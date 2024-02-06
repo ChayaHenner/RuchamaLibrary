@@ -5,9 +5,9 @@ import { libraryData } from '../app';
 export const getBookInstancesDB = async () => { return await BookInstance.find();};
 
 export const getInstancByName = async (bookCode: number) => {
-  const bookInstance = await BookInstance.findOne({ where: { book_code: bookCode } });
+  const bookInstance = await BookInstance.findOne({ where: { bookCode: bookCode } });
   if (!bookInstance) {
-    throw new Error(`Book instance with book_code ${bookCode} not found`);
+    throw new Error(`Book instance with bookCode ${bookCode} not found`);
   }
   return bookInstance;
 };
@@ -18,7 +18,7 @@ export const getBookInstancesLibraryDB=async() =>{
     const bookInstancesWithCounts = await libraryData.getRepository(Book)
     .createQueryBuilder('book')
     .select([
-      'book.book_code',
+      'book.bookCode',
       'bookinstance.name',
       'bookinstance.author',
       'bookinstance.category',
@@ -26,8 +26,8 @@ export const getBookInstancesLibraryDB=async() =>{
       'CAST(COUNT(book.id) AS INTEGER) AS total_ids',
       'CAST(SUM(CASE WHEN book.book_taken = false THEN 1 ELSE 0 END) AS INTEGER) AS not_taken_count'
     ])
-    .leftJoin('book.book_code', 'bookinstance')
-    .groupBy('book.book_code ,bookinstance.name  ,bookinstance.author  ,bookinstance.category')
+    .leftJoin('book.bookCode', 'bookinstance')
+    .groupBy('book.bookCode ,bookinstance.name  ,bookinstance.author  ,bookinstance.category')
   .getRawMany();
 
     return bookInstancesWithCounts;

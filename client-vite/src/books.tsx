@@ -29,7 +29,7 @@ const Book: FC = () => {
       </Grid>
 
       {books?.map((book:BookInstance) => (
-        <Grid key={book.book_code} item xs={12} sm={6} md={4} lg={3}>
+        <Grid key={book.bookCode} item xs={12} sm={6} md={4} lg={3}>
           <Card>
             <CardContent>
               <Typography variant="h6" component="div">

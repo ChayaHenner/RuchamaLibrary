@@ -8,9 +8,9 @@ export const getTopTenBooks = async () => {
                 .getRepository(Borrowing)
                 .createQueryBuilder('borrowing')
                 .leftJoinAndSelect('borrowing.book', 'book')
-                .leftJoinAndSelect('book.book_code', 'bookinstance')
-                .select(['book.book_code', 'bookinstance.name AS name', 'CAST(COUNT(borrowing.id) AS INT) AS borrowCount'])
-                .groupBy('book.book_code ,bookinstance.name')
+                .leftJoinAndSelect('book.bookCode', 'bookinstance')
+                .select(['book.bookCode', 'bookinstance.name AS name', 'CAST(COUNT(borrowing.id) AS INT) AS borrowCount'])
+                .groupBy('book.bookCode ,bookinstance.name')
                 .orderBy('borrowCount', 'DESC')
                 .limit(10)
                 .getRawMany();
@@ -24,7 +24,7 @@ export const getBorrowingByReaderDB = async (reader_id: number) => {
                 .createQueryBuilder('borrowing')
                 .leftJoinAndSelect('borrowing.book', 'book')
                 .leftJoinAndSelect('borrowing.reader_id', 'reader')
-                .leftJoinAndSelect('book.book_code', 'bookinstance')
+                .leftJoinAndSelect('book.bookCode', 'bookinstance')
                 .andWhere('reader.reader_id = :readerId', { readerId: reader_id })
                 .select([
                         'reader.reader_id',
@@ -113,7 +113,7 @@ export const getTwoWeeksPassedDB = async () => {
                 .createQueryBuilder('borrowing')
                 .leftJoinAndSelect('borrowing.book', 'book')
                 .leftJoinAndSelect('borrowing.reader_id', 'reader')
-                .leftJoinAndSelect('book.book_code', 'bookinstance')
+                .leftJoinAndSelect('book.bookCode', 'bookinstance')
                 .where('borrowing.date_returned IS NULL')
                 .andWhere('reader.reader_id IS NOT NULL') // readers that were deleted... problomatic
                 .andWhere('borrowing.date_borrowed < NOW() - INTERVAL \'5 days\'')

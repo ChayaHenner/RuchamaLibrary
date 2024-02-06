@@ -13,7 +13,7 @@ export enum LevelCategory{
 export class BookInstance extends BaseEntity {
 
     @PrimaryGeneratedColumn()
-    book_code!: number
+    bookCode!: number
 
     @Column()
     name!: string

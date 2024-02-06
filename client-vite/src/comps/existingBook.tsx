@@ -53,17 +53,17 @@ const ExistingBook: FC = () => {
                                     <Grid container justifyContent="center">
                                         <Autocomplete sx={addbookstyle.textfield}
                                             options={books}
-                                            getOptionLabel={(option: BookInstance) => `${option.name} (${option.book_code})`}
+                                            getOptionLabel={(option: BookInstance) => `${option.name} (${option.bookCode})`}
                                             renderInput={(params) => (
                                                 <TextField
                                                     {...params}
                                                     label="Book"
-                                                    error={!!methods.formState.errors.book_code}
-                                                    helperText={methods.formState.errors.book_code?.message}
+                                                    error={!!methods.formState.errors.bookCode}
+                                                    helperText={methods.formState.errors.bookCode?.message}
                                                 />
                                             )}
                                             onChange={(_, value) => {
-                                                methods.setValue('book_code', value?.book_code)
+                                                methods.setValue('bookCode', value?.bookCode)
                                             }}
                                         />
                                     </Grid>

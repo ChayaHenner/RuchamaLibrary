@@ -3,7 +3,7 @@ import { LevelCategory } from '../entities/BookInstance';
 import express, { Request, Response, NextFunction } from 'express';
 
 export const bookSchema = yup.object({
-    book_code: yup.number().required(),
+    bookCode: yup.number().required(),
     amount: yup.number().required()
 });
 export const newBookSchema = yup.object({

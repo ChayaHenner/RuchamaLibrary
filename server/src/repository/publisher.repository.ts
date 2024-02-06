@@ -5,7 +5,7 @@ export const getPublishersDB = async () => {
   return await libraryData
     .getRepository(Publisher)
     .createQueryBuilder('publisher')
-    .select(['publisher.id', 'publisher.publisher_name'])
+    .select(['publisher.id', 'publisher.name'])
     .getMany();
 
 };

@@ -25,10 +25,10 @@ const AddPublisher: FC = () => {
                 <Grid>
                     <TextField
                         margin='dense'
-                        {...register('publisher_name')}
+                        {...register('name')}
                         label="Publisher Name"
-                        error={!!formState.errors?.publisher_name}
-                        helperText={formState.errors?.publisher_name?.message}
+                        error={!!formState.errors?.name}
+                        helperText={formState.errors?.name?.message}
                     /></Grid>
                 <Grid>
 

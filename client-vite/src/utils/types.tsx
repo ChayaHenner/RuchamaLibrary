@@ -1,6 +1,6 @@
 export type Publisher = {
     id: number | undefined ;
-    publisher_name: string;
+    name: string;
   }
   
   export  type BookFormProps =  {
@@ -20,7 +20,7 @@ export type Publisher = {
 
   export  interface Book {
     id: string;
-    book_code: string;
+    bookCode: string;
     book_taken: string;
   }
 
@@ -31,7 +31,7 @@ export type Publisher = {
       price: number;
       author: string;
       category: string;
-      book_code: number;
+      bookCode: number;
       name: string;
       publisher: number;
     };
@@ -41,13 +41,13 @@ export type Publisher = {
 
   type PublisherType = {
     id: number;
-    publisher_name: string;
+    name: string;
     country: string;
     date_deleted: string | null;
   };
   
   type BookCode = {
-    book_code: number;
+    bookCode: number;
     name: string;
     author: string;
     price: number;
@@ -58,7 +58,7 @@ export type Publisher = {
   export type BookType = {
     id: number;
     book_taken: boolean;
-    book_code: BookCode;
+    bookCode: BookCode;
   };
   
   export type Reader = {
@@ -78,7 +78,7 @@ export type Publisher = {
   };
 
   export type BookLibrary = {
-    book_book_code: number;
+    book_bookCode: number;
     bookinstance_name: string;
     bookinstance_author: string;
     bookinstance_category: string;
@@ -97,7 +97,7 @@ export type Publisher = {
   };
 
   export type BookInstance= {
-    book_code: number,
+    bookCode: number,
     name: string,
     author: string,
     price: number,
@@ -112,7 +112,7 @@ export type Publisher = {
         price: number;
         author: string;
         category: string;
-        book_code: number;
+        bookCode: number;
         name: string;
         publisher: number;
       };
@@ -140,7 +140,7 @@ export type NewBookConfirmProps = {
   data: BorrowedBook[];
 }
 export type ExistingBookFormValues = {
-    book_code?: number | undefined;
+    bookCode?: number | undefined;
     amount: number;
 };
 
@@ -150,11 +150,11 @@ type BookInfo = {
   price: number;
   category: string;
   publisher: number |PublisherType;
-  book_code: number;
+  bookCode: number;
 };
 
 type BookItem = {
-  book_code: number;
+  bookCode: number;
   id: number;
   book_taken: boolean;
 };
@@ -198,7 +198,7 @@ export type selectedItemsProp =  {
 // };
 
 export type PublisherForm =  {
-  publisher_name: string;
+  name: string;
   country: string;
 }
 export type BookCardProp =  {
@@ -214,7 +214,7 @@ export type AddReaderProps =  {
   onClose: () => void;
 }
 export type TopTenBook={
-  book_book_code:number,
+  book_bookCode:number,
   name:string,
   borrowcount:number
 }

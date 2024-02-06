@@ -25,10 +25,10 @@ export const bookFormSchema: ObjectSchema<BookFormProps> = object({
         .transform((value, originalValue) => originalValue === '' ? 0 : value)
         .required('Amount is required').max(20,'You can only add up to 20 books')
         .positive('Amount must be a positive number'),
-    book_code: number().required('Book is required')
+    bookCode: number().required('Book is required')
 });
 
 export const publisherSchema = yup.object().shape({
-    publisher_name:string().required('Publisher is required'),
+    name:string().required('Publisher is required'),
     country:string().required('Country is required')
 })

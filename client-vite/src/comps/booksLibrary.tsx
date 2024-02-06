@@ -20,7 +20,7 @@ const BooksLibrary = () => {
 
   const filteredBooks = books.filter((book: BookLibrary) => {//9
     const bookName = book.bookinstance_name ? book.bookinstance_name.toLowerCase() : '';
-    const bookCode = book.book_book_code ? book.book_book_code.toString() : '';
+    const bookCode = book.book_bookCode ? book.book_bookCode.toString() : '';
     return (
       bookName.includes(searchTerm.toLowerCase()) ||
       bookCode.includes(searchTerm.toLowerCase())
@@ -41,7 +41,7 @@ const BooksLibrary = () => {
           </Grid>
         </Grid>
         {filteredBooks.map((book: BookLibrary) => (
-          <BookCard book={book} key={book.book_book_code}/>
+          <BookCard book={book} key={book.book_bookCode}/>
         ))}
       </Grid>
     </Container>

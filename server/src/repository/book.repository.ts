@@ -7,9 +7,9 @@ export const getBooksDB =  () =>   Book.find()
 
 export const getBooksInLibraryDB = () => Book.find({ where: { book_taken: false } })
 
-export const postBookDB = async (book_code: any) => {
+export const postBookDB = async (bookCode: any) => {
   return Book.save({
-    book_code//:{book_code}
+    bookCode//:{bookCode}
   });
 
 };//!

@@ -7,7 +7,7 @@ export class Publisher extends BaseEntity{
     id!:number 
     
     @Column()
-    publisher_name!:string 
+    name!:string 
     
     @Column({ nullable: true })
     country!:string 

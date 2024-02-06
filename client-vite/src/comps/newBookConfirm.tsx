@@ -21,7 +21,7 @@ const NewBookConfirm: React.FC<NewBookConfirmProp> = ({ data }) => {
                                 <Typography variant="h3" mb={2}>{data.book_info.name}</Typography>
                                 <Typography variant="body2" mb={2}>{data.book_info.author}</Typography>
                                 <Typography variant="body2">
-                                    Book Code: {book.book_code}
+                                    Book Code: {book.bookCode}
                                 </Typography>
                                 <Typography variant="body2">
                                     Book ID: {book.id}

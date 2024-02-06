@@ -106,7 +106,7 @@ const Borrow: React.FC = () => {
             <FormControl sx={borrowstyle.widthform}>
               <Autocomplete sx={borrowstyle.button}
                 options={filteredBooks}
-                getOptionLabel={(option) => `(${option.id})   ${option.book_code.name} - ${option.book_code.author} `}
+                getOptionLabel={(option) => `(${option.id})   ${option.bookCode.name} - ${option.bookCode.author} `}
                 renderInput={(params) => (
                   <TextField
                     {...params}
