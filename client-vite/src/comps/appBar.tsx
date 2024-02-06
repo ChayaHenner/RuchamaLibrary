@@ -10,22 +10,12 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
+import { headerstyle } from '../styles/appbar.style';
+import { pages } from '../config/appbar.config';
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-  const pages = [
-    // { label: 'Books', path: '/books' },
-    { label: 'Books', path: '/bookslibrary' },
-    // { label: 'Add Book', path: '/addbook' },
-    { label: 'Readers', path: '/readers' },
-    // { label: 'Existing Book', path: '/addexistingbook' },
-    // { label: 'Add Reader', path: '/addreader' },
-    { label: 'Add book', path: '/booksformnew' },
-    { label: 'Add Publisher', path: '/addpublisher' },
-    { label: 'borrow', path: '/borrow' },
-    { label: 'top ten', path: '/topten' },
-    { label: 'overdue', path: '/overdue' },
-  ];
+
   
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -39,25 +29,18 @@ function ResponsiveAppBar() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <BookmarkBorderOutlinedIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <BookmarkBorderOutlinedIcon sx={headerstyle.iconsm} />
           <Typography
             variant="h6"
             noWrap
             component="a"
             href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
+            sx={headerstyle.logosm}
           >
             RuchamaLibrary
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={headerstyle.boxsm}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -82,9 +65,7 @@ function ResponsiveAppBar() {
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
+              sx={headerstyle.menuitem}
             >
              {pages.map((page) => (
                 <MenuItem key={page.label} onClick={handleCloseNavMenu}>
@@ -95,32 +76,23 @@ function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
-          <BookmarkBorderOutlinedIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          <BookmarkBorderOutlinedIcon sx={headerstyle.icon} />
           <Typography
             variant="h5"
             noWrap
             component="a"
             href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
+            sx={headerstyle.logo}
           >
             RuchamaLibrary
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={headerstyle.box}>
             {pages.map((page) => (
               <Button
                 key={page.label}
                 href={page.path}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={headerstyle.link}
               >
                 {page.label}
               </Button>

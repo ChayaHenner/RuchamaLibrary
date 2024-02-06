@@ -27,7 +27,7 @@ const AddPublisher: FC = () => {
                         margin='dense'
                         {...register('publisher_name')}
                         label="Publisher Name"
-                        name="publisher_name"
+                        // name="publisher_name"
                         error={!!formState.errors?.publisher_name}
                         helperText={formState.errors?.publisher_name?.message}
                     /></Grid>
@@ -37,7 +37,7 @@ const AddPublisher: FC = () => {
                         margin='dense'
                         {...register('country')}
                         label="Country"
-                        name="country"
+                        // name="country"
                         error={!!formState.errors?.country}
                         helperText={formState.errors?.country?.message}
                     /></Grid>

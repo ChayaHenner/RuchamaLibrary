@@ -35,6 +35,7 @@ const AddReader: FC<AddReaderProps> = ({ onClose }) => {
                 if (result.isConfirmed) {
                     window.location.reload()
                     //send to profile?
+                    
                 }
             })
             console.log('data submitted', data);

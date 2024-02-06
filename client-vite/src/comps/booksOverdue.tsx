@@ -16,7 +16,6 @@ export default function CollapsibleTable() {
         const fetchReaders = async () => {
             try {
               setReaders(await getOverdueReaders());
-              
             } catch (error) {
               console.error('Error fetching data:', error);
             }
@@ -32,7 +31,7 @@ export default function CollapsibleTable() {
             <TableCell />
             <TableCell>name</TableCell>
             <TableCell >id</TableCell>
-            <TableCell >email&nbsp;(g)</TableCell>
+            <TableCell >email</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

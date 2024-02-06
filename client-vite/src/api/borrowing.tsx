@@ -34,9 +34,7 @@ export const postBorrow = async (borrow:BorrowBooks) => {
             title: "Borrowed",
             text: "Have a good read",
             icon: "success",
-            confirmButtonText: "confirm",
-            denyButtonText: `Don't save`
-          
+            confirmButtonText: "confirm",          
           })   
           return response.data  
 
