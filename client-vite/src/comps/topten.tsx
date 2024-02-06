@@ -1,14 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import {Container, List, ListItem, ListItemText, Typography } from '@mui/material';
+import {Container, List, ListItem, ListItemText } from '@mui/material';
+import { getTopTen } from '../api/borrowing';
+import { TopTenBook } from '../utils/types';
 
 const TopTen: React.FC = () => {
-  const [topBooks, setTopBooks] = useState<any[]>([]);
+  const [topBooks, setTopBooks] = useState<TopTenBook[]>([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/borrowing/topten')
-      .then(response => response.json())
-      .then(data => setTopBooks(data))
-      .catch(error => console.error('Error fetching top ten books:', error));
+    const fetchData = async () => {
+        try {
+          const data = await getTopTen()
+          setTopBooks(data);
+          console.log(data);
+          
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
+      fetchData()
   }, []);
 
   return (

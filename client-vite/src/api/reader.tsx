@@ -10,8 +10,8 @@ export const addReader = async (reader: ReaderForm) => {
         alert("user added")
         return response.data
 
-    } catch (err: any) {
-        console.error(err.response);
+    } catch (err) {
+        console.error(err);
 
     }
 };

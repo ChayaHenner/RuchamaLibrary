@@ -9,7 +9,7 @@ export const getTopTenBooks = async () => {
                 .createQueryBuilder('borrowing')
                 .leftJoinAndSelect('borrowing.book_id', 'book')
                 .leftJoinAndSelect('book.book_code', 'bookinstance')
-                .select(['book.book_code', 'bookinstance.book_name AS name', 'COUNT(borrowing.id) AS borrowCount'])
+                .select(['book.book_code', 'bookinstance.book_name AS name', 'CAST(COUNT(borrowing.id) AS INT) AS borrowCount'])
                 .groupBy('book.book_code ,bookinstance.book_name')
                 .orderBy('borrowCount', 'DESC')
                 .limit(10)
@@ -115,7 +115,10 @@ export const getTwoWeeksPassedDB = async () => {
                 .leftJoinAndSelect('borrowing.book_id', 'book')
                 .leftJoinAndSelect('borrowing.reader_id', 'reader')
                 .leftJoinAndSelect('book.book_code', 'bookinstance')
-                .andWhere('borrowing.date_returned IS NULL')
+                .where('borrowing.date_returned IS NULL')
+                .andWhere('reader.reader_id IS NOT NULL') // readers that were deleted... problomatic
+                // .andWhere('borrowing.date_borrowed < NOW() - INTERVAL \'2 weeks\'')
+
                 .select([
                         'reader.reader_id',
                         'reader.name',

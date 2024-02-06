@@ -21,8 +21,8 @@ export const postPublisher = async (publisher: PublisherForm) => {
         alert("publisher added")
         return response.data
 
-    } catch (err: any) {
-        console.error(err.response);
+    } catch (err) {
+        console.error(err);
 
     }
 };

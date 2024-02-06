@@ -210,3 +210,8 @@ export type ReaderCardProp =  {
 export type AddReaderProps =  {
   onClose: () => void;
 }
+export type TopTenBook={
+  book_book_code:number,
+  name:string,
+  borrowcount:number
+}
