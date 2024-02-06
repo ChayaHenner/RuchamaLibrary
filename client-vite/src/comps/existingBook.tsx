@@ -72,7 +72,8 @@ const ExistingBook: FC = () => {
                                 <Grid item xs={12}>
                                     <Grid container justifyContent="center">
                                         <TextField sx={addbookstyle.textfield}
-                                            label="amount"
+                                            label="Amount"
+                                            // name="amount"
                                             defaultValue={1}
                                             type="number"
                                             error={!!methods.formState.errors.amount}

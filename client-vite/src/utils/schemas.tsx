@@ -29,6 +29,6 @@ export const bookFormSchema: ObjectSchema<BookFormProps> = object({
 });
 
 export const publisherSchema = yup.object().shape({
-    publisher_name:string().required(),
-    country:string().required()
+    publisher_name:string().required('Publisher is required'),
+    country:string().required('Country is required')
 })

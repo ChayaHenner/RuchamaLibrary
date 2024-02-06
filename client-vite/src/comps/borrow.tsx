@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Button, FormControl, Typography, Autocomplete, TextField, Container, TableContainer, Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material';
+import { Box, Button, FormControl, Typography, Autocomplete, TextField, Container, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Grid } from '@mui/material';
 import NewBorrowConfirm from './borrowConfirm';
 import { getBooksInLibrary } from '../api/book';
 import { getReaders } from '../api/reader';
 import { postBorrow } from '../api/borrowing';
 import { BookType, BorrowedBook, Reader } from '../utils/types';
+import { borrowstyle } from '../styles/borrow.style';
+import SelectedItemsTable from './selectedItemsTable';
 
 const Borrow: React.FC = () => {
   const [confirm, setConfirm] = useState(false);
@@ -13,6 +15,8 @@ const Borrow: React.FC = () => {
   const [data, setData] = useState<BorrowedBook[]>([]);
   const [selectedBook, setSelectedBook] = useState<number | null>(null);
   const [selectedReader, setSelectedReader] = useState<number | null>();
+  const [selectedReaderName, setSelectedReaderName] = useState<string | null>(null);
+  const [readerName, setReaderName] = useState<string | null>(null);
   const [selectedItems, setSelectedItems] = useState<BookType[]>([]);
 
   useEffect(() => {
@@ -33,17 +37,17 @@ const Borrow: React.FC = () => {
       try {
         console.log(selectedItems);
         console.log(readers);
-        
+
         const bookIds = selectedItems.map(item => item.book_id);
         const readerId = selectedReader;
         const request = {
           reader_id: readerId,
           book_ids: bookIds,
         }
-        const data =  await postBorrow(request)
+        const data = await postBorrow(request)
         console.log(data);
         setConfirm(true)
-        setData(data)        
+        setData(data)
         setSelectedItems([]);
 
       } catch (error) {
@@ -67,34 +71,54 @@ const Borrow: React.FC = () => {
       }
     }
   };
-
-  const removeFromSelectedItems = (bookId: number) => {
-    setSelectedItems((prevItems) => prevItems.filter((item) => item.book_id !== bookId));
+  const chooseReader = () => {
+    console.log(selectedReaderName);
+    setReaderName(selectedReaderName)
   };
+
+  // const removeFromSelectedItems = (bookId: number) => {
+  //   setSelectedItems((prevItems) => prevItems.filter((item) => item.book_id !== bookId));
+  // };
 
   const filteredBooks = books.filter(book => !selectedItems.some(item => item.book_id === book.book_id));
 
   return (
-    <Container>{confirm? (<NewBorrowConfirm data={data}/>):(
-      <Box sx={{ display: 'flex' }}>
+    <Container>{confirm ? (<NewBorrowConfirm data={data} />) : (
+      <Box sx={borrowstyle.flex}>
         <Box>
           <Typography variant='h3' sx={{ margin: 4 }}>Borrow Books</Typography>
-          <FormControl sx={{ width: 400 }}>
-            <Autocomplete sx={{ margin: 1 }}
-              options={readers}
-              getOptionLabel={(option) => ` ${option.name}    (${option.reader_id})`}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="reader"
+          {readerName == null ? (
+            <>
+              <FormControl sx={{ width: 400 }}>
+                <Autocomplete sx={{ margin: 1 }}
+                  options={readers}
+                  getOptionLabel={(option) => ` ${option.name}    (${option.reader_id})`}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label="reader"
+                    />
+                  )}
+                  onChange={(_, value) => {
+                    setSelectedReader(value?.reader_id || null)
+                    setSelectedReaderName(value?.name || null)
+                  }
+                  }
                 />
-              )}
-              onChange={(_, value) => setSelectedReader(value?.reader_id || null)}
-            />
-          </FormControl>
+              </FormControl>
+              <Button variant="contained" sx={borrowstyle.button} onClick={chooseReader}>
+                choose
+              </Button></>) : (<>
+                <Grid container alignItems="center">
+                  <Typography variant='h2' sx={borrowstyle.h3}>{readerName}</Typography>
+                  <Button sx={borrowstyle.button} onClick={() => { setReaderName(null) }}>Change</Button>
+                </Grid>
+              </>
+          )
+          }
           <Box sx={{ display: 'flex' }}>
-            <FormControl sx={{ width: 400 }}>
-              <Autocomplete sx={{ margin: 1 }}
+            <FormControl sx={borrowstyle.widthform}>
+              <Autocomplete sx={borrowstyle.button}
                 options={filteredBooks}
                 getOptionLabel={(option) => `(${option.book_id})   ${option.book_code.book_name} - ${option.book_code.author} `}
                 renderInput={(params) => (
@@ -108,51 +132,30 @@ const Borrow: React.FC = () => {
               />
             </FormControl>
 
-            <Button variant="contained" sx={{ margin: 1 }} onClick={addToSelectedItems}>
+            <Button
+              variant="contained"
+              sx={borrowstyle.button}
+              onClick={addToSelectedItems}
+              disabled={readerName === null}
+            >
               Borrow
             </Button>
-          </Box>      <Button variant="outlined" color="primary" onClick={handleBorrow} sx={{ margin: 5 }}>
+          </Box>      
+          <Button variant="outlined" color="primary" onClick={handleBorrow}
+           sx={borrowstyle.h3}
+           disabled={readerName === null}
+           >
             Complete Borrow
           </Button>
         </Box>
 
-        <Box sx={{ margin: 7 }}>
+        <Box sx={borrowstyle.box}>
           {selectedItems.length > 0 && (
-            <>
-              <Typography variant="h5">Selected Items:</Typography>
-              <TableContainer>
-                <Table>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>Book Name</TableCell>
-                      <TableCell>Author</TableCell>
-                      <TableCell>Book ID</TableCell>
-                      <TableCell></TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {selectedItems.map((item) => (
-                      <TableRow key={item.book_id}>
-                        <TableCell>{item.book_code.book_name}</TableCell>
-                        <TableCell>{item.book_code.author}</TableCell>
-                        <TableCell>{item.book_id}</TableCell>
-                        <TableCell>
-                          <Button
-                            onClick={() => removeFromSelectedItems(item.book_id)}
-                          >
-                            x
-                          </Button>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </>
+            <SelectedItemsTable selectedItems={selectedItems} setSelectedItems={setSelectedItems}/>
           )}
-        </Box> 
+        </Box>
       </Box>
-)}
+    )}
 
     </Container>
   );

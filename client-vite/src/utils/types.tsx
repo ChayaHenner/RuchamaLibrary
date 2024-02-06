@@ -182,6 +182,10 @@ export type HistoryTableProps ={
 export type NewBookConfirmProp =  {
   data: BookResponse | undefined;
 }
+export type selectedItemsProp =  {
+  selectedItems: BookType[];
+  setSelectedItems: React.Dispatch<React.SetStateAction<BookType[]>>;
+}
 // type BorrowedBook = {
 //   book_id: number;
 //   borrowing_id: number;
