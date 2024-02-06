@@ -207,6 +207,9 @@ export type BookCardProp =  {
 export type ReaderCardProp =  {
   reader: Reader ;
 }
+export type BorrowProp =  {
+  name: string | undefined ;
+}
 export type AddReaderProps =  {
   onClose: () => void;
 }

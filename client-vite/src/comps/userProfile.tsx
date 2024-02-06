@@ -1,11 +1,11 @@
 import  { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Button, Container, Divider, Grid, Typography } from '@mui/material';
-import {ToReturnTable} from './comps/toReturnTable';
-import {HistoryTable} from './comps/historyTable';
+import {ToReturnTable} from './toReturnTable';
+import {HistoryTable} from './historyTable';
 import { Link } from 'react-router-dom'; 
-import { getReaderProfile } from './api/reader';
-import { ReaderInfo } from './utils/types';
+import { getReaderProfile } from '../api/reader';
+import { ReaderInfo } from '../utils/types';
 
 const UserProfile = () => {
   const { id } = useParams();

@@ -18,13 +18,13 @@ const Borrow: React.FC = () => {
   const [selectedReaderName, setSelectedReaderName] = useState<string | null>(null);
   const [readerName, setReaderName] = useState<string | null>(null);
   const [selectedItems, setSelectedItems] = useState<BookType[]>([]);
+  // const { name } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setBooks(await getBooksInLibrary());
         setReaders(await getReaders(undefined));
-
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -68,7 +68,7 @@ const Borrow: React.FC = () => {
       }
     }
   };
-  const chooseReader = () => {setReaderName(selectedReaderName)};
+  const chooseReader = () => { setReaderName(selectedReaderName) };
 
   const filteredBooks = books.filter(book => !selectedItems.some(item => item.book_id === book.book_id));
 
@@ -90,7 +90,8 @@ const Borrow: React.FC = () => {
                   )}
                   onChange={(_, value) => {
                     setSelectedReader(value?.reader_id || null)
-                    setSelectedReaderName(value?.name || null) }}
+                    setSelectedReaderName(value?.name || null)
+                  }}
                 />
               </FormControl>
               <Button variant="contained" sx={borrowstyle.button} onClick={chooseReader}>
@@ -111,7 +112,7 @@ const Borrow: React.FC = () => {
                 renderInput={(params) => (
                   <TextField
                     {...params}
-                    label="book"/>
+                    label="book" />
                 )}
                 value={null}
                 onChange={(_, value) => setSelectedBook(value?.book_id || null)}
@@ -126,18 +127,18 @@ const Borrow: React.FC = () => {
             >
               Borrow
             </Button>
-          </Box>      
+          </Box>
           <Button variant="outlined" color="primary" onClick={handleBorrow}
-           sx={borrowstyle.h3}
-           disabled={readerName === null}
-           >
+            sx={borrowstyle.h3}
+            disabled={readerName === null}
+          >
             Complete Borrow
           </Button>
         </Box>
 
         <Box sx={borrowstyle.box}>
           {selectedItems.length > 0 && (
-            <SelectedItemsTable selectedItems={selectedItems} setSelectedItems={setSelectedItems}/>
+            <SelectedItemsTable selectedItems={selectedItems} setSelectedItems={setSelectedItems} />
           )}
         </Box>
       </Box>

@@ -3,7 +3,7 @@ import Header from './comps/appBar';
 import Home from './home';
 import Book from './books';
 import BookFormNew from './comps/bookFormNew';
-import UserProfile from './userProfile';
+import UserProfile from './comps/userProfile';
 import { ThemeProvider } from '@emotion/react';
 import ExistingBook from './comps/existingBook';
 import { theme } from './styles/styles';
