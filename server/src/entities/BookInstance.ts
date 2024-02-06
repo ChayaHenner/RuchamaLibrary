@@ -23,13 +23,10 @@ export class BookInstance extends BaseEntity {
 
     @ManyToOne(
         () => Publisher,
-        publisher =>publisher.publisher_id ,{eager:true}
+        publisher =>publisher.id ,{eager:true}
     )
-    @JoinColumn({
-        name:'publisher_id'
-    })
-    publisher_id!: Publisher 
-
+    @JoinColumn()
+    publisher!: Publisher 
 
     @Column()
     price!: number

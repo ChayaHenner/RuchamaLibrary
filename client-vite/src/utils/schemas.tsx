@@ -12,7 +12,7 @@ export const bookFormSchema: ObjectSchema<BookFormProps> = object({
 
     name: string().required('Book name is required'),
     author: string().required('Author is required'),
-    publisher_id: number().required('Publisher is required'),
+    publisher: number().required('Publisher is required'),
     amount: number().required('Amount is required').min(1, 'Amount must be at least 1'),
     category: string().required('Category is required'),
     price: number().required('Price is required')

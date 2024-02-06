@@ -5,7 +5,7 @@ export const getPublishersDB = async () => {
   return await libraryData
     .getRepository(Publisher)
     .createQueryBuilder('publisher')
-    .select(['publisher.publisher_id', 'publisher.publisher_name'])
+    .select(['publisher.id', 'publisher.publisher_name'])
     .getMany();
 
 };
@@ -16,9 +16,9 @@ export const postPublisherDB = async (publisher: any) => {
 };
 
 export const softDeleteDB = async (id: number) => {
-  
+
   const publisher = await Publisher.findOneOrFail({
-    where: { publisher_id: id },
+    where: {  id },
   });
 
   return await publisher.softRemove();

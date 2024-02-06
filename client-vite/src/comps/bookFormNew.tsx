@@ -67,12 +67,12 @@ const BookFormNew: FC = () => {
                   <TextField
                     {...params}
                     label="Publisher"
-                    error={!!methods.formState.errors.publisher_id}
-                    helperText={methods.formState.errors.publisher_id?.message}
+                    error={!!methods.formState.errors.publisher}
+                    helperText={methods.formState.errors.publisher?.message}
                   />
                 )}
                 onChange={(_,publisher:Publisher| null)=>{
-                  methods.setValue('publisher_id', publisher?.publisher_id )}}
+                  methods.setValue('publisher', publisher?.id )}}
               />
             </Grid>
             <Grid >

@@ -1,12 +1,12 @@
 export type Publisher = {
-    publisher_id: number | undefined ;
+    id: number | undefined ;
     publisher_name: string;
   }
   
   export  type BookFormProps =  {
     name: string;
     author: string;
-    publisher_id?: number | undefined; ///
+    publisher?: number | undefined; ///
     amount: number;
     category: string;
     price: number;
@@ -33,14 +33,14 @@ export type Publisher = {
       category: string;
       book_code: number;
       name: string;
-      publisher_id: number;
+      publisher: number;
     };
     date_borrowed: string;
     date_returned: string | null;
   }
 
   type PublisherType = {
-    publisher_id: number;
+    id: number;
     publisher_name: string;
     country: string;
     date_deleted: string | null;
@@ -52,7 +52,7 @@ export type Publisher = {
     author: string;
     price: number;
     category: string;
-    publisher_id: PublisherType;
+    publisher: PublisherType;
   };
   
   export type BookType = {
@@ -82,7 +82,7 @@ export type Publisher = {
     bookinstance_name: string;
     bookinstance_author: string;
     bookinstance_category: string;
-    bookinstance_publisher_id: number;
+    bookinstance_publisher: number;
     books: Array<{
       id: number;
       book_taken: boolean;
@@ -102,7 +102,7 @@ export type Publisher = {
     author: string,
     price: number,
     category: string,
-    publisher_id:PublisherType
+    publisher:PublisherType
     }
 
    export type BorrowBookInstance = {
@@ -114,7 +114,7 @@ export type Publisher = {
         category: string;
         book_code: number;
         name: string;
-        publisher_id: number;
+        publisher: number;
       };
       date_borrowed: string;
       date_returned: string | null;
@@ -149,7 +149,7 @@ type BookInfo = {
   author: string;
   price: number;
   category: string;
-  publisher_id: number |PublisherType;
+  publisher: number |PublisherType;
   book_code: number;
 };
 

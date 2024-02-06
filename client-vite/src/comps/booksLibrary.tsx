@@ -41,7 +41,7 @@ const BooksLibrary = () => {
           </Grid>
         </Grid>
         {filteredBooks.map((book: BookLibrary) => (
-          <BookCard book={book} />
+          <BookCard book={book} key={book.book_book_code}/>
         ))}
       </Grid>
     </Container>

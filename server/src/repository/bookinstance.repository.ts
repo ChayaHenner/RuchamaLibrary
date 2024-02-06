@@ -21,14 +21,13 @@ export const getBookInstancesLibraryDB=async() =>{
       'book.book_code',
       'bookinstance.name',
       'bookinstance.author',
-      'bookinstance.publisher_id',
       'bookinstance.category',
       'JSON_AGG(JSON_BUILD_OBJECT(\'id\', book.id, \'book_taken\', book.book_taken)::jsonb) AS books',
       'CAST(COUNT(book.id) AS INTEGER) AS total_ids',
       'CAST(SUM(CASE WHEN book.book_taken = false THEN 1 ELSE 0 END) AS INTEGER) AS not_taken_count'
     ])
     .leftJoin('book.book_code', 'bookinstance')
-    .groupBy('book.book_code ,bookinstance.name  ,bookinstance.author  ,bookinstance.publisher_id  ,bookinstance.category') // Adjust the grouping based on your needs
+    .groupBy('book.book_code ,bookinstance.name  ,bookinstance.author  ,bookinstance.category')
   .getRawMany();
 
     return bookInstancesWithCounts;
@@ -44,7 +43,7 @@ export const postBookInstanceDB = async (bookinstance: any) => {
 };
 
 //8
-export const findBookInstanceByNamePublisherAndAuthor = async (  bookName: string, author: string, publisher_id: string): Promise<any | null> => {
-  const bookInstance = await BookInstance.findOne({ where: { name: bookName, author } }); //,publisher_id??
+export const findBookInstanceByNamePublisherAndAuthor = async (  bookName: string, author: string, publisher: string): Promise<any | null> => {
+  const bookInstance = await BookInstance.findOne({ where: { name: bookName, author } }); //,publisher??
   return bookInstance || null;
 };
