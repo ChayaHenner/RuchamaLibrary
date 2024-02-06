@@ -22,7 +22,7 @@ export const postBooks = async (books: any) => {
 };
 
 export const postNewBooks = async (books: any) => {
-        const existingBookInstance = await findBookInstanceByNamePublisherAndAuthor(books.book_name, books.author, books.publisher_id);
+        const existingBookInstance = await findBookInstanceByNamePublisherAndAuthor(books.name, books.author, books.publisher_id);
         const bookInstance = existingBookInstance || await postBookInstanceDB(books);
       
         let newBooks: object[] = [];

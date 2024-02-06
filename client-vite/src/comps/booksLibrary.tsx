@@ -19,7 +19,7 @@ const BooksLibrary = () => {
   }, []);
 
   const filteredBooks = books.filter((book: BookLibrary) => {//9
-    const bookName = book.bookinstance_book_name ? book.bookinstance_book_name.toLowerCase() : '';
+    const bookName = book.bookinstance_name ? book.bookinstance_name.toLowerCase() : '';
     const bookCode = book.book_book_code ? book.book_book_code.toString() : '';
     return (
       bookName.includes(searchTerm.toLowerCase()) ||

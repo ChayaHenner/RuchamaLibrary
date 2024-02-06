@@ -30,7 +30,7 @@ export  const HistoryTable:React.FC<HistoryTableProps>=({ history })=> {
               key={row.borrowing_id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
               <TableCell >{row.id}</TableCell>
-              <TableCell align="left">{row.book_instance.book_name}</TableCell>
+              <TableCell align="left">{row.book_instance.name}</TableCell>
               <TableCell >{row.borrowing_id}</TableCell>
               <TableCell >{row.date_borrowed.split('T')[0]}-{row.date_borrowed.split('T')[1].split('.')[0]}</TableCell>
               <TableCell >{row?.date_returned?.split('T')[0]}-{row?.date_returned?.split('T')[1].split('.')[0]}</TableCell>

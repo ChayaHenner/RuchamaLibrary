@@ -24,7 +24,7 @@ const SelectedItemsTable: FC<selectedItemsProp> = ({ selectedItems, setSelectedI
                     <TableBody>
                         {selectedItems.map((item) => (
                             <TableRow key={item.id}>
-                                <TableCell>{item.book_code.book_name}</TableCell>
+                                <TableCell>{item.book_code.name}</TableCell>
                                 <TableCell>{item.book_code.author}</TableCell>
                                 <TableCell>{item.id}</TableCell>
                                 <TableCell>

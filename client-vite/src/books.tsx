@@ -33,7 +33,7 @@ const Book: FC = () => {
           <Card>
             <CardContent>
               <Typography variant="h6" component="div">
-                {book.book_name}
+                {book.name}
               </Typography>
               <Typography color="textSecondary">{book.author}</Typography>
             </CardContent>

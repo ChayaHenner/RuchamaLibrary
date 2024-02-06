@@ -53,7 +53,7 @@ const ExistingBook: FC = () => {
                                     <Grid container justifyContent="center">
                                         <Autocomplete sx={addbookstyle.textfield}
                                             options={books}
-                                            getOptionLabel={(option: BookInstance) => `${option.book_name} (${option.book_code})`}
+                                            getOptionLabel={(option: BookInstance) => `${option.name} (${option.book_code})`}
                                             renderInput={(params) => (
                                                 <TextField
                                                     {...params}

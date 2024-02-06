@@ -16,7 +16,7 @@ export class BookInstance extends BaseEntity {
     book_code!: number
 
     @Column()
-    book_name!: string
+    name!: string
 
     @Column()
     author!: string

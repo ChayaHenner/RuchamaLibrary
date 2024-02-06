@@ -15,7 +15,7 @@ const BookCard :FC<BookCardProp> = ({ book }) => {
               categoryColor={book.bookinstance_category}>
               <CardContent>
                 <Typography variant="h3" component="div" sx={{ display: 'inline' }}>
-                  {book.bookinstance_book_name}
+                  {book.bookinstance_name}
                 </Typography>
                 <Typography variant="h5" component="div" sx={{ display: 'inline', marginLeft: 5 }}>
                   ({book.book_book_code})

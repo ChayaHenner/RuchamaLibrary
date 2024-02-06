@@ -45,9 +45,9 @@ const BookFormNew: FC = () => {
             <Grid>
               <TextField sx={addbookstyle.textfield}
                 label="Book Name"
-                error={!!methods.formState.errors.book_name}
-                helperText={methods.formState.errors.book_name?.message}
-                {...methods.register('book_name')}
+                error={!!methods.formState.errors.name}
+                helperText={methods.formState.errors.name?.message}
+                {...methods.register('name')}
               />
             </Grid>
             <Grid>

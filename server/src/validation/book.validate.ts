@@ -7,7 +7,7 @@ export const bookSchema = yup.object({
     amount: yup.number().required()
 });
 export const newBookSchema = yup.object({
-    book_name: yup.string().required(),
+    name: yup.string().required(),
     author: yup.string().required(),
     publisher_id: yup.string().required(),
     amount: yup.number().required(),

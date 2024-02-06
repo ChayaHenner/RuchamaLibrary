@@ -76,7 +76,7 @@ const Borrow: React.FC = () => {
       <Box sx={borrowstyle.flex}>
         <Box>
           {readerName == null ? (
-            <>
+            
               <FormControl sx={{ width: 400 }}>
                 <Autocomplete sx={{ margin: 1 }}
                   options={readers}
@@ -89,13 +89,12 @@ const Borrow: React.FC = () => {
                   )}
                   onChange={(_, value) => {
                     setSelectedReader(value?.reader_id || null)
-                    setSelectedReaderName(value?.name || null)
+                    setReaderName(value?.name || null)
+                    // setSelectedReaderName(value?.name || null)
                   }}
                 />
               </FormControl>
-              <Button variant="contained" sx={borrowstyle.button} onClick={chooseReader}>
-                choose
-              </Button></>) : (<>
+            ) : (<>
                 <Grid container alignItems="center">
                   <Typography variant='h4' sx={borrowstyle.h3}>{readerName}</Typography>
                   <Button sx={borrowstyle.button} onClick={() => { setReaderName(null) }}>Change</Button>
@@ -107,7 +106,7 @@ const Borrow: React.FC = () => {
             <FormControl sx={borrowstyle.widthform}>
               <Autocomplete sx={borrowstyle.button}
                 options={filteredBooks}
-                getOptionLabel={(option) => `(${option.id})   ${option.book_code.book_name} - ${option.book_code.author} `}
+                getOptionLabel={(option) => `(${option.id})   ${option.book_code.name} - ${option.book_code.author} `}
                 renderInput={(params) => (
                   <TextField
                     {...params}

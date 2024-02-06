@@ -55,7 +55,7 @@ export const Row :FC<RowProps>=({row}) =>{
                     {row.unreturned_books.map((book:any) => (
                       <TableRow key={book.id}>
                         <TableCell>{book.id}</TableCell> 
-                        <TableCell >{book.book_instance.book_name}</TableCell>
+                        <TableCell >{book.book_instance.name}</TableCell>
                         <TableCell >{book.book_instance.author}</TableCell>
                         <TableCell component="th" scope="row">  {book.date_borrowed.split('T')[0]} --- {book.date_borrowed.split('T')[1].split('.')[0]}</TableCell>
                         <TableCell component="th" scope="row">{book.borrowing_id }</TableCell>

@@ -4,7 +4,7 @@ export type Publisher = {
   }
   
   export  type BookFormProps =  {
-    book_name: string;
+    name: string;
     author: string;
     publisher_id?: number | undefined; ///
     amount: number;
@@ -32,7 +32,7 @@ export type Publisher = {
       author: string;
       category: string;
       book_code: number;
-      book_name: string;
+      name: string;
       publisher_id: number;
     };
     date_borrowed: string;
@@ -48,7 +48,7 @@ export type Publisher = {
   
   type BookCode = {
     book_code: number;
-    book_name: string;
+    name: string;
     author: string;
     price: number;
     category: string;
@@ -79,7 +79,7 @@ export type Publisher = {
 
   export type BookLibrary = {
     book_book_code: number;
-    bookinstance_book_name: string;
+    bookinstance_name: string;
     bookinstance_author: string;
     bookinstance_category: string;
     bookinstance_publisher_id: number;
@@ -98,7 +98,7 @@ export type Publisher = {
 
   export type BookInstance= {
     book_code: number,
-    book_name: string,
+    name: string,
     author: string,
     price: number,
     category: string,
@@ -113,7 +113,7 @@ export type Publisher = {
         author: string;
         category: string;
         book_code: number;
-        book_name: string;
+        name: string;
         publisher_id: number;
       };
       date_borrowed: string;
@@ -145,7 +145,7 @@ export type ExistingBookFormValues = {
 };
 
 type BookInfo = {
-  book_name: string;
+  name: string;
   author: string;
   price: number;
   category: string;

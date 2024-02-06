@@ -9,8 +9,8 @@ export const getTopTenBooks = async () => {
                 .createQueryBuilder('borrowing')
                 .leftJoinAndSelect('borrowing.book', 'book')
                 .leftJoinAndSelect('book.book_code', 'bookinstance')
-                .select(['book.book_code', 'bookinstance.book_name AS name', 'CAST(COUNT(borrowing.id) AS INT) AS borrowCount'])
-                .groupBy('book.book_code ,bookinstance.book_name')
+                .select(['book.book_code', 'bookinstance.name AS name', 'CAST(COUNT(borrowing.id) AS INT) AS borrowCount'])
+                .groupBy('book.book_code ,bookinstance.name')
                 .orderBy('borrowCount', 'DESC')
                 .limit(10)
                 .getRawMany();
