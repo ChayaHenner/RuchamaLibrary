@@ -5,7 +5,7 @@ import { FindManyOptions } from 'typeorm';
 
 export const getBooksDB =  () =>   Book.find() 
 
-export const getBooksInLibraryDB = () => Book.find({ where: { book_taken: false } })
+export const getBooksInLibraryDB = () => Book.find({ where: { bookTaken: false } })
 
 export const postBookDB = async (bookCode: any) => {
   return Book.save({

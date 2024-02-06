@@ -19,6 +19,6 @@ export class Book extends BaseEntity {
     @Column({
         default: false
     })
-    book_taken!: boolean
+    bookTaken!: boolean
 
 }

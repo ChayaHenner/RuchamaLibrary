@@ -81,7 +81,7 @@ export const updateBookTaken = async (id: number) => {
         let book = await Book.findOne({ where: { id } });
 
         if (book) {
-                book!.book_taken = true;
+                book!.bookTaken = true;
                 await Book.save(book);
                 return book;
         }
@@ -92,7 +92,7 @@ export const updateBookNotTaken = async (id: number) => {
         console.log(book);
 
         if (book) {
-                book!.book_taken = false;
+                book!.bookTaken = false;
                 console.log("changed to false");
 
                 await Book.save(book);
@@ -103,7 +103,7 @@ export const updateBookNotTaken = async (id: number) => {
 export const checkBookTaken = async (id: number) => {
         let book = await Book.findOne({ where: { id } });
         if (book) {
-                return book!.book_taken
+                return book!.bookTaken
         } else return false;
 };
 

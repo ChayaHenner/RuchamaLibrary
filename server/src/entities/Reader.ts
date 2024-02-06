@@ -16,6 +16,6 @@ export class Reader extends BaseEntity{
     dob!: Date;
 
     @DeleteDateColumn()
-    date_deleted!: Date
+    dateDeleted!: Date
 
 }

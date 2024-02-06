@@ -22,9 +22,9 @@ export const getBookInstancesLibraryDB=async() =>{
       'bookinstance.name',
       'bookinstance.author',
       'bookinstance.category',
-      'JSON_AGG(JSON_BUILD_OBJECT(\'id\', book.id, \'book_taken\', book.book_taken)::jsonb) AS books',
+      'JSON_AGG(JSON_BUILD_OBJECT(\'id\', book.id, \'bookTaken\', book.bookTaken)::jsonb) AS books',
       'CAST(COUNT(book.id) AS INTEGER) AS total_ids',
-      'CAST(SUM(CASE WHEN book.book_taken = false THEN 1 ELSE 0 END) AS INTEGER) AS not_taken_count'
+      'CAST(SUM(CASE WHEN book.bookTaken = false THEN 1 ELSE 0 END) AS INTEGER) AS not_taken_count'
     ])
     .leftJoin('book.bookCode', 'bookinstance')
     .groupBy('book.bookCode ,bookinstance.name  ,bookinstance.author  ,bookinstance.category')

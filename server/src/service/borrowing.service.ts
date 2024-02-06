@@ -9,9 +9,9 @@ export const postBorrowBook = async (borrow: any): Promise<any> => {
     const reader = await findReaderDB(borrow.reader_id);
   
     if (book && reader) {
-      const book_taken = await checkBookTaken(borrow.id);
+      const bookTaken = await checkBookTaken(borrow.id);
   
-      if (!book_taken) {
+      if (!bookTaken) {
         const newBorrowing = createBorrowingDB(borrow);
         updateBookTaken(borrow.id);
         return newBorrowing;
@@ -32,9 +32,9 @@ export const postBorrowMany = async (borrows: any) => {
       const book = await findBookDB(id);
 
       if (book && reader) {
-        const book_taken = await checkBookTaken(id);
+        const bookTaken = await checkBookTaken(id);
 
-        if (!book_taken) {
+        if (!bookTaken) {
           const borrow = {
             book: book,
             reader_id: reader,

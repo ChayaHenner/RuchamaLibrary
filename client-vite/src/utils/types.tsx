@@ -21,7 +21,7 @@ export type Publisher = {
   export  interface Book {
     id: string;
     bookCode: string;
-    book_taken: string;
+    bookTaken: string;
   }
 
   export type BookReturn = {
@@ -43,7 +43,7 @@ export type Publisher = {
     id: number;
     name: string;
     country: string;
-    date_deleted: string | null;
+    dateDeleted: string | null;
   };
   
   type BookCode = {
@@ -57,7 +57,7 @@ export type Publisher = {
   
   export type BookType = {
     id: number;
-    book_taken: boolean;
+    bookTaken: boolean;
     bookCode: BookCode;
   };
   
@@ -66,7 +66,7 @@ export type Publisher = {
     name: string;
     email: string;
     dob: string;
-    date_deleted: string | null;
+    dateDeleted: string | null;
   };
   
   export type BorrowedBook = {
@@ -85,7 +85,7 @@ export type Publisher = {
     bookinstance_publisher: number;
     books: Array<{
       id: number;
-      book_taken: boolean;
+      bookTaken: boolean;
     }>;
     total_ids: number;
     not_taken_count: number;
@@ -156,7 +156,7 @@ type BookInfo = {
 type BookItem = {
   bookCode: number;
   id: number;
-  book_taken: boolean;
+  bookTaken: boolean;
 };
 
 export type BookResponse = {

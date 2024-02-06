@@ -13,5 +13,5 @@ export class Publisher extends BaseEntity{
     country!:string 
    
     @DeleteDateColumn()
-    date_deleted!:Date
+    dateDeleted!:Date
 }
