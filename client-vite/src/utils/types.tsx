@@ -178,6 +178,9 @@ export type ReturnTableProps ={
 export type HistoryTableProps ={
   history: BookReturn[] ;
 }
+export type HeaderProps ={
+  title: string ;
+}
 
 export type NewBookConfirmProp =  {
   data: BookResponse | undefined;

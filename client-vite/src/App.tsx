@@ -1,5 +1,5 @@
 import { BrowserRouter , Routes, Route } from 'react-router-dom';
-import Header from './header';
+import Header from './comps/appBar';
 import Home from './home';
 import Book from './books';
 import BookFormNew from './comps/bookFormNew';
@@ -13,6 +13,7 @@ import OverduePage from './pages/overduePage';
 import TopTenPage from './pages/topTenPage';
 import ReadersPage from './pages/readersPage';
 import AddPublisherPage from './pages/addPublisherPage';
+import AddBookPage from './pages/addBookPage';
 const App = () => {
   
   return (<>
@@ -30,7 +31,7 @@ const App = () => {
           <Route path="/topten" element={<TopTenPage />} />
           <Route path="/addpublisher" element={<AddPublisherPage />} />
           <Route path="/overdue" element={<OverduePage />} />
-          <Route path="/booksformnew" element={<BookFormNew />} />
+          <Route path="/booksformnew" element={<AddBookPage />} />
           <Route path="/profile/:id" element={<UserProfile />} />
           <Route path="*" element={<h1>404 Error</h1>} />
       </Routes>

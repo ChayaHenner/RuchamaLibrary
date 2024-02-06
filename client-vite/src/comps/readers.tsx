@@ -1,5 +1,5 @@
 import { useEffect, useState, FC } from 'react';
-import { Grid,  Typography, Container, Input } from '@mui/material';
+import { Grid, Container, Input } from '@mui/material';
 import { Reader } from '../utils/types';
 import { getReaders } from '../api/reader';
 import ReaderCard from './readerCard';
@@ -25,11 +25,7 @@ const Readers: FC = () => {
   return (
     <Container>
       <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <Typography variant="h4" gutterBottom>
-            Readers
-          </Typography>
-        </Grid>
+  
         <Grid item xs={12}>
           <Input
             type="text"

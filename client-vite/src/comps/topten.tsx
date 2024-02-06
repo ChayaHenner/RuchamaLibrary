@@ -13,7 +13,6 @@ const TopTen: React.FC = () => {
 
   return (
     <Container>
-      <Typography variant="h4">Top Ten Books</Typography>
       <List>
         {topBooks.map((book, index) => (
           <ListItem key={index}>

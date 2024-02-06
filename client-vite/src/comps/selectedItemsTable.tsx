@@ -10,7 +10,7 @@ const SelectedItemsTable: FC<selectedItemsProp> = ({ selectedItems, setSelectedI
 
     return (
         <>
-            <Typography variant="h5">Selected Items:</Typography>
+            <Typography variant="h5">Selected Books:</Typography>
             <TableContainer>
                 <Table>
                     <TableHead>

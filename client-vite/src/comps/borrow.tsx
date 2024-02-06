@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Button, FormControl, Typography, Autocomplete, TextField, Container, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Grid } from '@mui/material';
+import { Box, Button, FormControl, Typography, Autocomplete, TextField, Container, Grid } from '@mui/material';
 import NewBorrowConfirm from './borrowConfirm';
 import { getBooksInLibrary } from '../api/book';
 import { getReaders } from '../api/reader';
@@ -76,17 +76,12 @@ const Borrow: React.FC = () => {
     setReaderName(selectedReaderName)
   };
 
-  // const removeFromSelectedItems = (bookId: number) => {
-  //   setSelectedItems((prevItems) => prevItems.filter((item) => item.book_id !== bookId));
-  // };
-
   const filteredBooks = books.filter(book => !selectedItems.some(item => item.book_id === book.book_id));
 
   return (
     <Container>{confirm ? (<NewBorrowConfirm data={data} />) : (
       <Box sx={borrowstyle.flex}>
         <Box>
-          <Typography variant='h3' sx={{ margin: 4 }}>Borrow Books</Typography>
           {readerName == null ? (
             <>
               <FormControl sx={{ width: 400 }}>
@@ -101,9 +96,7 @@ const Borrow: React.FC = () => {
                   )}
                   onChange={(_, value) => {
                     setSelectedReader(value?.reader_id || null)
-                    setSelectedReaderName(value?.name || null)
-                  }
-                  }
+                    setSelectedReaderName(value?.name || null) }}
                 />
               </FormControl>
               <Button variant="contained" sx={borrowstyle.button} onClick={chooseReader}>
@@ -124,8 +117,7 @@ const Borrow: React.FC = () => {
                 renderInput={(params) => (
                   <TextField
                     {...params}
-                    label="book"
-                  />
+                    label="book"/>
                 )}
                 value={null}
                 onChange={(_, value) => setSelectedBook(value?.book_id || null)}

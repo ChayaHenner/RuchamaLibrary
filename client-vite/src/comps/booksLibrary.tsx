@@ -36,9 +36,9 @@ const BooksLibrary: React.FC = () => {
     <Container maxWidth="lg">
       <Grid container spacing={5}>
         <Grid container spacing={3} alignItems="center" sx={booksstyle.headermargins}>
-          <Grid item xs={12} sm={6}>
+          {/* <Grid item xs={12} sm={6}>
             <Typography variant="h4">Books</Typography>
-          </Grid>
+          </Grid> */}
           <Grid item xs={12} sm={6}>
             <Input
               type="text"
