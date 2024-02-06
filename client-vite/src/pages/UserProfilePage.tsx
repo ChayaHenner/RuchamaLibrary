@@ -10,6 +10,7 @@ import { ReaderInfo } from '../utils/types';
 const UserProfile = () => {
   const { id } = useParams();
   const [userData, setUserData] = useState<ReaderInfo>();
+console.log(id);
 
   useEffect(() => {
     const fetchData = async () => {

@@ -36,7 +36,7 @@ const Readers: FC = () => {
         </Grid>
 
         {readers.map((reader: Reader) => (
-          <ReaderCard reader={reader} key={reader.reader_id}/>
+          <ReaderCard reader={reader} key={reader.id}/>
         ))}
       </Grid>
     </Container>

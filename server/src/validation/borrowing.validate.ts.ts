@@ -4,11 +4,11 @@ import { LevelCategory } from '../entities/BookInstance';
 
 export const borrowingSchema = yup.object({
     id: yup.number().required(),
-    reader_id: yup.number().required(), 
+    reader: yup.number().required(), 
 });
 export const borrowingManySchema = yup.object({
     ids: yup.array().of(yup.number().required()).required(),
-    reader_id: yup.number().required(),
+    reader: yup.number().required(),
   });
 export const returnManySchema = yup.object({
    borrow_ids: yup.array().of(yup.number().required()).required(), 

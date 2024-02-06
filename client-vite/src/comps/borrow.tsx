@@ -37,7 +37,7 @@ const Borrow: React.FC = () => {
         const bookIds = selectedItems.map(item => item.id);
         const readerId = selectedReader;
         const request = {
-          reader_id: readerId,
+          reader: readerId,
           ids: bookIds,
         }
         const data = await postBorrow(request)
@@ -80,7 +80,7 @@ const Borrow: React.FC = () => {
               <FormControl sx={{ width: 400 }}>
                 <Autocomplete sx={{ margin: 1 }}
                   options={readers}
-                  getOptionLabel={(option) => ` ${option.name}    (${option.reader_id})`}
+                  getOptionLabel={(option) => ` ${option.name}    (${option.id})`}
                   renderInput={(params) => (
                     <TextField
                       {...params}
@@ -88,7 +88,7 @@ const Borrow: React.FC = () => {
                     />
                   )}
                   onChange={(_, value) => {
-                    setSelectedReader(value?.reader_id || null)
+                    setSelectedReader(value?.id || null)
                     setReaderName(value?.name || null)
                     // setSelectedReaderName(value?.name || null)
                   }}

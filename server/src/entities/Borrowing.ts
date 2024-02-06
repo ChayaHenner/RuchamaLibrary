@@ -9,12 +9,10 @@ export class Borrowing extends BaseEntity {
 
     @ManyToOne(
         () => Reader,
-        reader => reader.reader_id, { eager: true }
+        reader => reader.id, { eager: true }
     )
-    @JoinColumn({
-        name: 'reader_id'
-    })
-    reader_id!: Reader
+    @JoinColumn()
+    reader!: Reader
 
     @ManyToOne(
         () => Book,

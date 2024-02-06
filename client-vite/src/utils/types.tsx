@@ -62,7 +62,7 @@ export type Publisher = {
   };
   
   export type Reader = {
-    reader_id: number;
+    id: number;
     name: string;
     email: string;
     dob: string;
@@ -70,7 +70,7 @@ export type Publisher = {
   };
   
   export type BorrowedBook = {
-    reader_id: Reader;
+    reader: Reader;
     book: BookType;
     date_returned: string | null;
     id: number;
@@ -121,7 +121,7 @@ export type Publisher = {
     };
     
    export type ReaderWithUnreturnedBooks = {
-      reader_reader_id: number;
+      reader_id: number;
       reader_name: string;
       reader_email: string;
       unreturned_books: BorrowBookInstance[];
@@ -132,7 +132,7 @@ export type Publisher = {
     }
 
     export type BorrowBooks = {
-      reader_id?:number | null | undefined,
+      reader?:number | null | undefined,
       ids:number[]
     }
     
@@ -166,7 +166,7 @@ export type BookResponse = {
 
 
 export type ReaderInfo = {
-  reader_reader_id: number;
+  reader_id: number;
   reader_name: string;
   reader_email: string;
   toreturn: BorrowBookInstance[];

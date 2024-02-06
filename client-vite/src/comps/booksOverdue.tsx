@@ -36,7 +36,7 @@ export default function CollapsibleTable() {
         </TableHead>
         <TableBody>
           {readers.map((reader) => (
-            <Row key={reader.reader_reader_id} row={reader} />
+            <Row key={reader.reader_id} row={reader} />
           ))}
         </TableBody>
       </Table>

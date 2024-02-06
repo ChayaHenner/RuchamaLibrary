@@ -14,7 +14,7 @@ const NewBorrowConfirm: React.FC<NewBookConfirmProps> = ({ data }) => {
         <Button onClick={() => { window.location.reload() }}>
           Borrow More
         </Button>
-        <Button component={Link} to={`/profile/${data[0]?.reader_id.reader_id}`} variant="contained" color="primary" sx={{ margin: '1rem 0' }}>
+        <Button component={Link} to={`/profile/${data[0]?.reader.id}`} variant="contained" color="primary" sx={{ margin: '1rem 0' }}>
           View Full History
         </Button>
 

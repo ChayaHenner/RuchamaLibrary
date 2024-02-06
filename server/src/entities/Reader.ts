@@ -4,7 +4,7 @@ import { Entity, PrimaryGeneratedColumn, Column, BaseEntity ,DeleteDateColumn } 
 export class Reader extends BaseEntity{
 
     @PrimaryGeneratedColumn()
-    reader_id!: number;
+    id!: number;
 
     @Column()
     name!: string;

@@ -7,7 +7,7 @@ export const getReadersDB = async (searchTerm: string) => {
     options.where = [
       { name: ILike(`%${searchTerm}%`) },
       { email: ILike(`%${searchTerm}%`) },
-      // { reader_id: Equal(Number(searchTerm)) },
+      // { id: Equal(Number(searchTerm)) },
     ] };
 
  return await Reader.find(options);
@@ -23,7 +23,7 @@ export const postReaderDB = async (reader: any) => {
 
 export const softDeleteDB = async (id: number) => {
   const reader = await Reader.findOneOrFail({
-    where: { reader_id: id },
+    where: {  id },
   });
   return await reader.softRemove();
 };

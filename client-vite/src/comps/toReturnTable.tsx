@@ -8,6 +8,8 @@ import { postReturn } from '../api/borrowing';
 
 
 export const ToReturnTable: React.FC<ReturnTableProps> = ({ toReturn }) => {
+    console.log(toReturn);
+    
     const apiRef = React.useRef<any>();
     const [selectedRows, setSelectedRows] = React.useState<number[]>([]);
 
@@ -30,7 +32,7 @@ export const ToReturnTable: React.FC<ReturnTableProps> = ({ toReturn }) => {
     return (
         <Grid style={{ height: 400, width: '100%' }}>
             
-             <Button variant="outlined"onClick={returnBooksDB}
+             <Button variant="outlined" onClick={returnBooksDB}
               disabled={selectedRows.length == 0}
               >return</Button>
             <DataGrid

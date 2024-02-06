@@ -2,11 +2,11 @@ import { getBorrowingByReaderDB, getTwoWeeksPassedDB, getTopTenBooks, findBorrow
 
 export const getBorrowing = async () => {return await getBorrowingDB();};
 
-export const getBorrowingByReader = async (reader_id: number) => {return await getBorrowingByReaderDB(reader_id);};
+export const getBorrowingByReader = async (reader: number) => {return await getBorrowingByReaderDB(reader);};//?
 
 export const postBorrowBook = async (borrow: any): Promise<any> => {
     const book = await findBookDB(borrow.id);
-    const reader = await findReaderDB(borrow.reader_id);
+    const reader = await findReaderDB(borrow.reader);
   
     if (book && reader) {
       const bookTaken = await checkBookTaken(borrow.id);
@@ -25,7 +25,7 @@ export const postBorrowBook = async (borrow: any): Promise<any> => {
 
 export const postBorrowMany = async (borrows: any) => {
   const borrowedarray: any[] = [];
-  const reader = await findReaderDB(borrows.reader_id);
+  const reader = await findReaderDB(borrows.reader);
 
   for (const id of borrows.ids) {
  
@@ -37,7 +37,7 @@ export const postBorrowMany = async (borrows: any) => {
         if (!bookTaken) {
           const borrow = {
             book: book,
-            reader_id: reader,
+            reader: reader,
           };
 
           await updateBookTaken(id);

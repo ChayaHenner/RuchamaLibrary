@@ -31,7 +31,7 @@ export const Row :FC<RowProps>=({row}) =>{
             </IconButton>
           </TableCell>
           <TableCell component="th" scope="row">{row.reader_name} </TableCell>
-          <TableCell >{row.reader_reader_id}</TableCell>
+          <TableCell >{row.reader_id}</TableCell>
           <TableCell >{row.reader_email}</TableCell>
         </TableRow>
         <TableRow>

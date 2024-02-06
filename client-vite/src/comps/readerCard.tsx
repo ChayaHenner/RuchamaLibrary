@@ -19,7 +19,7 @@ const ReaderCard :FC<ReaderCardProp>= ({reader}) => {
 
     return (
         <>
-         <Grid key={reader.reader_id} item xs={12} sm={6} md={4} lg={4} >
+         <Grid key={reader.id} item xs={12} sm={6} md={4} lg={4} >
           <Card sx={readerstyle.cardreader} >
             <CardContent>
               <Typography variant="h6" component="div" style={readerstyle.inlinetypo}>
@@ -28,7 +28,7 @@ const ReaderCard :FC<ReaderCardProp>= ({reader}) => {
               <Typography color="textSecondary" style={readerstyle.inlinetypo}></Typography>
               <Typography color="textSecondary">{reader.email}</Typography>
               <Typography color="textSecondary">age: {calculateAge(reader.dob)}</Typography>
-              <Link to={`/profile/${reader.reader_id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+              <Link to={`/profile/${reader.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                 <Typography variant="h6" component="div">
                   <AccountCircleOutlinedIcon />
                 </Typography>
