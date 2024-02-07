@@ -1,6 +1,7 @@
+import * as yup from 'yup';
 import express, { Request, Response, NextFunction } from 'express';
 import { bookSchema, newBookSchema } from '../validation/book.validate';
-import { bookInstanceSchema } from '../validation/bookInstance.validate';
+// import { bookInstanceSchema } from '../validation/bookInstance.validate';
 import { borrowingManySchema, borrowingSchema, returnManySchema, returnSchema } from '../validation/borrowing.validate.ts';
 import { publisherSchema } from '../validation/publisher.validate';
 import { readerSchema } from '../validation/reader.validate';
@@ -24,9 +25,9 @@ const errorHandler = (err: Error, req: Request, res: Response, next: NextFunctio
   
   export default errorHandler;
 
-  export const validate = (schemaName: string) => async (req: Request, res: Response, next: NextFunction) => {
+  export const validate = (schema:yup.Schema) => async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const schema = getSchema(schemaName);
+        // const schema = getSchema(schemaName);
         req.body = await schema.validate(req.body);
         next();
     } catch (error) {
@@ -40,8 +41,8 @@ const getSchema = (schemaName: string) => {
             return bookSchema;
         case 'newBookSchema':
             return newBookSchema;
-        case 'bookInstance':
-            return bookInstanceSchema;
+        // case 'bookInstance':
+        //     return bookInstanceSchema;
         case 'borrowingSchema':
             return borrowingSchema;
         case 'borrowingManySchema':

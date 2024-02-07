@@ -11,7 +11,7 @@ export const borrowingManySchema = yup.object({
     reader: yup.number().required(),
   });
 export const returnManySchema = yup.object({
-   borrow_ids: yup.array().of(yup.number().required()).required(), 
+   borrowIds: yup.array().of(yup.number().required()).required(), 
   });
 export const returnSchema = yup.object({
     id: yup.number().required()

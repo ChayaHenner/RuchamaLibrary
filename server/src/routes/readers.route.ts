@@ -1,6 +1,7 @@
 import express, { Request, Response, NextFunction } from 'express';
 import errorHandler, { validate } from '../utils/middleware'
 import { getReaders, postReader, softDelete } from '../service/reader.service';
+import { readerSchema } from '../validation/reader.validate';
 const readerRouter = express.Router();
 readerRouter.use(express.json());
 
@@ -20,7 +21,7 @@ readerRouter.get('/all', async (req: Request, res: Response, next: NextFunction)
 });
 
 
-readerRouter.post('/', validate('readerSchema'), async (req: Request, res: Response, next: NextFunction) => {
+readerRouter.post('/', validate(readerSchema), async (req: Request, res: Response, next: NextFunction) => {
   try {
     const newReader = await postReader(req.body)
     res.status(201).json(newReader)

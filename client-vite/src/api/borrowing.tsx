@@ -46,7 +46,7 @@ export const postBorrow = async (borrow:BorrowBooks) => {
 export const postReturn = async (selectedRows:number[]) => {
 
     try {
-        const response = await axios.post('http://localhost:5000/borrowing/returnmany',{borrow_ids:selectedRows});
+        const response = await axios.post('http://localhost:5000/borrowing/returnmany',{borrowIds:selectedRows});
         console.log(response);
         if(response.data){
             Swal.fire({

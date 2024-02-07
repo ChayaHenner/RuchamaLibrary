@@ -1,6 +1,7 @@
 import express, { Request, Response, NextFunction } from 'express';
 import errorHandler, { validate } from '../utils/middleware'
 import { getBookInstancesLibrary, getBookInstances, postBooksInstance } from '../service/bookinstance.sevice';
+import { bookInstanceSchema } from '../validation/bookInstance.validate';
 
 
 const booksInstanceRouter = express.Router();
@@ -23,7 +24,7 @@ booksInstanceRouter.get('/library', async (req: Request, res: Response, next: Ne
   }
 });
 
-booksInstanceRouter.post('/', validate('bookInstance'), async (req: Request, res: Response, next: NextFunction) => {
+booksInstanceRouter.post('/', validate(bookInstanceSchema), async (req: Request, res: Response, next: NextFunction) => {
 
   try {
     const newBookInstance = await postBooksInstance(req.body)

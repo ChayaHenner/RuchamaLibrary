@@ -1,6 +1,7 @@
 import express, { Request, Response, NextFunction } from 'express';
 import errorHandler, { validate } from '../utils/middleware'
 import { softDelete,getPublishers ,postPublisher} from '../service/publisher.service';
+import { publisherSchema } from '../validation/publisher.validate';
 
 const publisherRouter = express.Router();
 
@@ -17,7 +18,7 @@ publisherRouter.get('/all', async (req: Request, res: Response, next: NextFuncti
   }});
 
 
-publisherRouter.post('/',validate('publisherSchema'), async (req: Request, res: Response, next: NextFunction) => {
+publisherRouter.post('/',validate(publisherSchema), async (req: Request, res: Response, next: NextFunction) => {
   try {
     const newReader = await postPublisher(req.body)
     res.json(newReader)

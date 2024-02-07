@@ -67,7 +67,7 @@ export const postReturnBook = async (borrow: any) => {
   export const postReturnManyBooks = async (returnBooks: any) => {
     const returnedarray: any[] = [];
   
-    for (const borrowId of returnBooks.borrow_ids) {
+    for (const borrowId of returnBooks.borrowIds) {
       try {
         const returnbook = await returnBorrowingDB(borrowId);
         await updateBookNotTaken((returnbook).book.id);

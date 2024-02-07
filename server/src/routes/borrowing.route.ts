@@ -1,6 +1,7 @@
 import express, { Request, Response, NextFunction } from 'express';
 import errorHandler, { validate } from '../utils/middleware'
 import { getBorrowingByReader, postReturnManyBooks, postBorrowMany, toptenbooks, getBorrowing, postBorrowBook, postReturnBook, twoweekspassed } from '../service/borrowing.service';
+import { borrowingManySchema, borrowingSchema, returnManySchema, returnSchema } from '../validation/borrowing.validate.ts';
 
 const borrowingRouter = express.Router();
 
@@ -23,7 +24,7 @@ borrowingRouter.get('/reader/:id', async (req: Request, res: Response, next: Nex
   }
 });
 
-borrowingRouter.post('/borrow', validate('borrowingSchema'), async (req: Request, res: Response, next: NextFunction) => {
+borrowingRouter.post('/borrow', validate(borrowingSchema), async (req: Request, res: Response, next: NextFunction) => {
   try {
     const borrowBook = await postBorrowBook(req.body)
     res.status(201).json(borrowBook);
@@ -34,7 +35,7 @@ borrowingRouter.post('/borrow', validate('borrowingSchema'), async (req: Request
 
 });
 
-borrowingRouter.post('/borrowmany', validate('borrowingManySchema'), async (req: Request, res: Response, next: NextFunction) => {
+borrowingRouter.post('/borrowmany', validate(borrowingManySchema), async (req: Request, res: Response, next: NextFunction) => {
   try {
     const borrowBooks = await postBorrowMany(req.body)
     res.status(201).json(borrowBooks);
@@ -47,7 +48,7 @@ borrowingRouter.post('/borrowmany', validate('borrowingManySchema'), async (req:
 
 
 
-borrowingRouter.post('/returnbyid', validate('returnSchema'), async (req: Request, res: Response, next: NextFunction) => {
+borrowingRouter.post('/returnbyid', validate(returnSchema), async (req: Request, res: Response, next: NextFunction) => {
   try {
     const returnBook = await postReturnBook(req.body)
     res.status(201).json(returnBook);
@@ -57,7 +58,7 @@ borrowingRouter.post('/returnbyid', validate('returnSchema'), async (req: Reques
   }
 
 });
-borrowingRouter.post('/returnmany', validate('returnManySchema'), async (req: Request, res: Response, next: NextFunction) => {
+borrowingRouter.post('/returnmany', validate(returnManySchema), async (req: Request, res: Response, next: NextFunction) => {
   try {
     const returnBooks = await postReturnManyBooks(req.body)
     res.status(201).json(returnBooks);
