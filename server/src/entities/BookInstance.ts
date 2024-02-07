@@ -10,12 +10,7 @@ import {
 } from 'typeorm'
 import { Book } from './Book'
 import { Publisher } from './Publisher'
-export enum LevelCategory {
-  Children = 'Children',
-  Teens = 'Teens',
-  Adults = 'Adults',
-  Academic = 'Academic',
-}
+import { LevelCategory } from '../enum/bookInstance.enum'
 
 @Entity('bookinstance')
 export class BookInstance extends BaseEntity {
