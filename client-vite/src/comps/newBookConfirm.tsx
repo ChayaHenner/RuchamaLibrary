@@ -16,7 +16,7 @@ const NewBookConfirm: React.FC<NewBookConfirmProp> = ({ data }) => {
                 </Typography>
                 <Grid container spacing={2}>
                     {data?.books.map((book) => (
-                        
+                        //only for new books that dont have bookCode 
                         <Grid item xs={12} key={book.id}>
                             <Card sx={{ backgroundColor: '#f0f0f0', padding: 2 }}>
                                 <Typography variant="h3" mb={2}>{data.name}</Typography>
