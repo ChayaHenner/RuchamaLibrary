@@ -13,34 +13,34 @@ export enum LevelCategory{
 export class BookInstance extends BaseEntity {
 
     @PrimaryGeneratedColumn()
-    bookCode!: number
+    bookCode: number
 
     @Column()
-    name!: string
+    name: string
 
     @Column()
-    author!: string
+    author: string
 
     @ManyToOne(
         () => Publisher,
         publisher =>publisher.id ,{eager:true}
     )
     @JoinColumn()
-    publisher!: Publisher 
+    publisher: Publisher 
 
     @Column()
-    price!: number
+    price: number
 
     @Column({
         type:"enum",
         enum: LevelCategory
     })
-    category!: number
+    category: number
 
     @OneToMany( 
         () => Book,
         book=>book.bookCode
     )
-    books!:Book[]
+    books:Book[]
 
 }

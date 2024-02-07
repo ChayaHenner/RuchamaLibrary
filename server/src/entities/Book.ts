@@ -5,18 +5,18 @@ import { BookInstance } from './BookInstance'
 export class Book extends BaseEntity {
 
     @PrimaryGeneratedColumn()
-    id!: number
+    id: number
 
     @ManyToOne(
         () => BookInstance,
         bookinstance => bookinstance.bookCode, { eager: true }
     )
     @JoinColumn()
-    bookCode!: BookInstance 
+    bookCode: BookInstance 
 
     @Column({
         default: false
     })
-    bookTaken!: boolean
+    bookTaken: boolean
 
 }

@@ -4,18 +4,18 @@ import { Entity, PrimaryGeneratedColumn, Column, BaseEntity ,DeleteDateColumn } 
 export class Reader extends BaseEntity{
 
     @PrimaryGeneratedColumn()
-    id!: number;
+    id: number;
 
     @Column()
-    name!: string;
+    name: string;
 
     @Column()
-    email!: string;
+    email: string;
     
     @Column()
-    dob!: Date;
+    dob: Date;
 
     @DeleteDateColumn()
-    dateDeleted!: Date
+    dateDeleted: Date
 
 }

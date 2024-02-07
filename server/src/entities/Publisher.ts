@@ -4,14 +4,14 @@ import {BaseEntity, Column, Entity, PrimaryGeneratedColumn,DeleteDateColumn} fro
 export class Publisher extends BaseEntity{
     
     @PrimaryGeneratedColumn()
-    id!:number 
+    id:number 
     
     @Column()
-    name!:string 
+    name:string 
     
     @Column({ nullable: true })
-    country!:string 
+    country:string 
    
     @DeleteDateColumn()
-    dateDeleted!:Date
+    dateDeleted:Date
 }

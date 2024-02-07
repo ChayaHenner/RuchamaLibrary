@@ -5,27 +5,27 @@ import { Reader } from './Reader'
 export class Borrowing extends BaseEntity {
 
     @PrimaryGeneratedColumn()
-    id!: number
+    id: number
 
     @ManyToOne(
         () => Reader,
         reader => reader.id, { eager: true }
     )
     @JoinColumn()
-    reader!: Reader
+    reader: Reader
 
     @ManyToOne(
         () => Book,
         book => book.id, { eager: true }
     )
     @JoinColumn()
-    book!: Book
+    book: Book
 
 
     @CreateDateColumn()
-    date_borrowed!: Date
+    date_borrowed: Date
 
 
     @Column({ default: null, nullable: true })
-    date_returned!: Date
+    date_returned: Date
 }
