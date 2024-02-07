@@ -1,4 +1,3 @@
-import express, { Request, Response, NextFunction } from 'express'
 import {
   findBooks,
   saveBook,
@@ -6,19 +5,18 @@ import {
   findBooksLibrary,
 } from '../repository/book.repository'
 import {
-  findBookInstanceByNamePublisherAndAuthor,
-  getInstancByName,
+  findBookInstanceExists,
+  findBookInstance,
   postBookInstanceDB,
 } from '../repository/bookinstance.repository'
 
 export const getBooks = async () => await findBooks()
 
-export const getBooksInLibrary = async () => {
-  return await findBooksLibrary()
-}
+export const getBooksInLibrary = async () =>  await findBooksLibrary()
+
 
 export const postBooks = async (books: any) => {
-  const info = await getInstancByName(books.bookCode)
+  const info = await findBookInstance(books.bookCode)
   let newBooks: object[] = []
   while (books.amount) {
     books.amount -= 1
@@ -33,7 +31,7 @@ export const postBooks = async (books: any) => {
 }
 
 export const postNewBooks = async (books: any) => {
-  const existingBookInstance = await findBookInstanceByNamePublisherAndAuthor(
+  const existingBookInstance = await findBookInstanceExists(
     books.name,
     books.author,
     books.publisher,

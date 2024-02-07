@@ -10,7 +10,7 @@ export const saveBook = async (bookCode: any) => Book.save({ bookCode })
 
 export const softRemove = async (id: number) => {
   const book = await Book.findOneOrFail({
-    where: { id: id },
+    where: { id },
   })
 
   return book.softRemove()

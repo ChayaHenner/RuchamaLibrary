@@ -1,5 +1,4 @@
 import * as yup from 'yup'
-
 import { LevelCategory } from '../enum/bookInstance.enum'
 
 export const bookInstanceSchema = yup.object({

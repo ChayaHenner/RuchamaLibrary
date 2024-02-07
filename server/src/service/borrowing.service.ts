@@ -1,9 +1,9 @@
 import {
-  getBorrowingByReaderDB,
+  findBorrowingByReader,
   getTwoWeeksPassedDB,
-  getTopTenBooks,
-  findBorrowDB,
-  getBorrowingDB,
+  findTopTenBooks,
+  findBorrow,
+  findBorrowings,
   createBorrowingDB,
   findBookDB,
   findReaderDB,
@@ -14,11 +14,11 @@ import {
 } from '../repository/borrowing.repository'
 
 export const getBorrowing = async () => {
-  return await getBorrowingDB()
+  return await findBorrowings()
 }
 
 export const getBorrowingByReader = async (reader: number) => {
-  return await getBorrowingByReaderDB(reader)
+  return await findBorrowingByReader(reader)
 } //?
 
 export const postBorrowBook = async (borrow: any): Promise<any> => {
@@ -75,7 +75,7 @@ export const postBorrowMany = async (borrows: any) => {
 export const postReturnBook = async (borrow: any) => {
   const returnbook = returnBorrowingDB(borrow.id)
   updateBookNotTaken((await returnbook).book.id)
-  return findBorrowDB(borrow.id)
+  return findBorrow(borrow.id)
 }
 
 export const postReturnManyBooks = async (returnBooks: any) => {
@@ -85,7 +85,7 @@ export const postReturnManyBooks = async (returnBooks: any) => {
     try {
       const returnbook = await returnBorrowingDB(borrowId)
       await updateBookNotTaken(returnbook.book.id)
-      const book = await findBorrowDB(borrowId)
+      const book = await findBorrow(borrowId)
       returnedarray.push(book)
     } catch (err) {
       throw err
@@ -96,7 +96,7 @@ export const postReturnManyBooks = async (returnBooks: any) => {
 }
 
 export const toptenbooks = async () => {
-  return await getTopTenBooks()
+  return await findTopTenBooks()
 }
 
 export const twoweekspassed = async () => {

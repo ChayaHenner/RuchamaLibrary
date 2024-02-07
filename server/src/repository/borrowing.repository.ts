@@ -3,7 +3,7 @@ import { Book } from '../entities/Book'
 import { Reader } from '../entities/Reader'
 import { libraryData } from '../app'
 
-export const getTopTenBooks = async () => {
+export const findTopTenBooks = async () => {
   return await libraryData
     .getRepository(Borrowing)
     .createQueryBuilder('borrowing')
@@ -20,7 +20,7 @@ export const getTopTenBooks = async () => {
     .getRawMany()
 }
 
-export const getBorrowingByReaderDB = async (id: number) => {
+export const findBorrowingByReader = async (id: number) => {
   const result = await libraryData
     .getRepository(Borrowing)
     .createQueryBuilder('borrowing')
@@ -53,27 +53,17 @@ export const getBorrowingByReaderDB = async (id: number) => {
   return result
 }
 
-export const getBorrowingDB = async () => {
-  return await Borrowing.find()
-}
+export const findBorrowings = async () => await Borrowing.find()
 
-export const findBookDB = async (id: number) => {
-  return await Book.findOne({ where: { id } })
-}
+export const findBookDB = async (id: number) =>  await Book.findOne({ where: { id } })
 
-export const findReaderDB = async (id: number) => {
-  return await Reader.findOne({ where: { id } })
-}
+export const findReaderDB = async (id: number) =>  await Reader.findOne({ where: { id } })
 
-export const findBorrowDB = async (id: number) => {
-  return await Borrowing.findOne({ where: { id } })
-}
+export const findBorrow = async (id: number) =>  await Borrowing.findOne({ where: { id } })
 
 export const createBorrowingDB = async (borrowing: any) => {
   return Borrowing.save({
-    reader: borrowing.reader,
-    book: borrowing.book,
-  })
+...borrowing  })
 }
 
 export const returnBorrowingDB = async (id: number) => {
@@ -134,5 +124,6 @@ export const getTwoWeeksPassedDB = async () => {
     ])
     .groupBy('reader.id,reader.name,reader.email ')
     .getRawMany()
+    
   return TwoWeeksPassed
 }

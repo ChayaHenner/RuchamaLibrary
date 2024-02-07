@@ -1,6 +1,5 @@
 import * as yup from 'yup'
 import { LevelCategory } from '../enum/bookInstance.enum'
-import express, { Request, Response, NextFunction } from 'express'
 
 export const bookSchema = yup.object({
   bookCode: yup.number().required(),

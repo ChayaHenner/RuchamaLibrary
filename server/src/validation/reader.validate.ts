@@ -1,4 +1,5 @@
 import * as yup from 'yup'
+
 export const readerSchema = yup.object({
   name: yup.string().required(),
   email: yup.string().email().required(),
