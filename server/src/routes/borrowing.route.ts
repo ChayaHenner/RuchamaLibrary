@@ -19,17 +19,17 @@ import {
 
 const borrowingRouter = express.Router()
 
-borrowingRouter.get(
-  '/',
-  async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const data = await getBorrowing()
-      res.json(data)
-    } catch (err) {
-      next(err)
-    }
-  },
-)
+// borrowingRouter.get(
+//   '/',
+//   async (req: Request, res: Response, next: NextFunction) => {
+//     try {
+//       const data = await getBorrowing()
+//       res.json(data)
+//     } catch (err) {
+//       next(err)
+//     }
+//   },
+// )
 
 borrowingRouter.get(
   '/reader/:id',
@@ -44,18 +44,18 @@ borrowingRouter.get(
   },
 )
 
-borrowingRouter.post(
-  '/borrow',
-  validate(borrowingSchema),
-  async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const borrowBook = await postBorrowBook(req.body)
-      res.status(201).json(borrowBook)
-    } catch (err) {
-      next(err)
-    }
-  },
-)
+// borrowingRouter.post(
+//   '/borrow',
+//   validate(borrowingSchema),
+//   async (req: Request, res: Response, next: NextFunction) => {
+//     try {
+//       const borrowBook = await postBorrowBook(req.body)
+//       res.status(201).json(borrowBook)
+//     } catch (err) {
+//       next(err)
+//     }
+//   },
+// )
 
 borrowingRouter.post(
   '/borrowmany',
@@ -70,18 +70,18 @@ borrowingRouter.post(
   },
 )
 
-borrowingRouter.post(
-  '/returnbyid',
-  validate(returnSchema),
-  async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const returnBook = await postReturnBook(req.body)
-      res.status(201).json(returnBook)
-    } catch (err) {
-      next(err)
-    }
-  },
-)
+// borrowingRouter.post(
+//   '/returnbyid',
+//   validate(returnSchema),
+//   async (req: Request, res: Response, next: NextFunction) => {
+//     try {
+//       const returnBook = await postReturnBook(req.body)
+//       res.status(201).json(returnBook)
+//     } catch (err) {
+//       next(err)
+//     }
+//   },
+// )
 borrowingRouter.post(
   '/returnmany',
   validate(returnManySchema),

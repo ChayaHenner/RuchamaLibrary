@@ -33,18 +33,18 @@ booksInstanceRouter.get(
   },
 )
 
-booksInstanceRouter.post(
-  '/',
-  validate(bookInstanceSchema),
-  async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const newBookInstance = await postBooksInstance(req.body)
-      res.status(201).json(newBookInstance)
-    } catch (err) {
-      next(err)
-    }
-  },
-)
+// booksInstanceRouter.post(
+//   '/',
+//   validate(bookInstanceSchema),
+//   async (req: Request, res: Response, next: NextFunction) => {
+//     try {
+//       const newBookInstance = await postBooksInstance(req.body)
+//       res.status(201).json(newBookInstance)
+//     } catch (err) {
+//       next(err)
+//     }
+//   },
+// )
 
 booksInstanceRouter.use(errorHandler)
 

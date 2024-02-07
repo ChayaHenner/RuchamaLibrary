@@ -1,6 +1,7 @@
 import { BookInstance } from '../entities/BookInstance'
 import { Book } from '../entities/Book'
 import { libraryData } from '../app'
+import { BookInstanceType } from '../types/bookInstance.type'
 
 export const findBookInstances = () => BookInstance.find()
 
@@ -37,7 +38,7 @@ export const findBookInstancesLibrary = () => {
   return bookInstancesWithCounts
 }
 
-export const postBookInstanceDB = (bookinstance: any) => {
+export const saveBookInstance = (bookinstance:any)=>{// BookInstanceType) => {
   return BookInstance.save({
     ...bookinstance,
   })

@@ -7,7 +7,7 @@ import {
 import {
   findBookInstanceExists,
   findBookInstance,
-  postBookInstanceDB,
+  saveBookInstance,
 } from '../repository/bookinstance.repository'
 import { ExistingBook, NewBook } from '../types/book.type'
 
@@ -38,7 +38,10 @@ export const postNewBooks = async (books: NewBook) => {
     books.author,
     books.publisher,
   )
-  const bookInstance = existingBookInstance || (await postBookInstanceDB(books))
+  // const book=???
+  const { amount, ...book } = books;
+
+  const bookInstance = existingBookInstance || (await saveBookInstance(book))
   console.log(books)
 
   let newBooks: object[] = []

@@ -1,13 +1,12 @@
+import { BookInstance } from '../entities/BookInstance'
 import {
   findBookInstancesLibrary,
   findBookInstances,
-  postBookInstanceDB,
+  saveBookInstance,
 } from '../repository/bookinstance.repository'
 
 export const getBookInstances = async () => await findBookInstances()
 
-export const getBookInstancesLibrary = async () =>
-  await findBookInstancesLibrary()
+export const getBookInstancesLibrary = async () => await findBookInstancesLibrary()
 
-export const postBooksInstance = async (books: any) =>
-  await postBookInstanceDB(books)
+export const postBooksInstance = async (books: BookInstance) => await saveBookInstance(books)

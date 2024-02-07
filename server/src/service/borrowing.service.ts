@@ -13,13 +13,9 @@ import {
   updateBookNotTaken,
 } from '../repository/borrowing.repository'
 
-export const getBorrowing = async () => {
-  return await findBorrowings()
-}
+export const getBorrowing = async () =>  await findBorrowings()
 
-export const getBorrowingByReader = async (reader: number) => {
-  return await findBorrowingByReader(reader)
-} //?
+export const getBorrowingByReader = async (reader: number) =>    await findBorrowingByReader(reader)
 
 export const postBorrowBook = async (borrow: any): Promise<any> => {
   const book = await findBookDB(borrow.id)

@@ -5,12 +5,12 @@ import { readerSchema } from '../validation/reader.validate'
 const readerRouter = express.Router()
 readerRouter.use(express.json())
 
-readerRouter.get('/', (req: Request, res: Response) => {
-  res.send('reader')
-})
+// readerRouter.get('/', (req: Request, res: Response) => {
+//   res.send('reader')
+// })
 
 readerRouter.get(
-  '/all',
+  '/',
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const searchTerm = req.query.search as string

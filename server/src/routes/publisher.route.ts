@@ -9,12 +9,12 @@ import { publisherSchema } from '../validation/publisher.validate'
 
 const publisherRouter = express.Router()
 
-publisherRouter.get('/', (req: Request, res: Response) => {
-  res.send('publisher')
-})
+// publisherRouter.get('/', (req: Request, res: Response) => {
+//   res.send('publisher')
+// })
 
 publisherRouter.get(
-  '/all',
+  '/',
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const data = await getPublishers()

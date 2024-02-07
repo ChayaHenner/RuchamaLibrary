@@ -19,7 +19,7 @@ export const addReader = async (reader: ReaderForm) => {
 export const getReaders = async (search:string|undefined): Promise<Reader[]> => {
 
     try {
-        const response = await axios.get(`http://localhost:5000/readers/all`, {
+        const response = await axios.get(`http://localhost:5000/readers`, {
             params: { search: search },
           });        return response.data
     } catch (error) {
