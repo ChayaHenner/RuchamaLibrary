@@ -6,7 +6,7 @@ export const findBooks = () => Book.find()
 
 export const findBooksLibrary = () => Book.find({ where: { bookTaken: false } })
 
-export const saveBook = async (bookCode: any) => Book.save({ bookCode })
+export const saveBook =  (bookCode: any) => Book.save({ bookCode })
 
 export const softRemove = async (id: number) => {
   const book = await Book.findOneOrFail({

@@ -2,10 +2,10 @@ import { BookInstance } from '../entities/BookInstance'
 import { Book } from '../entities/Book'
 import { libraryData } from '../app'
 
-export const findBookInstances = async () => await BookInstance.find()
+export const findBookInstances =  () =>  BookInstance.find()
 
-export const findBookInstance = async (bookCode: number) => {
-  const bookInstance = await BookInstance.findOne({
+export const findBookInstance =  (bookCode: number) => {
+  const bookInstance =  BookInstance.findOne({
     where: { bookCode: bookCode },
   })
   if (!bookInstance) {
@@ -14,9 +14,9 @@ export const findBookInstance = async (bookCode: number) => {
   return bookInstance
 }
 
-export const findBookInstancesLibrary = async () => {
+export const findBookInstancesLibrary =  () => {
   //7
-  const bookInstancesWithCounts = await libraryData
+  const bookInstancesWithCounts =  libraryData
     .getRepository(Book)
     .createQueryBuilder('book')
     .select([
@@ -37,19 +37,19 @@ export const findBookInstancesLibrary = async () => {
   return bookInstancesWithCounts
 }
 
-export const postBookInstanceDB = async (bookinstance: any) => {
+export const postBookInstanceDB =  (bookinstance: any) => {
   return BookInstance.save({
     ...bookinstance,
   })
 }
 
 //8
-export const findBookInstanceExists = async (
+export const findBookInstanceExists =  (
   bookName: string,
   author: string,
   publisher: string,
 ): Promise<any | null> => {
-  const bookInstance = await BookInstance.findOne({
+  const bookInstance =  BookInstance.findOne({
     where: { name: bookName, author },
   }) //,publisher??
   return bookInstance || null
