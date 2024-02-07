@@ -1,7 +1,7 @@
 import { libraryData } from '../app'
 import { Publisher } from '../entities/Publisher'
 
-export const getPublishersDB = async () => {
+export const findPublishers = async () => {
   return await libraryData
     .getRepository(Publisher)
     .createQueryBuilder('publisher')
@@ -9,7 +9,7 @@ export const getPublishersDB = async () => {
     .getMany()
 }
 
-export const postPublisherDB = async (publisher: any) => {
+export const savePublisher = async (publisher: any) => {
   return Publisher.save({
     ...publisher,
   })

@@ -12,8 +12,7 @@ import {
 
 export const getBooks = async () => await findBooks()
 
-export const getBooksInLibrary = async () =>  await findBooksLibrary()
-
+export const getBooksInLibrary = async () => await findBooksLibrary()
 
 export const postBooks = async (books: any) => {
   const info = await findBookInstance(books.bookCode)

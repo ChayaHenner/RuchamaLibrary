@@ -55,15 +55,19 @@ export const findBorrowingByReader = async (id: number) => {
 
 export const findBorrowings = async () => await Borrowing.find()
 
-export const findBookDB = async (id: number) =>  await Book.findOne({ where: { id } })
+export const findBookDB = async (id: number) =>
+  await Book.findOne({ where: { id } })
 
-export const findReaderDB = async (id: number) =>  await Reader.findOne({ where: { id } })
+export const findReaderDB = async (id: number) =>
+  await Reader.findOne({ where: { id } })
 
-export const findBorrow = async (id: number) =>  await Borrowing.findOne({ where: { id } })
+export const findBorrow = async (id: number) =>
+  await Borrowing.findOne({ where: { id } })
 
 export const createBorrowingDB = async (borrowing: any) => {
   return Borrowing.save({
-...borrowing  })
+    ...borrowing,
+  })
 }
 
 export const returnBorrowingDB = async (id: number) => {
@@ -124,6 +128,6 @@ export const getTwoWeeksPassedDB = async () => {
     ])
     .groupBy('reader.id,reader.name,reader.email ')
     .getRawMany()
-    
+
   return TwoWeeksPassed
 }

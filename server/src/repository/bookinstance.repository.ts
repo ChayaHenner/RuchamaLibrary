@@ -2,7 +2,7 @@ import { BookInstance } from '../entities/BookInstance'
 import { Book } from '../entities/Book'
 import { libraryData } from '../app'
 
-export const findBookInstances = async () =>  await BookInstance.find()
+export const findBookInstances = async () => await BookInstance.find()
 
 export const findBookInstance = async (bookCode: number) => {
   const bookInstance = await BookInstance.findOne({
@@ -42,7 +42,6 @@ export const postBookInstanceDB = async (bookinstance: any) => {
     ...bookinstance,
   })
 }
-
 
 //8
 export const findBookInstanceExists = async (

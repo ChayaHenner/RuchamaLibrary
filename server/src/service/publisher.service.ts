@@ -1,18 +1,13 @@
 import express, { Request, Response, NextFunction } from 'express'
 import {
-  getPublishersDB,
-  postPublisherDB,
+  findPublishers,
+  savePublisher,
   softRemove,
 } from '../repository/publisher.repository'
 
-export const getPublishers = async () => {
-  return await getPublishersDB()
-}
+export const getPublishers = async () => await findPublishers()
 
-export const postPublisher = async (publisher: any) => {
-  return await postPublisherDB(publisher)
-}
+export const postPublisher = async (publisher: any) =>
+  await savePublisher(publisher)
 
-export const softDelete = async (id: number) => {
-  return await softRemove(id)
-}
+export const softDelete = async (id: number) => await softRemove(id)
