@@ -27,7 +27,6 @@ const errorHandler = (err: Error, req: Request, res: Response, next: NextFunctio
 
   export const validate = (schema:yup.Schema) => async (req: Request, res: Response, next: NextFunction) => {
     try {
-        // const schema = getSchema(schemaName);
         req.body = await schema.validate(req.body);
         next();
     } catch (error) {
@@ -35,27 +34,3 @@ const errorHandler = (err: Error, req: Request, res: Response, next: NextFunctio
     }
 };
 
-const getSchema = (schemaName: string) => {
-    switch (schemaName) {
-        case 'bookSchema':
-            return bookSchema;
-        case 'newBookSchema':
-            return newBookSchema;
-        // case 'bookInstance':
-        //     return bookInstanceSchema;
-        case 'borrowingSchema':
-            return borrowingSchema;
-        case 'borrowingManySchema':
-            return borrowingManySchema;
-        case 'returnSchema':
-            return returnSchema;
-        case 'returnManySchema':
-            return returnManySchema;
-        case 'publisherSchema':
-            return publisherSchema;
-        case 'readerSchema':
-            return readerSchema;
-        default:
-            throw new Error(`Schema '${schemaName}' not found`);
-    }
-};
