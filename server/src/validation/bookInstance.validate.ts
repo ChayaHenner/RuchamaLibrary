@@ -1,6 +1,6 @@
 import * as yup from 'yup'
 
-import { LevelCategory } from '../entities/BookInstance'
+import { LevelCategory } from '../enum/bookInstance.enum'
 
 export const bookInstanceSchema = yup.object({
   name: yup.string().required(), //changed to name

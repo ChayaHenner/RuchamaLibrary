@@ -1,7 +1,7 @@
 import {
   getReadersDB,
   postReaderDB,
-  softDeleteDB,
+  softRemove,
 } from '../repository/reader.repository'
 
 export const getReaders = async (searchTerm: string) => {
@@ -13,5 +13,5 @@ export const postReader = async (reader: any) => {
 }
 
 export const softDelete = async (id: number) => {
-  return await softDeleteDB(id)
+  return await softRemove(id)
 }

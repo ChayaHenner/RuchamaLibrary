@@ -1,9 +1,9 @@
 import express, { Request, Response, NextFunction } from 'express'
 import {
-  getBooksDB,
-  postBookDB,
-  softDeleteDB,
-  getBooksInLibraryDB,
+  findBooks,
+  saveBook,
+  softRemove,
+  findBooksLibrary,
 } from '../repository/book.repository'
 import {
   findBookInstanceByNamePublisherAndAuthor,
@@ -11,10 +11,10 @@ import {
   postBookInstanceDB,
 } from '../repository/bookinstance.repository'
 
-export const getBooks = async () => await getBooksDB()
+export const getBooks = async () => await findBooks()
 
 export const getBooksInLibrary = async () => {
-  return await getBooksInLibraryDB()
+  return await findBooksLibrary()
 }
 
 export const postBooks = async (books: any) => {
@@ -22,7 +22,7 @@ export const postBooks = async (books: any) => {
   let newBooks: object[] = []
   while (books.amount) {
     books.amount -= 1
-    const book = await postBookDB(books.bookCode)
+    const book = await saveBook(books.bookCode)
     newBooks.push(book)
   }
   const newBookReport = {
@@ -44,7 +44,7 @@ export const postNewBooks = async (books: any) => {
   while (books.amount) {
     //5
     books.amount -= 1
-    const book = await postBookDB(bookInstance.bookCode)
+    const book = await saveBook(bookInstance.bookCode)
     newBooks.push(book)
   }
   const newBookReport = {
@@ -55,5 +55,5 @@ export const postNewBooks = async (books: any) => {
 }
 
 export const softDelete = async (id: number) => {
-  return await softDeleteDB(id)
+  return await softRemove(id)
 }

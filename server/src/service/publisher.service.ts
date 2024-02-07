@@ -2,7 +2,7 @@ import express, { Request, Response, NextFunction } from 'express'
 import {
   getPublishersDB,
   postPublisherDB,
-  softDeleteDB,
+  softRemove,
 } from '../repository/publisher.repository'
 
 export const getPublishers = async () => {
@@ -14,5 +14,5 @@ export const postPublisher = async (publisher: any) => {
 }
 
 export const softDelete = async (id: number) => {
-  return await softDeleteDB(id)
+  return await softRemove(id)
 }

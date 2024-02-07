@@ -22,7 +22,7 @@ export const postReaderDB = async (reader: any) => {
   })
 }
 
-export const softDeleteDB = async (id: number) => {
+export const softRemove = async (id: number) => {
   const reader = await Reader.findOneOrFail({
     where: { id },
   })

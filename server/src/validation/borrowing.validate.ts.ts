@@ -1,7 +1,5 @@
 import * as yup from 'yup'
 
-import { LevelCategory } from '../entities/BookInstance'
-
 export const borrowingSchema = yup.object({
   id: yup.number().required(),
   reader: yup.number().required(),

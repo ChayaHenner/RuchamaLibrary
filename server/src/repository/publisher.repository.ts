@@ -15,7 +15,7 @@ export const postPublisherDB = async (publisher: any) => {
   })
 }
 
-export const softDeleteDB = async (id: number) => {
+export const softRemove = async (id: number) => {
   const publisher = await Publisher.findOneOrFail({
     where: { id },
   })

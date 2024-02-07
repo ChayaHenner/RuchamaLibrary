@@ -1,5 +1,5 @@
 import * as yup from 'yup'
-import  { Request, Response, NextFunction } from 'express'
+import { Request, Response, NextFunction } from 'express'
 
 const errorHandler = (
   err: Error,
