@@ -1,4 +1,4 @@
-import { ManyToOne, BaseEntity, Column, Entity, PrimaryGeneratedColumn, DeleteDateColumn, JoinColumn } from "typeorm"
+import { ManyToOne, BaseEntity, Column, Entity, PrimaryGeneratedColumn, DeleteDateColumn, JoinColumn, OneToMany } from "typeorm"
 import { Book } from "./Book"
 import { Publisher } from "./Publisher"
 export enum LevelCategory{
@@ -37,10 +37,10 @@ export class BookInstance extends BaseEntity {
     })
     category!: number
 
-    // @OneToMany( 
-    //     () => Book,
-    //     book=>book.bookinstance
-    // )
-    // books:Book[]
+    @OneToMany( 
+        () => Book,
+        book=>book.bookCode
+    )
+    books!:Book[]
 
 }

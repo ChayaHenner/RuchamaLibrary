@@ -11,9 +11,7 @@ export class Book extends BaseEntity {
         () => BookInstance,
         bookinstance => bookinstance.bookCode, { eager: true }
     )
-    @JoinColumn({
-        name: 'bookCode'
-    })
+    @JoinColumn()
     bookCode!: BookInstance 
 
     @Column({
