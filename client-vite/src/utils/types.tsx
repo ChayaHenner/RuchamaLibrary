@@ -214,3 +214,28 @@ export type TopTenBook={
   name:string,
   borrowcount:number
 }
+
+export type BookConfirmNewest = {
+  bookCode: number;
+  name: string;
+  author: string;
+  price: number;
+  category: string;
+  books: {
+    id: number;
+    bookTaken: boolean;
+    bookCode?: {
+      bookCode: number;
+      name: string;
+      author: string;
+      price: number;
+      category: string;
+    };
+  }[];
+  publisher: {
+    id: number;
+    name: string;
+    country: string;
+    dateDeleted: Date | null;
+  };
+};
