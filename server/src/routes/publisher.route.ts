@@ -1,46 +1,55 @@
-import express, { Request, Response, NextFunction } from 'express';
+import express, { Request, Response, NextFunction } from 'express'
 import errorHandler, { validate } from '../utils/middleware'
-import { softDelete,getPublishers ,postPublisher} from '../service/publisher.service';
-import { publisherSchema } from '../validation/publisher.validate';
+import {
+  softDelete,
+  getPublishers,
+  postPublisher,
+} from '../service/publisher.service'
+import { publisherSchema } from '../validation/publisher.validate'
 
-const publisherRouter = express.Router();
+const publisherRouter = express.Router()
 
 publisherRouter.get('/', (req: Request, res: Response) => {
-  res.send('publisher');
-});
+  res.send('publisher')
+})
 
-publisherRouter.get('/all', async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const data = await getPublishers()
-    res.json(data)
-  } catch (err) {
-    next(err);
-  }});
+publisherRouter.get(
+  '/all',
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const data = await getPublishers()
+      res.json(data)
+    } catch (err) {
+      next(err)
+    }
+  },
+)
 
+publisherRouter.post(
+  '/',
+  validate(publisherSchema),
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const newReader = await postPublisher(req.body)
+      res.json(newReader)
+    } catch (error) {
+      next(error)
+    }
+  },
+)
 
-publisherRouter.post('/',validate(publisherSchema), async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const newReader = await postPublisher(req.body)
-    res.json(newReader)
+publisherRouter.patch(
+  '/:id/soft-delete',
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const publisherDelete = await softDelete(parseInt(req.params.id))
+      res.json({ message: 'Soft delete successful', reader: publisherDelete })
+    } catch (err) {
+      next(err)
+    }
+  },
+)
 
-  } catch (error) {
+publisherRouter.use(errorHandler)
 
-    next(error);
-  }
-});
-
-
-publisherRouter.patch('/:id/soft-delete', async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const publisherDelete = await softDelete(parseInt(req.params.id))
-    res.json({ message: 'Soft delete successful', reader: publisherDelete });
-
-  } catch (err) {
-    next(err)
-  }
-
-});
-
-publisherRouter.use(errorHandler);
-
-export default publisherRouter;
+export default publisherRouter

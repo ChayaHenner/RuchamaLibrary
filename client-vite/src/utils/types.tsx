@@ -18,11 +18,7 @@ export type Publisher = {
     dob: Date ;//| null ; 
   }
 
-  export  interface Book {
-    id: string;
-    bookCode: string;
-    bookTaken: string;
-  }
+ 
 
   export type BookReturn = {
     id: number;
