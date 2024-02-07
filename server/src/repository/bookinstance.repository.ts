@@ -38,10 +38,13 @@ export const findBookInstancesLibrary = () => {
   return bookInstancesWithCounts
 }
 
-export const saveBookInstance = (bookinstance:any)=>{// BookInstanceType) => {
-  return BookInstance.save({
-    ...bookinstance,
+export const saveBookInstance = async (bookInstance: any) => {
+  console.log(bookInstance)
+  return await BookInstance.save({
+    ...bookInstance,
+    books: [],
   })
+  // return await BookInstance.save(bookInstance)
 }
 
 //8

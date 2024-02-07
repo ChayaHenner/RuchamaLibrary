@@ -1,6 +1,9 @@
 import { Book } from '../entities/Book'
 import { libraryData } from '../app'
 import { FindManyOptions } from 'typeorm'
+import { BookInstance } from '../entities/BookInstance'
+import { ExistingBook, ExistingBookReal, NewBook } from '../types/book.type'
+import { saveBookInstance } from './bookinstance.repository'
 
 export const findBooks = () => Book.find()
 
@@ -14,4 +17,53 @@ export const softRemove = async (id: number) => {
   })
 
   return book.softRemove()
+}
+export const saveBooksCool = async (books: any) => {
+  //ExistingBookReal
+
+  const bookInstance = await BookInstance.findOne({
+    where: { bookCode: books.bookCode },
+    relations: ['books'],
+  })
+
+  if (!bookInstance) {
+    throw new Error('Book instance not found')
+  }
+
+  const newBooks: Book[] = Array(books.amount)
+    .fill(null)
+    .map(() => {
+      const book = new Book()
+      book.bookTaken = false
+      book.bookCode = books.bookCode
+      return book
+    })
+  await Book.save(newBooks)
+
+  bookInstance.books.push(...newBooks)
+  await BookInstance.save(bookInstance)
+  return bookInstance
+  //return like new book confirm wants to see
+}
+
+export const saveNewBooks = async (books: NewBook) => {
+  const existingBookInstance = await BookInstance.findOne({
+    where: { name: books.name, author: books.author },
+    relations: ['books'],
+  })
+  const { amount, ...book } = books
+
+  const bookInstance = existingBookInstance || (await saveBookInstance(book))
+
+  const newBooks: Book[] = Array(amount)
+    .fill(null)
+    .map(() => {
+      return new Book()
+    })
+  await Book.save(newBooks)
+
+  bookInstance.books.push(...newBooks)
+  await BookInstance.save(bookInstance)
+  return bookInstance
+  //return like new book confirm wants to see
 }

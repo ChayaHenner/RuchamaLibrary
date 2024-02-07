@@ -105,6 +105,8 @@ const Borrow: React.FC = () => {
           <Box sx={{ display: 'flex' }}>
             <FormControl sx={borrowstyle.widthform}>
               <Autocomplete sx={borrowstyle.button}
+                          disabled={readerName === null}
+
                 options={filteredBooks}
                 getOptionLabel={(option) => `(${option.id})   ${option.bookCode.name} - ${option.bookCode.author} `}
                 renderInput={(params) => (
@@ -128,7 +130,7 @@ const Borrow: React.FC = () => {
           </Box>
           <Button variant="outlined" color="primary" onClick={handleBorrow}
             sx={borrowstyle.h3}
-            disabled={readerName === null}
+            disabled={readerName === null || selectedItems.length==0}
           >
             Complete Borrow
           </Button>

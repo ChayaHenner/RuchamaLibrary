@@ -7,6 +7,8 @@ import {
 
 export const getBookInstances = async () => await findBookInstances()
 
-export const getBookInstancesLibrary = async () => await findBookInstancesLibrary()
+export const getBookInstancesLibrary = async () =>
+  await findBookInstancesLibrary()
 
-export const postBooksInstance = async (books: BookInstance) => await saveBookInstance(books)
+export const postBooksInstance = async (books: BookInstance) =>
+  await saveBookInstance(books)

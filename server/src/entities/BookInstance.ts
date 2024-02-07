@@ -38,4 +38,9 @@ export class BookInstance extends BaseEntity {
 
   @OneToMany(() => Book, (book) => book.bookCode)
   books: Book[]
+
+  constructor() {
+    super()
+    // You can also initialize other properties here if needed
+  }
 }
