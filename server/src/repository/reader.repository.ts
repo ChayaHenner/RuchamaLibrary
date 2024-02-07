@@ -1,7 +1,7 @@
 import { Reader } from '../entities/Reader'
 import { FindManyOptions, ILike, Equal } from 'typeorm'
 
-export const findReaders =  (searchTerm: string) => {
+export const findReaders = (searchTerm: string) => {
   const options: FindManyOptions<Reader> = {}
   if (searchTerm) {
     options.where = [
@@ -11,10 +11,10 @@ export const findReaders =  (searchTerm: string) => {
     ]
   }
 
-  return  Reader.find(options)
+  return Reader.find(options)
 }
 
-export const saveReader =  (reader: any) => {
+export const saveReader = (reader: any) => {
   return Reader.save({
     name: reader.name,
     email: reader.email,

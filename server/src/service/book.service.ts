@@ -9,13 +9,16 @@ import {
   findBookInstance,
   postBookInstanceDB,
 } from '../repository/bookinstance.repository'
+import { ExistingBook, NewBook } from '../types/book.type'
 
 export const getBooks = async () => await findBooks()
 
 export const getBooksInLibrary = async () => await findBooksLibrary()
 
-export const postBooks = async (books: any) => {
+export const postBooks = async (books: ExistingBook) => {
   const info = await findBookInstance(books.bookCode)
+  console.log(books)
+
   let newBooks: object[] = []
   while (books.amount) {
     books.amount -= 1
@@ -29,13 +32,14 @@ export const postBooks = async (books: any) => {
   return newBookReport
 }
 
-export const postNewBooks = async (books: any) => {
+export const postNewBooks = async (books: NewBook) => {
   const existingBookInstance = await findBookInstanceExists(
     books.name,
     books.author,
     books.publisher,
   )
   const bookInstance = existingBookInstance || (await postBookInstanceDB(books))
+  console.log(books)
 
   let newBooks: object[] = []
   while (books.amount) {

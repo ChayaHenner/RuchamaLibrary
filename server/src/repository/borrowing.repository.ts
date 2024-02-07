@@ -3,8 +3,8 @@ import { Book } from '../entities/Book'
 import { Reader } from '../entities/Reader'
 import { libraryData } from '../app'
 
-export const findTopTenBooks =  () => {
-  return  libraryData
+export const findTopTenBooks = () => {
+  return libraryData
     .getRepository(Borrowing)
     .createQueryBuilder('borrowing')
     .leftJoinAndSelect('borrowing.book', 'book')
@@ -20,8 +20,8 @@ export const findTopTenBooks =  () => {
     .getRawMany()
 }
 
-export const findBorrowingByReader =  (id: number) => {
-  const result =  libraryData
+export const findBorrowingByReader = (id: number) => {
+  const result = libraryData
     .getRepository(Borrowing)
     .createQueryBuilder('borrowing')
     .leftJoinAndSelect('borrowing.book', 'book')
@@ -39,7 +39,7 @@ export const findBorrowingByReader =  (id: number) => {
     .getRawOne()
 
   if (!result) {
-    const readerInfo =  libraryData
+    const readerInfo = libraryData
       .getRepository(Reader)
       .createQueryBuilder('reader')
       .select(['reader.id', 'reader.name', 'reader.email'])
