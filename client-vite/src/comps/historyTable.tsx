@@ -32,8 +32,8 @@ export  const HistoryTable:React.FC<HistoryTableProps>=({ history })=> {
               <TableCell >{row.id}</TableCell>
               <TableCell align="left">{row.book_instance.name}</TableCell>
               <TableCell >{row.borrowing_id}</TableCell>
-              <TableCell >{row.date_borrowed.split('T')[0]}-{row.date_borrowed.split('T')[1].split('.')[0]}</TableCell>
-              <TableCell >{row?.date_returned?.split('T')[0]}-{row?.date_returned?.split('T')[1].split('.')[0]}</TableCell>
+              <TableCell >{row.dateBorrowed.split('T')[0]}-{row.dateBorrowed.split('T')[1].split('.')[0]}</TableCell>
+              <TableCell >{row?.dateReturned?.split('T')[0]}-{row?.dateReturned?.split('T')[1].split('.')[0]}</TableCell>
             </TableRow>
           ))}
         </TableBody>

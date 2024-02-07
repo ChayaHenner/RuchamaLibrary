@@ -57,7 +57,7 @@ export const Row :FC<RowProps>=({row}) =>{
                         <TableCell>{book.id}</TableCell> 
                         <TableCell >{book.book_instance.name}</TableCell>
                         <TableCell >{book.book_instance.author}</TableCell>
-                        <TableCell component="th" scope="row">  {book.date_borrowed.split('T')[0]} --- {book.date_borrowed.split('T')[1].split('.')[0]}</TableCell>
+                        <TableCell component="th" scope="row">  {book.dateBorrowed.split('T')[0]} --- {book.dateBorrowed.split('T')[1].split('.')[0]}</TableCell>
                         <TableCell component="th" scope="row">{book.borrowing_id }</TableCell>
                       </TableRow>
                     ))}

@@ -23,9 +23,9 @@ export class Borrowing extends BaseEntity {
 
 
     @CreateDateColumn()
-    date_borrowed: Date
+    dateBorrowed: Date
 
 
     @Column({ default: null, nullable: true })
-    date_returned: Date
+    dateReturned: Date
 }

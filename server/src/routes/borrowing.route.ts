@@ -13,11 +13,10 @@ borrowingRouter.get('/', async (req: Request, res: Response, next: NextFunction)
   }
 });
 
-borrowingRouter.get('/reader/:reader_id', async (req: Request, res: Response, next: NextFunction) => {
+borrowingRouter.get('/reader/:id', async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const reader_id = req.params.reader_id
-    const id_int: number = parseInt(req.params.reader_id);
-    const data = await getBorrowingByReader(id_int)
+    const readerId: number = parseInt(req.params.id);
+    const data = await getBorrowingByReader(readerId)
     res.json(data)
   } catch (err) {
     next(err);
@@ -26,8 +25,8 @@ borrowingRouter.get('/reader/:reader_id', async (req: Request, res: Response, ne
 
 borrowingRouter.post('/borrow', validate('borrowingSchema'), async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const borrow_book = await postBorrowBook(req.body)
-    res.status(201).json(borrow_book);
+    const borrowBook = await postBorrowBook(req.body)
+    res.status(201).json(borrowBook);
   }
   catch (err) {
     next(err)
@@ -37,8 +36,8 @@ borrowingRouter.post('/borrow', validate('borrowingSchema'), async (req: Request
 
 borrowingRouter.post('/borrowmany', validate('borrowingManySchema'), async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const borrow_book = await postBorrowMany(req.body)
-    res.status(201).json(borrow_book);
+    const borrowBooks = await postBorrowMany(req.body)
+    res.status(201).json(borrowBooks);
   }
   catch (err) {
     next(err)
@@ -50,8 +49,8 @@ borrowingRouter.post('/borrowmany', validate('borrowingManySchema'), async (req:
 
 borrowingRouter.post('/returnbyid', validate('returnSchema'), async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const return_book = await postReturnBook(req.body)
-    res.status(201).json(return_book);
+    const returnBook = await postReturnBook(req.body)
+    res.status(201).json(returnBook);
   }
   catch (err) {
     next(err)
@@ -60,8 +59,8 @@ borrowingRouter.post('/returnbyid', validate('returnSchema'), async (req: Reques
 });
 borrowingRouter.post('/returnmany', validate('returnManySchema'), async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const return_book = await postReturnManyBooks(req.body)
-    res.status(201).json(return_book);
+    const returnBooks = await postReturnManyBooks(req.body)
+    res.status(201).json(returnBooks);
   }
   catch (err) {
     next(err)

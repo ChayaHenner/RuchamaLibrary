@@ -35,8 +35,8 @@ export type Publisher = {
       name: string;
       publisher: number;
     };
-    date_borrowed: string;
-    date_returned: string | null;
+    dateBorrowed: string;
+    dateReturned: string | null;
   }
 
   type PublisherType = {
@@ -72,13 +72,13 @@ export type Publisher = {
   export type BorrowedBook = {
     reader: Reader;
     book: BookType;
-    date_returned: string | null;
+    dateReturned: string | null;
     id: number;
-    date_borrowed: string;
+    dateBorrowed: string;
   };
 
   export type BookLibrary = {
-    book_bookCode: number;
+    book_bookCodeBookCode: number;
     bookinstance_name: string;
     bookinstance_author: string;
     bookinstance_category: string;
@@ -116,8 +116,8 @@ export type Publisher = {
         name: string;
         publisher: number;
       };
-      date_borrowed: string;
-      date_returned: string | null;
+      dateBorrowed: string;
+      dateReturned: string | null;
     };
     
    export type ReaderWithUnreturnedBooks = {
@@ -161,7 +161,7 @@ type BookItem = {
 
 export type BookResponse = {
   books: BookItem[];
-  book_info: BookInfo;
+  info: BookInfo;
 };
 
 
@@ -193,8 +193,8 @@ export type selectedItemsProp =  {
 //   id: number;
 //   borrowing_id: number;
 //   book_instance: BookInstance;
-//   date_borrowed: string;
-//   date_returned?: string; // Date returned is optional as it might not be present in "toreturn" array
+//   dateBorrowed: string;
+//   dateReturned?: string; // Date returned is optional as it might not be present in "toreturn" array
 // };
 
 export type PublisherForm =  {

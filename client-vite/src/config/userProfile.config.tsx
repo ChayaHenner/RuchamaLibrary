@@ -6,6 +6,6 @@ export const columns: GridColDef[] = [
     { field: 'category', headerName: 'Category', width: 120, valueGetter: (params) => params.row.book_instance.category },
     // { field: 'publisher', headerName: 'Publisher ID', width: 130, valueGetter: (params) => params.row.book_instance.publisher },
     { field: 'price', headerName: 'Price', type: 'number', width: 90, valueGetter: (params) => params.row.book_instance.price },
-    { field: 'date_borrowed', headerName: 'Date Borrowed', width: 180 },
+    { field: 'dateBorrowed', headerName: 'Date Borrowed', width: 180 },
 ];
 

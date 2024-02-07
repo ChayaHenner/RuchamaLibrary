@@ -64,14 +64,14 @@ export const postReturnBook = async (borrow: any) => {
   };
   
 
-  export const postReturnManyBooks = async (return_books: any) => {
+  export const postReturnManyBooks = async (returnBooks: any) => {
     const returnedarray: any[] = [];
   
-    for (const borrow_id of return_books.borrow_ids) {
+    for (const borrowId of returnBooks.borrow_ids) {
       try {
-        const returnbook = await returnBorrowingDB(borrow_id);
+        const returnbook = await returnBorrowingDB(borrowId);
         await updateBookNotTaken((returnbook).book.id);
-        const book = await findBorrowDB(borrow_id);
+        const book = await findBorrowDB(borrowId);
         returnedarray.push(book);
       } catch (err) {
         throw err ;

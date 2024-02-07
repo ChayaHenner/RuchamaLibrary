@@ -30,8 +30,8 @@ export const getBorrowingByReaderDB = async (id: number) => {
                         'reader.id',
                         'reader.name',
                         'reader.email',
-                        `JSON_AGG(CASE WHEN borrowing.date_returned IS NULL THEN jsonb_build_object('id', book.id, 'book_instance', to_jsonb(bookinstance), 'date_borrowed', borrowing.date_borrowed, 'borrowing_id', borrowing.id) END) FILTER(WHERE borrowing.date_returned IS NULL) AS toreturn`,
-                        `JSON_AGG(CASE WHEN borrowing.date_returned IS NOT NULL THEN jsonb_build_object('id', book.id, 'book_instance', to_jsonb(bookinstance), 'date_borrowed', borrowing.date_borrowed, 'borrowing_id', borrowing.id, 'date_returned', borrowing.date_returned) END) FILTER(WHERE borrowing IS NOT NULL) AS history`,
+                        `JSON_AGG(CASE WHEN borrowing.dateReturned IS NULL THEN jsonb_build_object('id', book.id, 'book_instance', to_jsonb(bookinstance), 'dateBorrowed', borrowing.dateBorrowed, 'borrowing_id', borrowing.id) END) FILTER(WHERE borrowing.dateReturned IS NULL) AS toreturn`,
+                        `JSON_AGG(CASE WHEN borrowing.dateReturned IS NOT NULL THEN jsonb_build_object('id', book.id, 'book_instance', to_jsonb(bookinstance), 'dateBorrowed', borrowing.dateBorrowed, 'borrowing_id', borrowing.id, 'dateReturned', borrowing.dateReturned) END) FILTER(WHERE borrowing IS NOT NULL) AS history`,
                 ])
                 .groupBy('reader.id,reader.name,reader.email ')
                 .getRawOne();
@@ -70,8 +70,8 @@ export const createBorrowingDB = async (borrowing: any) => {
 export const returnBorrowingDB = async (id: number) => {
 
         let borrowing = await Borrowing.findOne({ where: { id } });
-        if (borrowing && borrowing.date_returned == null) {
-                borrowing.date_returned = new Date();
+        if (borrowing && borrowing.dateReturned == null) {
+                borrowing.dateReturned = new Date();
                 await Borrowing.save(borrowing);
                 return borrowing;
         } else throw "borrowing id incorrect or returned already";
@@ -114,15 +114,15 @@ export const getTwoWeeksPassedDB = async () => {
                 .leftJoinAndSelect('borrowing.book', 'book')
                 .leftJoinAndSelect('borrowing.reader', 'reader')
                 .leftJoinAndSelect('book.bookCode', 'bookinstance')
-                .where('borrowing.date_returned IS NULL')
+                .where('borrowing.dateReturned IS NULL')
                 .andWhere('reader.id IS NOT NULL') // readers that were deleted... problomatic
-                .andWhere('borrowing.date_borrowed < NOW() - INTERVAL \'5 days\'')
+                .andWhere('borrowing.dateBorrowed < NOW() - INTERVAL \'5 days\'')
 
                 .select([
                         'reader.id',
                         'reader.name',
                         'reader.email',
-                        'JSON_AGG(CASE WHEN borrowing.date_returned IS NULL THEN jsonb_build_object(\'book\', book.id, \'book_instance\', to_jsonb(bookinstance), \'date_borrowed\', borrowing.date_borrowed ,\'borrowing_id\', borrowing.id) END) AS unreturned_books',
+                        'JSON_AGG(CASE WHEN borrowing.dateReturned IS NULL THEN jsonb_build_object(\'book\', book.id, \'book_instance\', to_jsonb(bookinstance), \'dateBorrowed\', borrowing.dateBorrowed ,\'borrowing_id\', borrowing.id) END) AS unreturned_books',
                 ])
                 .groupBy('reader.id,reader.name,reader.email ')
                 .getRawMany();
