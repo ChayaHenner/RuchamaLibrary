@@ -16,7 +16,7 @@ import { overduestyle } from '../styles/overdue.style'
 
 export const Row: FC<RowProps> = ({ row }) => {
   const [open, setOpen] = React.useState(false)
-console.log(row);
+  console.log(row)
 
   return (
     <>

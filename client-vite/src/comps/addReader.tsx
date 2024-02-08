@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import { Box, Grid } from '@mui/material'
 // import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 // import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { yupResolver } from '@hookform/resolvers/yup'
 import { AddReaderProps, ReaderForm } from '../utils/types'
@@ -12,39 +12,35 @@ import { formSchema } from '../utils/schemas'
 import { addReader } from '../api/reader'
 import Swal from 'sweetalert2'
 import { readerstyle } from '../styles/readers.style'
-import { DatePicker } from '@mui/x-date-pickers'
+import { useNavigate } from 'react-router-dom'
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers'
 
 const AddReader: FC<AddReaderProps> = ({ onClose }) => {
   const methods = useForm<ReaderForm>({
     resolver: yupResolver(formSchema),
   })
+  const navigate = useNavigate()
 
   const handleSubmit: SubmitHandler<ReaderForm> = async (data: ReaderForm) => {
-    const dobAsDate = data.dob.toISOString().split('T')[0]
+    const dobAsDate = data?.dob?.toISOString().split('T')[0] || ''
     data.dob = new Date(dobAsDate)
-    const isValid = await methods.trigger()
-    if (isValid) {
-      await addReader(data)
-      Swal.fire({
-        title: 'Added Reader',
-        text: 'Enjoy your read',
-        icon: 'success',
-        confirmButtonText: 'confirm',
-      }).then((result) => {
-        if (result.isConfirmed) {
-          window.location.reload()
-          //send to profile?
-        }
-      })
-      console.log('data submitted', data)
-    } else {
-      console.log('form validation failed')
-    }
+    const reader = await addReader(data)
+    Swal.fire({
+      title: 'Added Reader',
+      text: 'Enjoy your read',
+      icon: 'success',
+      confirmButtonText: 'confirm',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log(reader)
+
+        navigate(`/profile/${reader.id}`)
+      }
+    })
   }
 
   return (
     <Box sx={readerstyle.boxblur}>
-      {' '}
       <Button onClick={onClose}>x</Button>
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit((data) => handleSubmit(data))}>
@@ -70,15 +66,15 @@ const AddReader: FC<AddReaderProps> = ({ onClose }) => {
           </Grid>
 
           <Grid>
-            {/* <LocalizationProvider dateAdapter={AdapterDayjs}> */}
-            {/* <DatePicker
-                                sx={readerstyle.textfield}
-                                label="Date of Birth"
-                                // {...methods.register('dob')}
-                                value={methods.watch('dob') ?? null}
-                                onChange={(date) => methods.setValue('dob', date)}
-                            /> */}
-            {/* </LocalizationProvider> */}
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DatePicker
+                sx={readerstyle.textfield}
+                label="Date of Birth"
+                {...methods.register('dob')}
+                value={methods.watch('dob') ?? null}
+                onChange={(date) => methods.setValue('dob', date)}
+              />
+            </LocalizationProvider>
           </Grid>
 
           <Button

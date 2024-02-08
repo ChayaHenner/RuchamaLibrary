@@ -6,7 +6,6 @@ export const addReader = async (reader: ReaderForm) => {
 
   try {
     const response = await axios.post('http://localhost:5000/readers', reader)
-    alert('user added')
     return response.data
   } catch (err) {
     console.error(err)

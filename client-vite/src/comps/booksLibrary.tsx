@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Grid, Container, Input } from '@mui/material'
-import { BookInstanceLibrary, BookLibrary } from '../utils/types'
+import { BookInstanceLibrary } from '../utils/types'
 import { getBooksLibrary } from '../api/bookinstances'
 import BookCard from './bookCard'
 import { booksstyle } from '../styles/books.styles'

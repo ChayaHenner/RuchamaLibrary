@@ -16,18 +16,16 @@ import { useNavigate } from 'react-router-dom'
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null)
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget)
-    navigate('/borrow', { replace: true, state: {} });
-
+    navigate('/borrow', { replace: true, state: {} })
   }
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null)
-    navigate('/borrow', { replace: true, state: {} });
-
+    navigate('/borrow', { replace: true, state: {} })
   }
 
   return (
@@ -80,7 +78,7 @@ function ResponsiveAppBar() {
                     href={page.path}
                     color="inherit"
                   >
-headerstylehandleCloseNavMenu                    {page.label}
+                    headerstylehandleCloseNavMenu {page.label}
                   </Typography>
                 </MenuItem>
               ))}

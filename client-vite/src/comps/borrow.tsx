@@ -38,8 +38,9 @@ const Borrow: React.FC = () => {
         console.error('Error fetching data:', error)
       }
     }
-    // console.log(location?.state.name)
-    if (location.state) {
+    if (Object.keys(location.state).length !== 0) {
+      console.log(location.state);
+    
       setReaderName(location?.state.name)
       setSelectedReader(location?.state.id)
     }
@@ -68,7 +69,8 @@ const Borrow: React.FC = () => {
     }
   }
 
-  const addToSelectedItems = () => {
+  const addToSelectedItems = () => {console.log("addToSelectedItems");
+  
     if (selectedBook !== null) {
       const isBookAlreadySelected = selectedItems.some(
         (item) => item.id === selectedBook,
@@ -83,7 +85,6 @@ const Borrow: React.FC = () => {
       }
     }
   }
-  // const chooseReader = () => { setReaderName(selectedReaderName) };
 
   const filteredBooks = books.filter(
     (book) => !selectedItems.some((item) => item.id === book.id),
@@ -110,7 +111,6 @@ const Borrow: React.FC = () => {
                   onChange={(_, value) => {
                     setSelectedReader(value?.id || null)
                     setReaderName(value?.name || null)
-                    // setSelectedReaderName(value?.name || null)
                   }}
                 />
               </FormControl>
@@ -144,7 +144,10 @@ const Borrow: React.FC = () => {
                     <TextField {...params} label="book" />
                   )}
                   value={null}
-                  onChange={(_, value) => setSelectedBook(value?.id || null)}
+                  onChange={(_, value) => {setSelectedBook(value?.id || null) 
+                    // addToSelectedItems()///add automatic
+                  console.log("hi");
+                  }}
                 />
               </FormControl>
 

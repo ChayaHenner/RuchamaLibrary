@@ -15,7 +15,7 @@ export type BookFormProps = {
 export type ReaderForm = {
   name: string
   email: string
-  dob: Date //| null ;
+  dob: Date | null
 }
 
 export type BorrowingInfo = {
