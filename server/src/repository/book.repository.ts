@@ -15,7 +15,6 @@ export const softRemove = async (id: number) => {
   const book = await Book.findOneOrFail({
     where: { id },
   })
-
   return book.softRemove()
 }
 

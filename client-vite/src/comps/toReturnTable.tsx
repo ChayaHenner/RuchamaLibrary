@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import { BookReturn, ReturnTableProps } from '../utils/types';
+import {  BorrowingInfo, ReturnTableProps } from '../utils/types';
 import { Button, Grid } from '@mui/material';
 import { columns } from '../config/userProfile.config';
 import { postReturn } from '../api/borrowing';
@@ -15,8 +15,8 @@ export const ToReturnTable: React.FC<ReturnTableProps> = ({ toReturn }) => {
 
     const setSelectedBooks = () => {
         let selectedRowsCurrent: number[] = []
-        apiRef.current.getSelectedRows().forEach((book: BookReturn) => {
-            selectedRowsCurrent.push(book.borrowing_id)        
+        apiRef.current.getSelectedRows().forEach((book: BorrowingInfo) => {
+            selectedRowsCurrent.push(book.id)        
         });
         setSelectedRows(selectedRowsCurrent)
     }
@@ -45,7 +45,7 @@ export const ToReturnTable: React.FC<ReturnTableProps> = ({ toReturn }) => {
                 }}
                 apiRef={apiRef}
                 pageSizeOptions={[5, 10]}
-                getRowId={(row: BookReturn) => row.id}
+                getRowId={(row: BorrowingInfo) => row.id}
                 checkboxSelection
                 onRowSelectionModelChange={() => { setSelectedBooks() }}
             />

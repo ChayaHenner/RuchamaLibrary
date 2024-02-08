@@ -10,7 +10,6 @@ import { ReaderInfo } from '../utils/types';
 const UserProfile = () => {
   const { id } = useParams();
   const [userData, setUserData] = useState<ReaderInfo>();
-console.log(id);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,13 +30,13 @@ console.log(id);
       <Container>
         {userData ? (
           <>
-            <Typography variant='h4' sx={{ m: 1 }}>{userData.reader_name}</Typography>
-            <Typography variant='h5' sx={{ m: 1 }}>{userData.reader_email}</Typography>
+            <Typography variant='h4' sx={{ m: 1 }}>{userData.name}</Typography>
+            <Typography variant='h5' sx={{ m: 1 }}>{userData.email}</Typography>
             <Button component={Link} to='/borrow' variant="contained" color="primary" sx={{ margin: '1rem 0' }}>
               Borrow books
             </Button>
             <Typography variant='h3' sx={{ m: 2 }}>Books to return</Typography>
-            {userData.toreturn ? <ToReturnTable toReturn={userData.toreturn} /> :
+            {userData.toReturn ? <ToReturnTable toReturn={userData.toReturn} /> :
               (<Typography>-none-</Typography>)}
             <Divider sx={{ marginTop: 10 }} />
             <Typography variant='h3' sx={{ m: 2 }}>Books History</Typography>

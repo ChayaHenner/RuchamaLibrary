@@ -6,8 +6,10 @@ import {
   PrimaryGeneratedColumn,
   DeleteDateColumn,
   JoinColumn,
+  OneToMany,
 } from 'typeorm'
 import { BookInstance } from './BookInstance'
+import { Borrowing } from './Borrowing'
 
 @Entity('book')
 export class Book extends BaseEntity {
@@ -24,4 +26,7 @@ export class Book extends BaseEntity {
     default: false,
   })
   bookTaken: boolean
+
+  @OneToMany(() => Borrowing, (borrowing) => borrowing.book)
+  borrowings: Borrowing[]
 }

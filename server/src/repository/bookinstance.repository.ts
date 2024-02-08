@@ -34,37 +34,12 @@ export const findBookInstancesLibrary = async () => {
 
   return library
 }
-// export const findBookInstancesLibrary = () => {
-//   //7
-//   const bookInstancesWithCounts = libraryData
-//     .getRepository(Book)
-//     .createQueryBuilder('book')
-//     .select([
-//       'book.bookCode',
-//       'bookinstance.name',
-//       'bookinstance.author',
-//       'bookinstance.category',
-//       "JSON_AGG(JSON_BUILD_OBJECT('id', book.id, 'bookTaken', book.bookTaken)::jsonb) AS books",
-//       'CAST(COUNT(book.id) AS INTEGER) AS total_ids',
-//       'CAST(SUM(CASE WHEN book.bookTaken = false THEN 1 ELSE 0 END) AS INTEGER) AS not_taken_count',
-//     ])
-//     .leftJoin('book.bookCode', 'bookinstance')
-//     .groupBy(
-//       'book.bookCode ,bookinstance.name  ,bookinstance.author  ,bookinstance.category',
-//     )
-//     .getRawMany()
 
-//   return bookInstancesWithCounts
-// }
-
-export const saveBookInstance = async (bookInstance: any) => {
-  console.log(bookInstance)
-  return await BookInstance.save({
+export const saveBookInstance = (bookInstance: any) =>
+  BookInstance.save({
     ...bookInstance,
     books: [],
   })
-  // return await BookInstance.save(bookInstance)
-}
 
 //8
 export const findBookInstanceExists = (

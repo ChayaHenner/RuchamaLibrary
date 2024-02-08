@@ -27,11 +27,11 @@ export  const HistoryTable:React.FC<HistoryTableProps>=({ history })=> {
             
           {history?.map((row) => (
             <TableRow
-              key={row.borrowing_id}
+              key={row.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+              <TableCell align="left">{row.book.bookCode.bookCode}</TableCell>
+              <TableCell >{row.book.bookCode.name}</TableCell>
               <TableCell >{row.id}</TableCell>
-              <TableCell align="left">{row.book_instance.name}</TableCell>
-              <TableCell >{row.borrowing_id}</TableCell>
               <TableCell >{row.dateBorrowed.split('T')[0]}-{row.dateBorrowed.split('T')[1].split('.')[0]}</TableCell>
               <TableCell >{row?.dateReturned?.split('T')[0]}-{row?.dateReturned?.split('T')[1].split('.')[0]}</TableCell>
             </TableRow>

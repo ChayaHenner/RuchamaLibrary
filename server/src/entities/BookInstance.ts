@@ -36,11 +36,10 @@ export class BookInstance extends BaseEntity {
   })
   category: number
 
-  @OneToMany(() => Book, (book) => book.bookCode)
+  @OneToMany(() => Book, (book) => book.bookCode) //, { eager: true })
   books: Book[]
 
   constructor() {
     super()
-    // You can also initialize other properties here if needed
   }
 }

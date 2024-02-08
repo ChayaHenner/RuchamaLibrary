@@ -19,17 +19,17 @@ import {
 
 const borrowingRouter = express.Router()
 
-// borrowingRouter.get(
-//   '/',
-//   async (req: Request, res: Response, next: NextFunction) => {
-//     try {
-//       const data = await getBorrowing()
-//       res.json(data)
-//     } catch (err) {
-//       next(err)
-//     }
-//   },
-// )
+borrowingRouter.get(
+  '/',
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const data = await getBorrowing()
+      res.json(data)
+    } catch (err) {
+      next(err)
+    }
+  },
+)
 
 borrowingRouter.get(
   '/reader/:id',

@@ -18,16 +18,11 @@ const BooksLibrary = () => {
     fetchData();
   }, []);
 
-  const filteredBooks = books.filter((book: BookInstanceLibrary) => {//9
-    const bookName = book.name ? book.name.toLowerCase() : '';
-    const bookCode = book.bookCode ? book.bookCode.toString() : '';
-    return (
-      bookName.includes(searchTerm.toLowerCase()) ||
-      bookCode.includes(searchTerm.toLowerCase())
-    );
+  const filteredBooks = books.filter((book: BookInstanceLibrary) => {
+    return (book.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            book.bookCode?.toString().includes(searchTerm.toLowerCase()));
   });
-
-
+  
   return (
     <Container >
       <Grid container spacing={5}>

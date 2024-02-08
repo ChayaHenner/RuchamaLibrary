@@ -20,38 +20,72 @@ export const findTopTenBooks = () => {
     .getRawMany()
 }
 
-export const findBorrowingByReader = (id: number) => {
-  const result = libraryData
-    .getRepository(Borrowing)
-    .createQueryBuilder('borrowing')
-    .leftJoinAndSelect('borrowing.book', 'book')
-    .leftJoinAndSelect('borrowing.reader', 'reader')
-    .leftJoinAndSelect('book.bookCode', 'bookinstance')
-    .andWhere('reader.id = :readerId', { readerId: id })
-    .select([
-      'reader.id',
-      'reader.name',
-      'reader.email',
-      `JSON_AGG(CASE WHEN borrowing.dateReturned IS NULL THEN jsonb_build_object('id', book.id, 'book_instance', to_jsonb(bookinstance), 'dateBorrowed', borrowing.dateBorrowed, 'borrowing_id', borrowing.id) END) FILTER(WHERE borrowing.dateReturned IS NULL) AS toreturn`,
-      `JSON_AGG(CASE WHEN borrowing.dateReturned IS NOT NULL THEN jsonb_build_object('id', book.id, 'book_instance', to_jsonb(bookinstance), 'dateBorrowed', borrowing.dateBorrowed, 'borrowing_id', borrowing.id, 'dateReturned', borrowing.dateReturned) END) FILTER(WHERE borrowing IS NOT NULL) AS history`,
-    ])
-    .groupBy('reader.id,reader.name,reader.email ')
-    .getRawOne()
+export const findBorrowingByReader = async (id: number) => {
+  const reader = await Reader.findOne({
+    where: { id },
+    relations: ['borrowings', 'borrowings.book', 'borrowings.book.bookCode'],
+  })
 
-  if (!result) {
-    const readerInfo = libraryData
-      .getRepository(Reader)
-      .createQueryBuilder('reader')
-      .select(['reader.id', 'reader.name', 'reader.email'])
-      .where('reader.id = :readerId', { readerId: id })
-      .getRawOne()
-
-    console.log('Reader info:', readerInfo)
-
-    return readerInfo
+  if (!reader) {
+    throw new Error(`reader with id ${id} not found`)
   }
-  return result
+  const { borrowings, ...readerData } = reader
+
+  const toReturn = borrowings
+    .filter((borrowing: Borrowing) => borrowing.dateReturned === null)
+    .map((borrowing: Borrowing) => {
+      const { reader, ...borrowingWithoutReader } = borrowing
+      return borrowingWithoutReader
+    })
+  const history = borrowings
+    .filter((borrowing: Borrowing) => borrowing.dateReturned != null)
+    .map((borrowing: Borrowing) => {
+      const { reader, ...borrowingWithoutReader } = borrowing
+      return borrowingWithoutReader
+    })
+
+  // const history = borrowings.filter(
+  //   (borrowing: Borrowing) => borrowing.dateReturned != null,
+  // )
+
+  return {
+    ...readerData,
+    toReturn,
+    history,
+  }
 }
+// export const findBorrowingByReader = (id: number) => {
+//   const result = libraryData
+//     .getRepository(Borrowing)
+//     .createQueryBuilder('borrowing')
+//     .leftJoinAndSelect('borrowing.book', 'book')
+//     .leftJoinAndSelect('borrowing.reader', 'reader')
+//     .leftJoinAndSelect('book.bookCode', 'bookinstance')
+//     .andWhere('reader.id = :readerId', { readerId: id })
+//     .select([
+//       'reader.id',
+//       'reader.name',
+//       'reader.email',
+//       `JSON_AGG(CASE WHEN borrowing.dateReturned IS NULL THEN jsonb_build_object('id', book.id, 'book_instance', to_jsonb(bookinstance), 'dateBorrowed', borrowing.dateBorrowed, 'borrowing_id', borrowing.id) END) FILTER(WHERE borrowing.dateReturned IS NULL) AS toreturn`,
+//       `JSON_AGG(CASE WHEN borrowing.dateReturned IS NOT NULL THEN jsonb_build_object('id', book.id, 'book_instance', to_jsonb(bookinstance), 'dateBorrowed', borrowing.dateBorrowed, 'borrowing_id', borrowing.id, 'dateReturned', borrowing.dateReturned) END) FILTER(WHERE borrowing IS NOT NULL) AS history`,
+//     ])
+//     .groupBy('reader.id,reader.name,reader.email ')
+//     .getRawOne()
+
+//   if (!result) {
+//     const readerInfo = libraryData
+//       .getRepository(Reader)
+//       .createQueryBuilder('reader')
+//       .select(['reader.id', 'reader.name', 'reader.email'])
+//       .where('reader.id = :readerId', { readerId: id })
+//       .getRawOne()
+
+//     console.log('Reader info:', readerInfo)
+
+//     return readerInfo
+//   }
+//   return result
+// }
 
 export const findBorrowings = async () => await Borrowing.find()
 
