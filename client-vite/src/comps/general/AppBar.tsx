@@ -11,21 +11,24 @@ import Button from '@mui/material/Button'
 import MenuItem from '@mui/material/MenuItem'
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined'
 import { headerstyle } from './appbar.style'
-import { pages } from './appbar.config'
+import { useLocation } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
+import { pages } from './appbar.config'
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null)
   const navigate = useNavigate()
+  const location = useLocation()
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget)
-    navigate('/borrow', { replace: true, state: {} })
+    navigate(location.pathname, { replace: true })
   }
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null)
-    navigate('/borrow', { replace: true, state: {} })
+    console.log(location.state)
+    navigate(location.pathname, { replace: true })
   }
 
   return (

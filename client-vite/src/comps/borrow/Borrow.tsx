@@ -38,7 +38,8 @@ const Borrow: React.FC = () => {
         console.error('Error fetching data:', error)
       }
     }
-    if (Object.keys(location.state).length !== 0) {
+    console.log(location.state)
+    if (location.state!=null) {
       console.log(location.state)
 
       setReaderName(location?.state.name)
