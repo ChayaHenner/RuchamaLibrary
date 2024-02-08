@@ -9,6 +9,7 @@ import {
 } from '@mui/material'
 import { Link } from 'react-router-dom'
 import { NewBookConfirmProps } from '../../utils/types'
+import { borrowstyle } from './borrow.style'
 
 const NewBorrowConfirm: React.FC<NewBookConfirmProps> = ({ data }) => {
   console.log(data)
@@ -31,7 +32,7 @@ const NewBorrowConfirm: React.FC<NewBookConfirmProps> = ({ data }) => {
           to={`/profile/${data[0]?.reader.id}`}
           variant="contained"
           color="primary"
-          sx={{ margin: '1rem 0' }}
+          sx={borrowstyle.margin}
         >
           View Full History
         </Button>

@@ -34,7 +34,6 @@ const AddPublisher: FC = () => {
             margin="dense"
             {...register('country')}
             label="Country"
-            // name="country"
             error={!!formState.errors?.country}
             helperText={formState.errors?.country?.message}
           />

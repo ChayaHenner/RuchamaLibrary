@@ -3,31 +3,7 @@ import { Card, createTheme } from '@mui/material'
 import { CustomCardProps } from '../../utils/types'
 import { blueGrey, lightBlue } from '@mui/material/colors'
 
-export const CustomCard = styled(Card)<CustomCardProps>(
-  ({ inLib, categoryColor }) => ({
-    backgroundColor: inLib ? '#f309a' : '#f5f5f5',
-    minHeight: 220,
-    '&:hover': {
-      boxShadow: '0px 0px 15px rgba(0, 0, 0.2, 0.1)',
-    },
-    height: 200,
-    position: 'relative',
-    '&::before': {
-      content: '""',
-      position: 'absolute',
-      width: '5px',
-      height: '100%',
-      backgroundColor:
-        categoryColor == 'Teens'
-          ? 'lightblue'
-          : categoryColor == 'Adults'
-            ? 'salmon'
-            : categoryColor == 'Children'
-              ? 'yellow'
-              : 'lightgreen',
-    },
-  }),
-)
+
 
 export const theme = createTheme({
   palette: {

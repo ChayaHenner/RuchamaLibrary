@@ -100,9 +100,9 @@ const Borrow: React.FC = () => {
         <Box sx={borrowstyle.flex}>
           <Box>
             {readerName == null ? (
-              <FormControl sx={{ width: 400 }}>
+              <FormControl sx={borrowstyle.widthform}>
                 <Autocomplete
-                  sx={{ margin: 1 }}
+                  sx={borrowstyle.button}
                   options={readers}
                   getOptionLabel={(option) =>
                     ` ${option.name}    (${option.id})`
@@ -133,7 +133,7 @@ const Borrow: React.FC = () => {
                 </Grid>
               </>
             )}
-            <Box sx={{ display: 'flex' }}>
+            <Box sx={borrowstyle.flex}>
               <FormControl sx={borrowstyle.widthform}>
                 <Autocomplete
                   sx={borrowstyle.button}

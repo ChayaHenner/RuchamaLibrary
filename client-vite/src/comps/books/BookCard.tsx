@@ -1,8 +1,9 @@
 import { Grid, CardContent, Typography, Divider } from '@mui/material'
 import { FC } from 'react'
-import { CustomCard } from '../general/styles'
+// import { CustomCard } from '../general/styles'
 import { BookCardProp } from '../../utils/types'
 import { booksstyle } from './books.styles'
+import { CustomCard } from '../readers/readers.style'
 
 const BookCard: FC<BookCardProp> = ({ book }) => {
   console.log(book)
@@ -11,7 +12,7 @@ const BookCard: FC<BookCardProp> = ({ book }) => {
     <Grid key={book.bookCode} item xs={12} sm={6} md={4} lg={3}>
       <CustomCard inLib={book.booksNotTaken > 0} categoryColor={book.category}>
         <CardContent>
-          <Typography variant="h3" component="div" sx={{ display: 'inline' }}>
+          <Typography variant="h3" component="div" sx={booksstyle.typography}>
             {book.name}
           </Typography>
           {/* <Typography variant="h5" component="div" sx={{ display: 'inline', marginLeft: 5 }}>

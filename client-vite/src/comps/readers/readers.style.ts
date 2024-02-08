@@ -1,3 +1,8 @@
+import { styled } from '@mui/system'
+import { Card } from '@mui/material'
+import { CustomCardProps } from '../../utils/types'
+
+
 export const readerstyle = {
   button: {
     position: 'fixed',
@@ -26,3 +31,30 @@ export const readerstyle = {
   inlinetypo: { display: 'inline' },
   cardreader: { height: '100%', display: 'flex', flexDirection: 'column' },
 }
+
+
+export const CustomCard = styled(Card)<CustomCardProps>(
+  ({ inLib, categoryColor }) => ({
+    backgroundColor: inLib ? '#f309a' : '#f5f5f5',
+    minHeight: 220,
+    '&:hover': {
+      boxShadow: '0px 0px 15px rgba(0, 0, 0.2, 0.1)',
+    },
+    height: 200,
+    position: 'relative',
+    '&::before': {
+      content: '""',
+      position: 'absolute',
+      width: '5px',
+      height: '100%',
+      backgroundColor:
+        categoryColor == 'Teens'
+          ? 'lightblue'
+          : categoryColor == 'Adults'
+            ? 'salmon'
+            : categoryColor == 'Children'
+              ? 'yellow'
+              : 'lightgreen',
+    },
+  }),
+)

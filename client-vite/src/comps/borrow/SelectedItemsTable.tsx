@@ -42,7 +42,6 @@ const SelectedItemsTable: FC<selectedItemsProp> = ({
                 <TableCell>{item.id}</TableCell>
                 <TableCell>
                   <Button onClick={() => removeFromSelectedItems(item.id)}>
-                    {' '}
                     x
                   </Button>
                 </TableCell>

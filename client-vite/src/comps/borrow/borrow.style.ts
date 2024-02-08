@@ -16,4 +16,5 @@ export const borrowstyle = {
     justifyContent: 'center',
   },
   widthform: { width: 400 },
+  margin:{ margin: '1rem 0' },
 }
