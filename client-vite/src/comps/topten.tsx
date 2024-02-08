@@ -1,24 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import {Container, List, ListItem, ListItemText } from '@mui/material';
-import { getTopTen } from '../api/borrowing';
-import { TopTenBook } from '../utils/types';
+import React, { useState, useEffect } from 'react'
+import { Container, List, ListItem, ListItemText } from '@mui/material'
+import { getTopTen } from '../api/borrowing'
+import { TopTenBook } from '../utils/types'
 
 const TopTen: React.FC = () => {
-  const [topBooks, setTopBooks] = useState<TopTenBook[]>([]);
+  const [topBooks, setTopBooks] = useState<TopTenBook[]>([])
 
   useEffect(() => {
     const fetchData = async () => {
-        try {
-          const data = await getTopTen()
-          setTopBooks(data);
-          console.log(data);
-          
-        } catch (error) {
-          console.error('Error fetching data:', error);
-        }
-      };
-      fetchData()
-  }, []);
+      try {
+        const data = await getTopTen()
+        setTopBooks(data)
+        console.log(data)
+      } catch (error) {
+        console.error('Error fetching data:', error)
+      }
+    }
+    fetchData()
+  }, [])
 
   return (
     <Container>
@@ -33,7 +32,7 @@ const TopTen: React.FC = () => {
         ))}
       </List>
     </Container>
-  );
-};
+  )
+}
 
-export default TopTen;
+export default TopTen

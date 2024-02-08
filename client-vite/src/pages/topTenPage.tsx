@@ -1,14 +1,13 @@
-import Header from "../comps/header"
-import TopTen from "../comps/topten"
+import Header from '../comps/header'
+import TopTen from '../comps/topten'
 
 const TopTenPage = () => {
+  return (
+    <>
+      <Header title="Top Ten Popular Books" />
 
-    return (
-        <>
-        <Header title="Top Ten Popular Books" />
-
-        <TopTen />
-        </>
-    )
+      <TopTen />
+    </>
+  )
 }
 export default TopTenPage

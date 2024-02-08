@@ -1,14 +1,12 @@
-import BooksLibrary from "../comps/booksLibrary"
-import Header from "../comps/header"
+import BooksLibrary from '../comps/booksLibrary'
+import Header from '../comps/header'
 
 const BooksPage = () => {
-
-    return (
-        <>
-            <Header title="Books" />
-            <BooksLibrary />
-
-        </>
-    )
+  return (
+    <>
+      <Header title="Books" />
+      <BooksLibrary />
+    </>
+  )
 }
 export default BooksPage

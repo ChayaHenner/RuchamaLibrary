@@ -1,13 +1,12 @@
-import AddPublisher from "../comps/AddPublisher"
-import Header from "../comps/header"
+import AddPublisher from '../comps/AddPublisher'
+import Header from '../comps/header'
 
 const AddPublisherPage = () => {
-
-    return (
-        <>
-            <Header title="Add Publisher" />
-            <AddPublisher />    
-        </>
-    )
+  return (
+    <>
+      <Header title="Add Publisher" />
+      <AddPublisher />
+    </>
+  )
 }
 export default AddPublisherPage

@@ -1,24 +1,22 @@
-import { useEffect, useState, FC } from 'react';
-import { Grid, Card, CardContent, Typography } from '@mui/material';
-import { getBookInstances } from './api/bookinstances';
-import { BookInstance } from './utils/types';
+import { useEffect, useState, FC } from 'react'
+import { Grid, Card, CardContent, Typography } from '@mui/material'
+import { getBookInstances } from './api/bookinstances'
+import { BookInstance } from './utils/types'
 
 const Book: FC = () => {
-  const [books, setBooks] = useState<BookInstance[]>([]);
+  const [books, setBooks] = useState<BookInstance[]>([])
 
   useEffect(() => {
-
     const fetchData = async () => {
       try {
-        setBooks(await getBookInstances());
+        setBooks(await getBookInstances())
       } catch (error) {
-        console.error(error);
+        console.error(error)
       }
-    };
+    }
 
-    fetchData();
-  }, []);
-
+    fetchData()
+  }, [])
 
   return (
     <Grid container spacing={3}>
@@ -28,7 +26,7 @@ const Book: FC = () => {
         </Typography>
       </Grid>
 
-      {books?.map((book:BookInstance) => (
+      {books?.map((book: BookInstance) => (
         <Grid key={book.bookCode} item xs={12} sm={6} md={4} lg={3}>
           <Card>
             <CardContent>
@@ -41,8 +39,7 @@ const Book: FC = () => {
         </Grid>
       ))}
     </Grid>
-  );
+  )
+}
 
-};
-
-export default Book;
+export default Book

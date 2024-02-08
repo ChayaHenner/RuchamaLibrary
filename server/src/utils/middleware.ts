@@ -12,13 +12,15 @@ const errorHandler = (
   if (err.name === 'ValidationError') {
     return res.status(400).json({
       error: 'ValidationError',
-      info: err,
+      info: err.message,
     })
   }
+console.log(err);
+console.log(typeof err);
 
   res.status(500).json({
     error: 'Internal Server Error',
-    info: err,
+    info: err.message,
   })
 }
 

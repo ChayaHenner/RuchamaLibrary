@@ -1,49 +1,61 @@
-import { FC, useEffect, useState } from 'react';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { Box, Button, Grid, TextField, Autocomplete, Select, MenuItem, InputLabel, FormControl, Typography } from '@mui/material';
-import { SubmitHandler, useForm, FormProvider } from 'react-hook-form';
-import NewBookConfirm from './newBookConfirm';
-import { Publisher, BookFormProps, BookConfirmNewest } from '../utils/types';
-import { CategoryLevels } from '../utils/config';
-import { bookFormSchema } from '../utils/schemas';
-import { postBook } from '../api/book';
-import { getPublishers } from '../api/publisher';
-import { addbookstyle } from '../styles/addbook.styles';
+import { FC, useEffect, useState } from 'react'
+import { yupResolver } from '@hookform/resolvers/yup'
+import {
+  Box,
+  Button,
+  Grid,
+  TextField,
+  Autocomplete,
+  Select,
+  MenuItem,
+  InputLabel,
+  FormControl,
+  Typography,
+} from '@mui/material'
+import { SubmitHandler, useForm, FormProvider } from 'react-hook-form'
+import NewBookConfirm from './newBookConfirm'
+import { Publisher, BookFormProps, BookConfirmNewest } from '../utils/types'
+import { CategoryLevels } from '../utils/config'
+import { bookFormSchema } from '../utils/schemas'
+import { postBook } from '../api/book'
+import { getPublishers } from '../api/publisher'
+import { addbookstyle } from '../styles/addbook.styles'
 
 const BookFormNew: FC = () => {
-  const [publishers, setPublishers] = useState<Publisher[]>([]);
-  const [confirm, setConfirm] = useState<boolean>(false);
-  const [books, setBooks] = useState<BookConfirmNewest>();
-  
+  const [publishers, setPublishers] = useState<Publisher[]>([])
+  const [confirm, setConfirm] = useState<boolean>(false)
+  const [books, setBooks] = useState<BookConfirmNewest>()
+
   const methods = useForm<BookFormProps>({
     resolver: yupResolver(bookFormSchema),
-  });
+  })
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setPublishers(await getPublishers());
+        setPublishers(await getPublishers())
       } catch (err) {
-        console.error(err);
+        console.error(err)
       }
-    };    
-     fetchData();
-
-  }, []);
+    }
+    fetchData()
+  }, [])
 
   const submitBook: SubmitHandler<BookFormProps> = async (d: BookFormProps) => {
-      setBooks(await postBook(d))
-      setConfirm(true)
-  };
+    setBooks(await postBook(d))
+    setConfirm(true)
+  }
 
   return (
-    <Box
-      sx={addbookstyle.box}>
-      {confirm ? <NewBookConfirm data={books} /> :
-        (<FormProvider {...methods}>
+    <Box sx={addbookstyle.box}>
+      {confirm ? (
+        <NewBookConfirm data={books} />
+      ) : (
+        <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(submitBook)}>
             <Grid>
-              <TextField sx={addbookstyle.textfield}
+              <TextField
+                sx={addbookstyle.textfield}
                 label="Book Name"
                 error={!!methods.formState.errors.name}
                 helperText={methods.formState.errors.name?.message}
@@ -51,7 +63,8 @@ const BookFormNew: FC = () => {
               />
             </Grid>
             <Grid>
-              <TextField sx={addbookstyle.textfield}
+              <TextField
+                sx={addbookstyle.textfield}
                 label="Author"
                 error={!!methods.formState.errors.author}
                 helperText={methods.formState.errors.author?.message}
@@ -59,8 +72,8 @@ const BookFormNew: FC = () => {
               />
             </Grid>
             <Grid>
-            
-              <Autocomplete sx={addbookstyle.textfield}
+              <Autocomplete
+                sx={addbookstyle.textfield}
                 options={publishers}
                 getOptionLabel={(option) => `${option.name} `}
                 renderInput={(params) => (
@@ -71,12 +84,14 @@ const BookFormNew: FC = () => {
                     helperText={methods.formState.errors.publisher?.message}
                   />
                 )}
-                onChange={(_,publisher:Publisher| null)=>{
-                  methods.setValue('publisher', publisher?.id )}}
+                onChange={(_, publisher: Publisher | null) => {
+                  methods.setValue('publisher', publisher?.id)
+                }}
               />
             </Grid>
-            <Grid >
-              <TextField sx={addbookstyle.textfield}
+            <Grid>
+              <TextField
+                sx={addbookstyle.textfield}
                 label="Amount"
                 defaultValue={1}
                 type="number"
@@ -90,7 +105,7 @@ const BookFormNew: FC = () => {
               <FormControl sx={addbookstyle.textfield}>
                 <InputLabel htmlFor="category-select">Category</InputLabel>
                 <Select
-                defaultValue={"Adults"}
+                  defaultValue={'Adults'}
                   label="Category"
                   error={!!methods.formState.errors?.category}
                   {...methods.register('category')}
@@ -104,7 +119,8 @@ const BookFormNew: FC = () => {
               </FormControl>
             </Grid>
             <Grid>
-              <TextField sx={addbookstyle.textfield}
+              <TextField
+                sx={addbookstyle.textfield}
                 label="Price"
                 type="number"
                 error={!!methods.formState.errors.price}
@@ -114,9 +130,10 @@ const BookFormNew: FC = () => {
             </Grid>
             <Button type="submit">Add Books</Button>
           </form>
-        </FormProvider>)}
+        </FormProvider>
+      )}
     </Box>
-  );
-};
+  )
+}
 
-export default BookFormNew;
+export default BookFormNew
