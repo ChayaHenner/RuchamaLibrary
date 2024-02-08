@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Header from './comps/general/Header'
+// import Header from './comps/general/Header'
 import Home from './pages/homePage'
-import Book from './books'
+// import Book from './books'
 // import BookFormNew from './comps/bookFormNew';
 import UserProfile from './pages/UserProfilePage'
 import { ThemeProvider } from '@emotion/react'
@@ -25,7 +25,7 @@ const App = () => {
           <Routes>
             <Route index element={<Home />} />
             <Route path="/readers" element={<ReadersPage />} />
-            <Route path="/books" element={<Book />} />
+            {/* <Route path="/books" element={<Book />} /> */}
             <Route path="/bookslibrary" element={<BooksPage />} />
             <Route path="/addexistingbook" element={<ExistingBook />} />
             <Route path="/borrow" element={<BorrowPage />} />

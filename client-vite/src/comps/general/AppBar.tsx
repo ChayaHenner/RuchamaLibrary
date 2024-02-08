@@ -11,7 +11,7 @@ import Button from '@mui/material/Button'
 import MenuItem from '@mui/material/MenuItem'
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined'
 import { headerstyle } from './appbar.style'
-import { pages } from '../../config/appbar.config'
+import { pages } from './appbar.config'
 import { useNavigate } from 'react-router-dom'
 
 function ResponsiveAppBar() {

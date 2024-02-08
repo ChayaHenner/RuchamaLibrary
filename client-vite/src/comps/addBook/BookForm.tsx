@@ -14,7 +14,7 @@ import {
 import { SubmitHandler, useForm, FormProvider } from 'react-hook-form'
 import NewBookConfirm from './NewBookConfirm'
 import { Publisher, BookFormProps, BookConfirmNewest } from '../../utils/types'
-import { CategoryLevels } from '../../utils/config'
+import { CategoryLevels } from './addbook.config'
 import { bookFormSchema } from '../../utils/schemas'
 import { postBook } from '../../api/book'
 import { getPublishers } from '../../api/publisher'

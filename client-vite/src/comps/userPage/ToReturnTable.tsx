@@ -2,7 +2,7 @@ import * as React from 'react'
 import { DataGrid } from '@mui/x-data-grid'
 import { BorrowingInfo, ReturnTableProps } from '../../utils/types'
 import { Button, Grid } from '@mui/material'
-import { columns } from '../../config/userProfile.config'
+import { columns } from './userProfile.config'
 import { postReturn } from '../../api/borrowing'
 
 export const ToReturnTable: React.FC<ReturnTableProps> = ({ toReturn }) => {
