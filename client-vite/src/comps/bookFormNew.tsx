@@ -3,7 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Box, Button, Grid, TextField, Autocomplete, Select, MenuItem, InputLabel, FormControl, Typography } from '@mui/material';
 import { SubmitHandler, useForm, FormProvider } from 'react-hook-form';
 import NewBookConfirm from './newBookConfirm';
-import { Publisher, BookFormProps, BookResponse, BookConfirmNewest } from '../utils/types';
+import { Publisher, BookFormProps, BookConfirmNewest } from '../utils/types';
 import { CategoryLevels } from '../utils/config';
 import { bookFormSchema } from '../utils/schemas';
 import { postBook } from '../api/book';

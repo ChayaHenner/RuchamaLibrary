@@ -239,3 +239,6 @@ export type BookConfirmNewest = {
     dateDeleted: Date | null;
   };
 };
+export type NewBookConfirmP =  {
+  data: BookConfirmNewest | undefined;
+}

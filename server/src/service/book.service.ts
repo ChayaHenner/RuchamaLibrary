@@ -3,7 +3,7 @@ import {
   saveBook,
   softRemove,
   findBooksLibrary,
-  saveBooksCool,
+  saveExistingBook,
   saveNewBooks,
 } from '../repository/book.repository'
 import {
@@ -19,7 +19,7 @@ export const getBooks = async () => await findBooks()
 export const getBooksInLibrary = async () => await findBooksLibrary()
 
 export const postBooks = async (books: ExistingBook) => {
-  const newBookReport = await saveBooksCool(books)
+  const newBookReport = await saveExistingBook(books)
   return newBookReport
 }
 // export const postBooks = async (books: ExistingBook) => {

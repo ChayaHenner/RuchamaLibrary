@@ -18,9 +18,8 @@ export const softRemove = async (id: number) => {
 
   return book.softRemove()
 }
-export const saveBooksCool = async (books: any) => {
+export const saveExistingBook = async (books: any) => {
   //ExistingBookReal
-
   const bookInstance = await BookInstance.findOne({
     where: { bookCode: books.bookCode },
     relations: ['books'],
@@ -42,8 +41,8 @@ export const saveBooksCool = async (books: any) => {
 
   bookInstance.books.push(...newBooks)
   await BookInstance.save(bookInstance)
+  bookInstance.books=newBooks
   return bookInstance
-  //return like new book confirm wants to see
 }
 
 export const saveNewBooks = async (books: NewBook) => {
@@ -64,6 +63,6 @@ export const saveNewBooks = async (books: NewBook) => {
 
   bookInstance.books.push(...newBooks)
   await BookInstance.save(bookInstance)
+   bookInstance.books=newBooks
   return bookInstance
-  //return like new book confirm wants to see
 }

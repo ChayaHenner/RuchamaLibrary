@@ -25,4 +25,6 @@ addButton: {
     top: 0,
     right: 10,
 },
+card:{ maxWidth: 600, margin: 'auto', marginTop: 4, padding: 2 },
+card2:{ backgroundColor: '#f0f0f0', padding: 2 }
 }

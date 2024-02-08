@@ -1,24 +1,22 @@
 import React from 'react';
-import {  BookConfirmNewest, BookResponse } from '../utils/types';
+import {   NewBookConfirmP } from '../utils/types';
 import { Card, CardContent, Typography, Grid } from '@mui/material';
+import { addbookstyle } from '../styles/addbook.styles';
 
-export type NewBookConfirmProp =  {
-    data: BookConfirmNewest | undefined;
-}
 
-const NewBookConfirm: React.FC<NewBookConfirmProp> = ({ data }) => {
+
+const NewBookConfirm: React.FC<NewBookConfirmP> = ({ data }) => {
     
     return (
-        <Card sx={{ maxWidth: 600, margin: 'auto', marginTop: 4, padding: 2 }}>
+        <Card sx={addbookstyle.card}>
             <CardContent>
                 <Typography variant="h5" mb={2}>
                     BOOKS CREATED
                 </Typography>
                 <Grid container spacing={2}>
                     {data?.books.map((book) => (
-                        //only for new books that dont have bookCode 
                         <Grid item xs={12} key={book.id}>
-                            <Card sx={{ backgroundColor: '#f0f0f0', padding: 2 }}>
+                            <Card sx={addbookstyle.card2}>
                                 <Typography variant="h3" mb={2}>{data.name}</Typography>
                                 <Typography variant="body2" mb={2}>{data.author}</Typography>
                                 <Typography variant="body2">
@@ -26,6 +24,9 @@ const NewBookConfirm: React.FC<NewBookConfirmProp> = ({ data }) => {
                                 </Typography>
                                 <Typography variant="body2">
                                     Book ID: {book.id}
+                                </Typography>
+                                <Typography variant="body2">
+                                    Publisher: {data.publisher.name}
                                 </Typography>
 
                             </Card>
