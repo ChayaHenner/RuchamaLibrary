@@ -1,5 +1,5 @@
-import CollapsibleTable from '../comps/booksOverdue'
-import Header from '../comps/header'
+import CollapsibleTable from '../comps/overdue/BooksOverdue'
+import Header from '../comps/Header'
 
 const OverduePage = () => {
   return (

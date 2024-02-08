@@ -9,7 +9,7 @@ import {
   Typography,
 } from '@mui/material'
 import { FC } from 'react'
-import { selectedItemsProp } from '../utils/types'
+import { selectedItemsProp } from '../../utils/types'
 
 const SelectedItemsTable: FC<selectedItemsProp> = ({
   selectedItems,

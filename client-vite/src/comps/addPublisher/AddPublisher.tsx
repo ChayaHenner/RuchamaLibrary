@@ -2,10 +2,10 @@ import { FC } from 'react'
 import { Box, Button, Grid, TextField } from '@mui/material'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { publisherSchema } from '../utils/schemas'
-import { PublisherForm } from '../utils/types'
-import { postPublisher } from '../api/publisher'
-import { addpublisherstyle } from '../styles/addpublisher.style'
+import { publisherSchema } from '../../utils/schemas'
+import { PublisherForm } from '../../utils/types'
+import { postPublisher } from '../../api/publisher'
+import { addpublisherstyle } from '../../styles/addpublisher.style'
 
 const AddPublisher: FC = () => {
   const { register, handleSubmit, formState } = useForm<PublisherForm>({

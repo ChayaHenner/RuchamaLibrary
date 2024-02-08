@@ -1,5 +1,5 @@
-import AddPublisher from '../comps/AddPublisher'
-import Header from '../comps/header'
+import AddPublisher from '../comps/addPublisher/AddPublisher'
+import Header from '../comps/Header'
 
 const AddPublisherPage = () => {
   return (

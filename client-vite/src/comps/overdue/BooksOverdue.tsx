@@ -6,8 +6,8 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import { useState, useEffect } from 'react'
-import { getOverdueReaders } from '../api/borrowing'
-import { Row } from './booksOverdueRow'
+import { getOverdueReaders } from '../../api/borrowing'
+import { Row } from './BooksOverdueRow'
 
 export default function CollapsibleTable() {
   const [readers, setReaders] = useState<any[]>([])

@@ -1,8 +1,8 @@
 import { useEffect, useState, FC } from 'react'
 import { Grid, Container, Input } from '@mui/material'
-import { Reader } from '../utils/types'
-import { getReaders } from '../api/reader'
-import ReaderCard from './readerCard'
+import { Reader } from '../../utils/types'
+import { getReaders } from '../../api/reader'
+import ReaderCard from './ReaderCard'
 const Readers: FC = () => {
   const [readers, setReaders] = useState<Reader[]>([])
   const [searchTerm, setSearchTerm] = useState<string>()

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Container, List, ListItem, ListItemText } from '@mui/material'
-import { getTopTen } from '../api/borrowing'
-import { TopTenBook } from '../utils/types'
+import { getTopTen } from '../../api/borrowing'
+import { TopTenBook } from '../../utils/types'
 
 const TopTen: React.FC = () => {
   const [topBooks, setTopBooks] = useState<TopTenBook[]>([])

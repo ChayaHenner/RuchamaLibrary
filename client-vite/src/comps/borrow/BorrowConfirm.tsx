@@ -8,7 +8,7 @@ import {
   Box,
 } from '@mui/material'
 import { Link } from 'react-router-dom'
-import { NewBookConfirmProps } from '../utils/types'
+import { NewBookConfirmProps } from '../../utils/types'
 
 const NewBorrowConfirm: React.FC<NewBookConfirmProps> = ({ data }) => {
   console.log(data)

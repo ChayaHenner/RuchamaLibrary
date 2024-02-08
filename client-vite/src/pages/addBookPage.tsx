@@ -1,6 +1,6 @@
 import { Box, Button } from '@mui/material'
-import BookFormNew from '../comps/bookFormNew'
-import Header from '../comps/header'
+import BookFormNew from '../comps/addBook/BookForm'
+import Header from '../comps/Header'
 import { Link } from 'react-router-dom'
 import { addbookstyle } from '../styles/addbook.styles'
 

@@ -1,7 +1,7 @@
 import React from 'react'
-import { NewBookConfirmP } from '../utils/types'
+import { NewBookConfirmP } from '../../utils/types'
 import { Card, CardContent, Typography, Grid } from '@mui/material'
-import { addbookstyle } from '../styles/addbook.styles'
+import { addbookstyle } from '../../styles/addbook.styles'
 
 const NewBookConfirm: React.FC<NewBookConfirmP> = ({ data }) => {
   return (

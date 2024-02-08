@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { Grid, Container, Input } from '@mui/material'
-import { BookInstanceLibrary } from '../utils/types'
-import { getBooksLibrary } from '../api/bookinstances'
-import BookCard from './bookCard'
-import { booksstyle } from '../styles/books.styles'
+import { BookInstanceLibrary } from '../../utils/types'
+import { getBooksLibrary } from '../../api/bookinstances'
+import BookCard from './BookCard'
+import { booksstyle } from '../../styles/books.styles'
 
 const BooksLibrary = () => {
   const [books, setBooks] = useState<BookInstanceLibrary[]>([])

@@ -6,7 +6,7 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
-import { HistoryTableProps } from '../utils/types'
+import { HistoryTableProps } from '../../utils/types'
 
 export const HistoryTable: React.FC<HistoryTableProps> = ({ history }) => {
   console.log(history)

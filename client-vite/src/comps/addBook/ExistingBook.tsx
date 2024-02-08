@@ -9,16 +9,16 @@ import {
   Typography,
 } from '@mui/material'
 import { yupResolver } from '@hookform/resolvers/yup'
-import NewBookConfirm from './newBookConfirm'
-import { existingBookSchema } from '../utils/schemas'
+import NewBookConfirm from './NewBookConfirm'
+import { existingBookSchema } from '../../utils/schemas'
 import {
   BookInstance,
   BookResponse,
   ExistingBookFormValues,
-} from '../utils/types'
-import { getBookInstances } from '../api/bookinstances'
-import { postBookExisting } from '../api/book'
-import { addbookstyle } from '../styles/addbook.styles'
+} from '../../utils/types'
+import { getBookInstances } from '../../api/bookinstances'
+import { postBookExisting } from '../../api/book'
+import { addbookstyle } from '../../styles/addbook.styles'
 
 const ExistingBook: FC = () => {
   const [books, setBooks] = useState<BookInstance[]>([])

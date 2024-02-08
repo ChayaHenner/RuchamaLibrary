@@ -152,7 +152,7 @@ export type NewBookConfirmProps = {
   data: BorrowedBook[]
 }
 export type ExistingBookFormValues = {
-  bookCode?: number | undefined
+  bookCode?: number
   amount: number
 }
 

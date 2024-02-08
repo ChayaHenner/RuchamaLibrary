@@ -1,5 +1,5 @@
-import Header from '../comps/header'
-import TopTen from '../comps/topten'
+import Header from '../comps/Header'
+import TopTen from '../comps/topTen/Topten'
 
 const TopTenPage = () => {
   return (

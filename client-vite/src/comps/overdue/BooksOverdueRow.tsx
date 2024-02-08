@@ -10,9 +10,9 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import React from 'react'
 import { Typography } from '@mui/material'
-import { RowProps } from '../utils/types'
+import { RowProps } from '../../utils/types'
 import { FC } from 'react'
-import { overduestyle } from '../styles/overdue.style'
+import { overduestyle } from '../../styles/overdue.style'
 
 export const Row: FC<RowProps> = ({ row }) => {
   const [open, setOpen] = React.useState(false)

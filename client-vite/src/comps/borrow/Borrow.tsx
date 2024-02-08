@@ -9,13 +9,13 @@ import {
   Container,
   Grid,
 } from '@mui/material'
-import NewBorrowConfirm from './borrowConfirm'
-import { getBooksInLibrary } from '../api/book'
-import { getReaders } from '../api/reader'
-import { postBorrow } from '../api/borrowing'
-import { BookType, BorrowedBook, Reader } from '../utils/types'
-import { borrowstyle } from '../styles/borrow.style'
-import SelectedItemsTable from './selectedItemsTable'
+import NewBorrowConfirm from './BorrowConfirm'
+import { getBooksInLibrary } from '../../api/book'
+import { getReaders } from '../../api/reader'
+import { postBorrow } from '../../api/borrowing'
+import { BookType, BorrowedBook, Reader } from '../../utils/types'
+import { borrowstyle } from '../../styles/borrow.style'
+import SelectedItemsTable from './SelectedItemsTable'
 import { useLocation } from 'react-router-dom'
 
 const Borrow: React.FC = () => {
@@ -39,8 +39,8 @@ const Borrow: React.FC = () => {
       }
     }
     if (Object.keys(location.state).length !== 0) {
-      console.log(location.state);
-    
+      console.log(location.state)
+
       setReaderName(location?.state.name)
       setSelectedReader(location?.state.id)
     }
@@ -69,8 +69,9 @@ const Borrow: React.FC = () => {
     }
   }
 
-  const addToSelectedItems = () => {console.log("addToSelectedItems");
-  
+  const addToSelectedItems = () => {
+    console.log('addToSelectedItems')
+
     if (selectedBook !== null) {
       const isBookAlreadySelected = selectedItems.some(
         (item) => item.id === selectedBook,
@@ -144,9 +145,10 @@ const Borrow: React.FC = () => {
                     <TextField {...params} label="book" />
                   )}
                   value={null}
-                  onChange={(_, value) => {setSelectedBook(value?.id || null) 
+                  onChange={(_, value) => {
+                    setSelectedBook(value?.id || null)
                     // addToSelectedItems()///add automatic
-                  console.log("hi");
+                    console.log('hi')
                   }}
                 />
               </FormControl>
