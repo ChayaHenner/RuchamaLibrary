@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { Button, Container, Divider, Grid, Typography } from '@mui/material'
 import { ToReturnTable } from '../comps/toReturnTable'
 import { HistoryTable } from '../comps/historyTable'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { getReaderProfile } from '../api/reader'
 import { ReaderInfo } from '../utils/types'
 
@@ -36,7 +36,7 @@ const UserProfile = () => {
             <Typography variant="h5" sx={{ m: 1 }}>
               {userData.email}
             </Typography>
-         
+
             <Button
               variant="contained"
               color="primary"

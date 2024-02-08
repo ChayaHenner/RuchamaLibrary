@@ -16,7 +16,6 @@ import { postBorrow } from '../api/borrowing'
 import { BookType, BorrowedBook, Reader } from '../utils/types'
 import { borrowstyle } from '../styles/borrow.style'
 import SelectedItemsTable from './selectedItemsTable'
-import { useParams } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
 
 const Borrow: React.FC = () => {
@@ -26,10 +25,8 @@ const Borrow: React.FC = () => {
   const [data, setData] = useState<BorrowedBook[]>([])
   const [selectedBook, setSelectedBook] = useState<number | null>(null)
   const [selectedReader, setSelectedReader] = useState<number | null>()
-  // const [selectedReaderName, setSelectedReaderName] = useState<string | null>(null);
   const [readerName, setReaderName] = useState<string | null>(null)
   const [selectedItems, setSelectedItems] = useState<BookType[]>([])
-  // const { id } = useParams()
   const location = useLocation()
 
   useEffect(() => {
@@ -41,9 +38,11 @@ const Borrow: React.FC = () => {
         console.error('Error fetching data:', error)
       }
     }
-    console.log(location.state.name)
-    setReaderName(location.state.name)
-    setSelectedReader(location.state.id)
+    // console.log(location?.state.name)
+    if (location.state) {
+      setReaderName(location?.state.name)
+      setSelectedReader(location?.state.id)
+    }
     fetchData()
   }, [])
 

@@ -24,6 +24,7 @@ export type BorrowingInfo = {
   dateReturned: string | null
   book: BookBorrowingInfo
 }
+
 export type BookBorrowingInfo = {
   id: number
   bookCode: {

@@ -16,6 +16,7 @@ import { overduestyle } from '../styles/overdue.style'
 
 export const Row: FC<RowProps> = ({ row }) => {
   const [open, setOpen] = React.useState(false)
+console.log(row);
 
   return (
     <>
@@ -55,7 +56,7 @@ export const Row: FC<RowProps> = ({ row }) => {
                 <TableBody>
                   {row.unreturned_books.map((book: any) => (
                     <TableRow key={book.id}>
-                      <TableCell>{book.id}</TableCell>
+                      <TableCell>{book.book}</TableCell>
                       <TableCell>{book.book_instance.name}</TableCell>
                       <TableCell>{book.book_instance.author}</TableCell>
                       <TableCell component="th" scope="row">
