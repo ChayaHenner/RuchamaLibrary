@@ -1,6 +1,6 @@
 import { styled } from '@mui/system'
 import { Card, createTheme } from '@mui/material'
-import { CustomCardProps } from '../utils/types'
+import { CustomCardProps } from '../../utils/types'
 import { blueGrey, lightBlue } from '@mui/material/colors'
 
 export const CustomCard = styled(Card)<CustomCardProps>(

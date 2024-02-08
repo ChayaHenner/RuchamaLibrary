@@ -18,7 +18,7 @@ import { CategoryLevels } from '../../utils/config'
 import { bookFormSchema } from '../../utils/schemas'
 import { postBook } from '../../api/book'
 import { getPublishers } from '../../api/publisher'
-import { addbookstyle } from '../../styles/addbook.styles'
+import { addbookstyle } from './addbook.styles'
 
 const BookFormNew: FC = () => {
   const [publishers, setPublishers] = useState<Publisher[]>([])

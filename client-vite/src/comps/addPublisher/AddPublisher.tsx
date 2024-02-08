@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { publisherSchema } from '../../utils/schemas'
 import { PublisherForm } from '../../utils/types'
 import { postPublisher } from '../../api/publisher'
-import { addpublisherstyle } from '../../styles/addpublisher.style'
+import { addpublisherstyle } from './addpublisher.style'
 
 const AddPublisher: FC = () => {
   const { register, handleSubmit, formState } = useForm<PublisherForm>({

@@ -14,7 +14,7 @@ import { getBooksInLibrary } from '../../api/book'
 import { getReaders } from '../../api/reader'
 import { postBorrow } from '../../api/borrowing'
 import { BookType, BorrowedBook, Reader } from '../../utils/types'
-import { borrowstyle } from '../../styles/borrow.style'
+import { borrowstyle } from './borrow.style'
 import SelectedItemsTable from './SelectedItemsTable'
 import { useLocation } from 'react-router-dom'
 

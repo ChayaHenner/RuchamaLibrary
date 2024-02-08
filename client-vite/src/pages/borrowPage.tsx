@@ -1,5 +1,5 @@
 import Borrow from '../comps/borrow/Borrow'
-import Header from '../comps/header'
+import Header from '../comps/general/Header'
 
 const BorrowPage = () => {
   return (

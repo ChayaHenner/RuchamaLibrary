@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { FC } from 'react'
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined'
 import { ReaderCardProp } from '../../utils/types'
-import { readerstyle } from '../../styles/readers.style'
+import { readerstyle } from './readers.style'
 
 const ReaderCard: FC<ReaderCardProp> = ({ reader }) => {
   const calculateAge = (dob: string) => {

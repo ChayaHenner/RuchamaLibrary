@@ -2,8 +2,8 @@ import { useState } from 'react'
 import Readers from '../comps/readers/Readers'
 import AddReader from '../comps/readers/AddReader'
 import { Button } from '@mui/material'
-import { readerstyle } from '../styles/readers.style'
-import Header from '../comps/header'
+import { readerstyle } from '../comps/readers/readers.style'
+import Header from '../comps/general/Header'
 
 const ReadersPage = () => {
   const [isAddReaderOpen, setAddReaderOpen] = useState(false)

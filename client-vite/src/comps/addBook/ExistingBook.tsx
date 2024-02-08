@@ -18,7 +18,7 @@ import {
 } from '../../utils/types'
 import { getBookInstances } from '../../api/bookinstances'
 import { postBookExisting } from '../../api/book'
-import { addbookstyle } from '../../styles/addbook.styles'
+import { addbookstyle } from './addbook.styles'
 
 const ExistingBook: FC = () => {
   const [books, setBooks] = useState<BookInstance[]>([])

@@ -11,7 +11,7 @@ import { SubmitHandler, useForm, FormProvider } from 'react-hook-form'
 import { formSchema } from '../../utils/schemas'
 import { addReader } from '../../api/reader'
 import Swal from 'sweetalert2'
-import { readerstyle } from '../../styles/readers.style'
+import { readerstyle } from './readers.style'
 import { useNavigate } from 'react-router-dom'
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers'
 

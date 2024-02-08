@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { HeaderProps } from '../utils/types'
+import { HeaderProps } from '../../utils/types'
 import { Grid, Typography } from '@mui/material'
 
 const Header: FC<HeaderProps> = ({ title }) => {

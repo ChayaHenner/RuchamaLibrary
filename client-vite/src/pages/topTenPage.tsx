@@ -1,4 +1,4 @@
-import Header from '../comps/header'
+import Header from '../comps/general/Header'
 import TopTen from '../comps/topTen/Topten'
 
 const TopTenPage = () => {

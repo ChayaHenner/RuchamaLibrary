@@ -1,12 +1,12 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Header from './comps/header'
+import Header from './comps/general/Header'
 import Home from './pages/homePage'
 import Book from './books'
 // import BookFormNew from './comps/bookFormNew';
 import UserProfile from './pages/UserProfilePage'
 import { ThemeProvider } from '@emotion/react'
 import ExistingBook from './comps/addBook/ExistingBook'
-import { theme } from './styles/styles'
+import { theme } from './comps/general/styles'
 import BooksPage from './pages/booksPage'
 import BorrowPage from './pages/borrowPage'
 import OverduePage from './pages/overduePage'
@@ -15,7 +15,7 @@ import ReadersPage from './pages/readersPage'
 import AddPublisherPage from './pages/addPublisherPage'
 import AddBookPage from './pages/addBookPage'
 import { Typography } from '@mui/material'
-import ResponsiveAppBar from './comps/AppBar'
+import ResponsiveAppBar from './comps/general/AppBar'
 const App = () => {
   return (
     <>

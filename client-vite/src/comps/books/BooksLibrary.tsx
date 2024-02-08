@@ -3,7 +3,7 @@ import { Grid, Container, Input } from '@mui/material'
 import { BookInstanceLibrary } from '../../utils/types'
 import { getBooksLibrary } from '../../api/bookinstances'
 import BookCard from './BookCard'
-import { booksstyle } from '../../styles/books.styles'
+import { booksstyle } from './books.styles'
 
 const BooksLibrary = () => {
   const [books, setBooks] = useState<BookInstanceLibrary[]>([])

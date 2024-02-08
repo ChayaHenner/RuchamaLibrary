@@ -10,8 +10,8 @@ import Container from '@mui/material/Container'
 import Button from '@mui/material/Button'
 import MenuItem from '@mui/material/MenuItem'
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined'
-import { headerstyle } from '../styles/appbar.style'
-import { pages } from '../config/appbar.config'
+import { headerstyle } from './appbar.style'
+import { pages } from '../../config/appbar.config'
 import { useNavigate } from 'react-router-dom'
 
 function ResponsiveAppBar() {
