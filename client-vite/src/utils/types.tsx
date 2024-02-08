@@ -198,7 +198,7 @@ export type PublisherForm =  {
   country: string;
 }
 export type BookCardProp =  {
-  book: BookLibrary ;
+  book: BookInstanceLibrary ;
 }
 export type ReaderCardProp =  {
   reader: Reader ;
@@ -242,3 +242,30 @@ export type BookConfirmNewest = {
 export type NewBookConfirmP =  {
   data: BookConfirmNewest | undefined;
 }
+
+export type Book = {
+  id: number;
+  bookTaken: boolean;
+  bookCode: {
+    bookCode: number;
+    name: string;
+    author: string;
+    price: number;
+    category: string;
+  };
+};
+
+
+
+export type BookInstanceLibrary = {
+  bookCode: number;
+  name: string;
+  author: string;
+  price: number;
+  category: string;
+  books: Book[];
+  publisher: PublisherType;
+  booksNotTaken: number;
+  booksCount: number;
+};
+

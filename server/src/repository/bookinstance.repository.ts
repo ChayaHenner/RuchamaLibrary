@@ -15,28 +15,47 @@ export const findBookInstance = (bookCode: number) => {
   return bookInstance
 }
 
-export const findBookInstancesLibrary = () => {
-  //7
-  const bookInstancesWithCounts = libraryData
-    .getRepository(Book)
-    .createQueryBuilder('book')
-    .select([
-      'book.bookCode',
-      'bookinstance.name',
-      'bookinstance.author',
-      'bookinstance.category',
-      "JSON_AGG(JSON_BUILD_OBJECT('id', book.id, 'bookTaken', book.bookTaken)::jsonb) AS books",
-      'CAST(COUNT(book.id) AS INTEGER) AS total_ids',
-      'CAST(SUM(CASE WHEN book.bookTaken = false THEN 1 ELSE 0 END) AS INTEGER) AS not_taken_count',
-    ])
-    .leftJoin('book.bookCode', 'bookinstance')
-    .groupBy(
-      'book.bookCode ,bookinstance.name  ,bookinstance.author  ,bookinstance.category',
-    )
-    .getRawMany()
+export const findBookInstancesLibrary = async () => {
+  const bookInstances = await BookInstance.find({
+    relations: ['books'],
+  })
 
-  return bookInstancesWithCounts
+  const library = bookInstances.map((bookInstance) => {
+    const booksCount = bookInstance.books.length
+    const booksNotTaken = bookInstance.books.filter(
+      (book: Book) => book.bookTaken === false,
+    ).length
+    return {
+      ...bookInstance,
+      booksNotTaken,
+      booksCount,
+    }
+  })
+
+  return library
 }
+// export const findBookInstancesLibrary = () => {
+//   //7
+//   const bookInstancesWithCounts = libraryData
+//     .getRepository(Book)
+//     .createQueryBuilder('book')
+//     .select([
+//       'book.bookCode',
+//       'bookinstance.name',
+//       'bookinstance.author',
+//       'bookinstance.category',
+//       "JSON_AGG(JSON_BUILD_OBJECT('id', book.id, 'bookTaken', book.bookTaken)::jsonb) AS books",
+//       'CAST(COUNT(book.id) AS INTEGER) AS total_ids',
+//       'CAST(SUM(CASE WHEN book.bookTaken = false THEN 1 ELSE 0 END) AS INTEGER) AS not_taken_count',
+//     ])
+//     .leftJoin('book.bookCode', 'bookinstance')
+//     .groupBy(
+//       'book.bookCode ,bookinstance.name  ,bookinstance.author  ,bookinstance.category',
+//     )
+//     .getRawMany()
+
+//   return bookInstancesWithCounts
+// }
 
 export const saveBookInstance = async (bookInstance: any) => {
   console.log(bookInstance)

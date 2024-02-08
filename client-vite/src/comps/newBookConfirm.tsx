@@ -25,10 +25,6 @@ const NewBookConfirm: React.FC<NewBookConfirmP> = ({ data }) => {
                                 <Typography variant="body2">
                                     Book ID: {book.id}
                                 </Typography>
-                                <Typography variant="body2">
-                                    Publisher: {data.publisher.name}
-                                </Typography>
-
                             </Card>
                         </Grid>
                     ))}

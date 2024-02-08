@@ -31,7 +31,7 @@ function ResponsiveAppBar() {
         <Toolbar disableGutters>
           <BookmarkBorderOutlinedIcon sx={headerstyle.iconsm} />
           <Typography
-            variant="h6"
+            variant="h3"
             noWrap
             component="a"
             href="/"

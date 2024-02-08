@@ -10,27 +10,30 @@ console.log(book);
 
     return (
        
-           <Grid key={book.book_bookCodeBookCode} item xs={12} sm={6} md={4} lg={3}>
+           <Grid key={book.bookCode} item xs={12} sm={6} md={4} lg={3}>
             <CustomCard
-              inLib={book.not_taken_count > 0}
-              categoryColor={book.bookinstance_category}>
+              inLib={book.booksNotTaken > 0}
+              categoryColor={book.category}>
               <CardContent>
                 <Typography variant="h3" component="div" sx={{ display: 'inline' }}>
-                  {book.bookinstance_name}
+                  {book.name}
                 </Typography>
-                <Typography variant="h5" component="div" sx={{ display: 'inline', marginLeft: 5 }}>
-                  ({book.book_bookCodeBookCode})
-                </Typography>
+                {/* <Typography variant="h5" component="div" sx={{ display: 'inline', marginLeft: 5 }}>
+                  ({book.bookCode})
+                </Typography> */}
                 <Typography variant="h5" component="div">
-                  {book.bookinstance_author}
+                  {book.author}
+                </Typography>
+                <Typography variant="h6" component="div">
+                  {book.publisher.name},{book.publisher.country}
                 </Typography>
                 <Divider sx={booksstyle.dividermargins} />
                 <Typography variant="h5" component="div">
-                  Amount  {book.total_ids}
+                  Amount  {book.booksCount}
                 </Typography>
-                {book.not_taken_count > 0 && (
+                {book.booksNotTaken > 0 && (
                   <Typography variant="h5" component="div">
-                    In library {book.not_taken_count}
+                    In library {book.booksNotTaken}
                   </Typography>
                 )}
               </CardContent>

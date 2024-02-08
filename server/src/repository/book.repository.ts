@@ -18,6 +18,7 @@ export const softRemove = async (id: number) => {
 
   return book.softRemove()
 }
+
 export const saveExistingBook = async (books: any) => {
   //ExistingBookReal
   const bookInstance = await BookInstance.findOne({
@@ -31,17 +32,12 @@ export const saveExistingBook = async (books: any) => {
 
   const newBooks: Book[] = Array(books.amount)
     .fill(null)
-    .map(() => {
-      const book = new Book()
-      book.bookTaken = false
-      book.bookCode = books.bookCode
-      return book
-    })
+    .map(() => new Book())
   await Book.save(newBooks)
 
   bookInstance.books.push(...newBooks)
   await BookInstance.save(bookInstance)
-  bookInstance.books=newBooks
+  bookInstance.books = newBooks
   return bookInstance
 }
 
@@ -56,13 +52,11 @@ export const saveNewBooks = async (books: NewBook) => {
 
   const newBooks: Book[] = Array(amount)
     .fill(null)
-    .map(() => {
-      return new Book()
-    })
+    .map(() => new Book())
   await Book.save(newBooks)
 
   bookInstance.books.push(...newBooks)
   await BookInstance.save(bookInstance)
-   bookInstance.books=newBooks
+  bookInstance.books = newBooks
   return bookInstance
 }

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BookInstance, BookLibrary } from '../utils/types';
+import { BookInstance, BookInstanceLibrary } from '../utils/types';
 
 
 export const getBookInstances = async (): Promise<BookInstance[]> => {
@@ -11,7 +11,7 @@ export const getBookInstances = async (): Promise<BookInstance[]> => {
         throw error;
     }
 };
-export const getBooksLibrary = async (): Promise<BookLibrary[]> => {
+export const getBooksLibrary = async (): Promise<BookInstanceLibrary[]> => {
 
     try {
         const response = await axios.get('http://localhost:5000/booksinstance/library');

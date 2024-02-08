@@ -32,7 +32,7 @@ console.log(id);
         {userData ? (
           <>
             <Typography variant='h4' sx={{ m: 1 }}>{userData.reader_name}</Typography>
-            <Typography variant='h6' sx={{ m: 1 }}>{userData.reader_email}</Typography>
+            <Typography variant='h5' sx={{ m: 1 }}>{userData.reader_email}</Typography>
             <Button component={Link} to='/borrow' variant="contained" color="primary" sx={{ margin: '1rem 0' }}>
               Borrow books
             </Button>

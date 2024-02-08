@@ -45,7 +45,7 @@ const ExistingBook: FC = () => {
             {confirm ?
                 <NewBookConfirm data={newbooks} />
                 : (<>
-                    <Typography variant="h6" gutterBottom>Add Existing Book</Typography>
+                    <Typography variant="h3" gutterBottom>Add Existing Book</Typography>
                     <FormProvider {...methods}>
                         <form onSubmit={methods.handleSubmit(onSubmit)}>
                             <Grid container>

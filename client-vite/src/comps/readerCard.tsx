@@ -22,16 +22,14 @@ const ReaderCard :FC<ReaderCardProp>= ({reader}) => {
          <Grid key={reader.id} item xs={12} sm={6} md={4} lg={4} >
           <Card sx={readerstyle.cardreader} >
             <CardContent>
-              <Typography variant="h6" component="div" style={readerstyle.inlinetypo}>
+              <Typography variant="h3" component="div" style={readerstyle.inlinetypo}>
                 {reader.name}
               </Typography>
               <Typography color="textSecondary" style={readerstyle.inlinetypo}></Typography>
               <Typography color="textSecondary">{reader.email}</Typography>
               <Typography color="textSecondary">age: {calculateAge(reader.dob)}</Typography>
               <Link to={`/profile/${reader.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                <Typography variant="h6" component="div">
                   <AccountCircleOutlinedIcon />
-                </Typography>
               </Link>
             </CardContent>
           </Card>

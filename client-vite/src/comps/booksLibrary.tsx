@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Grid, Container, Input } from '@mui/material';
-import { BookLibrary } from '../utils/types';
+import { BookInstanceLibrary, BookLibrary } from '../utils/types';
 import { getBooksLibrary } from '../api/bookinstances';
 import BookCard from './bookCard';
 import { booksstyle } from '../styles/books.styles';
 
 const BooksLibrary = () => {
-  const [books, setBooks] = useState<BookLibrary[]>([]);
+  const [books, setBooks] = useState<BookInstanceLibrary[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
@@ -18,9 +18,9 @@ const BooksLibrary = () => {
     fetchData();
   }, []);
 
-  const filteredBooks = books.filter((book: BookLibrary) => {//9
-    const bookName = book.bookinstance_name ? book.bookinstance_name.toLowerCase() : '';
-    const bookCode = book.book_bookCodeBookCode ? book.book_bookCodeBookCode.toString() : '';
+  const filteredBooks = books.filter((book: BookInstanceLibrary) => {//9
+    const bookName = book.name ? book.name.toLowerCase() : '';
+    const bookCode = book.bookCode ? book.bookCode.toString() : '';
     return (
       bookName.includes(searchTerm.toLowerCase()) ||
       bookCode.includes(searchTerm.toLowerCase())
@@ -40,8 +40,8 @@ const BooksLibrary = () => {
             />
           </Grid>
         </Grid>
-        {filteredBooks.map((book: BookLibrary) => (
-          <BookCard book={book} key={book.book_bookCodeBookCode}/>
+        {filteredBooks.map((book: BookInstanceLibrary) => (
+          <BookCard book={book} key={book.bookCode}/>
         ))}
       </Grid>
     </Container>
