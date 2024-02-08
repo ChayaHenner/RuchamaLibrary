@@ -1,5 +1,5 @@
 import BooksLibrary from '../comps/books/BooksLibrary'
-import Header from '../comps/Header'
+import Header from '../comps/header'
 
 const BooksPage = () => {
   return (

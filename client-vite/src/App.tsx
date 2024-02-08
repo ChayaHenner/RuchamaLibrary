@@ -15,7 +15,7 @@ import ReadersPage from './pages/readersPage'
 import AddPublisherPage from './pages/addPublisherPage'
 import AddBookPage from './pages/addBookPage'
 import { Typography } from '@mui/material'
-import ResponsiveAppBar from './comps/appBar'
+import ResponsiveAppBar from './comps/AppBar'
 const App = () => {
   return (
     <>
