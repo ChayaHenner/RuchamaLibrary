@@ -156,7 +156,7 @@ export type BorrowBooks = {
 }
 
 export type NewBookConfirmProps = {
-  data: ReaderBorrowing
+  data: ReaderBorrowing | undefined
 }
 export type ExistingBookFormValues = {
   bookCode: number  | undefined// |BookInstance | null

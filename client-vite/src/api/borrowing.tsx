@@ -1,5 +1,6 @@
 import {
   BorrowBooks,
+  ReaderBorrowing,
   ReaderWithUnreturnedBooks,
   TopTenBook,
 } from '../utils/types'
@@ -28,7 +29,7 @@ export const getTopTen = async (): Promise<TopTenBook[]> => {
     throw error
   }
 }
-export const postBorrow = async (borrow: BorrowBooks) => {
+export const postBorrow = async (borrow: BorrowBooks):Promise<ReaderBorrowing> => {
   console.log(borrow)
 
   try {
@@ -46,6 +47,7 @@ export const postBorrow = async (borrow: BorrowBooks) => {
     return response.data
   } catch (err) {
     console.error(err)
+    throw err
   }
 }
 export const postReturn = async (selectedRows: number[]) => {

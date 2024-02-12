@@ -29,7 +29,7 @@ const NewBorrowConfirm: React.FC<NewBookConfirmProps> = ({ data }) => {
         </Button>
         <Button
           component={Link}
-          to={`/profile/${data.id}`}
+          to={`/profile/${data?.id}`}
           variant="contained"
           color="primary"
           sx={borrowstyle.margin}
@@ -38,7 +38,7 @@ const NewBorrowConfirm: React.FC<NewBookConfirmProps> = ({ data }) => {
         </Button>
       </Box>
       <List>
-        {data.borrowings.map((item) => (
+        {data?.borrowings.map((item) => (
           <ListItem key={item.id}>
             <ListItemText
               primary={`${item.book.bookCode.name} - ${item.book.bookCode.author} - ${item.book.id}`}

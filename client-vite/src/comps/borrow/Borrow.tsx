@@ -13,7 +13,7 @@ import NewBorrowConfirm from './BorrowConfirm'
 import { getBooksInLibrary } from '../../api/book'
 import { getReaders } from '../../api/reader'
 import { postBorrow } from '../../api/borrowing'
-import { BookType, BorrowedBook, Reader } from '../../utils/types'
+import { BookType, Reader, ReaderBorrowing } from '../../utils/types'
 import { borrowstyle } from './borrow.style'
 import SelectedItemsTable from './SelectedItemsTable'
 import { useLocation } from 'react-router-dom'
@@ -22,7 +22,7 @@ const Borrow: React.FC = () => {
   const [confirm, setConfirm] = useState(false)
   const [books, setBooks] = useState<BookType[]>([])
   const [readers, setReaders] = useState<Reader[]>([])
-  const [data, setData] = useState<BorrowedBook[]>([])
+  const [data, setData] = useState<ReaderBorrowing>()
   const [selectedBook, setSelectedBook] = useState<number | null>(null)
   const [selectedReader, setSelectedReader] = useState<number | null>()
   const [readerName, setReaderName] = useState<string | null>(null)
