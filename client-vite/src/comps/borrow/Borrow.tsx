@@ -17,6 +17,7 @@ import { BookType, Reader, ReaderBorrowing } from '../../utils/types'
 import { borrowstyle } from './borrow.style'
 import SelectedItemsTable from './SelectedItemsTable'
 import { useLocation } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 const Borrow: React.FC = () => {
   const [confirm, setConfirm] = useState(false)
@@ -24,7 +25,6 @@ const Borrow: React.FC = () => {
   const [readers, setReaders] = useState<Reader[]>([])
   const [data, setData] = useState<ReaderBorrowing>()
   const [selectedBook, setSelectedBook] = useState<BookType | null>(null)
-  const [input, setInput] = useState<string | undefined>()
   const [selectedReader, setSelectedReader] = useState<number | null>()
   const [readerName, setReaderName] = useState<string | null>(null)
   const [selectedItems, setSelectedItems] = useState<BookType[]>([])
@@ -82,6 +82,13 @@ const Borrow: React.FC = () => {
         }
         const data = await postBorrow(request)
         console.log(data)
+        Swal.fire({
+          title: 'Borrowed',
+          text: 'Have a good read',
+          icon: 'success',
+          confirmButtonText: 'confirm',
+        })
+
         setConfirm(true)
         setData(data)
         setSelectedItems([])
@@ -112,7 +119,6 @@ const Borrow: React.FC = () => {
       //   }
     }
   }
-
 
   const filteredBooks = books
   // .filter(
@@ -184,9 +190,8 @@ const Borrow: React.FC = () => {
                 />
               </FormControl> */}
               <FormControl sx={borrowstyle.widthform}>
-              
                 <Autocomplete
-                multiple
+                  multiple
                   sx={borrowstyle.button}
                   disabled={readerName === null}
                   options={filteredBooks}
@@ -197,15 +202,13 @@ const Borrow: React.FC = () => {
                     <TextField {...params} label="book" />
                   )}
                   onChange={(_, value) => {
-                    console.log(value);
+                    console.log(value)
                     setSelectedMultiple(value)
                   }}
-          
                   blurOnSelect={true}
                   disableCloseOnSelect={true}
                 />
               </FormControl>
-
             </Box>
             <Button
               variant="contained"

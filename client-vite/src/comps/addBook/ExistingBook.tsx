@@ -26,7 +26,9 @@ const ExistingBook: FC = () => {
   const [confirm, setConfirm] = useState<boolean>(false)
 
   const methods = useForm<ExistingBookFormValues>({
-    resolver: yupResolver(existingBookSchema) as Resolver<ExistingBookFormValues>,
+    resolver: yupResolver(
+      existingBookSchema,
+    ) as Resolver<ExistingBookFormValues>,
   })
 
   const onSubmit: SubmitHandler<ExistingBookFormValues> = async (

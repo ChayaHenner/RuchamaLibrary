@@ -159,7 +159,7 @@ export type NewBookConfirmProps = {
   data: ReaderBorrowing | undefined
 }
 export type ExistingBookFormValues = {
-  bookCode: number  | undefined// |BookInstance | null
+  bookCode: number | undefined // |BookInstance | null
   amount: number
 }
 
@@ -289,4 +289,10 @@ export type BookInstanceLibrary = {
   publisher: PublisherType
   booksNotTaken: number
   booksCount: number
+}
+export type PublisherReport = {
+  id: number
+  name: string
+  bookcount: number
+  publisherprice: number
 }

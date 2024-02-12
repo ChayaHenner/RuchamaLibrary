@@ -29,7 +29,9 @@ export const getTopTen = async (): Promise<TopTenBook[]> => {
     throw error
   }
 }
-export const postBorrow = async (borrow: BorrowBooks):Promise<ReaderBorrowing> => {
+export const postBorrow = async (
+  borrow: BorrowBooks,
+): Promise<ReaderBorrowing> => {
   console.log(borrow)
 
   try {
@@ -38,12 +40,6 @@ export const postBorrow = async (borrow: BorrowBooks):Promise<ReaderBorrowing> =
       borrow,
     )
     console.log(response)
-    Swal.fire({
-      title: 'Borrowed',
-      text: 'Have a good read',
-      icon: 'success',
-      confirmButtonText: 'confirm',
-    })
     return response.data
   } catch (err) {
     console.error(err)

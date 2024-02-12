@@ -4,6 +4,7 @@ import {
   softDelete,
   getPublishers,
   postPublisher,
+  getReport
 } from '../service/publisher.service'
 import { publisherSchema } from '../validation/publisher.validate'
 
@@ -18,6 +19,17 @@ publisherRouter.get(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const data = await getPublishers()
+      res.json(data)
+    } catch (err) {
+      next(err)
+    }
+  },
+)
+publisherRouter.get(
+  '/report',
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const data = await getReport()
       res.json(data)
     } catch (err) {
       next(err)

@@ -81,7 +81,7 @@ function ResponsiveAppBar() {
                     href={page.path}
                     color="inherit"
                   >
-                    headerstylehandleCloseNavMenu {page.label}
+                    {page.label}
                   </Typography>
                 </MenuItem>
               ))}

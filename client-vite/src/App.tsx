@@ -16,6 +16,7 @@ import AddPublisherPage from './pages/addPublisherPage'
 import AddBookPage from './pages/addBookPage'
 import { Typography } from '@mui/material'
 import ResponsiveAppBar from './comps/general/AppBar'
+import PublisherReportPage from './pages/PublisherReportPage'
 const App = () => {
   return (
     <>
@@ -33,6 +34,7 @@ const App = () => {
             <Route path="/addpublisher" element={<AddPublisherPage />} />
             <Route path="/overdue" element={<OverduePage />} />
             <Route path="/booksformnew" element={<AddBookPage />} />
+            <Route path="/report" element={<PublisherReportPage />} />
             <Route path="/profile/:id" element={<UserProfile />} />
             <Route path="*" element={<Typography>404 Error</Typography>} />
           </Routes>

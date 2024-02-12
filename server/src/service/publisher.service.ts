@@ -3,10 +3,12 @@ import {
   findPublishers,
   savePublisher,
   softRemove,
+  findPublisherReport
 } from '../repository/publisher.repository'
 import { Publisher } from '../entities/Publisher'
 
 export const getPublishers = async () => await findPublishers()
+export const getReport = async () => await findPublisherReport()
 
 export const postPublisher = async (publisher: Publisher) =>
   await savePublisher(publisher)
