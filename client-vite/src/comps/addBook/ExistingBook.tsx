@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react'
-import { useForm, SubmitHandler, FormProvider } from 'react-hook-form'
+import { useForm, SubmitHandler, FormProvider, Resolver } from 'react-hook-form'
 import {
   Autocomplete,
   TextField,
@@ -12,8 +12,8 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import NewBookConfirm from './NewBookConfirm'
 import { existingBookSchema } from '../../utils/schemas'
 import {
+  BookConfirmNewest,
   BookInstance,
-  BookResponse,
   ExistingBookFormValues,
 } from '../../utils/types'
 import { getBookInstances } from '../../api/bookinstances'
@@ -22,11 +22,11 @@ import { addbookstyle } from './addbook.styles'
 
 const ExistingBook: FC = () => {
   const [books, setBooks] = useState<BookInstance[]>([])
-  const [newbooks, setNewBooks] = useState<BookResponse>()
+  const [newbooks, setNewBooks] = useState<BookConfirmNewest>()
   const [confirm, setConfirm] = useState<boolean>(false)
 
   const methods = useForm<ExistingBookFormValues>({
-    resolver: yupResolver(existingBookSchema),
+    resolver: yupResolver(existingBookSchema) as Resolver<ExistingBookFormValues>,
   })
 
   const onSubmit: SubmitHandler<ExistingBookFormValues> = async (
@@ -45,7 +45,6 @@ const ExistingBook: FC = () => {
         console.error(error)
       }
     }
-
     fetchBooks()
   }, [])
 

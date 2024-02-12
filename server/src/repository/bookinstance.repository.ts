@@ -37,7 +37,7 @@ export const findBookInstancesLibrary = async () => {
 }
 
 export const saveBookInstance = (
-  bookInstance: any, //???
+  bookInstance: any, //?
 ) =>
   BookInstance.save({
     ...bookInstance,
