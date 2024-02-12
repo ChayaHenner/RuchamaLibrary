@@ -23,7 +23,8 @@ const Borrow: React.FC = () => {
   const [books, setBooks] = useState<BookType[]>([])
   const [readers, setReaders] = useState<Reader[]>([])
   const [data, setData] = useState<ReaderBorrowing>()
-  const [selectedBook, setSelectedBook] = useState<number | null>(null)
+  const [selectedBook, setSelectedBook] = useState<BookType | null>(null)
+  const [input, setInput] = useState<string | undefined>()
   const [selectedReader, setSelectedReader] = useState<number | null>()
   const [readerName, setReaderName] = useState<string | null>(null)
   const [selectedItems, setSelectedItems] = useState<BookType[]>([])
@@ -70,23 +71,42 @@ const Borrow: React.FC = () => {
     }
   }
 
-  const addToSelectedItems = () => {
+  const addToSelectedItems = (newItem: any) => {
     console.log('addToSelectedItems')
+    console.log(newItem)
 
-    if (selectedBook !== null) {
-      const isBookAlreadySelected = selectedItems.some(
-        (item) => item.id === selectedBook,
-      )
-      if (!isBookAlreadySelected) {
-        const selectedBookInfo = books.find((book) => book.id === selectedBook)
-        if (selectedBookInfo) {
-          setSelectedItems((prevItems) => [...prevItems, selectedBookInfo])
-        }
-      } else {
-        console.log('Book is already selected!')
-      }
+    if (newItem !== null) {
+      // const isBookAlreadySelected = selectedItems.some(
+      //   (item) => item.id === newItem,
+      // )
+      // if (!isBookAlreadySelected) {
+      //   const selectedBookInfo = books.find((book) => book.id === newItem)
+      //   if (selectedBookInfo) {
+      setSelectedItems((prevItems) => [...prevItems, newItem])
+      setSelectedBook(null)
+      //     }
+      //   } else {
+      //     console.log('Book is already selected!')
+      //   }
     }
   }
+  // const addToSelectedItems = () => {
+  //   console.log('addToSelectedItems')
+
+  //   if (selectedBook !== null) {
+  //     const isBookAlreadySelected = selectedItems.some(
+  //       (item) => item.id === selectedBook,
+  //     )
+  //     if (!isBookAlreadySelected) {
+  //       const selectedBookInfo = books.find((book) => book.id === selectedBook)
+  //       if (selectedBookInfo) {
+  //         setSelectedItems((prevItems) => [...prevItems, selectedBookInfo])
+  //       }
+  //     } else {
+  //       console.log('Book is already selected!')
+  //     }
+  //   }
+  // }
 
   const filteredBooks = books.filter(
     (book) => !selectedItems.some((item) => item.id === book.id),
@@ -128,14 +148,16 @@ const Borrow: React.FC = () => {
                       setReaderName(null)
                     }}
                   >
-                    Change
+                    Change Reader
                   </Button>
                 </Grid>
               </>
             )}
             <Box sx={borrowstyle.flex}>
               <FormControl sx={borrowstyle.widthform}>
+              
                 <Autocomplete
+                
                   sx={borrowstyle.button}
                   disabled={readerName === null}
                   options={filteredBooks}
@@ -145,23 +167,17 @@ const Borrow: React.FC = () => {
                   renderInput={(params) => (
                     <TextField {...params} label="book" />
                   )}
-                  value={null}
+                  value={selectedBook}
                   onChange={(_, value) => {
-                    setSelectedBook(value?.id || null)
-                    // addToSelectedItems()///add automatic
-                    console.log('hi')
+                    addToSelectedItems(value)
+                    setSelectedBook(null)
                   }}
+          
+                  blurOnSelect={true}
+                  disableCloseOnSelect={true}
                 />
               </FormControl>
 
-              <Button
-                variant="contained"
-                sx={borrowstyle.button}
-                onClick={addToSelectedItems}
-                disabled={readerName === null}
-              >
-                Borrow
-              </Button>
             </Box>
             <Button
               variant="outlined"
