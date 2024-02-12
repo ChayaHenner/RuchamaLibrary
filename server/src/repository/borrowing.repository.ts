@@ -44,48 +44,12 @@ export const findBorrowingByReader = async (id: number) => {
       return borrowingWithoutReader
     })
 
-  // const history = borrowings.filter(
-  //   (borrowing: Borrowing) => borrowing.dateReturned != null,
-  // )
-
   return {
     ...readerData,
     toReturn,
     history,
   }
 }
-// export const findBorrowingByReader = (id: number) => {
-//   const result = libraryData
-//     .getRepository(Borrowing)
-//     .createQueryBuilder('borrowing')
-//     .leftJoinAndSelect('borrowing.book', 'book')
-//     .leftJoinAndSelect('borrowing.reader', 'reader')
-//     .leftJoinAndSelect('book.bookCode', 'bookinstance')
-//     .andWhere('reader.id = :readerId', { readerId: id })
-//     .select([
-//       'reader.id',
-//       'reader.name',
-//       'reader.email',
-//       `JSON_AGG(CASE WHEN borrowing.dateReturned IS NULL THEN jsonb_build_object('id', book.id, 'book_instance', to_jsonb(bookinstance), 'dateBorrowed', borrowing.dateBorrowed, 'borrowing_id', borrowing.id) END) FILTER(WHERE borrowing.dateReturned IS NULL) AS toreturn`,
-//       `JSON_AGG(CASE WHEN borrowing.dateReturned IS NOT NULL THEN jsonb_build_object('id', book.id, 'book_instance', to_jsonb(bookinstance), 'dateBorrowed', borrowing.dateBorrowed, 'borrowing_id', borrowing.id, 'dateReturned', borrowing.dateReturned) END) FILTER(WHERE borrowing IS NOT NULL) AS history`,
-//     ])
-//     .groupBy('reader.id,reader.name,reader.email ')
-//     .getRawOne()
-
-//   if (!result) {
-//     const readerInfo = libraryData
-//       .getRepository(Reader)
-//       .createQueryBuilder('reader')
-//       .select(['reader.id', 'reader.name', 'reader.email'])
-//       .where('reader.id = :readerId', { readerId: id })
-//       .getRawOne()
-
-//     console.log('Reader info:', readerInfo)
-
-//     return readerInfo
-//   }
-//   return result
-// }
 
 export const findBorrowings = async () => await Borrowing.find()
 
@@ -125,14 +89,9 @@ export const updateBookTaken = async (id: number) => {
 
 export const updateBookNotTaken = async (id: number) => {
   let book = await Book.findOne({ where: { id } })
-  console.log(book)
-
   if (book) {
     book!.bookTaken = false
-    console.log('changed to false')
-
-    await Book.save(book)
-    return book
+    return await Book.save(book)
   }
 }
 
@@ -152,8 +111,7 @@ export const getTwoWeeksPassedDB = async () => {
     .leftJoinAndSelect('book.bookCode', 'bookinstance')
     .where('borrowing.dateReturned IS NULL')
     .andWhere('reader.id IS NOT NULL') // readers that were deleted... problomatic
-    .andWhere("borrowing.dateBorrowed < NOW() - INTERVAL '5 days'")
-
+    .andWhere("borrowing.dateBorrowed < NOW() - INTERVAL '5 days'") //2 weeks
     .select([
       'reader.id',
       'reader.name',
@@ -164,4 +122,42 @@ export const getTwoWeeksPassedDB = async () => {
     .getRawMany()
 
   return TwoWeeksPassed
+}
+
+export const createManyBorrowings = async (borrows: any) => {
+  const { reader, ids } = borrows
+  const readerBorrow = await Reader.findOne({
+    where: { id: reader },
+    relations: ['borrowings'],
+  })
+
+  if (!readerBorrow) {
+    throw new Error('Reader not found')
+  }
+
+  for (const id of ids) {
+    const b = await Book.findOne({ where: { id } })
+    if (!b || b.bookTaken) {
+      throw new Error(
+        `Invalid book ID ${id} or book already taken.borrow unsuccessful`,
+      )
+    }
+
+    const borrowings: Borrowing[] = []
+    for (const book of ids) {
+      const borrowing = new Borrowing()
+      const b = await Book.findOne({ where: { id: book } })
+      if (b) {
+        borrowing.book = b
+        // borrowing.reader = readerBorrow
+        await updateBookTaken(book)
+        await Borrowing.save(borrowing)
+        borrowings.push(borrowing)
+      }
+    }
+    readerBorrow.borrowings.push(...borrowings)
+    await readerBorrow.save()
+    readerBorrow.borrowings = borrowings
+    return readerBorrow
+  }
 }

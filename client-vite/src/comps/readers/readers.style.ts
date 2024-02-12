@@ -2,7 +2,6 @@ import { styled } from '@mui/system'
 import { Card } from '@mui/material'
 import { CustomCardProps } from '../../utils/types'
 
-
 export const readerstyle = {
   button: {
     position: 'fixed',
@@ -31,7 +30,6 @@ export const readerstyle = {
   inlinetypo: { display: 'inline' },
   cardreader: { height: '100%', display: 'flex', flexDirection: 'column' },
 }
-
 
 export const CustomCard = styled(Card)<CustomCardProps>(
   ({ inLib, categoryColor }) => ({

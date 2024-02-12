@@ -15,8 +15,8 @@ const errorHandler = (
       info: err.message,
     })
   }
-console.log(err);
-console.log(typeof err);
+  console.log(err)
+  console.log(typeof err)
 
   res.status(500).json({
     error: 'Internal Server Error',

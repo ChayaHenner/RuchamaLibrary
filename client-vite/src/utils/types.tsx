@@ -82,9 +82,16 @@ export type Reader = {
   dob: string
   dateDeleted: string | null
 }
+export type ReaderBorrowing = {
+  id: number
+  name: string
+  email: string
+  dob: string
+  dateDeleted: string | null
+  borrowings: BorrowedBook[]
+}
 
 export type BorrowedBook = {
-  reader: Reader
   book: BookType
   dateReturned: string | null
   id: number
@@ -149,7 +156,7 @@ export type BorrowBooks = {
 }
 
 export type NewBookConfirmProps = {
-  data: BorrowedBook[]
+  data: ReaderBorrowing
 }
 export type ExistingBookFormValues = {
   bookCode?: number

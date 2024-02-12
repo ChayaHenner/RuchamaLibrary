@@ -11,6 +11,7 @@ import {
   updateBookTaken,
   returnBorrowingDB,
   updateBookNotTaken,
+  createManyBorrowings,
 } from '../repository/borrowing.repository'
 
 export const getBorrowing = async () => await findBorrowings()
@@ -37,37 +38,8 @@ export const postBorrowBook = async (borrow: any): Promise<any> => {
   }
 }
 
-export const postBorrowMany = async (borrows: any) => {
-  const borrowedarray: any[] = []
-  const reader = await findReaderDB(borrows.reader)
-
-  for (const id of borrows.ids) {
-    const book = await findBookDB(id)
-
-    if (book && reader) {
-      const bookTaken = await checkBookTaken(id)
-
-      if (!bookTaken) {
-        const borrow = {
-          book: book,
-          reader: reader,
-        }
-
-        await updateBookTaken(id)
-        const newBorrowing = await createBorrowingDB(borrow)
-        borrowedarray.push(newBorrowing)
-      } else {
-        throw new Error(
-          `book ${id} not in library.only added books until this one`,
-        )
-      }
-    } else {
-      throw new Error('book or reader not exist')
-    }
-  }
-
-  return borrowedarray
-}
+export const postBorrowMany = async (borrows: any) =>
+  await createManyBorrowings(borrows)
 
 export const postReturnBook = async (borrow: any) => {
   const returnbook = returnBorrowingDB(borrow.id)

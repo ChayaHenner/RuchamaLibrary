@@ -39,7 +39,7 @@ const Borrow: React.FC = () => {
       }
     }
     console.log(location.state)
-    if (location.state!=null) {
+    if (location.state != null) {
       console.log(location.state)
 
       setReaderName(location?.state.name)

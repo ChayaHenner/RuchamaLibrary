@@ -1,11 +1,17 @@
 import { GridColDef } from '@mui/x-data-grid'
 export const columns: GridColDef[] = [
-  { field: 'id', headerName: 'Book ID', width: 100 },
+  { field: 'id', headerName: 'Borrow ID', width: 100 },
   {
     field: 'name',
     headerName: 'Book Name',
     width: 200,
     valueGetter: (params) => params.row.book.bookCode.name,
+  },
+  {
+    field: 'bookid',
+    headerName: 'Book ID',
+    width: 200,
+    valueGetter: (params) => params.row.book.id,
   },
   {
     field: 'author',
