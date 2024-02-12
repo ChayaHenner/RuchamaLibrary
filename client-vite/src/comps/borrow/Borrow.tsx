@@ -28,6 +28,7 @@ const Borrow: React.FC = () => {
   const [selectedReader, setSelectedReader] = useState<number | null>()
   const [readerName, setReaderName] = useState<string | null>(null)
   const [selectedItems, setSelectedItems] = useState<BookType[]>([])
+  const [selectedMultiple, setSelectedMultiple] = useState<BookType[]>([])
   const location = useLocation()
 
   useEffect(() => {
@@ -70,6 +71,27 @@ const Borrow: React.FC = () => {
       console.warn('Please select books to borrow.')
     }
   }
+  const handleBorrowMultiple = async () => {
+    if (selectedMultiple.length > 0) {
+      try {
+        const bookIds = selectedMultiple.map((item) => item.id)
+        const readerId = selectedReader
+        const request = {
+          reader: readerId,
+          ids: bookIds,
+        }
+        const data = await postBorrow(request)
+        console.log(data)
+        setConfirm(true)
+        setData(data)
+        setSelectedItems([])
+      } catch (error) {
+        console.error('Error making the request:', error)
+      }
+    } else {
+      console.warn('Please select books to borrow.')
+    }
+  }
 
   const addToSelectedItems = (newItem: any) => {
     console.log('addToSelectedItems')
@@ -90,27 +112,12 @@ const Borrow: React.FC = () => {
       //   }
     }
   }
-  // const addToSelectedItems = () => {
-  //   console.log('addToSelectedItems')
 
-  //   if (selectedBook !== null) {
-  //     const isBookAlreadySelected = selectedItems.some(
-  //       (item) => item.id === selectedBook,
-  //     )
-  //     if (!isBookAlreadySelected) {
-  //       const selectedBookInfo = books.find((book) => book.id === selectedBook)
-  //       if (selectedBookInfo) {
-  //         setSelectedItems((prevItems) => [...prevItems, selectedBookInfo])
-  //       }
-  //     } else {
-  //       console.log('Book is already selected!')
-  //     }
-  //   }
-  // }
 
-  const filteredBooks = books.filter(
-    (book) => !selectedItems.some((item) => item.id === book.id),
-  )
+  const filteredBooks = books
+  // .filter(
+  //   (book) => !selectedItems.some((item) => item.id === book.id),
+  // )
 
   return (
     <Container>
@@ -154,10 +161,9 @@ const Borrow: React.FC = () => {
               </>
             )}
             <Box sx={borrowstyle.flex}>
-              <FormControl sx={borrowstyle.widthform}>
+              {/* <FormControl sx={borrowstyle.widthform}>
               
                 <Autocomplete
-                
                   sx={borrowstyle.button}
                   disabled={readerName === null}
                   options={filteredBooks}
@@ -176,10 +182,41 @@ const Borrow: React.FC = () => {
                   blurOnSelect={true}
                   disableCloseOnSelect={true}
                 />
+              </FormControl> */}
+              <FormControl sx={borrowstyle.widthform}>
+              
+                <Autocomplete
+                multiple
+                  sx={borrowstyle.button}
+                  disabled={readerName === null}
+                  options={filteredBooks}
+                  getOptionLabel={(option) =>
+                    `(${option.id})   ${option.bookCode.name} - ${option.bookCode.author} `
+                  }
+                  renderInput={(params) => (
+                    <TextField {...params} label="book" />
+                  )}
+                  onChange={(_, value) => {
+                    console.log(value);
+                    setSelectedMultiple(value)
+                  }}
+          
+                  blurOnSelect={true}
+                  disableCloseOnSelect={true}
+                />
               </FormControl>
 
             </Box>
             <Button
+              variant="contained"
+              color="primary"
+              onClick={handleBorrowMultiple}
+              sx={borrowstyle.h3}
+              disabled={readerName === null || selectedMultiple.length == 0}
+            >
+              Complete Borrow Multiple
+            </Button>
+            {/* <Button
               variant="outlined"
               color="primary"
               onClick={handleBorrow}
@@ -187,7 +224,7 @@ const Borrow: React.FC = () => {
               disabled={readerName === null || selectedItems.length == 0}
             >
               Complete Borrow
-            </Button>
+            </Button> */}
           </Box>
 
           <Box sx={borrowstyle.box}>
