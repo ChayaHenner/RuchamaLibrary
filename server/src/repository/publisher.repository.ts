@@ -8,7 +8,7 @@ export const findPublishers = () =>
     .select(['publisher.id', 'publisher.name'])
     .getMany()
 
-export const savePublisher = (publisher:Publisher) =>
+export const savePublisher = (publisher: Publisher) =>
   Publisher.save({ ...publisher })
 
 export const softRemove = async (id: number) => {

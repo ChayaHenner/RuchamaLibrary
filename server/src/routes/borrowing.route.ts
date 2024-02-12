@@ -42,19 +42,6 @@ borrowingRouter.get(
   },
 )
 
-// borrowingRouter.post(
-//   '/borrow',
-//   validate(borrowingSchema),
-//   async (req: Request, res: Response, next: NextFunction) => {
-//     try {
-//       const borrowBook = await postBorrowBook(req.body)
-//       res.status(201).json(borrowBook)
-//     } catch (err) {
-//       next(err)
-//     }
-//   },
-// )
-
 borrowingRouter.post(
   '/borrowmany',
   validate(borrowingManySchema),
@@ -68,18 +55,6 @@ borrowingRouter.post(
   },
 )
 
-// borrowingRouter.post(
-//   '/returnbyid',
-//   validate(returnSchema),
-//   async (req: Request, res: Response, next: NextFunction) => {
-//     try {
-//       const returnBook = await postReturnBook(req.body)
-//       res.status(201).json(returnBook)
-//     } catch (err) {
-//       next(err)
-//     }
-//   },
-// )
 borrowingRouter.post(
   '/returnmany',
   validate(returnManySchema),

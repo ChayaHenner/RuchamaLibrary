@@ -2,6 +2,7 @@ import { BookInstance } from '../entities/BookInstance'
 import { Book } from '../entities/Book'
 import { libraryData } from '../app'
 import { BookInstanceType } from '../types/bookInstance.type'
+import { Publisher } from '../entities/Publisher'
 
 export const findBookInstances = () => BookInstance.find()
 
@@ -35,20 +36,25 @@ export const findBookInstancesLibrary = async () => {
   return library
 }
 
-export const saveBookInstance = (bookInstance: any) =>//???
+export const saveBookInstance = (
+  bookInstance: any, //???
+) =>
   BookInstance.save({
     ...bookInstance,
   })
 
-
-//8
-export const findBookInstanceExists = (
+export const findBookInstanceExists = async (
   bookName: string,
   author: string,
-  publisher: number,
-): Promise<any | null> => {
+  publisherId: number,
+) => {
+  const publisher = await Publisher.findOne({ where: { id: publisherId } })
+  if (!publisher) {
+    return null
+  }
   const bookInstance = BookInstance.findOne({
-    where: { name: bookName, author },
-  }) //,publisher??
+    where: { name: bookName, author, publisher },
+  })
+
   return bookInstance || null
 }

@@ -9,6 +9,6 @@ export type returnBooks = {
   borrowIds: number[]
 }
 export type borrowBooks = {
-  ids: number[],
-  reader: number,
+  ids: number[]
+  reader: number
 }
