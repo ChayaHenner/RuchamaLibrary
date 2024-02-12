@@ -5,3 +5,10 @@ export type BookInstanceType = {
   category: string
   publisher: number
 }
+export type returnBooks = {
+  borrowIds: number[]
+}
+export type borrowBooks = {
+  ids: number[],
+  reader: number,
+}

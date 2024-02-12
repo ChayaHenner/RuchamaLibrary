@@ -1,3 +1,4 @@
+import { Reader } from '../entities/Reader'
 import {
   findReaders,
   saveReader,
@@ -7,6 +8,6 @@ import {
 export const getReaders = async (searchTerm: string) =>
   await findReaders(searchTerm)
 
-export const postReader = async (reader: any) => await saveReader(reader)
+export const postReader = async (reader: Reader) => await saveReader(reader)
 
 export const softDelete = async (id: number) => await softRemove(id)

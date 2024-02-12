@@ -9,7 +9,7 @@ export const findBooks = () => Book.find()
 
 export const findBooksLibrary = () => Book.find({ where: { bookTaken: false } })
 
-export const saveBook = (bookCode: any) => Book.save({ bookCode })
+export const saveBook = (bookCode: any) => Book.save({ bookCode })//??
 
 export const softRemove = async (id: number) => {
   const book = await Book.findOneOrFail({
@@ -18,7 +18,8 @@ export const softRemove = async (id: number) => {
   return book.softRemove()
 }
 
-export const saveExistingBook = async (books: any) => {
+export const saveExistingBook = async (books: ExistingBookReal) => {
+  
   const bookInstance = await BookInstance.findOne({
     where: { bookCode: books.bookCode },
     relations: ['books'],

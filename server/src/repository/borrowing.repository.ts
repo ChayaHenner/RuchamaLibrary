@@ -2,6 +2,7 @@ import { Borrowing } from '../entities/Borrowing'
 import { Book } from '../entities/Book'
 import { Reader } from '../entities/Reader'
 import { libraryData } from '../app'
+import { Borrows } from '../types/borrowing.types'
 
 export const findTopTenBooks = () => {
   return libraryData
@@ -62,7 +63,7 @@ export const findReaderDB = async (id: number) =>
 export const findBorrow = async (id: number) =>
   await Borrowing.findOne({ where: { id } })
 
-export const createBorrowingDB = async (borrowing: any) => {
+export const createBorrowingDB = async (borrowing: Borrowing) => {
   return Borrowing.save({
     ...borrowing,
   })
@@ -124,7 +125,7 @@ export const getTwoWeeksPassedDB = async () => {
   return TwoWeeksPassed
 }
 
-export const createManyBorrowings = async (borrows: any) => {
+export const createManyBorrowings = async (borrows: Borrows) => {
   const { reader, ids } = borrows
   const readerBorrow = await Reader.findOne({
     where: { id: reader },

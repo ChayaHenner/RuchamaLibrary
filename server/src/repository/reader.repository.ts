@@ -14,7 +14,7 @@ export const findReaders = (searchTerm: string) => {
   return Reader.find(options)
 }
 
-export const saveReader = (reader: any) => {
+export const saveReader = (reader: Reader) => {
   return Reader.save({
     name: reader.name,
     email: reader.email,

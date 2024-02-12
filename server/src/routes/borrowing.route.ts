@@ -6,8 +6,6 @@ import {
   postBorrowMany,
   toptenbooks,
   getBorrowing,
-  postBorrowBook,
-  postReturnBook,
   twoweekspassed,
 } from '../service/borrowing.service'
 import {

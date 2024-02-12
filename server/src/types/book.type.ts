@@ -6,7 +6,7 @@ export type ExistingBook = {
   amount: number
 }
 export type ExistingBookReal = {
-  bookCode: BookInstance
+  bookCode: number
   amount: number
 }
 export type NewBook = {

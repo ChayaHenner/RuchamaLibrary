@@ -39,10 +39,9 @@ export const postBooks = async (books: ExistingBook) => {
 //   return newBookReport
 // }
 
-export const postNewBooks = async (books: NewBook) => {
-  const newBookReport = await saveNewBooks(books)
-  return newBookReport
-}
+export const postNewBooks = async (books: NewBook) => await saveNewBooks(books)
+
+
 // export const postNewBooks = async (books: NewBook) => {
 //   const existingBookInstance = await findBookInstanceExists(
 //     books.name,
