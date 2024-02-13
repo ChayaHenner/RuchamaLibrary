@@ -6,15 +6,28 @@ import { publisherSchema } from './addpublisher.config'
 import { PublisherForm } from '../../utils/types'
 import { postPublisher } from '../../api/publisher'
 import { addpublisherstyle } from './addpublisher.style'
+import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router-dom'
 
 const AddPublisher: FC = () => {
   const { register, handleSubmit, formState } = useForm<PublisherForm>({
     resolver: yupResolver(publisherSchema),
   })
+  const navigate = useNavigate()
 
   const onSubmit: SubmitHandler<PublisherForm> = async (data) => {
     console.log(data)
-    await postPublisher(data)
+    const resp = await postPublisher(data)
+      Swal.fire({
+        title: ` Added Publisher ${resp.name}! `,
+        icon: 'success',
+      })
+      .then( () => {
+      window.location.reload
+      navigate('/report');
+      console.log("here");
+      });
+    
   }
 
   return (

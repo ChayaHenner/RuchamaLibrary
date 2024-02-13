@@ -4,7 +4,10 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   DeleteDateColumn,
+  OneToMany,
 } from 'typeorm'
+import { Book } from './Book'
+import { BookInstance } from './BookInstance'
 
 @Entity('publisher')
 export class Publisher extends BaseEntity {
@@ -19,4 +22,7 @@ export class Publisher extends BaseEntity {
 
   @DeleteDateColumn()
   dateDeleted: Date
+
+  @OneToMany(() => BookInstance, (book) => book.publisher)
+  bookinstances: BookInstance[]
 }

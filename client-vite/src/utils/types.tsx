@@ -293,6 +293,7 @@ export type BookInstanceLibrary = {
 export type PublisherReport = {
   id: number
   name: string
+  country: string
   bookcount: number
   publisherprice: number
 }

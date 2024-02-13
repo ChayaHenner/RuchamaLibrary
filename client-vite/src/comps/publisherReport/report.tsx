@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getReport } from '../../api/publisher'
+import { getReport, patchDeletePublisher } from '../../api/publisher'
 import { PublisherReport } from '../../utils/types'
 import {
   Table,
@@ -14,6 +14,7 @@ import { button } from './report.style'
 import * as XLSX from 'xlsx'
 // @ts-ignore
 import { saveAs } from 'file-saver'
+import Swal from 'sweetalert2'
 
 const Report = () => {
   const [data, setData] = useState<PublisherReport[]>([])
@@ -38,10 +39,43 @@ const Report = () => {
     saveAs(file, 'publisher_report.xlsx')
   }
 
+const deletePublisher=(id:number)=>{
+console.log(id);
+Swal.fire({
+  title: ' Are you sure?',
+  text: `You want to delete publisher`,
+  icon: 'question',
+  confirmButtonText: 'confirm',
+}).then(async (result) => {
+  if (result.isConfirmed) {
+    try {
+      await patchDeletePublisher(id);
+      Swal.fire({
+        title: 'Deleted!',
+        text: 'publisher no longer exists',
+        icon: 'success',
+        confirmButtonText: 'confirm',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.reload();
+
+        }
+      });
+    } catch {
+      Swal.fire({
+        title: 'Can\'t Delete',
+        text: 'publisher has books in library',
+        icon: 'warning',
+      });
+    }
+  }
+});
+}
+
   return (
     <TableContainer>
-      <Button sx={button} onClick={downloadEXEL}>
-        export exel{' '}
+      <Button sx={button} onClick={downloadEXEL} variant='contained'>
+        export exel
       </Button>
 
       <Table>
@@ -49,8 +83,10 @@ const Report = () => {
           <TableRow>
             <TableCell>Publisher ID</TableCell>
             <TableCell>Publisher Name</TableCell>
+            <TableCell>Country</TableCell>
             <TableCell>Book Count</TableCell>
             <TableCell>Publisher Price</TableCell>
+            <TableCell></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -58,8 +94,10 @@ const Report = () => {
             <TableRow key={report.id}>
               <TableCell>{report.id}</TableCell>
               <TableCell>{report.name}</TableCell>
+              <TableCell>{report.country}</TableCell>
               <TableCell>{report.bookcount}</TableCell>
               <TableCell>{report.publisherprice}</TableCell>
+              <TableCell><Button onClick={()=>{deletePublisher(report.id)}}>delete</Button></TableCell>
             </TableRow>
           ))}
         </TableBody>

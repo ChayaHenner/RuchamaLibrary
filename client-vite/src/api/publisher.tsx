@@ -32,9 +32,21 @@ export const postPublisher = async (publisher: PublisherForm) => {
       'http://localhost:5000/publishers',
       publisher,
     )
-    alert('publisher added')
     return response.data
   } catch (err) {
     console.error(err)
+  }
+}
+export const patchDeletePublisher = async (
+  id: number 
+) => {
+  try {
+    const response = await axios.patch(
+      `http://localhost:5000/publishers/${id}/soft-delete`,
+    )
+    // console.log(response.data)
+    return response.data
+  } catch (error) {
+    throw error
   }
 }
