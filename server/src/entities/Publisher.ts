@@ -8,20 +8,16 @@ import {
 } from 'typeorm'
 import { Book } from './Book'
 import { BookInstance } from './BookInstance'
+import { ObjectEntity } from './Object'
 
 @Entity('publisher')
-export class Publisher extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  id: number
+export class Publisher extends ObjectEntity {
 
   @Column()
   name: string
 
   @Column({ nullable: true })
   country: string
-
-  @DeleteDateColumn()
-  dateDeleted: Date
 
   @OneToMany(() => BookInstance, (book) => book.publisher)
   bookinstances: BookInstance[]

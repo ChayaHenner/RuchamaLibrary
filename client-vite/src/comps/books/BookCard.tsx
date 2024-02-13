@@ -49,8 +49,8 @@ const BookCard: FC<BookCardProp> = ({ book }) => {
   }
 
   return (
-    <Grid key={book.bookCode} item xs={12} sm={6} md={4}>
-      <CustomCard  inlib={book.booksNotTaken > 0 ? "true" : "false"} categorycolor={book.category}>
+    <Grid key={book.bookCode} item xs={12} sm={6} md={4} >
+      <CustomCard  inlib={book.booksNotTaken > 0 ? "true" : "false"} categorycolor={book.category} sx={{position:'relative'}}>
         <CardContent>
           <Typography variant="h3" sx={booksstyle.typography}>
             {book.name}
@@ -63,7 +63,7 @@ const BookCard: FC<BookCardProp> = ({ book }) => {
           </Typography>
           <Divider sx={booksstyle.dividermargins} />
 
-          <Grid container alignItems="baseline">
+          <Grid container alignItems="baseline" >
             <Grid item xs={7}>
               <Typography variant="h5" component="div">
                 Amount {book.booksCount}
@@ -74,7 +74,7 @@ const BookCard: FC<BookCardProp> = ({ book }) => {
                 </Typography>
               )}
             </Grid>
-            <Grid item xs={5} container justifyContent="flex-end">
+            <Grid item xs={5} container justifyContent="flex-end" sx={{position:'absolute',right:'0',bottom:'0'}}>
               <Button onClick={deleteBook} sx={booksstyle.text}>
                 <DeleteRoundedIcon />
               </Button>
@@ -90,7 +90,7 @@ const BookCard: FC<BookCardProp> = ({ book }) => {
                 id="book-info-popover"
                 open={open}
                 anchorEl={anchorEl}
-                onClose={()=>{    setAnchorEl(null) }}
+                onClose={()=>{setAnchorEl(null)}}
                 anchorOrigin={{
                   vertical: 'bottom',
                   horizontal: 'center',

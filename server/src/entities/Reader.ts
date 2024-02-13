@@ -7,11 +7,10 @@ import {
   OneToMany,
 } from 'typeorm'
 import { Borrowing } from './Borrowing'
+import { ObjectEntity } from './Object'
 
 @Entity('reader')
-export class Reader extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  id: number
+export class Reader extends ObjectEntity {
 
   @Column()
   name: string
@@ -22,13 +21,7 @@ export class Reader extends BaseEntity {
   @Column()
   dob: Date
 
-  @DeleteDateColumn()
-  dateDeleted: Date
-
   @OneToMany(() => Borrowing, (borrowing) => borrowing.reader)
   borrowings: Borrowing[]
 
-  // constructor() {
-  //   super()
-  // }
 }

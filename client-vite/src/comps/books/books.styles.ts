@@ -3,10 +3,10 @@ export const booksstyle = {
   dividermargins: { margin: 3 },
   typography: { display: 'inline' },
   text: {
-    borderRadius: '90%', 
+    borderRadius: '30%', 
     padding: '15px', 
-    transition: 'background-color 0.7s ', 
-    textAlign: 'right',
+    // transition: 'background-color 0.7s ', 
+    // textAlign: 'right',
 
   },
 }
