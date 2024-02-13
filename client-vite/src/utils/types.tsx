@@ -113,8 +113,8 @@ export type BookLibrary = {
 }
 
 export type CustomCardProps = {
-  inLib: boolean
-  categoryColor: string
+  inlib: string
+  categorycolor: string
 }
 
 export type BookInstance = {

@@ -18,17 +18,7 @@ import { patchDeleteBook } from '../../api/bookinstances'
 
 const BookCard: FC<BookCardProp> = ({ book }) => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
-
-  const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget)
-  }
-
-  const handlePopoverClose = () => {
-    setAnchorEl(null)
-  }
-
   const open = Boolean(anchorEl)
-
   const deleteBook = async () => {
     Swal.fire({
       title: ' Are you sure?',
@@ -60,7 +50,7 @@ const BookCard: FC<BookCardProp> = ({ book }) => {
 
   return (
     <Grid key={book.bookCode} item xs={12} sm={6} md={4}>
-      <CustomCard inLib={book.booksNotTaken > 0} categoryColor={book.category}>
+      <CustomCard  inlib={book.booksNotTaken > 0 ? "true" : "false"} categorycolor={book.category}>
         <CardContent>
           <Typography variant="h3" sx={booksstyle.typography}>
             {book.name}
@@ -91,7 +81,7 @@ const BookCard: FC<BookCardProp> = ({ book }) => {
               <Button
                 aria-owns={open ? 'book-info-popover' : undefined}
                 aria-haspopup="true"
-                onClick={handlePopoverOpen}
+                onClick={(e)=>{ setAnchorEl(e.currentTarget)}}
                 sx={booksstyle.text}
               >
                 <MoreVertRoundedIcon />
@@ -100,7 +90,7 @@ const BookCard: FC<BookCardProp> = ({ book }) => {
                 id="book-info-popover"
                 open={open}
                 anchorEl={anchorEl}
-                onClose={handlePopoverClose}
+                onClose={()=>{    setAnchorEl(null) }}
                 anchorOrigin={{
                   vertical: 'bottom',
                   horizontal: 'center',
@@ -112,9 +102,9 @@ const BookCard: FC<BookCardProp> = ({ book }) => {
               >
                 <Typography variant="body2" sx={{ p: 2 }}>
                   {book.books.map((bookItem) => (
-                    <Grid container>
+                    <Grid container key={bookItem.id} >
                       <Typography >{bookItem.id} </Typography>
-                      {bookItem.bookTaken?(<Typography key={bookItem.id}> taken</Typography>):(<Typography key={bookItem.id}>  here</Typography>)}
+                      {bookItem.bookTaken?(<Typography key={bookItem.id}>&nbsp;taken </Typography>):(<Typography key={bookItem.id}>&nbsp;here </Typography>)}
                     </Grid>
                   ))}
                 </Typography>

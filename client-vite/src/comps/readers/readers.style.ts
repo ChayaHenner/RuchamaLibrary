@@ -34,14 +34,13 @@ export const readerstyle = {
     borderRadius: '90%', 
     padding: '15px', 
     transition: 'background-color 0.7s ', 
-    textAlign: 'right', // Aligns the buttons to the right
-
+    textAlign: 'right', 
   },
 }
 
 export const CustomCard = styled(Card)<CustomCardProps>(
-  ({ inLib, categoryColor }) => ({
-    backgroundColor: inLib ? '#f309a' : '#f5f5f5',
+  ({ inlib, categorycolor }) => ({
+    backgroundColor: inlib=='true' ? '#f309a' : '#f5f5f5',
     minHeight: 220,
     '&:hover': {
       boxShadow: '0px 0px 15px rgba(0, 0, 0.2, 0.1)',
@@ -54,11 +53,11 @@ export const CustomCard = styled(Card)<CustomCardProps>(
       width: '5px',
       height: '100%',
       backgroundColor:
-        categoryColor == 'Teens'
+        categorycolor == 'Teens'
           ? 'lightblue'
-          : categoryColor == 'Adults'
+          : categorycolor == 'Adults'
             ? 'salmon'
-            : categoryColor == 'Children'
+            : categorycolor == 'Children'
               ? 'yellow'
               : 'lightgreen',
     },
