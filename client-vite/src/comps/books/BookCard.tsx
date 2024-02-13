@@ -1,13 +1,44 @@
-import { Grid, CardContent, Typography, Divider } from '@mui/material'
+import { Grid, CardContent, Typography, Divider, Button } from '@mui/material'
 import { FC } from 'react'
-// import { CustomCard } from '../general/styles'
 import { BookCardProp } from '../../utils/types'
 import { booksstyle } from './books.styles'
 import { CustomCard } from '../readers/readers.style'
+import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded'
+import Swal from 'sweetalert2'
+import { patchDeleteBook } from '../../api/bookinstances'
 
 const BookCard: FC<BookCardProp> = ({ book }) => {
   console.log(book)
-
+  const deleteBook = async () => {
+    Swal.fire({
+      title: ' Are you sure?',
+      text: `You want to delete book ${book.name}`,
+      icon: 'question',
+      confirmButtonText: 'confirm',
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await patchDeleteBook(book.bookCode);
+          Swal.fire({
+            title: 'Deleted!',
+            text: ` book ${book.name}`,
+            icon: 'success',
+            confirmButtonText: 'confirm',
+          }).then(() => {
+            
+              window.location.reload();
+           
+          });
+        } catch {
+          Swal.fire({
+            title: 'Can\'t Delete',
+            text: 'Not all books are in Library',
+            icon: 'warning',
+          });
+        }
+      }
+    });
+  };
   return (
     <Grid key={book.bookCode} item xs={12} sm={6} md={4} lg={3}>
       <CustomCard inLib={book.booksNotTaken > 0} categoryColor={book.category}>
@@ -33,6 +64,9 @@ const BookCard: FC<BookCardProp> = ({ book }) => {
               In library {book.booksNotTaken}
             </Typography>
           )}
+           <Button onClick={deleteBook}>
+              <DeleteRoundedIcon />
+            </Button>
         </CardContent>
       </CustomCard>
     </Grid>
