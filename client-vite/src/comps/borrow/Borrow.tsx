@@ -50,27 +50,27 @@ const Borrow: React.FC = () => {
     fetchData()
   }, [])
 
-  const handleBorrow = async () => {
-    if (selectedItems.length > 0) {
-      try {
-        const bookIds = selectedItems.map((item) => item.id)
-        const readerId = selectedReader
-        const request = {
-          reader: readerId,
-          ids: bookIds,
-        }
-        const data = await postBorrow(request)
-        console.log(data)
-        setConfirm(true)
-        setData(data)
-        setSelectedItems([])
-      } catch (error) {
-        console.error('Error making the request:', error)
-      }
-    } else {
-      console.warn('Please select books to borrow.')
-    }
-  }
+  // const handleBorrow = async () => {
+  //   if (selectedItems.length > 0) {
+  //     try {
+  //       const bookIds = selectedItems.map((item) => item.id)
+  //       const readerId = selectedReader
+  //       const request = {
+  //         reader: readerId,
+  //         ids: bookIds,
+  //       }
+  //       const data = await postBorrow(request)
+  //       console.log(data)
+  //       setConfirm(true)
+  //       setData(data)
+  //       setSelectedItems([])
+  //     } catch (error) {
+  //       console.error('Error making the request:', error)
+  //     }
+  //   } else {
+  //     console.warn('Please select books to borrow.')
+  //   }
+  // }
   const handleBorrowMultiple = async () => {
     if (selectedMultiple.length > 0) {
       try {

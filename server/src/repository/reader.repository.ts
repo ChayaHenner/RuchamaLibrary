@@ -1,3 +1,4 @@
+import { Borrowing } from '../entities/Borrowing'
 import { Reader } from '../entities/Reader'
 import { FindManyOptions, ILike, Equal } from 'typeorm'
 
@@ -7,6 +8,7 @@ export const findReaders = (searchTerm: string) => {
     options.where = [
       { name: ILike(`%${searchTerm}%`) },
       { email: ILike(`%${searchTerm}%`) },
+      // { id: ILike(`%${id}%`) },
       // { id: Equal(Number(searchTerm)) },
     ]
   }
@@ -23,8 +25,17 @@ export const saveReader = (reader: Reader) => {
 }
 
 export const softRemove = async (id: number) => {
-  const reader = await Reader.findOneOrFail({
+  const reader = await Reader.findOne({
     where: { id },
+    relations: ['borrowings'],
   })
-  return await reader.softRemove()
+  
+  if (reader) {
+    const toReturn = reader.borrowings
+      .filter((borrowing: Borrowing) => borrowing.dateReturned === null)
+      .map((borrowing: Borrowing) =>  borrowing )
+
+    if (toReturn.length == 0) return await reader.softRemove()
+    else throw new Error('Reader has books at home. Cannot delete.');
+  } else throw  new Error('reader does not exist')
 }

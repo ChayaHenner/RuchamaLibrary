@@ -29,6 +29,14 @@ export const readerstyle = {
   },
   inlinetypo: { display: 'inline' },
   cardreader: { height: '100%', display: 'flex', flexDirection: 'column' },
+  //text:{ textDecoration: 'none', color: 'inherit' }
+  text: {
+    borderRadius: '90%', 
+    padding: '15px', 
+    transition: 'background-color 0.7s ', 
+    textAlign: 'right', // Aligns the buttons to the right
+
+  },
 }
 
 export const CustomCard = styled(Card)<CustomCardProps>(

@@ -1,10 +1,12 @@
-import { Grid, Card, CardContent, Typography } from '@mui/material'
+import { Grid, Card, CardContent, Typography, Button } from '@mui/material'
 import { Link } from 'react-router-dom'
 import { FC } from 'react'
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined'
 import { ReaderCardProp } from '../../utils/types'
 import { readerstyle } from './readers.style'
-
+import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded'
+import { patchDeleteReader } from '../../api/reader'
+import Swal from 'sweetalert2'
+import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded'
 const ReaderCard: FC<ReaderCardProp> = ({ reader }) => {
   const calculateAge = (dob: string) => {
     const birthDate = new Date(dob)
@@ -20,6 +22,27 @@ const ReaderCard: FC<ReaderCardProp> = ({ reader }) => {
     return age
   }
 
+  const deleteReader = async () => {
+    try {
+      await patchDeleteReader(reader.id)
+      Swal.fire({
+        title: ' Deleted!',
+        text: 'Reader no longer has account',
+        icon: 'success',
+        confirmButtonText: 'confirm',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.reload()
+        }
+      })
+    } catch {
+      Swal.fire({
+        title: 'Cant Delete',
+        text: 'Reader has books at home',
+        icon: 'warning',
+      })
+    }
+  }
   return (
     <>
       <Grid key={reader.id} item xs={12} sm={6} md={4} lg={4}>
@@ -40,12 +63,16 @@ const ReaderCard: FC<ReaderCardProp> = ({ reader }) => {
             <Typography color="textSecondary">
               age: {calculateAge(reader.dob)}
             </Typography>
-            <Link
+            <Button
+              component={Link}
               to={`/profile/${reader.id}`}
-              style={{ textDecoration: 'none', color: 'inherit' }}
+              sx={readerstyle.text}
             >
-              <AccountCircleOutlinedIcon />
-            </Link>
+              <AccountCircleRoundedIcon />
+            </Button>
+            <Button onClick={deleteReader} sx={readerstyle.text}>
+              <DeleteRoundedIcon />
+            </Button>
           </CardContent>
         </Card>
       </Grid>

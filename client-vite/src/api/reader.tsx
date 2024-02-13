@@ -31,7 +31,20 @@ export const getReaderProfile = async (
     const response = await axios.get(
       `http://localhost:5000/borrowing/reader/${id}`,
     )
-    console.log(response.data)
+    // console.log(response.data)
+    return response.data
+  } catch (error) {
+    throw error
+  }
+}
+export const patchDeleteReader = async (
+  id: number 
+) => {
+  try {
+    const response = await axios.patch(
+      `http://localhost:5000/readers/${id}/soft-delete`,
+    )
+    // console.log(response.data)
     return response.data
   } catch (error) {
     throw error

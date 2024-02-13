@@ -12,7 +12,6 @@ import {
 } from '@mui/material'
 import { button } from './report.style'
 import * as XLSX from 'xlsx'
-
 // @ts-ignore
 import { saveAs } from 'file-saver'
 
