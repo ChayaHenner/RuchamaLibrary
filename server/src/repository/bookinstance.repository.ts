@@ -3,6 +3,7 @@ import { Book } from '../entities/Book'
 import { libraryData } from '../app'
 import { BookInstanceType } from '../types/bookInstance.type'
 import { Publisher } from '../entities/Publisher'
+import { IsNull, Not } from 'typeorm'
 
 export const findBookInstances = () => BookInstance.find()
 
@@ -37,7 +38,7 @@ export const findBookInstancesLibrary = async () => {
 }
 
 export const saveBookInstance = (
-  bookInstance: any, //?
+  bookInstance: any, //??
 ) =>
   BookInstance.save({
     ...bookInstance,
@@ -57,4 +58,48 @@ export const findBookInstanceExists = async (
   })
 
   return bookInstance || null
+}
+
+// export const softRemoveInstance = async (bookCode: number) => {
+//   //change bookCode from 1 to 2 fro all books with bookCode 1
+//   // const books = await Book.find({ where: { bookCode: IsNull()} })
+//   // const booksToUpdate = await Book.find({ where: { bookCode: IsNull()} })
+//   const b = await Book.find({
+//     where: {
+//       bookCode: IsNull(),
+//     },
+//   })
+//   return b
+
+//   // const bookInstance = BookInstance.findOne({
+//   //   where: { bookCode: 80 },
+//   // })
+
+//   // return booksToUpdate
+
+//   // if(bookInstance)
+//   //   await Promise.all(booksToUpdate.map(async (book) => {
+//   //     book.bookCode = bookInstance;
+//   //     await book.save();
+//   //   }));
+// }
+export const softRemoveInstance = async (bookCode: number) => {
+  const bookInstance = await BookInstance.findOne({
+    where: { bookCode },
+    relations: ['books'],
+  })
+
+  if (bookInstance) {
+    console.log(bookInstance);
+    const notAllBooksAreInLib = bookInstance.books.some(book => book.bookTaken);
+
+    if (!notAllBooksAreInLib) {
+      await Promise.all(bookInstance.books.map(async book => {
+        await book.softRemove();
+      }));
+
+      return await bookInstance.softRemove()
+    }
+    else throw new Error('Books of this Book Instance are not in Library.cant erase. Cannot delete.');
+  } else throw  new Error('Book Instance does not exist')
 }

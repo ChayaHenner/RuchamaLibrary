@@ -27,6 +27,9 @@ export class Book extends BaseEntity {
   })
   bookTaken: boolean
 
+  @DeleteDateColumn()
+  dateDeleted: Date
+  
   @OneToMany(() => Borrowing, (borrowing) => borrowing.book)
   borrowings: Borrowing[]
 }

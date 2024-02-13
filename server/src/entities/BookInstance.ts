@@ -36,6 +36,9 @@ export class BookInstance extends BaseEntity {
   })
   category: number
 
+  @DeleteDateColumn()
+  dateDeleted: Date
+
   @OneToMany(() => Book, (book) => book.bookCode) //, { eager: true })
   books: Book[]
 

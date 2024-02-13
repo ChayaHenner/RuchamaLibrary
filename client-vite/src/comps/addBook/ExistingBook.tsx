@@ -10,7 +10,7 @@ import {
 } from '@mui/material'
 import { yupResolver } from '@hookform/resolvers/yup'
 import NewBookConfirm from './NewBookConfirm'
-import { existingBookSchema } from '../../utils/schemas'
+import { existingBookSchema } from './addbook.config'
 import {
   BookConfirmNewest,
   BookInstance,

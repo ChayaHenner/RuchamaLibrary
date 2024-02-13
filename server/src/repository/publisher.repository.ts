@@ -16,11 +16,12 @@ export const findPublisherReport = async () => {
       .createQueryBuilder('book')
       .leftJoinAndSelect('book.bookCode', 'bookInstance')
       .leftJoinAndSelect('bookInstance.publisher', 'publisher')
-      .select(['publisher.id as id', 'publisher.name as name',
-      'CAST(COUNT(book.id) AS INTEGER) as bookCount', // Count of all books for each publisher as integer
-      'CAST(SUM(bookInstance.price) AS INTEGER) as publisherPrice', // Sum of prices of all book instances for each publisher as integer
-
-])
+      .select([
+        'publisher.id as id',
+        'publisher.name as name',
+        'CAST(COUNT(book.id) AS INTEGER) as bookCount', // Count of all books for each publisher as integer
+        'CAST(SUM(bookInstance.price) AS INTEGER) as publisherPrice', // Sum of prices of all book instances for each publisher as integer
+      ])
       .groupBy('publisher.id')
       .getRawMany()
 

@@ -4,6 +4,7 @@ import {
   getBookInstancesLibrary,
   getBookInstances,
   postBooksInstance,
+  softDeleteInstance,
 } from '../service/bookinstance.sevice'
 import { bookInstanceSchema } from '../validation/bookInstance.validate'
 
@@ -33,6 +34,21 @@ booksInstanceRouter.get(
   },
 )
 
+booksInstanceRouter.patch(
+  '/:id/soft-delete',
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const data = await softDeleteInstance(parseInt(req.params.id))
+      res.json(data)
+
+      // res
+      // .status(200)
+      // .json({ message: 'Soft delete successful', reader: readerDelete })
+    } catch (err) {
+      next(err)
+    }
+  },
+)
 // booksInstanceRouter.post(
 //   '/',
 //   validate(bookInstanceSchema),

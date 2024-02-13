@@ -3,7 +3,7 @@ import {
   findPublishers,
   savePublisher,
   softRemove,
-  findPublisherReport
+  findPublisherReport,
 } from '../repository/publisher.repository'
 import { Publisher } from '../entities/Publisher'
 

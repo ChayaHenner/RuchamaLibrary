@@ -4,7 +4,7 @@ import {
   softDelete,
   getPublishers,
   postPublisher,
-  getReport
+  getReport,
 } from '../service/publisher.service'
 import { publisherSchema } from '../validation/publisher.validate'
 

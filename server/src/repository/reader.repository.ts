@@ -29,13 +29,13 @@ export const softRemove = async (id: number) => {
     where: { id },
     relations: ['borrowings'],
   })
-  
+
   if (reader) {
     const toReturn = reader.borrowings
       .filter((borrowing: Borrowing) => borrowing.dateReturned === null)
-      .map((borrowing: Borrowing) =>  borrowing )
+      .map((borrowing: Borrowing) => borrowing)
 
     if (toReturn.length == 0) return await reader.softRemove()
-    else throw new Error('Reader has books at home. Cannot delete.');
-  } else throw  new Error('reader does not exist')
+    else throw new Error('Reader has books at home. Cannot delete.')
+  } else throw new Error('reader does not exist')
 }

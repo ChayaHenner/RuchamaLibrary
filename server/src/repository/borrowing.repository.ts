@@ -25,6 +25,8 @@ export const findBorrowingByReader = async (id: number) => {
   const reader = await Reader.findOne({
     where: { id },
     relations: ['borrowings', 'borrowings.book', 'borrowings.book.bookCode'],
+    withDeleted: true,
+
   })
 
   if (!reader) {

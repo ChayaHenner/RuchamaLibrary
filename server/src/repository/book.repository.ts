@@ -53,7 +53,11 @@ export const saveNewBooks = async (books: NewBook) => {
     .map(() => new Book())
   await Book.save(newBooks)
 
-  bookInstance.books.push(...newBooks)
+  if (bookInstance.books) {
+    bookInstance.books.push(...newBooks);
+  } else {
+    bookInstance.books = newBooks;
+  }
   await BookInstance.save(bookInstance)
   bookInstance.books = newBooks
   return bookInstance

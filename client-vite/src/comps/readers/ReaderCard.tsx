@@ -23,26 +23,36 @@ const ReaderCard: FC<ReaderCardProp> = ({ reader }) => {
   }
 
   const deleteReader = async () => {
-    try {
-      await patchDeleteReader(reader.id)
-      Swal.fire({
-        title: ' Deleted!',
-        text: 'Reader no longer has account',
-        icon: 'success',
-        confirmButtonText: 'confirm',
-      }).then((result) => {
-        if (result.isConfirmed) {
-          window.location.reload()
+    Swal.fire({
+      title: ' Are you sure?',
+      text: `You want to delete reader ${reader.name}`,
+      icon: 'question',
+      confirmButtonText: 'confirm',
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await patchDeleteReader(reader.id);
+          Swal.fire({
+            title: 'Deleted!',
+            text: 'Reader no longer has account',
+            icon: 'success',
+            confirmButtonText: 'confirm',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.reload();
+            }
+          });
+        } catch {
+          Swal.fire({
+            title: 'Can\'t Delete',
+            text: 'Reader has books at home',
+            icon: 'warning',
+          });
         }
-      })
-    } catch {
-      Swal.fire({
-        title: 'Cant Delete',
-        text: 'Reader has books at home',
-        icon: 'warning',
-      })
-    }
-  }
+      }
+    });
+  };
+  
   return (
     <>
       <Grid key={reader.id} item xs={12} sm={6} md={4} lg={4}>

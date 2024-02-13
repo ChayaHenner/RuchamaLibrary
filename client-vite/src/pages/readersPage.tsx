@@ -13,6 +13,7 @@ const ReadersPage = () => {
       <Header title="Readers" />
       <Readers />
       <Button
+      variant='contained'
         sx={readerstyle.button}
         onClick={() => {
           setAddReaderOpen(true)
