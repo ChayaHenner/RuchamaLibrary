@@ -27,7 +27,7 @@ export const saveReader = (reader: Reader) => {
 export const softRemove = async (id: number) => {
   const reader = await Reader.findOne({
     where: { id },
-    relations: ['borrowings'],
+    relations: { borrowings: true },
   })
 
   if (reader) {

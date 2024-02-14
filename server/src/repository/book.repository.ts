@@ -21,7 +21,7 @@ export const softRemove = async (id: number) => {
 export const saveExistingBook = async (books: ExistingBookReal) => {
   const bookInstance = await BookInstance.findOne({
     where: { bookCode: books.bookCode },
-    relations: ['books'],
+    relations: { books: true },
   })
 
   if (!bookInstance) {
@@ -42,7 +42,7 @@ export const saveExistingBook = async (books: ExistingBookReal) => {
 export const saveNewBooks = async (books: NewBook) => {
   const existingBookInstance = await BookInstance.findOne({
     where: { name: books.name, author: books.author },
-    relations: ['books'],
+    relations: { books: true },
   })
   const { amount, ...book } = books
 

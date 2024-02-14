@@ -131,7 +131,7 @@ export const createManyBorrowings = async (borrows: Borrows) => {
   const { reader, ids } = borrows
   const readerBorrow = await Reader.findOne({
     where: { id: reader },
-    relations: ['borrowings'],
+    relations: { borrowings: true },
   })
 
   if (!readerBorrow) {

@@ -60,7 +60,6 @@ export const softRemove = async (id: number) => {
       throw new Error('Publisher has associated books. Cannot delete.')
     } else {
       return await publisher.softRemove();
-      // return publisher
     }
   } else throw new Error('Publisher does not exist.')
 }
