@@ -49,8 +49,12 @@ const BookCard: FC<BookCardProp> = ({ book }) => {
   }
 
   return (
-    <Grid key={book.bookCode} item xs={12} sm={6} md={4} >
-      <CustomCard  inlib={book.booksNotTaken > 0 ? "true" : "false"} categorycolor={book.category} sx={booksstyle.relativegrid}>
+    <Grid key={book.bookCode} item xs={12} sm={6} md={4}>
+      <CustomCard
+        inlib={book.booksNotTaken > 0 ? 'true' : 'false'}
+        categorycolor={book.category}
+        sx={booksstyle.relativegrid}
+      >
         <CardContent>
           <Typography variant="h3" sx={booksstyle.typography}>
             {book.name}
@@ -63,7 +67,7 @@ const BookCard: FC<BookCardProp> = ({ book }) => {
           </Typography>
           <Divider sx={booksstyle.dividermargins} />
 
-          <Grid container alignItems="baseline" >
+          <Grid container alignItems="baseline">
             <Grid item xs={7}>
               <Typography variant="h5" component="div">
                 Amount {book.booksCount}
@@ -74,14 +78,16 @@ const BookCard: FC<BookCardProp> = ({ book }) => {
                 </Typography>
               )}
             </Grid>
-            <Grid item xs={5} container  sx={booksstyle.absolutegrid}>
+            <Grid item xs={5} container sx={booksstyle.absolutegrid}>
               <Button onClick={deleteBook} sx={booksstyle.text}>
                 <DeleteRoundedIcon />
               </Button>
               <Button
                 aria-owns={open ? 'book-info-popover' : undefined}
                 aria-haspopup="true"
-                onClick={(e)=>{ setAnchorEl(e.currentTarget)}}
+                onClick={(e) => {
+                  setAnchorEl(e.currentTarget)
+                }}
                 sx={booksstyle.text}
               >
                 <MoreVertRoundedIcon />
@@ -90,7 +96,9 @@ const BookCard: FC<BookCardProp> = ({ book }) => {
                 id="book-info-popover"
                 open={open}
                 anchorEl={anchorEl}
-                onClose={()=>{setAnchorEl(null)}}
+                onClose={() => {
+                  setAnchorEl(null)
+                }}
                 anchorOrigin={{
                   vertical: 'bottom',
                   horizontal: 'center',
@@ -100,11 +108,15 @@ const BookCard: FC<BookCardProp> = ({ book }) => {
                   horizontal: 'center',
                 }}
               >
-                <Grid  sx={booksstyle.p1}>
+                <Grid sx={booksstyle.p1}>
                   {book.books.map((bookItem) => (
-                    <Grid container key={bookItem.id} >
-                      <Typography >{bookItem.id} </Typography>
-                      {bookItem.bookTaken?(<Typography key={bookItem.id}>&nbsp;taken </Typography>):(<Typography key={bookItem.id}>&nbsp;here </Typography>)}
+                    <Grid container key={bookItem.id}>
+                      <Typography>{bookItem.id} </Typography>
+                      {bookItem.bookTaken ? (
+                        <Typography key={bookItem.id}>&nbsp;taken </Typography>
+                      ) : (
+                        <Typography key={bookItem.id}>&nbsp;here </Typography>
+                      )}
                     </Grid>
                   ))}
                 </Grid>

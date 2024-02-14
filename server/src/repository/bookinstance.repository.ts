@@ -60,7 +60,6 @@ export const findBookInstanceExists = async (
   return bookInstance || null
 }
 
-
 export const softRemoveInstance = async (bookCode: number) => {
   const bookInstance = await BookInstance.findOne({
     where: { bookCode },
@@ -68,16 +67,22 @@ export const softRemoveInstance = async (bookCode: number) => {
   })
 
   if (bookInstance) {
-    console.log(bookInstance);
-    const notAllBooksAreInLib = bookInstance.books.some(book => book.bookTaken);
+    console.log(bookInstance)
+    const notAllBooksAreInLib = bookInstance.books.some(
+      (book) => book.bookTaken,
+    )
 
     if (!notAllBooksAreInLib) {
-      await Promise.all(bookInstance.books.map(async book => {
-        await book.softRemove();
-      }));
+      await Promise.all(
+        bookInstance.books.map(async (book) => {
+          await book.softRemove()
+        }),
+      )
 
       return await bookInstance.softRemove()
-    }
-    else throw new Error('Books of this Book Instance are not in Library.cant erase. Cannot delete.');
-  } else throw  new Error('Book Instance does not exist')
+    } else
+      throw new Error(
+        'Books of this Book Instance are not in Library.cant erase. Cannot delete.',
+      )
+  } else throw new Error('Book Instance does not exist')
 }

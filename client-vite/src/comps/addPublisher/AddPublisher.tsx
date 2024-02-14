@@ -18,16 +18,14 @@ const AddPublisher: FC = () => {
   const onSubmit: SubmitHandler<PublisherForm> = async (data) => {
     console.log(data)
     const resp = await postPublisher(data)
-      Swal.fire({
-        title: ` Added Publisher ${resp.name}! `,
-        icon: 'success',
-      })
-      .then( () => {
+    Swal.fire({
+      title: ` Added Publisher ${resp.name}! `,
+      icon: 'success',
+    }).then(() => {
       window.location.reload
-      navigate('/report');
-      console.log("here");
-      });
-    
+      navigate('/report')
+      console.log('here')
+    })
   }
 
   return (

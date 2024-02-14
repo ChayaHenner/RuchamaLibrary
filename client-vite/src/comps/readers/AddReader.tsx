@@ -2,9 +2,7 @@ import { FC } from 'react'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import { Box, Grid } from '@mui/material'
-// import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { yupResolver } from '@hookform/resolvers/yup'
 import { AddReaderProps, ReaderForm } from '../../utils/types'
 import { SubmitHandler, useForm, FormProvider } from 'react-hook-form'
@@ -32,8 +30,6 @@ const AddReader: FC<AddReaderProps> = ({ onClose }) => {
       confirmButtonText: 'confirm',
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log(reader)
-
         navigate(`/profile/${reader.id}`)
       }
     })

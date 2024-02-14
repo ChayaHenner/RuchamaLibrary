@@ -4,4 +4,4 @@ export const button = {
   right: '100px',
   zIndex: 1000,
 }
-export const TableContainersx = { width: '50%' , margin: '0 auto' }
+export const TableContainersx = { width: '50%', margin: '0 auto' }

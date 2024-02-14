@@ -15,7 +15,7 @@ import { SubmitHandler, useForm, FormProvider } from 'react-hook-form'
 import NewBookConfirm from './NewBookConfirm'
 import { Publisher, BookFormProps, BookConfirmNewest } from '../../utils/types'
 import { CategoryLevels } from './addbook.config'
-import { bookFormSchema } from './addbook.config' 
+import { bookFormSchema } from './addbook.config'
 import { postBook } from '../../api/book'
 import { getPublishers } from '../../api/publisher'
 import { addbookstyle } from './addbook.styles'
@@ -31,7 +31,7 @@ const BookFormNew: FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-  setPublishers(await getPublishers())
+      setPublishers(await getPublishers())
     }
     fetchData()
   }, [])

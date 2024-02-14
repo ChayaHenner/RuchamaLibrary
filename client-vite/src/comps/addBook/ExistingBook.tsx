@@ -40,8 +40,8 @@ const ExistingBook: FC = () => {
 
   useEffect(() => {
     const fetchBooks = async () => {
-        setBooks(await getBookInstances())
-        console.log(books)
+      setBooks(await getBookInstances())
+      console.log(books)
     }
     fetchBooks()
   }, [])

@@ -28,64 +28,63 @@ export const HistoryTable: FC<HistoryTableProps> = ({ history }) => {
       <Typography variant="h3" sx={text}>
         Books History
       </Typography>
-      {history.length>0?
-      (<Grid component={Paper}>
-        <TableContainer>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>book id</TableCell>
-                <TableCell>Book Name</TableCell>
-                <TableCell>Borrowing Id</TableCell>
-                <TableCell>Date Borrowed</TableCell>
-                <TableCell>Date Returned</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {paginatedHistory.map((row) => (
-                <TableRow key={row.id}>
-                  <TableCell align="left">
-                    {row.book.bookCode.bookCode}
-                  </TableCell>
-                  <TableCell>{row.book.bookCode.name}</TableCell>
-                  <TableCell>{row.id}</TableCell>
-                  <TableCell>
-                    {
-                       new Date(row.dateBorrowed).toLocaleString('en-UK', {
-                          weekday: 'short',
-                          year: 'numeric',
-                          month: '2-digit',
-                          day: 'numeric',
-                          hour: 'numeric',
-                          minute: 'numeric',
-                        })
-                      }
-                  </TableCell>
-                  <TableCell>
-                    {
-                       new Date(row.dateReturned).toLocaleString('en-UK', {
-                          weekday: 'short',
-                          year: 'numeric',
-                          month: '2-digit',
-                          day: 'numeric',
-                          hour: 'numeric',
-                          minute: 'numeric',
-                        })
-                     }
-                  </TableCell>
+      {history.length > 0 ? (
+        <Grid component={Paper}>
+          <TableContainer>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>book id</TableCell>
+                  <TableCell>Book Name</TableCell>
+                  <TableCell>Borrowing Id</TableCell>
+                  <TableCell>Date Borrowed</TableCell>
+                  <TableCell>Date Returned</TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <Pagination
-          count={Math.ceil(sortedHistory.length / rowsPerPage)}
-          page={page}
-          onChange={(_, newPage) => {
-            setPage(newPage)
-          }}
-        />
-      </Grid>):(<Typography>none</Typography>)}
+              </TableHead>
+              <TableBody>
+                {paginatedHistory.map((row) => (
+                  <TableRow key={row.id}>
+                    <TableCell align="left">
+                      {row.book.bookCode.bookCode}
+                    </TableCell>
+                    <TableCell>{row.book.bookCode.name}</TableCell>
+                    <TableCell>{row.id}</TableCell>
+                    <TableCell>
+                      {new Date(row.dateBorrowed).toLocaleString('en-UK', {
+                        weekday: 'short',
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: 'numeric',
+                        hour: 'numeric',
+                        minute: 'numeric',
+                      })}
+                    </TableCell>
+                    <TableCell>
+                      {new Date(row.dateReturned).toLocaleString('en-UK', {
+                        weekday: 'short',
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: 'numeric',
+                        hour: 'numeric',
+                        minute: 'numeric',
+                      })}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <Pagination
+            count={Math.ceil(sortedHistory.length / rowsPerPage)}
+            page={page}
+            onChange={(_, newPage) => {
+              setPage(newPage)
+            }}
+          />
+        </Grid>
+      ) : (
+        <Typography>none</Typography>
+      )}
     </Grid>
   )
 }

@@ -54,9 +54,9 @@ export const saveNewBooks = async (books: NewBook) => {
   await Book.save(newBooks)
 
   if (bookInstance.books) {
-    bookInstance.books.push(...newBooks);
+    bookInstance.books.push(...newBooks)
   } else {
-    bookInstance.books = newBooks;
+    bookInstance.books = newBooks
   }
   await BookInstance.save(bookInstance)
   bookInstance.books = newBooks

@@ -36,9 +36,7 @@ export const getReaderProfile = async (
     throw error
   }
 }
-export const patchDeleteReader = async (
-  id: number 
-) => {
+export const patchDeleteReader = async (id: number) => {
   try {
     const response = await axios.patch(
       `http://localhost:5000/readers/${id}/soft-delete`,

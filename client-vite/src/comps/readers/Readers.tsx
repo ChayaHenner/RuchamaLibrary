@@ -9,9 +9,7 @@ const Readers: FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-    
-        setReaders(await getReaders(searchTerm))
-    
+      setReaders(await getReaders(searchTerm))
     }
     fetchData()
   }, [searchTerm])

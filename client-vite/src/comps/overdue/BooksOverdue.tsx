@@ -14,9 +14,7 @@ export default function CollapsibleTable() {
 
   useEffect(() => {
     const fetchReaders = async () => {
-     
-        setReaders(await getOverdueReaders())
-    
+      setReaders(await getOverdueReaders())
     }
     fetchReaders()
   }, [])

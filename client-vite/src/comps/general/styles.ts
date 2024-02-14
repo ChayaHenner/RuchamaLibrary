@@ -1,4 +1,4 @@
-import {  createTheme } from '@mui/material'
+import { createTheme } from '@mui/material'
 import { blueGrey, lightBlue } from '@mui/material/colors'
 
 export const theme = createTheme({

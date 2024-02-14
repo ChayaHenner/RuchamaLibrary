@@ -27,7 +27,6 @@ export const findBorrowingByReader = async (id: number) => {
     relations: { borrowings: { book: { bookCode: true } } },
     withDeleted: true,
   })
- 
 
   if (!reader) {
     throw new Error(`reader with id ${id} not found`)

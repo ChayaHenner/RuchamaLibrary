@@ -31,16 +31,16 @@ export const readerstyle = {
   cardreader: { height: '100%', display: 'flex', flexDirection: 'column' },
   //text:{ textDecoration: 'none', color: 'inherit' }
   text: {
-    borderRadius: '90%', 
-    padding: '15px', 
-    transition: 'background-color 0.7s ', 
-    textAlign: 'right', 
+    borderRadius: '90%',
+    padding: '15px',
+    transition: 'background-color 0.7s ',
+    textAlign: 'right',
   },
 }
 
 export const CustomCard = styled(Card)<CustomCardProps>(
   ({ inlib, categorycolor }) => ({
-    backgroundColor: inlib=='true' ? '#f309a' : '#f5f5f5',
+    backgroundColor: inlib == 'true' ? '#f309a' : '#f5f5f5',
     minHeight: 220,
     '&:hover': {
       boxShadow: '0px 0px 15px rgba(0, 0, 0.2, 0.1)',

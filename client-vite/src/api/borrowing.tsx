@@ -52,7 +52,6 @@ export const postReturn = async (selectedRows: number[]) => {
       { borrowIds: selectedRows },
     )
     console.log(response)
-   
   } catch (err) {
     console.error(err)
   }

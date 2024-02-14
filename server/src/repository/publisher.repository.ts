@@ -25,21 +25,25 @@ export const findPublisherReport = async () => {
       ])
       .groupBy('publisher.id')
       .getRawMany()
-      const allPublishers = await Publisher.find();
+    const allPublishers = await Publisher.find()
 
-      allPublishers.forEach(publisher => {
-        const existingPublisher = publisherReport.find(report => report.id === publisher.id);
-        if (!existingPublisher) {
-          publisherReport.push({
-            id: publisher.id,
-            name: publisher.name,
-            country: publisher.country,
-            bookcount: 0,
-            publisherprice: 0
-          });
-        }
-      });
-      publisherReport.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
+    allPublishers.forEach((publisher) => {
+      const existingPublisher = publisherReport.find(
+        (report) => report.id === publisher.id,
+      )
+      if (!existingPublisher) {
+        publisherReport.push({
+          id: publisher.id,
+          name: publisher.name,
+          country: publisher.country,
+          bookcount: 0,
+          publisherprice: 0,
+        })
+      }
+    })
+    publisherReport.sort((a, b) =>
+      a.name.toLowerCase().localeCompare(b.name.toLowerCase()),
+    )
 
     return publisherReport
   } catch (error) {
@@ -53,13 +57,13 @@ export const savePublisher = (publisher: Publisher) =>
 export const softRemove = async (id: number) => {
   const publisher = await Publisher.findOne({
     where: { id },
-    relations: { bookinstances: { books: true }  },
+    relations: { bookinstances: { books: true } },
   })
   if (publisher) {
     if (publisher.bookinstances.length > 0) {
       throw new Error('Publisher has associated books. Cannot delete.')
     } else {
-      return await publisher.softRemove();
+      return await publisher.softRemove()
     }
   } else throw new Error('Publisher does not exist.')
 }

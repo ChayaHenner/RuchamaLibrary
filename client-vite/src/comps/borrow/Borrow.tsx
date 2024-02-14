@@ -30,14 +30,12 @@ const Borrow: React.FC = () => {
   const [selectedItems, setSelectedItems] = useState<BookType[]>([])
   const [selectedMultiple, setSelectedMultiple] = useState<BookType[]>([])
   const location = useLocation()
-  document.title =readerName?`${readerName} borrowing`:` borrowing`;
+  document.title = readerName ? `${readerName} borrowing` : ` borrowing`
 
   useEffect(() => {
     const fetchData = async () => {
-    
-        setBooks(await getBooksInLibrary())
-        setReaders(await getReaders(undefined))
-  
+      setBooks(await getBooksInLibrary())
+      setReaders(await getReaders(undefined))
     }
     console.log(location.state)
     if (location.state != null) {
@@ -72,26 +70,24 @@ const Borrow: React.FC = () => {
   // }
   const handleBorrowMultiple = async () => {
     if (selectedMultiple.length > 0) {
-      
-        const bookIds = selectedMultiple.map((item) => item.id)
-        const readerId = selectedReader
-        const request = {
-          reader: readerId,
-          ids: bookIds,
-        }
-        const data = await postBorrow(request)
-        console.log(data)
-        Swal.fire({
-          title: 'Borrowed',
-          text: 'Have a good read',
-          icon: 'success',
-          confirmButtonText: 'confirm',
-        })
+      const bookIds = selectedMultiple.map((item) => item.id)
+      const readerId = selectedReader
+      const request = {
+        reader: readerId,
+        ids: bookIds,
+      }
+      const data = await postBorrow(request)
+      console.log(data)
+      Swal.fire({
+        title: 'Borrowed',
+        text: 'Have a good read',
+        icon: 'success',
+        confirmButtonText: 'confirm',
+      })
 
-        setConfirm(true)
-        setData(data)
-        setSelectedItems([])
-    
+      setConfirm(true)
+      setData(data)
+      setSelectedItems([])
     } else {
       console.warn('Please select books to borrow.')
     }

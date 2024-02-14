@@ -8,12 +8,16 @@ import {
 } from 'typeorm'
 import { Borrowing } from './Borrowing'
 import { ObjectEntity } from './Object'
-import { IsString, IsEmail, MinLength, MaxLength, IsDate } from 'class-validator';
+import {
+  IsString,
+  IsEmail,
+  MinLength,
+  MaxLength,
+  IsDate,
+} from 'class-validator'
 
 @Entity('reader')
 export class Reader extends ObjectEntity {
-
-
   @IsString()
   @MinLength(2)
   @MaxLength(50)
@@ -23,12 +27,11 @@ export class Reader extends ObjectEntity {
   @IsEmail()
   @Column()
   email: string
-  
+
   @IsDate()
   @Column()
   dob: Date
 
   @OneToMany(() => Borrowing, (borrowing) => borrowing.reader)
   borrowings: Borrowing[]
-
 }

@@ -22,52 +22,55 @@ export const ToReturnTable: React.FC<ReturnTableProps> = ({ toReturn }) => {
   }
 
   const returnBooksDB = async () => {
-    
-    await postReturn(selectedRows) 
-        Swal.fire({
-          title: 'Returned',
-          text: 'The books are safely back home',
-          icon: 'success',
-          confirmButtonText: 'confirm',
-          denyButtonText: `Don't save`,
-        }).then((result) => {
-          if (result.isConfirmed) {
-            window.location.reload()
-          }
-        })
-    
+    await postReturn(selectedRows)
+    Swal.fire({
+      title: 'Returned',
+      text: 'The books are safely back home',
+      icon: 'success',
+      confirmButtonText: 'confirm',
+      denyButtonText: `Don't save`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.reload()
+      }
+    })
   }
 
   return (
-    <Grid >
+    <Grid>
       <Grid container justifyContent="space-between">
-      <Typography variant="h3" sx={text}>
-              Books to return
-            </Typography>
-      <Button
-        variant="outlined"
-        onClick={returnBooksDB}
-        disabled={selectedRows.length == 0}
-        sx={button2}
-      >
-        return
-      </Button></Grid>
-    {toReturn.length>0? <DataGrid
-        rows={toReturn}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: { page: 0, pageSize: 5 },
-          },
-        }}
-        apiRef={apiRef}
-        pageSizeOptions={[5, 10]}
-        getRowId={(row: BorrowingInfo) => row.id}
-        checkboxSelection
-        onRowSelectionModelChange={() => {
-          setSelectedBooks()
-        }}
-      />:<Typography>none</Typography>}
+        <Typography variant="h3" sx={text}>
+          Books to return
+        </Typography>
+        <Button
+          variant="outlined"
+          onClick={returnBooksDB}
+          disabled={selectedRows.length == 0}
+          sx={button2}
+        >
+          return
+        </Button>
+      </Grid>
+      {toReturn.length > 0 ? (
+        <DataGrid
+          rows={toReturn}
+          columns={columns}
+          initialState={{
+            pagination: {
+              paginationModel: { page: 0, pageSize: 5 },
+            },
+          }}
+          apiRef={apiRef}
+          pageSizeOptions={[5, 10]}
+          getRowId={(row: BorrowingInfo) => row.id}
+          checkboxSelection
+          onRowSelectionModelChange={() => {
+            setSelectedBooks()
+          }}
+        />
+      ) : (
+        <Typography>none</Typography>
+      )}
     </Grid>
   )
 }

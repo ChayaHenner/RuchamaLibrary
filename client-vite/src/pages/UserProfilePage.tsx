@@ -12,11 +12,11 @@ const UserProfile = () => {
   const { id } = useParams()
   const [userData, setUserData] = useState<ReaderInfo>()
   const navigate = useNavigate()
-  document.title =userData?`${userData.name} Profile`:`Reader Profile`;
+  document.title = userData ? `${userData.name} Profile` : `Reader Profile`
 
   useEffect(() => {
     const fetchData = async () => {
-        setUserData(await getReaderProfile(id))  
+      setUserData(await getReaderProfile(id))
     }
     console.log(userData)
 
@@ -27,18 +27,18 @@ const UserProfile = () => {
     <Grid>
       <Container>
         {userData ? (
-          <Grid >
           <Grid>
-
-            <Typography variant="h4" sx={text1}>
-              {userData.name}
-            </Typography>
-            <Typography variant="h5" sx={text1}>
-              {userData.email}
-            </Typography>
+            <Grid>
+              <Typography variant="h4" sx={text1}>
+                {userData.name}
+              </Typography>
+              <Typography variant="h5" sx={text1}>
+                {userData.email}
+              </Typography>
             </Grid>
 
-            <Button sx={button}
+            <Button
+              sx={button}
               variant="contained"
               color="primary"
               onClick={() => {
@@ -50,11 +50,10 @@ const UserProfile = () => {
               Borrow
             </Button>
 
-              <ToReturnTable toReturn={userData.toReturn} />
-          
-            <Divider sx={{ marginTop: 5 ,marginBottom:5}} />
-              <HistoryTable history={userData.history} />
-            
+            <ToReturnTable toReturn={userData.toReturn} />
+
+            <Divider sx={{ marginTop: 5, marginBottom: 5 }} />
+            <HistoryTable history={userData.history} />
           </Grid>
         ) : (
           <Typography>-user not exist-</Typography>

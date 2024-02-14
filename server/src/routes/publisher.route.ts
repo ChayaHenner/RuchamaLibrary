@@ -55,7 +55,7 @@ publisherRouter.patch(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const publisherDelete = await softDelete(parseInt(req.params.id))
-      res.json( publisherDelete )
+      res.json(publisherDelete)
     } catch (err) {
       next(err)
     }

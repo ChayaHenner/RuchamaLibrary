@@ -38,10 +38,20 @@ export const columns: GridColDef[] = [
     width: 90,
     valueGetter: (params) => params.row.book.bookCode.price,
   },
-  { field: 'dateBorrowed', headerName: 'Date Borrowed', width: 220,
-  valueGetter: (params) => {
-    const dateBorrowed = params.row.dateBorrowed
-    return  new Date(dateBorrowed).toLocaleString('en-UK', { weekday: 'short', year: 'numeric', month: '2-digit', day: 'numeric', hour: 'numeric', minute: 'numeric'}) 
-  }
- },
+  {
+    field: 'dateBorrowed',
+    headerName: 'Date Borrowed',
+    width: 220,
+    valueGetter: (params) => {
+      const dateBorrowed = params.row.dateBorrowed
+      return new Date(dateBorrowed).toLocaleString('en-UK', {
+        weekday: 'short',
+        year: 'numeric',
+        month: '2-digit',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+      })
+    },
+  },
 ]

@@ -15,8 +15,6 @@ import { IsBoolean } from 'class-validator'
 
 @Entity('book')
 export class Book extends ObjectEntity {
-  
-
   @ManyToOne(() => BookInstance, (bookinstance) => bookinstance.bookCode, {
     eager: true,
   })

@@ -37,9 +37,7 @@ export const postPublisher = async (publisher: PublisherForm) => {
     console.error(err)
   }
 }
-export const patchDeletePublisher = async (
-  id: number 
-) => {
+export const patchDeletePublisher = async (id: number) => {
   try {
     const response = await axios.patch(
       `http://localhost:5000/publishers/${id}/soft-delete`,

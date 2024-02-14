@@ -1,10 +1,6 @@
-import {  string } from 'yup'
+import { string } from 'yup'
 
 import * as yup from 'yup'
-
-
-
-
 
 export const publisherSchema = yup.object().shape({
   name: string().required('Publisher is required'),
