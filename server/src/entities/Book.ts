@@ -27,7 +27,6 @@ export class Book extends ObjectEntity {
   })
   bookTaken: boolean
 
-
   @OneToMany(() => Borrowing, (borrowing) => borrowing.book)
   borrowings: Borrowing[]
 }

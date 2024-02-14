@@ -50,7 +50,7 @@ const BookCard: FC<BookCardProp> = ({ book }) => {
 
   return (
     <Grid key={book.bookCode} item xs={12} sm={6} md={4} >
-      <CustomCard  inlib={book.booksNotTaken > 0 ? "true" : "false"} categorycolor={book.category} sx={{position:'relative'}}>
+      <CustomCard  inlib={book.booksNotTaken > 0 ? "true" : "false"} categorycolor={book.category} sx={booksstyle.relativegrid}>
         <CardContent>
           <Typography variant="h3" sx={booksstyle.typography}>
             {book.name}
@@ -74,7 +74,7 @@ const BookCard: FC<BookCardProp> = ({ book }) => {
                 </Typography>
               )}
             </Grid>
-            <Grid item xs={5} container justifyContent="flex-end" sx={{position:'absolute',right:'0',bottom:'0'}}>
+            <Grid item xs={5} container  sx={booksstyle.absolutegrid}>
               <Button onClick={deleteBook} sx={booksstyle.text}>
                 <DeleteRoundedIcon />
               </Button>
@@ -100,14 +100,14 @@ const BookCard: FC<BookCardProp> = ({ book }) => {
                   horizontal: 'center',
                 }}
               >
-                <Typography variant="body2" sx={{ p: 2 }}>
+                <Grid  sx={booksstyle.p1}>
                   {book.books.map((bookItem) => (
                     <Grid container key={bookItem.id} >
                       <Typography >{bookItem.id} </Typography>
                       {bookItem.bookTaken?(<Typography key={bookItem.id}>&nbsp;taken </Typography>):(<Typography key={bookItem.id}>&nbsp;here </Typography>)}
                     </Grid>
                   ))}
-                </Typography>
+                </Grid>
               </Popover>
             </Grid>
           </Grid>

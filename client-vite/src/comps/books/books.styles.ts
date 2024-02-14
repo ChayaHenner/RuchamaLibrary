@@ -9,4 +9,7 @@ export const booksstyle = {
     // textAlign: 'right',
 
   },
+  absolutegrid:{position:'absolute',right:'0',bottom:'0'},
+  relativegrid:{position:'relative'},
+  p1:{p:1}
 }
