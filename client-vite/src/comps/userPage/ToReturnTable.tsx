@@ -21,7 +21,7 @@ export const ToReturnTable: React.FC<ReturnTableProps> = ({ toReturn }) => {
   }
 
   const returnBooksDB = async () => {
-    try {
+    
     await postReturn(selectedRows) 
         Swal.fire({
           title: 'Returned',
@@ -35,9 +35,6 @@ export const ToReturnTable: React.FC<ReturnTableProps> = ({ toReturn }) => {
           }
         })
     
-    } catch (error) {
-      console.error('Error fetching data:', error)
-    }
   }
 
   return (

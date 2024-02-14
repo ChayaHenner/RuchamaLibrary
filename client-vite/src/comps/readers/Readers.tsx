@@ -9,11 +9,9 @@ const Readers: FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
+    
         setReaders(await getReaders(searchTerm))
-      } catch (error) {
-        console.error('Error fetching data:', error)
-      }
+    
     }
     fetchData()
   }, [searchTerm])

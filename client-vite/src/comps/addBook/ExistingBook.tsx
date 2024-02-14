@@ -40,12 +40,8 @@ const ExistingBook: FC = () => {
 
   useEffect(() => {
     const fetchBooks = async () => {
-      try {
         setBooks(await getBookInstances())
         console.log(books)
-      } catch (error) {
-        console.error(error)
-      }
     }
     fetchBooks()
   }, [])

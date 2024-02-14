@@ -31,11 +31,7 @@ const BookFormNew: FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        setPublishers(await getPublishers())
-      } catch (err) {
-        console.error(err)
-      }
+  setPublishers(await getPublishers())
     }
     fetchData()
   }, [])

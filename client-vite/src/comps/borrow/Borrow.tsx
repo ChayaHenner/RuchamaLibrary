@@ -34,12 +34,10 @@ const Borrow: React.FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
+    
         setBooks(await getBooksInLibrary())
         setReaders(await getReaders(undefined))
-      } catch (error) {
-        console.error('Error fetching data:', error)
-      }
+  
     }
     console.log(location.state)
     if (location.state != null) {
@@ -74,7 +72,7 @@ const Borrow: React.FC = () => {
   // }
   const handleBorrowMultiple = async () => {
     if (selectedMultiple.length > 0) {
-      try {
+      
         const bookIds = selectedMultiple.map((item) => item.id)
         const readerId = selectedReader
         const request = {
@@ -93,9 +91,7 @@ const Borrow: React.FC = () => {
         setConfirm(true)
         setData(data)
         setSelectedItems([])
-      } catch (error) {
-        console.error('Error making the request:', error)
-      }
+    
     } else {
       console.warn('Please select books to borrow.')
     }

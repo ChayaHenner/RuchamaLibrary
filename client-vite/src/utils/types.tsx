@@ -196,7 +196,7 @@ export type ReaderInfo = {
   dob: Date
   dateDeleted: Date | null
   toReturn: BorrowingInfo[]
-  history: BorrowingInfo[]
+  history: ReturnedInfo[]
 }
 export type ReturnTableProps = {
   toReturn: BorrowingInfo[]
