@@ -12,7 +12,7 @@ import Swal from 'sweetalert2'
 import { readerstyle } from './readers.style'
 import { useNavigate } from 'react-router-dom'
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers'
-import dayjs, { Dayjs } from 'dayjs'; // for date manipulation
+import dayjs, { Dayjs } from 'dayjs' // for date manipulation
 
 const AddReader: FC<AddReaderProps> = ({ onClose }) => {
   const methods = useForm<ReaderForm>({
@@ -22,8 +22,8 @@ const AddReader: FC<AddReaderProps> = ({ onClose }) => {
 
   const handleSubmit: SubmitHandler<ReaderForm> = async (data: ReaderForm) => {
     const dobAsDate = data?.dob?.toISOString().split('T')[0] || ''
-    console.log(data);
-    
+    console.log(data)
+
     data.dob = new Date(dobAsDate)
     const reader = await addReader(data)
     Swal.fire({
@@ -38,17 +38,17 @@ const AddReader: FC<AddReaderProps> = ({ onClose }) => {
     })
   }
 
-  const handleDateChange = (date:any) => {
-    const minDate = dayjs().subtract(105, 'year').toDate();
-    const maxDate = dayjs().subtract(7, 'year').toDate();
+  const handleDateChange = (date: any) => {
+    const minDate = dayjs().subtract(105, 'year').toDate()
+    const maxDate = dayjs().subtract(7, 'year').toDate()
 
     if (date < minDate || date > maxDate) {
-      methods.setValue('dob', null);
-      console.log('Please select a date between 7 and 105 years ago.');
+      methods.setValue('dob', null)
+      console.log('Please select a date between 7 and 105 years ago.')
     } else {
-      methods.setValue('dob', date);
+      methods.setValue('dob', date)
     }
-  };
+  }
   return (
     <Box sx={readerstyle.boxblur}>
       <Button onClick={onClose}>x</Button>
@@ -83,15 +83,15 @@ const AddReader: FC<AddReaderProps> = ({ onClose }) => {
                 {...methods.register('dob')}
                 // value={methods.watch('dob') ?? null}
                 // onChange={(date) => methods.setValue('dob', date)}
-                onChange={(date:Dayjs|null)=>{handleDateChange(date)}}
+                onChange={(date: Dayjs | null) => {
+                  handleDateChange(date)
+                }}
                 minDate={dayjs().subtract(105, 'year')}
                 maxDate={dayjs().subtract(7, 'year')}
-   
               />
             </LocalizationProvider>
           </Grid>
-          <Grid>
-    </Grid>
+          <Grid></Grid>
 
           <Button
             sx={readerstyle.textfield}

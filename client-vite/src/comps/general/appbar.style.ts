@@ -22,8 +22,7 @@ export const headerstyle = {
   link: { my: 2, color: 'white', display: 'block' },
   icon: { display: { xs: 'flex', md: 'none' }, mr: 1 },
   iconsm: { display: { xs: 'none', md: 'flex' }, mr: 1 },
-  header: { margin: 3
-  },
+  header: { margin: 3 },
   menuitem: {
     display: { xs: 'block', md: 'none' },
   },
