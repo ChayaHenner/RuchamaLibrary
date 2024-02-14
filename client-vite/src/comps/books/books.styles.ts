@@ -5,8 +5,6 @@ export const booksstyle = {
   text: {
     borderRadius: '30%', 
     padding: '15px', 
-    // transition: 'background-color 0.7s ', 
-    // textAlign: 'right',
 
   },
   absolutegrid:{position:'absolute',right:'0',bottom:'0'},

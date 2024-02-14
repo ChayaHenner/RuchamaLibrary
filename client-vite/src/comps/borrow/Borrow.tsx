@@ -30,6 +30,7 @@ const Borrow: React.FC = () => {
   const [selectedItems, setSelectedItems] = useState<BookType[]>([])
   const [selectedMultiple, setSelectedMultiple] = useState<BookType[]>([])
   const location = useLocation()
+  document.title =readerName?`${readerName} borrowing`:` borrowing`;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -101,8 +102,6 @@ const Borrow: React.FC = () => {
   }
 
   const addToSelectedItems = (newItem: any) => {
-    console.log('addToSelectedItems')
-    console.log(newItem)
 
     if (newItem !== null) {
       // const isBookAlreadySelected = selectedItems.some(

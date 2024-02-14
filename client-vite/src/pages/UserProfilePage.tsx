@@ -11,14 +11,11 @@ const UserProfile = () => {
   const { id } = useParams()
   const [userData, setUserData] = useState<ReaderInfo>()
   const navigate = useNavigate()
+  document.title =userData?`${userData.name} Profile`:`Reader Profile`;
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        setUserData(await getReaderProfile(id))
-      } catch (error) {
-        console.error('Error fetching data:', error)
-      }
+        setUserData(await getReaderProfile(id))  
     }
     console.log(userData)
 
