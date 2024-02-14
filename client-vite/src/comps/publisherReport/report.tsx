@@ -10,9 +10,8 @@ import {
   TableRow,
   Button,
   Grid,
-  Paper,
 } from '@mui/material'
-import { button } from './report.style'
+import { TableContainersx, button } from './report.style'
 import * as XLSX from 'xlsx'
 // @ts-ignore
 import { saveAs } from 'file-saver'
@@ -74,14 +73,14 @@ Swal.fire({
 });
 }
   return (
-  <Grid>
+  <Grid >
 
-    <TableContainer>
       <Button sx={button} onClick={downloadEXEL} variant='contained'>
         export exel
       </Button>
+    <TableContainer  sx={TableContainersx}>
 
-      <Table >
+      <Table size='small'>
         <TableHead>
           <TableRow>
             <TableCell>Publisher ID</TableCell>

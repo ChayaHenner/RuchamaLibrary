@@ -24,7 +24,7 @@ const Borrow: React.FC = () => {
   const [books, setBooks] = useState<BookType[]>([])
   const [readers, setReaders] = useState<Reader[]>([])
   const [data, setData] = useState<ReaderBorrowing>()
-  const [selectedBook, setSelectedBook] = useState<BookType | null>(null)
+  // const [selectedBook, setSelectedBook] = useState<BookType | null>(null)
   const [selectedReader, setSelectedReader] = useState<number | null>()
   const [readerName, setReaderName] = useState<string | null>(null)
   const [selectedItems, setSelectedItems] = useState<BookType[]>([])
@@ -97,23 +97,23 @@ const Borrow: React.FC = () => {
     }
   }
 
-  const addToSelectedItems = (newItem: any) => {
+  // const addToSelectedItems = (newItem: any) => {
 
-    if (newItem !== null) {
-      // const isBookAlreadySelected = selectedItems.some(
-      //   (item) => item.id === newItem,
-      // )
-      // if (!isBookAlreadySelected) {
-      //   const selectedBookInfo = books.find((book) => book.id === newItem)
-      //   if (selectedBookInfo) {
-      setSelectedItems((prevItems) => [...prevItems, newItem])
-      setSelectedBook(null)
-      //     }
-      //   } else {
-      //     console.log('Book is already selected!')
-      //   }
-    }
-  }
+  //   if (newItem !== null) {
+  //     // const isBookAlreadySelected = selectedItems.some(
+  //     //   (item) => item.id === newItem,
+  //     // )
+  //     // if (!isBookAlreadySelected) {
+  //     //   const selectedBookInfo = books.find((book) => book.id === newItem)
+  //     //   if (selectedBookInfo) {
+  //     setSelectedItems((prevItems) => [...prevItems, newItem])
+  //     setSelectedBook(null)
+  //     //     }
+  //     //   } else {
+  //     //     console.log('Book is already selected!')
+  //     //   }
+  //   }
+  // }
 
   const filteredBooks = books
   // .filter(

@@ -52,7 +52,7 @@ export const ToReturnTable: React.FC<ReturnTableProps> = ({ toReturn }) => {
       >
         return
       </Button></Grid>
-      <DataGrid
+    {toReturn.length>0? <DataGrid
         rows={toReturn}
         columns={columns}
         initialState={{
@@ -67,7 +67,7 @@ export const ToReturnTable: React.FC<ReturnTableProps> = ({ toReturn }) => {
         onRowSelectionModelChange={() => {
           setSelectedBooks()
         }}
-      />
+      />:<Typography>none</Typography>}
     </Grid>
   )
 }

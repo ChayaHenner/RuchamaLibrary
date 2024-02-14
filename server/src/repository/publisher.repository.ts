@@ -53,7 +53,7 @@ export const savePublisher = (publisher: Publisher) =>
 export const softRemove = async (id: number) => {
   const publisher = await Publisher.findOne({
     where: { id },
-    relations: ['bookinstances', 'bookinstances.books'],
+    relations: { bookinstances: { books: true }  },
   })
   if (publisher) {
     if (publisher.bookinstances.length > 0) {

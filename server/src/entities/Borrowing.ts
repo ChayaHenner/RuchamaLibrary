@@ -11,6 +11,7 @@ import {
 } from 'typeorm'
 import { Book } from './Book'
 import { Reader } from './Reader'
+import { IsDate } from 'class-validator'
 @Entity('borrowing')
 export class Borrowing extends BaseEntity {
   @PrimaryGeneratedColumn()
@@ -24,9 +25,11 @@ export class Borrowing extends BaseEntity {
   @JoinColumn()
   book: Book
 
+  @IsDate()
   @CreateDateColumn()
   dateBorrowed: Date
 
+  @IsDate()
   @Column({ default: null, nullable: true })
   dateReturned: Date
 

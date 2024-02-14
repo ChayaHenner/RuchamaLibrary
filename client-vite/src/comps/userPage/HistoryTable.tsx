@@ -28,7 +28,8 @@ export const HistoryTable: FC<HistoryTableProps> = ({ history }) => {
       <Typography variant="h3" sx={text}>
         Books History
       </Typography>
-      <Grid component={Paper}>
+      {history.length>0?
+      (<Grid component={Paper}>
         <TableContainer>
           <Table>
             <TableHead>
@@ -49,8 +50,8 @@ export const HistoryTable: FC<HistoryTableProps> = ({ history }) => {
                   <TableCell>{row.book.bookCode.name}</TableCell>
                   <TableCell>{row.id}</TableCell>
                   <TableCell>
-                    {row.dateBorrowed
-                      ? new Date(row.dateBorrowed).toLocaleString('en-UK', {
+                    {
+                       new Date(row.dateBorrowed).toLocaleString('en-UK', {
                           weekday: 'short',
                           year: 'numeric',
                           month: '2-digit',
@@ -58,11 +59,11 @@ export const HistoryTable: FC<HistoryTableProps> = ({ history }) => {
                           hour: 'numeric',
                           minute: 'numeric',
                         })
-                      : ''}
+                      }
                   </TableCell>
                   <TableCell>
-                    {row.dateReturned
-                      ? new Date(row.dateReturned).toLocaleString('en-UK', {
+                    {
+                       new Date(row.dateReturned).toLocaleString('en-UK', {
                           weekday: 'short',
                           year: 'numeric',
                           month: '2-digit',
@@ -70,7 +71,7 @@ export const HistoryTable: FC<HistoryTableProps> = ({ history }) => {
                           hour: 'numeric',
                           minute: 'numeric',
                         })
-                      : ''}
+                     }
                   </TableCell>
                 </TableRow>
               ))}
@@ -81,11 +82,10 @@ export const HistoryTable: FC<HistoryTableProps> = ({ history }) => {
           count={Math.ceil(sortedHistory.length / rowsPerPage)}
           page={page}
           onChange={(_, newPage) => {
-            console.log(newPage)
             setPage(newPage)
           }}
         />
-      </Grid>
+      </Grid>):(<Typography>none</Typography>)}
     </Grid>
   )
 }

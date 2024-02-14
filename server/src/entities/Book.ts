@@ -11,6 +11,7 @@ import {
 import { BookInstance } from './BookInstance'
 import { Borrowing } from './Borrowing'
 import { ObjectEntity } from './Object'
+import { IsBoolean } from 'class-validator'
 
 @Entity('book')
 export class Book extends ObjectEntity {
@@ -22,6 +23,7 @@ export class Book extends ObjectEntity {
   @JoinColumn()
   bookCode: BookInstance
 
+  @IsBoolean()
   @Column({
     default: false,
   })

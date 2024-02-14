@@ -24,10 +24,10 @@ export const findTopTenBooks = () => {
 export const findBorrowingByReader = async (id: number) => {
   const reader = await Reader.findOne({
     where: { id },
-    relations: ['borrowings', 'borrowings.book', 'borrowings.book.bookCode'],
+    relations: { borrowings: { book: { bookCode: true } } },
     withDeleted: true,
-
   })
+ 
 
   if (!reader) {
     throw new Error(`reader with id ${id} not found`)
