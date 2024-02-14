@@ -12,7 +12,7 @@ import Swal from 'sweetalert2'
 import { readerstyle } from './readers.style'
 import { useNavigate } from 'react-router-dom'
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers'
-import dayjs from 'dayjs'; // for date manipulation
+import dayjs, { Dayjs } from 'dayjs'; // for date manipulation
 
 const AddReader: FC<AddReaderProps> = ({ onClose }) => {
   const methods = useForm<ReaderForm>({
@@ -44,9 +44,6 @@ const AddReader: FC<AddReaderProps> = ({ onClose }) => {
 
     if (date < minDate || date > maxDate) {
       methods.setValue('dob', null);
-      // Swal.fire({
-      //   text: 'bad age',
-      // })
       console.log('Please select a date between 7 and 105 years ago.');
     } else {
       methods.setValue('dob', date);
@@ -84,13 +81,17 @@ const AddReader: FC<AddReaderProps> = ({ onClose }) => {
                 sx={readerstyle.textfield}
                 label="Date of Birth"
                 {...methods.register('dob')}
-                value={methods.watch('dob') ?? null}
+                // value={methods.watch('dob') ?? null}
                 // onChange={(date) => methods.setValue('dob', date)}
-                onChange={(date)=>{handleDateChange(date)}}
-      
+                onChange={(date:Dayjs|null)=>{handleDateChange(date)}}
+                minDate={dayjs().subtract(105, 'year')}
+                maxDate={dayjs().subtract(7, 'year')}
+   
               />
             </LocalizationProvider>
           </Grid>
+          <Grid>
+    </Grid>
 
           <Button
             sx={readerstyle.textfield}

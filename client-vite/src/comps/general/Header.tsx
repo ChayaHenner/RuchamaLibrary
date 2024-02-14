@@ -6,10 +6,8 @@ import { headerstyle } from './appbar.style'
 const Header: FC<HeaderProps> = ({ title }) => {
   return (
     <>
-      <Grid container spacing={3} alignItems="center" sx={headerstyle.header}>
-        <Grid item xs={12} sm={6}>
+      <Grid   alignItems="center" sx={headerstyle.header}>
           <Typography variant="h2">{title}</Typography>
-        </Grid>
       </Grid>
     </>
   )

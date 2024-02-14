@@ -1,3 +1,5 @@
+
+import  { Dayjs } from 'dayjs'
 export type Publisher = {
   id: number | undefined
   name: string
@@ -15,7 +17,7 @@ export type BookFormProps = {
 export type ReaderForm = {
   name: string
   email: string
-  dob: Date | null
+  dob: Date | null // Dayjs | null
 }
 
 export type BorrowingInfo = {
