@@ -5,7 +5,6 @@ import {
   TopTenBook,
 } from '../utils/types'
 import axios from 'axios'
-import Swal from 'sweetalert2'
 
 export const getOverdueReaders = async (): Promise<
   ReaderWithUnreturnedBooks[]
@@ -53,19 +52,7 @@ export const postReturn = async (selectedRows: number[]) => {
       { borrowIds: selectedRows },
     )
     console.log(response)
-    if (response.data) {
-      Swal.fire({
-        title: 'Returned',
-        text: 'The books are safely back home',
-        icon: 'success',
-        confirmButtonText: 'confirm',
-        denyButtonText: `Don't save`,
-      }).then((result) => {
-        if (result.isConfirmed) {
-          window.location.reload()
-        }
-      })
-    }
+   
   } catch (err) {
     console.error(err)
   }

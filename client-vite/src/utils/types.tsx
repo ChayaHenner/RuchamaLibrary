@@ -21,7 +21,13 @@ export type ReaderForm = {
 export type BorrowingInfo = {
   id: number
   dateBorrowed: string
-  dateReturned: string | null
+  dateReturned:  null
+  book: BookBorrowingInfo
+}
+export type ReturnedInfo = {
+  id: number
+  dateBorrowed: string
+  dateReturned: string 
   book: BookBorrowingInfo
 }
 
@@ -196,7 +202,7 @@ export type ReturnTableProps = {
   toReturn: BorrowingInfo[]
 }
 export type HistoryTableProps = {
-  history: BorrowingInfo[]
+  history: ReturnedInfo[]
 }
 export type HeaderProps = {
   title: string

@@ -4,6 +4,7 @@ import { BorrowingInfo, ReturnTableProps } from '../../utils/types'
 import { Button, Grid } from '@mui/material'
 import { columns } from './userProfile.config'
 import { postReturn } from '../../api/borrowing'
+import Swal from 'sweetalert2'
 
 export const ToReturnTable: React.FC<ReturnTableProps> = ({ toReturn }) => {
   console.log(toReturn)
@@ -21,7 +22,19 @@ export const ToReturnTable: React.FC<ReturnTableProps> = ({ toReturn }) => {
 
   const returnBooksDB = async () => {
     try {
-      postReturn(selectedRows)
+    await postReturn(selectedRows) 
+        Swal.fire({
+          title: 'Returned',
+          text: 'The books are safely back home',
+          icon: 'success',
+          confirmButtonText: 'confirm',
+          denyButtonText: `Don't save`,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.reload()
+          }
+        })
+    
     } catch (error) {
       console.error('Error fetching data:', error)
     }

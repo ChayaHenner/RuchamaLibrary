@@ -8,10 +8,10 @@ export const postBook = async (data: BookFormProps) => {
       'http://localhost:5000/books/newbook',
       data,
     )
-    console.log('new Books added ', response.data)
     return response.data
   } catch (err) {
     throw err
+    
   }
 }
 export const getBooksInLibrary = async (): Promise<BookType[]> => {
