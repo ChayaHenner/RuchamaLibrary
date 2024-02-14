@@ -1,20 +1,21 @@
 import * as React from 'react'
 import { DataGrid } from '@mui/x-data-grid'
 import { BorrowingInfo, ReturnTableProps } from '../../utils/types'
-import { Button, Grid } from '@mui/material'
+import { Button, Grid, Typography } from '@mui/material'
 import { columns } from './userProfile.config'
 import { postReturn } from '../../api/borrowing'
 import Swal from 'sweetalert2'
+import { button2, text } from './userPage.style'
 
 export const ToReturnTable: React.FC<ReturnTableProps> = ({ toReturn }) => {
   console.log(toReturn)
 
-  const apiRef = React.useRef<any>()
+  const apiRef: React.MutableRefObject<any> = React.useRef<any>({})
   const [selectedRows, setSelectedRows] = React.useState<number[]>([])
 
   const setSelectedBooks = () => {
     let selectedRowsCurrent: number[] = []
-    apiRef.current.getSelectedRows().forEach((book: BorrowingInfo) => {
+    apiRef?.current?.getSelectedRows().forEach((book: BorrowingInfo) => {
       selectedRowsCurrent.push(book.id)
     })
     setSelectedRows(selectedRowsCurrent)
@@ -38,14 +39,19 @@ export const ToReturnTable: React.FC<ReturnTableProps> = ({ toReturn }) => {
   }
 
   return (
-    <Grid style={{ height: 400, width: '100%' }}>
+    <Grid >
+      <Grid container justifyContent="space-between">
+      <Typography variant="h3" sx={text}>
+              Books to return
+            </Typography>
       <Button
         variant="outlined"
         onClick={returnBooksDB}
         disabled={selectedRows.length == 0}
+        sx={button2}
       >
         return
-      </Button>
+      </Button></Grid>
       <DataGrid
         rows={toReturn}
         columns={columns}

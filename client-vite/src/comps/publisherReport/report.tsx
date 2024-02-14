@@ -9,6 +9,8 @@ import {
   TableHead,
   TableRow,
   Button,
+  Grid,
+  Paper,
 } from '@mui/material'
 import { button } from './report.style'
 import * as XLSX from 'xlsx'
@@ -71,14 +73,15 @@ Swal.fire({
   }
 });
 }
-
   return (
+  <Grid>
+
     <TableContainer>
       <Button sx={button} onClick={downloadEXEL} variant='contained'>
         export exel
       </Button>
 
-      <Table>
+      <Table >
         <TableHead>
           <TableRow>
             <TableCell>Publisher ID</TableCell>
@@ -102,7 +105,8 @@ Swal.fire({
           ))}
         </TableBody>
       </Table>
-    </TableContainer>
+    </TableContainer></Grid>
+
   )
 }
 

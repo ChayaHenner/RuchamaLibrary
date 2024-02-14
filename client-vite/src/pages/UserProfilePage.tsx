@@ -6,6 +6,7 @@ import { HistoryTable } from '../comps/userPage/HistoryTable'
 import { useNavigate } from 'react-router-dom'
 import { getReaderProfile } from '../api/reader'
 import { ReaderInfo } from '../utils/types'
+import { button, text1 } from '../comps/userPage/userPage.style'
 
 const UserProfile = () => {
   const { id } = useParams()
@@ -26,15 +27,18 @@ const UserProfile = () => {
     <Grid>
       <Container>
         {userData ? (
-          <>
-            <Typography variant="h4" sx={{ m: 1 }}>
+          <Grid >
+          <Grid>
+
+            <Typography variant="h4" sx={text1}>
               {userData.name}
             </Typography>
-            <Typography variant="h5" sx={{ m: 1 }}>
+            <Typography variant="h5" sx={text1}>
               {userData.email}
             </Typography>
+            </Grid>
 
-            <Button
+            <Button sx={button}
               variant="contained"
               color="primary"
               onClick={() => {
@@ -46,24 +50,12 @@ const UserProfile = () => {
               Borrow
             </Button>
 
-            <Typography variant="h3" sx={{ m: 2 }}>
-              Books to return
-            </Typography>
-            {userData.toReturn ? (
               <ToReturnTable toReturn={userData.toReturn} />
-            ) : (
-              <Typography>-none-</Typography>
-            )}
-            <Divider sx={{ marginTop: 10 }} />
-            <Typography variant="h3" sx={{ m: 2 }}>
-              Books History
-            </Typography>
-            {userData.history ? (
+          
+            <Divider sx={{ marginTop: 5 ,marginBottom:5}} />
               <HistoryTable history={userData.history} />
-            ) : (
-              <Typography>-none-</Typography>
-            )}
-          </>
+            
+          </Grid>
         ) : (
           <Typography>-user not exist-</Typography>
         )}

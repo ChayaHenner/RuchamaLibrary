@@ -6,7 +6,7 @@ export type Publisher = {
 export type BookFormProps = {
   name: string
   author: string
-  publisher?: number | undefined ///
+  publisher?: number | undefined 
   amount: number
   category: string
   price: number
@@ -302,4 +302,7 @@ export type PublisherReport = {
   country: string
   bookcount: number
   publisherprice: number
-}
+ }
+ export type DataGridApi = {
+  getSelectedRows: () => BorrowingInfo[];
+};
