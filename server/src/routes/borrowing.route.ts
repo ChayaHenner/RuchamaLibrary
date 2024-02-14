@@ -7,6 +7,7 @@ import {
   toptenbooks,
   getBorrowing,
   twoweekspassed,
+  stats,
 } from '../service/borrowing.service'
 import {
   borrowingManySchema,
@@ -84,6 +85,17 @@ borrowingRouter.get(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const books = await twoweekspassed()
+      res.status(201).json(books)
+    } catch (err) {
+      next(err)
+    }
+  },
+)
+borrowingRouter.get(
+  '/stats',
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const books = await stats()
       res.status(201).json(books)
     } catch (err) {
       next(err)

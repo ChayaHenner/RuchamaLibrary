@@ -1,5 +1,5 @@
 import { Borrowing } from '../entities/Borrowing'
-import {
+import {findStats,
   findBorrowingByReader,
   getTwoWeeksPassedDB,
   findTopTenBooks,
@@ -39,5 +39,6 @@ export const postReturnManyBooks = async (returnBooks: returnBooks) => {
 }
 
 export const toptenbooks = async () => await findTopTenBooks()
+export const stats = async () => await findStats()
 
 export const twoweekspassed = async () => await getTwoWeeksPassedDB()

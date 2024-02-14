@@ -7,4 +7,5 @@ export const pages = [
   { label: 'top ten', path: '/topten' },
   { label: 'overdue', path: '/overdue' },
   { label: 'report', path: '/report' },
+  { label: 'stats', path: '/stats' },
 ]

@@ -1,5 +1,3 @@
-
-import  { Dayjs } from 'dayjs'
 export type Publisher = {
   id: number | undefined
   name: string
@@ -43,23 +41,7 @@ export type BookBorrowingInfo = {
     name: string
     publisher: Publisher
   }
-  // dateBorrowed: string;
-  // dateReturned: string | null;
 }
-// export type BookBorrowingInfo = {
-//   id: number;
-//   borrowing_id: number;
-//   book_instance: {
-//     price: number;
-//     author: string;
-//     category: string;
-//     bookCode: number;
-//     name: string;
-//     publisher: Publisher;
-//   };
-//   // dateBorrowed: string;
-//   // dateReturned: string | null;
-// };
 
 type PublisherType = {
   id: number

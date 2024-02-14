@@ -20,6 +20,38 @@ export const findTopTenBooks = () => {
     .limit(10)
     .getRawMany()
 }
+export const findStats = async() => {
+
+  const borrowing = await Borrowing.find({
+    // relations: { books: true }
+  })
+
+  // for (const id of ids) {
+  //   const b = await Book.findOne({ where: { id } })
+  //   if (!b || b.bookTaken) {
+  //     throw new Error(
+  //       `Invalid book ID ${id} or book already taken.borrow unsuccessful`,
+  //     )
+  //   }
+
+    // const borrowings: Borrowing[] = []
+    for (const borrow of borrowing) {
+
+
+      // const b = await Book.findOne({ where: { id: book } })
+      // if (b) {
+      //   borrowing.book = b
+      //   await updateBookTaken(book)
+      //   await Borrowing.save(borrowing)
+      //   borrowings.push(borrowing)
+      // }
+    }
+  //   readerBorrow.borrowings.push(...borrowings)
+  //   await readerBorrow.save()
+  //   readerBorrow.borrowings = borrowings
+    return borrowing
+  // }
+};
 
 export const findBorrowingByReader = async (id: number) => {
   const reader = await Reader.findOne({

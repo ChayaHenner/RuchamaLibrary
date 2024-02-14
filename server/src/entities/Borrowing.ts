@@ -33,6 +33,6 @@ export class Borrowing extends BaseEntity {
   @Column({ default: null, nullable: true })
   dateReturned: Date
 
-  // @OneToMany(() => Book, (book) => book.id)
-  // books: Book[]
+  @OneToMany(() => Book, (book) => book.id)
+  books: Book[]
 }
