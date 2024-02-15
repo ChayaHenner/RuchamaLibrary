@@ -14,8 +14,21 @@ export const saveBook = (bookCode: any) => Book.save({ bookCode }) //??
 export const softRemove = async (id: number) => {
   const book = await Book.findOneOrFail({
     where: { id },
+
   })
   return book.softRemove()
+}
+export const findLocation = async (id: number) => {
+  const book = await Book.findOneOrFail({
+    where: { id },
+    relations: { borrowings: {reader:true} },
+  })
+  const currentBorrowing = book.borrowings.find(borrowing => borrowing.dateReturned === null);
+  if (currentBorrowing) {
+    return currentBorrowing.reader.name;
+  } else {
+    return 'In library'; 
+  }
 }
 
 export const saveExistingBook = async (books: ExistingBookReal) => {

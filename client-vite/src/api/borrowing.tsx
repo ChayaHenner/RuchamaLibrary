@@ -59,11 +59,11 @@ export const postReturn = async (selectedRows: number[]) => {
 }
 export const getStats = async (): Promise<Stats> => {
   try {
-    const response = await axios.get('http://localhost:5000/borrowing/stats');
-    console.log(response.data);
-    return response.data;
+    const response = await axios.get('http://localhost:5000/borrowing/stats')
+    console.log(response.data)
+    return response.data
   } catch (err) {
-    console.error('Error fetching stats:', err);
-    throw err; 
+    console.error('Error fetching stats:', err)
+    throw err
   }
-};
+}

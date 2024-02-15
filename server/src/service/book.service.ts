@@ -5,6 +5,7 @@ import {
   findBooksLibrary,
   saveExistingBook,
   saveNewBooks,
+  findLocation,
 } from '../repository/book.repository'
 import {
   findBookInstanceExists,
@@ -26,3 +27,4 @@ export const postBooks = async (books: ExistingBook) => {
 export const postNewBooks = async (books: NewBook) => await saveNewBooks(books)
 
 export const softDelete = async (id: number) => await softRemove(id)
+export const getLocation = async (id: number) => await findLocation(id)

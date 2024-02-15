@@ -6,6 +6,7 @@ import {
   postBooks,
   softDelete,
   getBooksInLibrary,
+  getLocation,
 } from '../service/book.service'
 import { bookSchema, newBookSchema } from '../validation/book.validate'
 
@@ -52,7 +53,7 @@ booksRouter.post(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const books = await postNewBooks(req.body)
-      res.status(201).json(books)
+      res.json(books)
     } catch (err) {
       next(err)
     }
@@ -62,10 +63,20 @@ booksRouter.patch(
   '/:id/soft-delete',
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const publisherDelete = await softDelete(parseInt(req.params.id))
-      res
-        .status(200)
-        .json({ message: 'Soft delete successful', reader: publisherDelete })
+      const bookDelete = await softDelete(parseInt(req.params.id))
+      res.json(bookDelete)
+    } catch (err) {
+      next(err)
+    }
+  },
+)
+booksRouter.get(
+  '/:id/location',
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const bookLocation = await getLocation(parseInt(req.params.id))
+      res.json(bookLocation)
+
     } catch (err) {
       next(err)
     }
