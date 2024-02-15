@@ -5,7 +5,7 @@ import { getReaders } from '../../api/reader'
 import ReaderCard from './ReaderCard'
 const Readers: FC = () => {
   const [readers, setReaders] = useState<Reader[]>([])
-  const [searchTerm, setSearchTerm] = useState<string>()
+  const [searchTerm, setSearchTerm] = useState<string>("")
 
   useEffect(() => {
     const fetchData = async () => {
