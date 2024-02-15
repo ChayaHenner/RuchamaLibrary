@@ -6,6 +6,7 @@ import {
   saveExistingBook,
   saveNewBooks,
   findLocation,
+  findBook,
 } from '../repository/book.repository'
 import {
   findBookInstanceExists,
@@ -28,3 +29,4 @@ export const postNewBooks = async (books: NewBook) => await saveNewBooks(books)
 
 export const softDelete = async (id: number) => await softRemove(id)
 export const getLocation = async (id: number) => await findLocation(id)
+export const getBook = async (id: number) => await findBook(id)

@@ -4,20 +4,79 @@ import { FindManyOptions } from 'typeorm'
 import { BookInstance } from '../entities/BookInstance'
 import { ExistingBook, ExistingBookReal, NewBook } from '../types/book.type'
 import { saveBookInstance } from './bookinstance.repository'
+import { Borrowing } from '../entities/Borrowing'
 
 export const findBooks = () => Book.find()
 
 export const findBooksLibrary = () => Book.find({ where: { bookTaken: false } })
 
-export const saveBook = (bookCode: any) => Book.save({ bookCode }) //??
+export const saveBook = (bookCode: any) => Book.save({ bookCode })
 
 export const softRemove = async (id: number) => {
   const book = await Book.findOneOrFail({
     where: { id },
-
   })
   return book.softRemove()
 }
+// export const findBook = async (id: number) => {
+//   try {
+//     const books = await Book.find({
+//       relations: ['borrowings'], 
+//     });
+
+//     const booksStatus = books.map(book => {
+//       const currentBorrowing = book.borrowings.find(borrowing => borrowing.dateReturned === null);
+//       if (!currentBorrowing) {
+//         if(book.bookTaken)
+//         return book //change booktaken to false and save
+//  } 
+//     });
+
+//     return booksStatus;
+//   } catch (error) {
+//     throw new Error(`Error finding book: `);
+//   }
+// };
+// export const findBook = async (id: number) => {
+//   try {
+//     const books = await Book.find({
+//       relations: ['borrowings'], 
+//     });
+
+//     const updatedBooks = books.map(async (book) => {
+//       const currentBorrowing = book.borrowings.find(borrowing => borrowing.dateReturned === null);
+//       if (!currentBorrowing && book.bookTaken) {
+//         book.bookTaken = false; 
+//         await book.save(); 
+//         return book;
+//       } else {
+//         return null;
+//       }
+//     });
+
+//     await Promise.all(updatedBooks);
+
+//     const filteredBooks = updatedBooks.filter(book => book !== null);
+
+//     return filteredBooks;
+//   } catch (error) {
+//     throw new Error(`Error finding book: ${error}`);
+//   }
+// };
+
+
+export const findBook = async (id: number) => {
+  try {
+    const book = await Book.find({
+      where:{id},
+      relations: { borrowings: true ,bookCode:true },
+    })
+    return book
+  } catch (error) {
+    throw new Error(`Error finding book location: ${error}`)
+  }
+}
+
 export const findLocation = async (id: number) => {
   const book = await Book.findOneOrFail({
     where: { id },
@@ -27,7 +86,7 @@ export const findLocation = async (id: number) => {
   if (currentBorrowing) {
     return currentBorrowing.reader.name;
   } else {
-    return 'In library'; 
+    return 'In library';
   }
 }
 

@@ -7,6 +7,7 @@ import {
   softDelete,
   getBooksInLibrary,
   getLocation,
+  getBook,
 } from '../service/book.service'
 import { bookSchema, newBookSchema } from '../validation/book.validate'
 
@@ -75,6 +76,18 @@ booksRouter.get(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const bookLocation = await getLocation(parseInt(req.params.id))
+      res.json(bookLocation)
+
+    } catch (err) {
+      next(err)
+    }
+  },
+)
+booksRouter.get(
+  '/:id',
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const bookLocation = await getBook(parseInt(req.params.id))
       res.json(bookLocation)
 
     } catch (err) {

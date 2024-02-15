@@ -14,55 +14,21 @@ import { booksstyle } from './books.styles'
 import { CustomCard } from '../readers/readers.style'
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded'
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded'
-import Swal from 'sweetalert2'
-import { patchDeleteBook } from '../../api/bookinstances'
 import { getLocationBook } from '../../api/book'
+import { swalBook } from './book.swal'
 
 const BookCard: FC<BookCardProp> = ({ book }) => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
-  const [locationBook, setLocationBook] = useState<any>(null)
   const [snackBarMessage, setSnackBarMessage] = useState<string | null>(null)
   const open = Boolean(anchorEl)
 
   const location = async (id: number) => {
     try {
       const locationInfo = await getLocationBook(id)
-      console.log(locationInfo)
-      setLocationBook(locationInfo)
-      setSnackBarMessage(locationInfo) // Set the location info in the snack bar message
+      setSnackBarMessage(locationInfo)
     } catch (error) {
       console.error('Error retrieving location:', error)
     }
-  }
-
-
-  const deleteBook = async () => {
-    Swal.fire({
-      title: ' Are you sure?',
-      text: `You want to delete book ${book.name}`,
-      icon: 'question',
-      confirmButtonText: 'confirm',
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        try {
-          await patchDeleteBook(book.bookCode)
-          Swal.fire({
-            title: 'Deleted!',
-            text: ` book ${book.name}`,
-            icon: 'success',
-            confirmButtonText: 'confirm',
-          }).then(() => {
-            window.location.reload()
-          })
-        } catch {
-          Swal.fire({
-            title: "Can't Delete",
-            text: 'Not all books are in Library',
-            icon: 'warning',
-          })
-        }
-      }
-    })
   }
 
   return (
@@ -96,12 +62,15 @@ const BookCard: FC<BookCardProp> = ({ book }) => {
               )}
             </Grid>
             <Grid item xs={5} container sx={booksstyle.absolutegrid}>
-              <Button onClick={deleteBook} sx={booksstyle.text}>
+              <Button
+                onClick={() => {
+                  swalBook(book.bookCode, book.name)
+                }}
+                sx={booksstyle.text}
+              >
                 <DeleteRoundedIcon />
               </Button>
               <Button
-                // aria-owns={open ? 'book-info-popover' : undefined}
-                // aria-haspopup="true"
                 onClick={(e) => {
                   setAnchorEl(e.currentTarget)
                 }}
@@ -133,7 +102,6 @@ const BookCard: FC<BookCardProp> = ({ book }) => {
                       >
                         {bookItem.id}
                       </Button>
-                    
                     </Grid>
                   ))}
                 </Grid>
@@ -141,13 +109,13 @@ const BookCard: FC<BookCardProp> = ({ book }) => {
             </Grid>
           </Grid>
         </CardContent>
-       
+
         <Snackbar
-        open={!!snackBarMessage} 
-        autoHideDuration={6000} 
-        onClose={() => setSnackBarMessage(null)} 
-        message={`Book at `+ snackBarMessage || ''} 
-      />
+          open={!!snackBarMessage}
+          autoHideDuration={6000}
+          onClose={() => setSnackBarMessage(null)}
+          message={`Book at ` + snackBarMessage || ''}
+        />
       </CustomCard>
     </Grid>
   )
