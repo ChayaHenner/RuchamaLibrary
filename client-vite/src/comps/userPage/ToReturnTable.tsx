@@ -5,13 +5,9 @@ import { Button, Grid, Typography } from '@mui/material'
 import { columns } from './userProfile.config'
 import { postReturn } from '../../api/borrowing'
 import Swal from 'sweetalert2'
-import { button2,  text } from './userPage.style'
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
-
+import { button2, text } from './userPage.style'
 export const ToReturnTable: React.FC<ReturnTableProps> = ({ toReturn }) => {
   console.log(toReturn)
-  // const apiRef = React.useRef<any>({});
 
   const apiRef: React.MutableRefObject<any> = React.useRef<any>({})
   const [selectedRows, setSelectedRows] = React.useState<number[]>([])
@@ -38,24 +34,6 @@ export const ToReturnTable: React.FC<ReturnTableProps> = ({ toReturn }) => {
       }
     })
   }
-  const printPDF = async () => {
-    console.log(":pdffing");
-    
-    try {
-      const pdf = new jsPDF();
-      const table = document.getElementById('return-table');
-
-      if (table) {
-        const canvas = await html2canvas(table);
-        const imageData = canvas.toDataURL('image/png');
-        pdf.addImage(imageData, 'PNG', 10, 10, 180, 240);
-        pdf.save('books_to_return.pdf');
-      }
-    } catch (error) {
-      console.error('Error printing PDF:', error);
-    }
-  };
-
 
   return (
     <Grid>
@@ -64,22 +42,19 @@ export const ToReturnTable: React.FC<ReturnTableProps> = ({ toReturn }) => {
           Books to return
         </Typography>
         <Grid>
-        {/* <Button sx={button2} onClick={printPDF} variant="text" >
-        print pdf
-      </Button> */}
-        <Button
-          variant="outlined"
-          onClick={returnBooksDB}
-          disabled={selectedRows.length == 0}
-          sx={button2}
-        >
-          return
-        </Button>
-      </Grid></Grid>
+          <Button
+            variant="outlined"
+            onClick={returnBooksDB}
+            disabled={selectedRows.length == 0}
+            sx={button2}
+          >
+            return
+          </Button>
+        </Grid>
+      </Grid>
       {toReturn.length > 0 ? (
         <DataGrid
-        slots={{ toolbar: GridToolbar }}
-        
+          slots={{ toolbar: GridToolbar }}
           rows={toReturn}
           columns={columns}
           initialState={{

@@ -18,6 +18,7 @@ import { Typography } from '@mui/material'
 import ResponsiveAppBar from './comps/general/AppBar'
 import PublisherReportPage from './pages/PublisherReportPage'
 import Stats from './pages/Stats'
+import Game from './pages/Game'
 const App = () => {
   return (
     <>
@@ -37,6 +38,7 @@ const App = () => {
             <Route path="/booksformnew" element={<AddBookPage />} />
             <Route path="/report" element={<PublisherReportPage />} />
             <Route path="/stats" element={<Stats />} />
+            <Route path="/game" element={<Game />} />
             <Route path="/profile/:id" element={<UserProfile />} />
             <Route path="*" element={<Typography>404 Error</Typography>} />
           </Routes>

@@ -21,7 +21,7 @@ export const softRemove = async (id: number) => {
 // export const findBook = async (id: number) => {
 //   try {
 //     const books = await Book.find({
-//       relations: ['borrowings'], 
+//       relations: ['borrowings'],
 //     });
 
 //     const booksStatus = books.map(book => {
@@ -29,7 +29,7 @@ export const softRemove = async (id: number) => {
 //       if (!currentBorrowing) {
 //         if(book.bookTaken)
 //         return book //change booktaken to false and save
-//  } 
+//  }
 //     });
 
 //     return booksStatus;
@@ -40,14 +40,14 @@ export const softRemove = async (id: number) => {
 // export const findBook = async (id: number) => {
 //   try {
 //     const books = await Book.find({
-//       relations: ['borrowings'], 
+//       relations: ['borrowings'],
 //     });
 
 //     const updatedBooks = books.map(async (book) => {
 //       const currentBorrowing = book.borrowings.find(borrowing => borrowing.dateReturned === null);
 //       if (!currentBorrowing && book.bookTaken) {
-//         book.bookTaken = false; 
-//         await book.save(); 
+//         book.bookTaken = false;
+//         await book.save();
 //         return book;
 //       } else {
 //         return null;
@@ -64,12 +64,11 @@ export const softRemove = async (id: number) => {
 //   }
 // };
 
-
 export const findBook = async (id: number) => {
   try {
     const book = await Book.find({
-      where:{id},
-      relations: { borrowings: true ,bookCode:true },
+      where: { id },
+      relations: { borrowings: true, bookCode: true },
     })
     return book
   } catch (error) {
@@ -80,13 +79,15 @@ export const findBook = async (id: number) => {
 export const findLocation = async (id: number) => {
   const book = await Book.findOneOrFail({
     where: { id },
-    relations: { borrowings: {reader:true} },
+    relations: { borrowings: { reader: true } },
   })
-  const currentBorrowing = book.borrowings.find(borrowing => borrowing.dateReturned === null);
+  const currentBorrowing = book.borrowings.find(
+    (borrowing) => borrowing.dateReturned === null,
+  )
   if (currentBorrowing) {
-    return currentBorrowing.reader.name;
+    return currentBorrowing.reader.name
   } else {
-    return 'In library';
+    return 'In library'
   }
 }
 

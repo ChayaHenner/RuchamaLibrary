@@ -8,4 +8,5 @@ export const pages = [
   { label: 'overdue', path: '/overdue' },
   { label: 'report', path: '/report' },
   { label: 'stats', path: '/stats' },
+  { label: 'Game', path: '/game' },
 ]

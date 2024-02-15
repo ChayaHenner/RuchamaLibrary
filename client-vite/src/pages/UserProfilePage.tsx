@@ -28,7 +28,6 @@ const UserProfile = () => {
       <Container>
         {userData ? (
           <Grid>
-   
             <Grid>
               <Typography variant="h4" sx={text1}>
                 {userData.name}

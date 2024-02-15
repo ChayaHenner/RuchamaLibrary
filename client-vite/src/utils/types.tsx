@@ -15,7 +15,7 @@ export type BookFormProps = {
 export type ReaderForm = {
   name: string
   email: string
-  dob: Date | null // Dayjs | null
+  dob: Date | null
 }
 
 export type BorrowingInfo = {
@@ -199,14 +199,6 @@ export type selectedItemsProp = {
   selectedItems: BookType[]
   setSelectedItems: React.Dispatch<React.SetStateAction<BookType[]>>
 }
-// type BorrowedBook = {
-//   id: number;
-//   borrowing_id: number;
-//   book_instance: BookInstance;
-//   dateBorrowed: string;
-//   dateReturned?: string; // Date returned is optional as it might not be present in "toreturn" array
-// };
-
 export type PublisherForm = {
   name: string
   country: string

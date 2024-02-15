@@ -77,7 +77,6 @@ booksRouter.get(
     try {
       const bookLocation = await getLocation(parseInt(req.params.id))
       res.json(bookLocation)
-
     } catch (err) {
       next(err)
     }
@@ -89,7 +88,6 @@ booksRouter.get(
     try {
       const bookLocation = await getBook(parseInt(req.params.id))
       res.json(bookLocation)
-
     } catch (err) {
       next(err)
     }

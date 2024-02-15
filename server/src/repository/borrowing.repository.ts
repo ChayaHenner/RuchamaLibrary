@@ -24,36 +24,34 @@ export const findTopTenBooks = () => {
 }
 
 export const findStats = async () => {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0); 
-  const borrowing = await Borrowing.find({});
-  const books = await Book.find({});
-  const bookInstances = await BookInstance.find({});
-  const readers = await Reader.find({});
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+  const borrowing = await Borrowing.find({})
+  const books = await Book.find({})
+  const bookInstances = await BookInstance.find({})
+  const readers = await Reader.find({})
 
   const booksTodayCount = borrowing
-    .map(borrow => new Date(borrow.dateBorrowed))
-    .map(date => {
-      date.setHours(0, 0, 0, 0);
-      return date.getTime();
+    .map((borrow) => new Date(borrow.dateBorrowed))
+    .map((date) => {
+      date.setHours(0, 0, 0, 0)
+      return date.getTime()
     })
-    .filter(time => time === today.getTime())
-    .length;
+    .filter((time) => time === today.getTime()).length
 
   const booksAtHomes = books
-    .map(book => book.bookTaken)
-    .filter(bookTaken => bookTaken)
-    .length;
+    .map((book) => book.bookTaken)
+    .filter((bookTaken) => bookTaken).length
 
-  const booksInLib = books.length - booksAtHomes;
+  const booksInLib = books.length - booksAtHomes
 
-  const totalBooks = books.length;
-  const totalAuthors = new Set(bookInstances.map(book => book.author)).size;
-  const totalGenres = new Set(bookInstances.map(book => book.category)).size;
+  const totalBooks = books.length
+  const totalAuthors = new Set(bookInstances.map((book) => book.author)).size
+  const totalGenres = new Set(bookInstances.map((book) => book.category)).size
   const totalReaders = readers.length
-  const averageBooksPerReader = (totalBooks / totalReaders)/1;
+  const averageBooksPerReader = totalBooks / totalReaders / 1
 
-  return { 
+  return {
     booksTodayCount,
     borrowings: borrowing.length,
     booksInLib,
@@ -62,10 +60,9 @@ export const findStats = async () => {
     totalAuthors,
     totalGenres,
     totalReaders,
-    averageBooksPerReader
-  };
-};
-
+    averageBooksPerReader,
+  }
+}
 
 export const findBorrowingByReader = async (id: number) => {
   const reader = await Reader.findOne({
