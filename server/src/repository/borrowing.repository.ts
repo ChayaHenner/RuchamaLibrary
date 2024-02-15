@@ -3,6 +3,8 @@ import { Book } from '../entities/Book'
 import { Reader } from '../entities/Reader'
 import { libraryData } from '../app'
 import { Borrows } from '../types/borrowing.types'
+import { Between } from 'typeorm'
+import { BookInstance } from '../entities/BookInstance'
 
 export const findTopTenBooks = () => {
   return libraryData
@@ -20,35 +22,50 @@ export const findTopTenBooks = () => {
     .limit(10)
     .getRawMany()
 }
+
 export const findStats = async () => {
-  const borrowing = await Borrowing.find({
-    // relations: { books: true }
-  })
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); 
+  const borrowing = await Borrowing.find({});
+  const books = await Book.find({});
+  const bookInstances = await BookInstance.find({});
+  const readers = await Reader.find({});
 
-  // for (const id of ids) {
-  //   const b = await Book.findOne({ where: { id } })
-  //   if (!b || b.bookTaken) {
-  //     throw new Error(
-  //       `Invalid book ID ${id} or book already taken.borrow unsuccessful`,
-  //     )
-  //   }
+  const booksTodayCount = borrowing
+    .map(borrow => new Date(borrow.dateBorrowed))
+    .map(date => {
+      date.setHours(0, 0, 0, 0);
+      return date.getTime();
+    })
+    .filter(time => time === today.getTime())
+    .length;
 
-  // const borrowings: Borrowing[] = []
-  for (const borrow of borrowing) {
-    // const b = await Book.findOne({ where: { id: book } })
-    // if (b) {
-    //   borrowing.book = b
-    //   await updateBookTaken(book)
-    //   await Borrowing.save(borrowing)
-    //   borrowings.push(borrowing)
-    // }
-  }
-  //   readerBorrow.borrowings.push(...borrowings)
-  //   await readerBorrow.save()
-  //   readerBorrow.borrowings = borrowings
-  return borrowing
-  // }
-}
+  const booksAtHomes = books
+    .map(book => book.bookTaken)
+    .filter(bookTaken => bookTaken)
+    .length;
+
+  const booksInLib = books.length - booksAtHomes;
+
+  const totalBooks = books.length;
+  const totalAuthors = new Set(bookInstances.map(book => book.author)).size;
+  const totalGenres = new Set(bookInstances.map(book => book.category)).size;
+  const totalReaders = readers.length
+  const averageBooksPerReader = (totalBooks / totalReaders)/1;
+
+  return { 
+    booksTodayCount,
+    borrowings: borrowing.length,
+    booksInLib,
+    booksAtHomes,
+    totalBooks,
+    totalAuthors,
+    totalGenres,
+    totalReaders,
+    averageBooksPerReader
+  };
+};
+
 
 export const findBorrowingByReader = async (id: number) => {
   const reader = await Reader.findOne({

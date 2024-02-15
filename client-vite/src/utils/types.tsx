@@ -290,3 +290,17 @@ export type PublisherReport = {
 export type DataGridApi = {
   getSelectedRows: () => BorrowingInfo[]
 }
+export type DashboardProps = {
+  stats: Stats
+}
+export type Stats = {
+  booksTodayCount: number
+  borrowings: number
+  booksInLib: number
+  booksAtHomes: number
+  totalBooks: number
+  totalAuthors: number
+  totalGenres: number
+  totalReaders: number
+  averageBooksPerReader: number
+}

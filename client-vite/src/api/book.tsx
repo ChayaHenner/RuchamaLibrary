@@ -2,7 +2,6 @@ import { BookFormProps, BookType, ExistingBookFormValues } from '../utils/types'
 import axios from 'axios'
 
 export const postBook = async (data: BookFormProps) => {
-  console.log(data)
   try {
     const response = await axios.post(
       'http://localhost:5000/books/newbook',

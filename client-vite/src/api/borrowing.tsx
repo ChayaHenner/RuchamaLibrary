@@ -2,6 +2,7 @@ import {
   BorrowBooks,
   ReaderBorrowing,
   ReaderWithUnreturnedBooks,
+  Stats,
   TopTenBook,
 } from '../utils/types'
 import axios from 'axios'
@@ -56,3 +57,13 @@ export const postReturn = async (selectedRows: number[]) => {
     console.error(err)
   }
 }
+export const getStats = async (): Promise<Stats> => {
+  try {
+    const response = await axios.get('http://localhost:5000/borrowing/stats');
+    console.log(response.data);
+    return response.data;
+  } catch (err) {
+    console.error('Error fetching stats:', err);
+    throw err; 
+  }
+};
