@@ -18,23 +18,25 @@ app.use(express.json())
 
 export const libraryData = new DataSource({
   type: 'postgres',
-  host: 'localhost',
+  host: process.env.DB_HOST,
   port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : 5432,
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
   logging: true,
+  ssl: {
+    rejectUnauthorized: false, // needed for Render external SSL
+  },
   entities: [Reader, Publisher, BookInstance, Book, Borrowing],
   synchronize: true,
 })
-
 
 libraryData
   .initialize()
   .then(() => {
     console.log('✅ Database connected')
 
-app.use('/', router)
+    app.use('/', router)
 
     app.listen(port, () => {
       console.log(`Server is listening on PORT ${port}`)

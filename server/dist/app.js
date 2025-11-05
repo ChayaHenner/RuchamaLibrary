@@ -21,12 +21,15 @@ const port = process.env.PORT || 5000;
 app.use(express_1.default.json());
 exports.libraryData = new typeorm_1.DataSource({
     type: 'postgres',
-    host: 'localhost',
+    host: process.env.DB_HOST,
     port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : 5432,
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
     logging: true,
+    ssl: {
+        rejectUnauthorized: false, // needed for Render external SSL
+    },
     entities: [Reader_1.Reader, Publisher_1.Publisher, BookInstance_1.BookInstance, Book_1.Book, Borrowing_1.Borrowing],
     synchronize: true,
 });
