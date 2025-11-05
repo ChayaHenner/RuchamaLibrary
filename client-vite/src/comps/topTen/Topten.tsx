@@ -26,7 +26,7 @@ const TopTen: React.FC = () => {
           <ListItem key={index}>
             <ListItemText
               primary={book.name}
-              secondary={`Borrow Count: ${book.borrowcount}`}
+              secondary={`Borrowed ${book.borrowcount} times`}
             />
           </ListItem>
         ))}
