@@ -5,13 +5,13 @@ import {
   Stats,
   TopTenBook,
 } from '../utils/types'
-import axios from 'axios'
+import { Api } from './index'
 
 export const getOverdueReaders = async (): Promise<
   ReaderWithUnreturnedBooks[]
 > => {
   try {
-    const response = await axios.get('http://localhost:5000/borrowing/twoweeks')
+    const response = await Api.get('/borrowing/twoweeks')
     console.log(response.data)
 
     return response.data
@@ -21,7 +21,7 @@ export const getOverdueReaders = async (): Promise<
 }
 export const getTopTen = async (): Promise<TopTenBook[]> => {
   try {
-    const response = await axios.get('http://localhost:5000/borrowing/topten')
+    const response = await Api.get('/borrowing/topten')
     console.log(response.data)
 
     return response.data
@@ -35,8 +35,8 @@ export const postBorrow = async (
   console.log(borrow)
 
   try {
-    const response = await axios.post(
-      'http://localhost:5000/borrowing/borrowmany',
+    const response = await Api.post(
+      '/borrowing/borrowmany',
       borrow,
     )
     console.log(response)
@@ -48,8 +48,8 @@ export const postBorrow = async (
 }
 export const postReturn = async (selectedRows: number[]) => {
   try {
-    const response = await axios.post(
-      'http://localhost:5000/borrowing/returnmany',
+    const response = await Api.post(
+      '/borrowing/returnmany',
       { borrowIds: selectedRows },
     )
     console.log(response)
@@ -59,7 +59,7 @@ export const postReturn = async (selectedRows: number[]) => {
 }
 export const getStats = async (): Promise<Stats> => {
   try {
-    const response = await axios.get('http://localhost:5000/borrowing/stats')
+    const response = await Api.get('/borrowing/stats')
     console.log(response.data)
     return response.data
   } catch (err) {

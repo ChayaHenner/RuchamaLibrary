@@ -1,10 +1,10 @@
 import { Publisher, PublisherForm, PublisherReport } from '../utils/types'
-import axios from 'axios'
+import { Api } from './index'
 
 export const getPublishers = async () => {
   try {
-    const response = await axios.get<Publisher[]>(
-      'http://localhost:5000/publishers/',
+    const response = await Api.get<Publisher[]>(
+      '/publishers/',
     )
     console.log(response.data)
     return response.data
@@ -14,8 +14,8 @@ export const getPublishers = async () => {
 }
 export const getReport = async () => {
   try {
-    const response = await axios.get<PublisherReport[]>(
-      'http://localhost:5000/publishers/report',
+    const response = await Api.get<PublisherReport[]>(
+      '/publishers/report',
     )
     console.log(response.data)
     return response.data
@@ -28,8 +28,8 @@ export const postPublisher = async (publisher: PublisherForm) => {
   console.log(publisher)
 
   try {
-    const response = await axios.post(
-      'http://localhost:5000/publishers',
+    const response = await Api.post(
+      '/publishers',
       publisher,
     )
     return response.data
@@ -39,8 +39,8 @@ export const postPublisher = async (publisher: PublisherForm) => {
 }
 export const patchDeletePublisher = async (id: number) => {
   try {
-    const response = await axios.patch(
-      `http://localhost:5000/publishers/${id}/soft-delete`,
+    const response = await Api.patch(
+      `/publishers/${id}/soft-delete`,
     )
     // console.log(response.data)
     return response.data

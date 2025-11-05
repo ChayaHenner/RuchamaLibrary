@@ -1,10 +1,10 @@
 import { BookFormProps, BookType, ExistingBookFormValues } from '../utils/types'
-import axios from 'axios'
+import { Api } from './index'
 
 export const postBook = async (data: BookFormProps) => {
   try {
-    const response = await axios.post(
-      'http://localhost:5000/books/newbook',
+    const response = await Api.post(
+      '/books/newbook',
       data,
     )
     return response.data
@@ -14,7 +14,7 @@ export const postBook = async (data: BookFormProps) => {
 }
 export const getBooksInLibrary = async (): Promise<BookType[]> => {
   try {
-    const response = await axios.get('http://localhost:5000/books/inlibrary')
+    const response = await Api.get('/books/inlibrary')
     console.log(response.data)
     return response.data
   } catch (error) {
@@ -23,7 +23,7 @@ export const getBooksInLibrary = async (): Promise<BookType[]> => {
 }
 export const postBookExisting = async (data: ExistingBookFormValues) => {
   try {
-    const response = await axios.post('http://localhost:5000/books', data)
+    const response = await Api.post('/books', data)
     console.log('existing Books added ', response.data)
     return response.data
   } catch (error) {
@@ -32,8 +32,8 @@ export const postBookExisting = async (data: ExistingBookFormValues) => {
 }
 export const getLocationBook = async (id: number) => {
   try {
-    const response = await axios.get(
-      `http://localhost:5000/books/${id}/location`,
+    const response = await Api.get(
+      `/books/${id}/location`,
     )
     console.log(response.data)
     return response.data
