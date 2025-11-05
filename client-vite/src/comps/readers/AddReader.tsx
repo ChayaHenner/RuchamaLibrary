@@ -21,21 +21,40 @@ const AddReader: FC<AddReaderProps> = ({ onClose }) => {
   const navigate = useNavigate()
 
   const handleSubmit: SubmitHandler<ReaderForm> = async (data: ReaderForm) => {
-    const dobAsDate = data?.dob?.toISOString().split('T')[0] || ''
-    console.log(data)
+    try {
+      const dobAsDate = data?.dob?.toISOString().split('T')[0] || ''
+      console.log(data)
+      data.dob = new Date(dobAsDate)
+      const reader = await addReader(data)
 
-    data.dob = new Date(dobAsDate)
-    const reader = await addReader(data)
-    Swal.fire({
-      title: 'Added Reader',
-      text: 'Enjoy your read',
-      icon: 'success',
-      confirmButtonText: 'confirm',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        navigate(`/profile/${reader.id}`)
+      Swal.fire({
+        title: 'Added Reader',
+        text: 'Enjoy your read',
+        icon: 'success',
+        confirmButtonText: 'Confirm',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate(`/profile/${reader.id}`)
+        }
+      })
+    } catch (error: any) {
+      if (error.response && error.response.data) {
+        const { error: errType, info } = error.response.data
+        Swal.fire({
+          title: `Error: ${errType}`,
+          text: info,
+          icon: 'error',
+          confirmButtonText: 'Ok',
+        })
+      } else {
+        Swal.fire({
+          title: 'Unknown Error',
+          text: 'Something went wrong',
+          icon: 'error',
+          confirmButtonText: 'Ok',
+        })
       }
-    })
+    }
   }
 
   const handleDateChange = (date: any) => {

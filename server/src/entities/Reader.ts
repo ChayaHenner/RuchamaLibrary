@@ -1,20 +1,17 @@
 import {
-  Entity,
-  PrimaryGeneratedColumn,
+  IsDate,
+  IsEmail,
+  IsString,
+  MaxLength,
+  MinLength,
+} from 'class-validator'
+import {
   Column,
-  BaseEntity,
-  DeleteDateColumn,
-  OneToMany,
+  Entity,
+  OneToMany
 } from 'typeorm'
 import { Borrowing } from './Borrowing'
 import { ObjectEntity } from './Object'
-import {
-  IsString,
-  IsEmail,
-  MinLength,
-  MaxLength,
-  IsDate,
-} from 'class-validator'
 
 @Entity('reader')
 export class Reader extends ObjectEntity {

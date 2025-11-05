@@ -1,21 +1,15 @@
 import {
-  BaseEntity,
+  IsString,
+  MaxLength,
+  MinLength
+} from 'class-validator'
+import {
   Column,
   Entity,
-  PrimaryGeneratedColumn,
-  DeleteDateColumn,
-  OneToMany,
+  OneToMany
 } from 'typeorm'
-import { Book } from './Book'
 import { BookInstance } from './BookInstance'
 import { ObjectEntity } from './Object'
-import {
-  IsString,
-  IsEmail,
-  MinLength,
-  MaxLength,
-  IsDate,
-} from 'class-validator'
 
 @Entity('publisher')
 export class Publisher extends ObjectEntity {

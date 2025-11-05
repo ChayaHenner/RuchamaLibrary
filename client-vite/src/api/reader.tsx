@@ -2,13 +2,12 @@ import { Reader, ReaderForm, ReaderInfo } from '../utils/types'
 import axios from 'axios'
 
 export const addReader = async (reader: ReaderForm) => {
-  console.log(reader)
-
   try {
     const response = await axios.post('http://localhost:5000/readers', reader)
     return response.data
   } catch (err) {
     console.error(err)
+    throw err
   }
 }
 

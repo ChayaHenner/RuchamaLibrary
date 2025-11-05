@@ -1,17 +1,16 @@
+import { IsDate } from 'class-validator'
 import {
-  TableForeignKey,
-  ManyToOne,
-  JoinColumn,
   BaseEntity,
   Column,
-  Entity,
-  PrimaryGeneratedColumn,
   CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
   OneToMany,
+  PrimaryGeneratedColumn
 } from 'typeorm'
 import { Book } from './Book'
 import { Reader } from './Reader'
-import { IsDate } from 'class-validator'
 @Entity('borrowing')
 export class Borrowing extends BaseEntity {
   @PrimaryGeneratedColumn()

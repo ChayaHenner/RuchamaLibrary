@@ -114,7 +114,7 @@ const BookCard: FC<BookCardProp> = ({ book }) => {
           open={!!snackBarMessage}
           autoHideDuration={6000}
           onClose={() => setSnackBarMessage(null)}
-          message={`Book at ` + snackBarMessage || ''}
+          message={`Book by ` + snackBarMessage || ''}
         />
       </CustomCard>
     </Grid>

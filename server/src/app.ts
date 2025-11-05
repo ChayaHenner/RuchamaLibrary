@@ -8,11 +8,11 @@ import { Publisher } from './entities/Publisher'
 import { Book } from './entities/Book'
 import { BookInstance } from './entities/BookInstance'
 import { Borrowing } from './entities/Borrowing'
-const cors = require('cors')
+import cors from 'cors'
 
 const app = express()
 app.use(cors())
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 5000
 
 app.use(express.json())
 
@@ -28,12 +28,18 @@ export const libraryData = new DataSource({
   synchronize: true,
 })
 
-libraryData.initialize().then(() => {
-  console.log('database connected')
-})
+
+libraryData
+  .initialize()
+  .then(() => {
+    console.log('✅ Database connected')
 
 app.use('/', router)
 
-app.listen(port, () => {
-  console.log(`Server is listening on PORT ${port}`)
-})
+    app.listen(port, () => {
+      console.log(`Server is listening on PORT ${port}`)
+    })
+  })
+  .catch((err) => {
+    console.error('Database connection error:', err)
+  })

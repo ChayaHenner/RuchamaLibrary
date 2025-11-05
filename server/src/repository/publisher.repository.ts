@@ -20,8 +20,8 @@ export const findPublisherReport = async () => {
         'publisher.id as id',
         'publisher.name as name',
         'publisher.country as country',
-        'CAST(COUNT(book.id) AS INTEGER) as bookCount', // Count of all books for each publisher as integer
-        'CAST(SUM(bookInstance.price) AS INTEGER) as publisherPrice', // Sum of prices of all book instances for each publisher as integer
+        'CAST(COUNT(book.id) AS INTEGER) as bookCount',
+        'CAST(SUM(bookInstance.price) AS INTEGER) as publisherPrice',
       ])
       .groupBy('publisher.id')
       .getRawMany()

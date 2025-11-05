@@ -1,26 +1,24 @@
 import {
-  ManyToOne,
-  BaseEntity,
-  Column,
-  Entity,
-  PrimaryGeneratedColumn,
-  DeleteDateColumn,
-  JoinColumn,
-  OneToMany,
-} from 'typeorm'
-import { Book } from './Book'
-import { Publisher } from './Publisher'
-import { LevelCategory } from '../enum/bookInstance.enum'
-import {
-  IsString,
-  IsEmail,
-  MinLength,
-  MaxLength,
-  IsDate,
   IsEnum,
   IsNumber,
+  IsString,
   Max,
+  MaxLength,
+  MinLength
 } from 'class-validator'
+import {
+  BaseEntity,
+  Column,
+  DeleteDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm'
+import { LevelCategory } from '../enum/bookInstance.enum'
+import { Book } from './Book'
+import { Publisher } from './Publisher'
 
 @Entity('bookinstance')
 export class BookInstance extends BaseEntity {
@@ -30,7 +28,7 @@ export class BookInstance extends BaseEntity {
   @IsString()
   @MinLength(2)
   @MaxLength(50)
-  @Column()
+  @Column({ nullable: true })
   name: string
 
   @IsString()
@@ -53,7 +51,7 @@ export class BookInstance extends BaseEntity {
     type: 'enum',
     enum: LevelCategory,
   })
-  category: number
+  category: LevelCategory
 
   @DeleteDateColumn()
   dateDeleted: Date
